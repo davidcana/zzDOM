@@ -19,29 +19,29 @@ var zz = function( x ){
         return inner.length === 1? new SimpleZZDom( inner[ 0 ] ): new MultipleZZDom( inner );
     }
     
-    throw 'Failed runing zz function!';
+    throw 'Failed running zz function!';
 };
 
 /*
     zz selector object
 */
 var zzs = {
-    id: function( id ){
+    i: function( id ){
         return document.getElementById( id );
     },
-    class: function( className ){
+    c: function( className ){
         return document.getElementsByClassName( className );
     },
-    tag: function( tagName ){
+    t: function( tagName ){
         return document.getElementsByTagName( tagName );
     },
-    tagNS: function( namespace, tagName ){
+    tn: function( namespace, tagName ){
         return document.getElementsByTagNameNS( namespace, tagName );
     },
-    name: function( name ){
+    n: function( name ){
         return document.getElementsByName( name );
     },
-    first: function( string ){
+    s: function( string ){
         return document.querySelector( string );
     }
 };

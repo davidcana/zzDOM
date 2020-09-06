@@ -21,3 +21,27 @@ var zz = function( x ){
     
     throw 'Failed runing zz function!';
 };
+
+/*
+    zz selector object
+*/
+var zzs = {
+    id: function( id ){
+        return document.getElementById( id );
+    },
+    class: function( className ){
+        return document.getElementsByClassName( className );
+    },
+    tag: function( tagName ){
+        return document.getElementsByTagName( tagName );
+    },
+    tagNS: function( namespace, tagName ){
+        return document.getElementsByTagNameNS( namespace, tagName );
+    },
+    name: function( name ){
+        return document.getElementsByName( name );
+    },
+    first: function( string ){
+        return document.querySelector( string );
+    }
+};

@@ -65,15 +65,17 @@ module.exports = function(grunt) {
         },
         concat: {
             options: {
-                separator: ';',
+                stripBanners: true,
+                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd HH:M:s") %> */\n'
             },
             dist: {
                 src: [
                     'js/zz.js', 
                     'js/simpleZZDom.js', 
-                    'js/multipleZZDom.js'
+                    'js/multipleZZDom.js',
                 ],
-                dest: 'build/zzDOM.js'
+                dest: 'build/zzDOM.js',
+                nonull: true
             }
         },
         uglify: {

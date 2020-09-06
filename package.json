@@ -1,0 +1,50 @@
+{
+  "name": "zzDOM",
+  "version": "0.0.1",
+  "main": "./js/app/main.js",
+  "description": "A tiny javascript API that implements only the DOM functions of jquery including chaining.",
+  "keywords": [
+    "DOM",
+    "jquery",
+    "tiny",
+    "chaining"
+  ],
+  "bugs": "david.javapagetemplates@gmail.com",
+  "license": "LGPL-3.0",
+  "author": "David Cana Lopez",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidcana/zzDOM"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "beefy": "~2.1.8",
+    "genversion": "^2.2.1",
+    "grunt": "~1.1.0",
+    "grunt-browserify": "~5.3.0",
+    "grunt-contrib-compress": "~1.5.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "~2.1.0",
+    "grunt-contrib-nodeunit": "~2.1.0",
+    "grunt-contrib-qunit": "~3.1.0",
+    "grunt-contrib-uglify": "~4.0.1",
+    "grunt-contrib-watch": "~1.1.0",
+    "grunt-exec": "^3.0.0",
+    "http-server": "^0.12.3",
+    "npm-run-all": "^4.1.5",
+    "qunit": "~2.10.0",
+    "qunit-composite": "^2.0.0"
+  },
+  "scripts": {
+    "testNode": "qunit test/js/app/node.js",
+    "testBrowser": "grunt qunit",
+    "test": "npm-run-all testBrowser testNode",
+    "http-server": "http-server -p 9000",
+    "web": "cd ./docs; http-server -p 9001",
+    "beefy": "cd ./test/js/app; beefy *.js ../../../js/app/standalone.js:standalone.js ../../../samples/js/app/expressionTester.js:expressionTester.js ../../../samples/js/app/performance.js:performance.js",
+    "start": "npm-run-all -p -r beefy http-server",
+    "version": "genversion js/app/version.js"
+  }
+}

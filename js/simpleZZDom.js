@@ -295,8 +295,9 @@ SimpleZZDom.prototype.replaceWith = function ( value ) {
 };
 
 SimpleZZDom.prototype.siblings = function () {
+    var self = this;
     Array.prototype.filter.call( this.el.parentNode.children, function( child ){
-        return child !== this.el;
+        return child !== self.el;
     });
 };
 

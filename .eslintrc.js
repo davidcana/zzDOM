@@ -99,7 +99,8 @@ module.exports = {
         "MultipleZZDom": true,
         "zz": true,
         "Element": true,
-        "NodeList": true
+        "NodeList": true,
+        "getComputedStyle": true
     },
     "parserOptions": {
         "ecmaVersion": 6,

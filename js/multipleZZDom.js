@@ -11,7 +11,6 @@ var MultipleZZDom = function ( nodeList ) {
 };
 
 /* Methods NOT included in jquery */
-
 MultipleZZDom.prototype.get = function () {
     return this.list;
 };

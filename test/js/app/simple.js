@@ -17,11 +17,16 @@ QUnit.test( 'text and html test', function( assert ) {
     assert.equal( zz( '#t1-2' ).html(), t1_2_modified );
 });
 
-QUnit.test( 'remove test', function( assert ) {
+QUnit.test( 'remove and empty test', function( assert ) {
     var t2_1_original = 'To remove';
     assert.equal( document.getElementById( 't2-1' ).textContent, t2_1_original );
     zz( '#t2-1' ).remove();
     assert.equal( document.getElementById( 't2-1' ), null );
+    
+    var t2_2_original = 'To be empty';
+    assert.equal( document.getElementById( 't2-2' ).textContent, t2_2_original );
+    zz( '#t2-2' ).empty();
+    assert.equal( document.getElementById( 't2-2' ).textContent, '' );
 });
 
 QUnit.test( 'replaceWith test', function( assert ) {

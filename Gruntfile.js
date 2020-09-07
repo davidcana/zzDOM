@@ -7,7 +7,7 @@ module.exports = function(grunt) {
                 options: {
                     timeout: 60000,
                     urls: [
-                        'http://localhost:9000/test/expressions.html'
+                        'http://localhost:9000/test/simple.html'
                     ]
                 }
             }
@@ -49,16 +49,16 @@ module.exports = function(grunt) {
                         src: ['Gruntfile.js']
                     }, 
                     {
-                        src: ['LICENSE.txt']
+                        src: ['LICENSE']
                     }, 
+                    {
+                        src: ['package-lock.json']
+                    },
                     {
                         src: ['package.json']
                     },
                     {
                         src: ['README.md']
-                    }, 
-                    {
-                        src: ['userguide.html']
                     }
                 ]
             }

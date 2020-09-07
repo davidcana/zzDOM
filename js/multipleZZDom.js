@@ -2,6 +2,8 @@
     MultipleZZDom class
 */
 var MultipleZZDom = function ( nodeList ) {    
+    
+    // Init list
     this.list = [];
     for ( var i = 0; i < nodeList.length; i++ ) {
         this.list.push( 
@@ -10,18 +12,44 @@ var MultipleZZDom = function ( nodeList ) {
     }
 };
 
+// Init prototype functions from SimpleZZDom
+var MultipleZZDom_init = function(){
+    for ( var id in SimpleZZDom.prototype ){
+        MultipleZZDom.prototype[ id ] = function(){
+            for ( var i = 0; i < this.list.length; i++ ) {
+                simpleZZDom[ id ].apply( simpleZZDom, arguments );
+            }
+            return this;
+        };
+    }
+}();
+/*
+var MultipleZZDom_init = function(){
+    for ( var id in SimpleZZDom.prototype ){
+        MultipleZZDom.prototype[ id ] = function(){
+            this.iterate(
+                function( simpleZZDom ){
+                    simpleZZDom[ id ].apply( simpleZZDom, arguments );
+                }
+            );
+            return this;
+        };
+    }
+}();
+*/
 /* Methods NOT included in jquery */
 MultipleZZDom.prototype.get = function () {
     return this.list;
 };
-
+/*
 MultipleZZDom.prototype.iterate = function ( iterateFn ) {
     for ( var i = 0; i < this.list.length; i++ ) {
         iterateFn( this.list[ i ] );
     }
 };
-
+*/
 /* Methods included in jquery */
+/*
 MultipleZZDom.prototype.addClass = function ( name ) {
     this.iterate(
         function( simpleZZDom ){
@@ -138,3 +166,4 @@ MultipleZZDom.prototype.show = function () {
     );
     return this;
 };
+*/

@@ -1,3 +1,3 @@
 QUnit.testSuites([
-    { name: "expressions Test Suite", path: "./expressions.html" },
+    { name: "simple Test Suite", path: "./simple.html" },
 ]);

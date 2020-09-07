@@ -10,6 +10,36 @@ SimpleZZDom.prototype.get = function () {
     return this.el;
 };
 
+SimpleZZDom.prototype.styleProperty = function ( property, value ) {
+    // get
+    if ( value === undefined ){
+        return parseFloat(
+            getComputedStyle( this.el, null )[ property ].replace( 'px', '' )
+        );
+    }
+
+    // set
+    if ( typeof value === 'function' ) {
+        value = value();
+    }
+    if ( typeof value === 'string' ){
+        this.el.style[ property ] = value;
+    } else {
+        this.el.style[ property ] = value + 'px';
+    }
+    return this;
+};
+
+SimpleZZDom.prototype.setCssUsingKeyValue = function ( key, value ) {
+    this.el.style[ key ] = value;
+};
+
+SimpleZZDom.prototype.setCssUsingObject = function ( object ) {
+    for ( var key in object ) {
+        this.setCssUsingKeyValue( key, object[ key ] );
+    }
+};
+
 /* Methods included in jquery */
 SimpleZZDom.prototype.addClass = function ( name ) {
     this.el.classList.add( name );
@@ -73,26 +103,6 @@ SimpleZZDom.prototype.attr = function ( name, value ) {
     return this;
 };
 
-SimpleZZDom.prototype.styleProperty = function ( property, value ) {
-    // get
-    if ( value === undefined ){
-        return parseFloat(
-            getComputedStyle( this.el, null )[ property ].replace( 'px', '' )
-        );
-    }
-
-    // set
-    if ( typeof value === 'function' ) {
-        value = value();
-    }
-    if ( typeof value === 'string' ){
-        this.el.style[ property ] = value;
-    } else {
-        this.el.style[ property ] = value + 'px';
-    }
-    return this;
-};
-
 SimpleZZDom.prototype.height = function ( value ) {
     return this.styleProperty( 'height', value );
 };
@@ -106,16 +116,6 @@ SimpleZZDom.prototype.html = function ( value ) {
     // set
     this.el.innerHTML = value;
     return this;
-};
-
-SimpleZZDom.prototype.setCssUsingKeyValue = function ( key, value ) {
-    this.el.style[ key ] = value;
-};
-
-SimpleZZDom.prototype.setCssUsingObject = function ( object ) {
-    for ( var key in object ) {
-        this.setCssUsingKeyValue( key, object[ key ] );
-    }
 };
 
 SimpleZZDom.prototype.css = function () {

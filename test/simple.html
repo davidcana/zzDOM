@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Simple tests</title>
+        <link rel="stylesheet" href="/node_modules/qunit/qunit/qunit.css">
+        
+        <script src="/node_modules/qunit/qunit/qunit.js" defer></script>
+        <script src="/build/zzDOM.js" defer></script>
+        <script src="js/app/simple.js" defer></script>
+    </head>
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+        
+        <h2>
+            1. Text and html
+        </h2>
+        <ol>
+            <li>Text: <span id="t1-1">white</span>. Original value is <em>white</em>, modified must be <em>yellow</em>.</li>
+            <li>HTML: <span id="t1-2"><a href="https://www.fsf.org/">FSF</a></span>. Original value is <em>FSF</em>, modified must be <em>mozilla</em>.</li>
+        </ol>
+        
+    </body>
+</html>

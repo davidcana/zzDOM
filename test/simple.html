@@ -14,12 +14,33 @@
         <div id="qunit-fixture"></div>
         
         <h2>
-            1. Text and html
+            1. text and html
         </h2>
         <ol>
-            <li>Text: <span id="t1-1">white</span>. Original value is <em>white</em>, modified must be <em>yellow</em>.</li>
-            <li>HTML: <span id="t1-2"><a href="https://www.fsf.org/">FSF</a></span>. Original value is <em>FSF</em>, modified must be <em>mozilla</em>.</li>
+            <li>text: <span id="t1-1">white</span>. Original value is <em>white</em>, modified must be <em>yellow</em>.</li>
+            <li>html: <span id="t1-2"><a href="https://www.fsf.org/">FSF</a></span>. Original value is <em>FSF</em>, modified must be <em>mozilla</em>.</li>
         </ol>
         
+        <h2>
+            2. remove
+        </h2>
+        <p>
+            remove: <span id="t2-1">To remove</span>. Original value is <em>To remove</em>, modified must me removed.
+        </p>
+        
+        <h2>
+            3. replaceWith
+        </h2>
+        <p>
+            replaceWith: <span id="t3-1"><span id="t3-1-in">To replace</span></span>. Original value is <em>To replace</em>, modified must me <em>Replaced text</em>.
+        </p>
+        
+        <h2>
+            4. attr and removeAttr
+        </h2>
+        <ol>
+            <li>Link 1: <a id="t4-1" href="https://www.fsf.org/">FSF</a>. Original href attribute is <em>https://www.fsf.org/</em>, modified must be <em>https://www.mozilla.org/</em>.</li>
+            <li>Link 2: <a id="t4-2" href="https://www.fsf.org/" name="FSF">FSF</a>. Original name attribute is <em>FSF, modified must be removed.</em></li>
+        </ol>
     </body>
 </html>

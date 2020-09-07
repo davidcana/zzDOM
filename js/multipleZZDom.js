@@ -3,7 +3,7 @@
 */
 var MultipleZZDom = function ( nodeList ) {    
     this.list = [];
-    for ( var i = 0; i < this.nodeList.length; i++ ) {
+    for ( var i = 0; i < nodeList.length; i++ ) {
         this.list.push( 
             new SimpleZZDom( this.nodeList[ i ] )
         );

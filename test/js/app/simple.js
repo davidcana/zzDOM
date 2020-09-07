@@ -52,4 +52,29 @@ QUnit.test( 'attr and removeAttr test', function( assert ) {
     assert.equal( zz( '#t4-2' ).attr( 'name' ), null );
 });
 
-//replaceWith
+QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( assert ) {
+    var t5_1_class = 'myclass';
+    assert.ok( document.getElementById( 't5-1' ).classList.contains( t5_1_class ) );
+    assert.ok( zz( '#t5-1' ).hasClass( t5_1_class ) );
+
+    var t5_2_class = 'addedclass';
+    assert.notOk( document.getElementById( 't5-2' ).classList.contains( t5_2_class ) );
+    zz( '#t5-2' ).addClass( t5_2_class );
+    assert.ok( document.getElementById( 't5-2' ).classList.contains( t5_2_class ) );
+    
+    var t5_3_class = 'otherclass';
+    assert.ok( document.getElementById( 't5-3' ).classList.contains( t5_3_class ) );
+    zz( '#t5-3' ).removeClass( t5_3_class );
+    assert.notOk( document.getElementById( 't5-3' ).classList.contains( t5_3_class ) );
+    
+    var t5_4_class = 'addedclass';
+    assert.notOk( document.getElementById( 't5-4' ).classList.contains( t5_4_class ) );
+    zz( '#t5-4' ).toggleClass( t5_4_class );
+    assert.ok( document.getElementById( 't5-4' ).classList.contains( t5_4_class ) );
+    
+    var t5_5_class = 'otherclass';
+    assert.ok( document.getElementById( 't5-5' ).classList.contains( t5_5_class ) );
+    zz( '#t5-5' ).removeClass( t5_5_class );
+    assert.notOk( document.getElementById( 't5-5' ).classList.contains( t5_5_class ) );
+});
+

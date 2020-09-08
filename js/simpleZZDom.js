@@ -78,15 +78,11 @@ SimpleZZDom.prototype.before = function ( x ) {
 };
 
 SimpleZZDom.prototype.children = function () {
-    return zz( this.el.children );
+    return zzDOM.buildInstance( this.el.children );
 };
 
 SimpleZZDom.prototype.clone = function (  ) {
     return new SimpleZZDom( this.el.cloneNode( true ) );
-};
-
-SimpleZZDom.prototype.contains = function ( child ) {
-    return this.el !== child && this.el.contains( child );
 };
 
 SimpleZZDom.prototype.empty = function (  ) {

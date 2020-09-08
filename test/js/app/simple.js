@@ -109,7 +109,21 @@ QUnit.test( 'siblings, prev and next test', function( assert ) {
     zz( '#t7-1-2' ).siblings().each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't7-1-1', 't7-1-3' ] );
     
-    assert.equal( zz( '#t7-2-2' ).prev().attr( 'id' ), 't7-2-1');
+    assert.equal( zz( '#t7-2-2' ).prev().attr( 'id' ), 't7-2-1' );
     
-    assert.equal( zz( '#t7-2-2' ).next().attr( 'id' ), 't7-2-3');
+    assert.equal( zz( '#t7-2-2' ).next().attr( 'id' ), 't7-2-3' );
+});
+
+QUnit.test( 'children, index and parent test', function( assert ) {
+    var ids = [];
+    zz( '#t8-1' ).children().each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't8-1-1', 't8-1-2', 't8-1-3' ] );
+    
+    assert.equal( zz( '#t8-2-1' ).index(), 1 );
+    assert.equal( zz( '#t8-2-2' ).index(), 2 );
+    assert.equal( zz( '#t8-2-3' ).index(), 3 );
+    
+    assert.equal( zz( '#t8-3-1' ).parent().attr( 'id' ), 't8-3' );
+    assert.equal( zz( '#t8-3-2' ).parent().attr( 'id' ), 't8-3' );
+    assert.equal( zz( '#t8-3-3' ).parent().attr( 'id' ), 't8-3' );
 });

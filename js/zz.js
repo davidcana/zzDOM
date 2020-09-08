@@ -1,12 +1,3 @@
-/* zzDOM object */
-var zzDOM = {};
-
-zzDOM.htmlToElement = function ( html ) {
-    var template = document.createElement( 'template' );
-    template.innerHTML = html.trim();
-    return template.content.firstChild;
-};
-
 /*
     zz function
     
@@ -70,7 +61,7 @@ var zz = function( x, s1, s2 ){
     }
 
     if ( nodes ){
-        return nodes.length === 1? new SimpleZZDom( nodes[ 0 ] ): new MultipleZZDom( nodes );
+        return zzDOM.buildInstance( nodes );
     }
     
     throw 'Unsupported selector type found running zz function.';

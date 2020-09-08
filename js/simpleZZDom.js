@@ -306,9 +306,10 @@ SimpleZZDom.prototype.replaceWith = function ( value ) {
 
 SimpleZZDom.prototype.siblings = function () {
     var self = this;
-    Array.prototype.filter.call( this.el.parentNode.children, function( child ){
+    var nodes = Array.prototype.filter.call( this.el.parentNode.children, function( child ){
         return child !== self.el;
     });
+    return zzDOM.buildInstance( nodes );
 };
 
 SimpleZZDom.prototype.toggleClass = function ( name ) {

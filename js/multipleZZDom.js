@@ -49,6 +49,10 @@ MultipleZZDom.prototype.iterate = function ( iterateFn ) {
 };
 */
 /* Methods included in jquery */
+MultipleZZDom.prototype.each = function ( eachFn ) {
+    Array.prototype.forEach.call( this.list, eachFn );
+    return this.list;
+};
 /*
 MultipleZZDom.prototype.addClass = function ( name ) {
     this.iterate(

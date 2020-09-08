@@ -112,6 +112,10 @@ QUnit.test( 'siblings, prev and next test', function( assert ) {
     assert.equal( zz( '#t7-2-2' ).prev().attr( 'id' ), 't7-2-1' );
     
     assert.equal( zz( '#t7-2-2' ).next().attr( 'id' ), 't7-2-3' );
+    
+    var ids = [];
+    zz( '#t7-4-2' ).siblings( '.selected' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't7-4-1', 't7-4-4' ] );
 });
 
 QUnit.test( 'children, index and parent test', function( assert ) {
@@ -126,4 +130,9 @@ QUnit.test( 'children, index and parent test', function( assert ) {
     assert.equal( zz( '#t8-3-1' ).parent().attr( 'id' ), 't8-3' );
     assert.equal( zz( '#t8-3-2' ).parent().attr( 'id' ), 't8-3' );
     assert.equal( zz( '#t8-3-3' ).parent().attr( 'id' ), 't8-3' );
+    
+    ids = [];
+    zz( '#t8-4' ).children( '.selected' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't8-4-1', 't8-4-3' ] );
+    //zz( '#t8-4' ).children( '.selected' ) must be [ 't8-4-1', 't8-4-3' ]
 });

@@ -78,8 +78,32 @@ SimpleZZDom.prototype.before = function ( x ) {
     return this.insertHelper( 'beforebegin', x );
 };
 
-SimpleZZDom.prototype.children = function () {
-    return zzDOM.buildInstance( this.el.children );
+SimpleZZDom.prototype.children = function ( selector ) {
+    return zzDOM.buildInstance( 
+        selector?
+        Array.prototype.filter.call(
+            this.el.children, 
+            function( child ){
+                return child.matches( selector );
+            }
+        ):
+        this.el.children 
+    );
+};
+
+SimpleZZDom.prototype.siblings = function ( selector ) {
+    var self = this;
+    var nodes = Array.prototype.filter.call( 
+        this.el.parentNode.children, 
+        selector?
+            function( child ){
+                return child !== self.el && child.matches( selector );
+            }:
+            function( child ){
+                return child !== self.el;
+            }
+    );
+    return zzDOM.buildInstance( nodes );
 };
 
 SimpleZZDom.prototype.clone = function (  ) {
@@ -299,14 +323,6 @@ SimpleZZDom.prototype.removeClass = function ( name ) {
 SimpleZZDom.prototype.replaceWith = function ( value ) {
     this.el.outerHTML = value;
     return this;
-};
-
-SimpleZZDom.prototype.siblings = function () {
-    var self = this;
-    var nodes = Array.prototype.filter.call( this.el.parentNode.children, function( child ){
-        return child !== self.el;
-    });
-    return zzDOM.buildInstance( nodes );
 };
 
 SimpleZZDom.prototype.toggleClass = function ( name ) {

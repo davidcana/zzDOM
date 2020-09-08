@@ -1,3 +1,12 @@
+/* zzDOM object */
+var zzDOM = {};
+
+zzDOM.htmlToElement = function ( html ) {
+    var template = document.createElement( 'template' );
+    template.innerHTML = html.trim();
+    return template.content.firstChild;
+};
+
 /*
     zz function
     
@@ -38,20 +47,30 @@ var zz = function( x, s1, s2 ){
     }
     
     // x must be an Element, a NodeList or a standard string selector
+    
+    // Is it an Element?
     if ( x instanceof Element ){
         return new SimpleZZDom( x );
     }
     
-    var inner;
+    var nodes;
+    // Is it a NodeList?
     if ( x instanceof NodeList ){
-        inner = x;
+        nodes = x;
         
     } else if ( typeof x === 'string' ){
-        inner = document.querySelectorAll( x );
+        // Is it HTML code?
+        if ( x.charAt( 0 ) === '<' ){
+            return new SimpleZZDom( zzDOM.htmlToElement( x ) );
+            
+        // Must be a standard selector
+        } else {
+            nodes = document.querySelectorAll( x );
+        }
     }
 
-    if ( inner ){
-        return inner.length === 1? new SimpleZZDom( inner[ 0 ] ): new MultipleZZDom( inner );
+    if ( nodes ){
+        return nodes.length === 1? new SimpleZZDom( nodes[ 0 ] ): new MultipleZZDom( nodes );
     }
     
     throw 'Unsupported selector type found running zz function.';

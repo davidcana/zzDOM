@@ -16,16 +16,22 @@ var zz = function( x, s1, s2 ){
         switch ( x ){
             case '#':
                 x = document.getElementById( s1 );
+                break;
             case '.':
                 x = document.getElementsByClassName( s1 );
+                break;
             case 't':
                 x = document.getElementsByTagName( s1 );
+                break;
             case 'tn':
                 x = document.getElementsByTagNameNS( s1, s2 );
+                break;
             case 'n':
                 x = document.getElementsByName( s1 );
+                break;
             case 's':
                 x = document.querySelector( s1 );
+                break;
             default:
                 throw 'Unsupported selector id found running zz function: ' + x;
         }

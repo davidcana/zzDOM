@@ -3,6 +3,7 @@
 */
 var SimpleZZDom = function ( _el ) {    
     this.el = _el;
+    this.nodes = [ _el ];
 };
 
 /* Methods NOT included in jquery */
@@ -93,13 +94,13 @@ SimpleZZDom.prototype.empty = function (  ) {
 };
 
 SimpleZZDom.prototype.filter = function ( filterFn ) {
-    return new SimpleZZDom(
+    return zzDOM.buildInstance(
         Array.prototype.filter.call( this.el, filterFn )
     );
 };
 
 SimpleZZDom.prototype.find = function ( selector ) {
-    return new SimpleZZDom(
+    return zzDOM.buildInstance( 
         this.el.querySelectorAll( selector )
     );
 };

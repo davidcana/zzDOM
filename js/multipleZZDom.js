@@ -1,13 +1,14 @@
 /*
     MultipleZZDom class
 */
-var MultipleZZDom = function ( nodeList ) {    
+var MultipleZZDom = function ( _nodes ) {    
     
-    // Init list
+    // Init list and nodes 
     this.list = [];
-    for ( var i = 0; i < nodeList.length; i++ ) {
+    this.nodes = _nodes;
+    for ( var i = 0; i < this.nodes.length; i++ ) {
         this.list.push( 
-            new SimpleZZDom( nodeList[ i ] )
+            new SimpleZZDom( this.nodes[ i ] )
         );
     }
 };
@@ -41,6 +42,7 @@ var MultipleZZDom_init = function(){
 MultipleZZDom.prototype.get = function () {
     return this.list;
 };
+
 /*
 MultipleZZDom.prototype.iterate = function ( iterateFn ) {
     for ( var i = 0; i < this.list.length; i++ ) {
@@ -53,6 +55,29 @@ MultipleZZDom.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );
     return this;
 };
+
+SimpleZZDom.prototype.find = function () {
+    var nodes = [];
+    for ( var i = 0; i < this.list.length; i++ ) {
+        var simpleZZDOM = this.list[ i ];
+        var thisNodes = simpleZZDOM.find.apply( simpleZZDOM, arguments ).nodes;
+        nodes = nodes.concat( thisNodes );
+    }
+    
+    return zzDOM.buildInstance( nodes );
+};
+
+SimpleZZDom.prototype.filter = function () {
+    var nodes = [];
+    for ( var i = 0; i < this.list.length; i++ ) {
+        var simpleZZDOM = this.list[ i ];
+        var thisNodes = simpleZZDOM.filter.apply( simpleZZDOM, arguments ).nodes;
+        nodes = nodes.concat( thisNodes );
+    }
+    
+    return zzDOM.buildInstance( nodes );
+};
+
 /*
 MultipleZZDom.prototype.addClass = function ( name ) {
     this.iterate(

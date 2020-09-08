@@ -41,25 +41,40 @@ SimpleZZDom.prototype.setCssUsingObject = function ( object ) {
     }
 };
 
+SimpleZZDom.prototype.insertHelper = function ( position, x ) {
+    if ( x instanceof Element ){  // x is Element
+        this.el.insertAdjacent( position, x );
+    } else if ( x instanceof SimpleZZDom ){
+        this.el.insertAdjacent( position, x.el );
+    } else {
+        this.el.insertAdjacentHTML( position, x );
+    }
+    return this;
+};
+
 /* Methods included in jquery */
 SimpleZZDom.prototype.addClass = function ( name ) {
     this.el.classList.add( name );
     return this;
 };
 
-SimpleZZDom.prototype.after = function ( element ) {
-    this.el.insertAdjacentElement( 'afterend', element );
+SimpleZZDom.prototype.after = function ( x ) {
+    return this.insertHelper( 'afterend', x );
+};
+
+SimpleZZDom.prototype.append = function ( x ) {
+    if ( x instanceof Element ){
+        this.el.appendChild( x );
+    } else if ( x instanceof SimpleZZDom ){
+        this.el.appendChild( x.el );
+    } else {
+        this.el.insertAdjacentHTML( 'beforeend', x );
+    }
     return this;
 };
 
-SimpleZZDom.prototype.append = function ( element ) {
-    this.el.appendChild( element );
-    return this;
-};
-
-SimpleZZDom.prototype.before = function ( element ) {
-    this.el.insertAdjacentElement( 'beforebegin', element );
-    return this;
+SimpleZZDom.prototype.before = function ( x ) {
+    return this.insertHelper( 'beforebegin', x );
 };
 
 SimpleZZDom.prototype.children = function () {
@@ -256,19 +271,13 @@ SimpleZZDom.prototype.position = function ( relativeToViewport ) {
         };
 };
 
-SimpleZZDom.prototype.prepend = function ( other ) {
-    var otherEl;
-    
-    // other is a SimpleZZDom
-    if ( other instanceof SimpleZZDom ) {
-        otherEl = other.el;
-    } else if ( other instanceof Element ) {
-        otherEl = other;
+SimpleZZDom.prototype.prepend = function ( x ) {
+    if ( x instanceof Element ){
+        this.el.insertBefore( otherEl, this.el.firstChild );
     } else {
-        throw 'Method "prepend" not ready for that type!';
+        this.el.insertAdjacentHTML( 'afterbegin', x );
     }
-    
-    this.el.insertBefore( otherEl, this.el.firstChild );
+    return this;
 };
 
 SimpleZZDom.prototype.prev = function () {

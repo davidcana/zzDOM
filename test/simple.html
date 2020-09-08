@@ -7,6 +7,8 @@
         
         <script src="/node_modules/qunit/qunit/qunit.js" defer></script>
         <script src="/build/zzDOM.js" defer></script>
+        <script src="js/app/htmlComparator.js" defer></script>
+        <script src="js/app/utils.js" defer></script>
         <script src="js/app/simple.js" defer></script>
     </head>
     <body>
@@ -56,11 +58,45 @@
         </ol>
         
         <h2>
-            6. after, before, append, prepend, prev, next
+            6. after, before, append and prepend
+        </h2>
+        <ol>
+            <li>
+                after: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>Text 1</em>, <em>New text</em> and <em>Text 2</em>.
+                <ul id="t6-1">
+                    <li id="t6-1-1">Text 1</li>
+                    <li id="t6-1-2">Text 2</li>
+                </ul>
+            </li>
+             <li>
+                before: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>Text 1</em>, <em>New text</em> and <em>Text 2</em>.
+                <ul id="t6-2">
+                    <li id="t6-2-1">Text 1</li>
+                    <li id="t6-2-2">Text 2</li>
+                </ul>
+            </li>
+            <li>
+                append: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>Text 1</em>, <em>Text 2</em> and <em>New text</em>.
+                <ul id="t6-3">
+                    <li id="t6-3-1">Text 1</li>
+                    <li id="t6-3-2">Text 2</li>
+                </ul>
+            </li>
+            <li>
+                prepend: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>New text</em>, <em>Text 1</em> and <em>Text 2</em>.
+                <ul id="t6-4">
+                    <li id="t6-4-1">Text 1</li>
+                    <li id="t6-4-2">Text 2</li>
+                </ul>
+            </li>
+        </ol>
+        
+        <h2>
+            siblings, prev and next
         </h2>
         
         <h2>
-            children, contains, index, parent, siblings
+            children, contains, index, parent 
         </h2>
         
         <h2>

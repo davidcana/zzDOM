@@ -78,3 +78,29 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     assert.notOk( document.getElementById( 't5-5' ).classList.contains( t5_5_class ) );
 });
 
+QUnit.test( 'after, before, append, prepend, prev and next test', function( assert ) {
+    var t6_1_original = '<li id=\"t6-1-1\">Text 1</li><li id=\"t6-1-2\">Text 2</li>',
+        t6_1_modified = '<li id=\"t6-1-1\">Text 1</li><li>New text</li><li id=\"t6-1-2\">Text 2</li>';
+    utils.assertHtml( assert, 't6-1', t6_1_original );
+    zz( '#t6-1-1' ).after( '<li>New text</li>' );
+    utils.assertHtml( assert, 't6-1', t6_1_modified );
+    
+    var t6_2_original = '<li id=\"t6-2-1\">Text 1</li><li id=\"t6-2-2\">Text 2</li>',
+        t6_2_modified = '<li id=\"t6-2-1\">Text 1</li><li>New text</li><li id=\"t6-2-2\">Text 2</li>';
+    utils.assertHtml( assert, 't6-2', t6_2_original );
+    zz( '#t6-2-2' ).before( '<li>New text</li>' );
+    utils.assertHtml( assert, 't6-2', t6_2_modified );
+    
+    var t6_3_original = '<li id=\"t6-3-1\">Text 1</li><li id=\"t6-3-2\">Text 2</li>',
+        t6_3_modified = '<li id=\"t6-3-1\">Text 1</li><li id=\"t6-3-2\">Text 2</li><li>New text</li>';
+    utils.assertHtml( assert, 't6-3', t6_3_original );
+    zz( '#t6-3' ).append( '<li>New text</li>' );
+    utils.assertHtml( assert, 't6-3', t6_3_modified );
+    
+    var t6_4_original = '<li id=\"t6-4-1\">Text 1</li><li id=\"t6-4-2\">Text 2</li>',
+        t6_4_modified = '<li>New text</li><li id=\"t6-4-1\">Text 1</li><li id=\"t6-4-2\">Text 2</li>';
+    utils.assertHtml( assert, 't6-4', t6_4_original );
+    zz( '#t6-4' ).prepend( '<li>New text</li>' );
+    utils.assertHtml( assert, 't6-4', t6_4_modified );
+});
+

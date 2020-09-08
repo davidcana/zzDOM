@@ -7,7 +7,7 @@ var MultipleZZDom = function ( nodeList ) {
     this.list = [];
     for ( var i = 0; i < nodeList.length; i++ ) {
         this.list.push( 
-            new SimpleZZDom( this.nodeList[ i ] )
+            new SimpleZZDom( nodeList[ i ] )
         );
     }
 };
@@ -51,7 +51,7 @@ MultipleZZDom.prototype.iterate = function ( iterateFn ) {
 /* Methods included in jquery */
 MultipleZZDom.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );
-    return this.list;
+    return this;
 };
 /*
 MultipleZZDom.prototype.addClass = function ( name ) {

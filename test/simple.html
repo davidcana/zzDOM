@@ -68,7 +68,7 @@
                     <li id="t6-1-2">Text 2</li>
                 </ul>
             </li>
-             <li>
+            <li>
                 before: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>Text 1</em>, <em>New text</em> and <em>Text 2</em>.
                 <ul id="t6-2">
                     <li id="t6-2-1">Text 1</li>
@@ -92,8 +92,34 @@
         </ol>
         
         <h2>
-            siblings, prev and next
+            7. siblings, prev and next
         </h2>
+        <ol>
+            <li>
+                id attrs of zz( '#t7-1-2' ).siblings() must be [ 't7-1-1', 't7-1-3' ]
+                <ul id="t7-1">
+                    <li id="t7-1-1">Text 1</li>
+                    <li id="t7-1-2">Text 2</li>
+                    <li id="t7-1-3">Text 3</li>
+                </ul>
+            </li>
+            <li>
+                id attr of zz( '#t7-2-2' ).prev() must be 't7-1-1'
+                <ul id="t7-2">
+                    <li id="t7-2-1">Text 1</li>
+                    <li id="t7-2-2">Text 2</li>
+                    <li id="t7-2-3">Text 3</li>
+                </ul>
+            </li>
+            <li>
+                id attr of zz( '#t7-3-2' ).next() must be 't7-3-3'
+                <ul id="t7-3">
+                    <li id="t7-3-1">Text 1</li>
+                    <li id="t7-3-2">Text 2</li>
+                    <li id="t7-3-3">Text 3</li>
+                </ul>
+            </li>
+        </ol>
         
         <h2>
             children, contains, index, parent 

@@ -104,3 +104,12 @@ QUnit.test( 'after, before, append, prepend, prev and next test', function( asse
     utils.assertHtml( assert, 't6-4', t6_4_modified );
 });
 
+QUnit.test( 'siblings, prev and next test', function( assert ) {
+    var ids = [];
+    zz( '#t7-1-2' ).siblings().each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't7-1-1', 't7-1-3' ] );
+    
+    assert.equal( zz( '#t7-2-2' ).prev().attr( 'id' ), 't7-2-1');
+    
+    assert.equal( zz( '#t7-2-2' ).next().attr( 'id' ), 't7-2-3');
+});

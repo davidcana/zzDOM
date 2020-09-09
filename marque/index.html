@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="marquee.js"></script>
+  <title>Vanilla JS Marquee</title>
+</head>
+
+<body>
+    <p id="myMarquee" class="marquee"></p>
+    
+    <p>
+        <button id="pause">Pause</button>
+        <button id="play">Play</button>
+        <button id="destroy">Destroy</button>
+    </p>
+    
+    <script>
+        var myMarquee = new Marquee({
+            id: 'myMarquee',
+            text: 'Game over! player1: 200 points, player2: 150 points, player3: 100 points, player4: 20 points.',
+            speed: 20,
+            pauseOnMouseEnter: true,
+            playOnMouseLeave: true
+        });
+        
+        document.getElementById( 'pause' ).addEventListener( 'click', function(){ myMarquee.pause(); } );
+        document.getElementById( 'play' ).addEventListener( 'click', function(){ myMarquee.play(); } );
+        document.getElementById( 'destroy' ).addEventListener( 'click', function(){ myMarquee.destroy(); } );
+    </script>
+</body>
+
+</html>

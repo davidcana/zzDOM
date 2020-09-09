@@ -117,10 +117,20 @@ SimpleZZDom.prototype.empty = function (  ) {
     return this;
 };
 
-SimpleZZDom.prototype.filter = function ( filterFn ) {
-    return zzDOM.buildInstance(
-        Array.prototype.filter.call( this.el, filterFn )
-    );
+SimpleZZDom.prototype.filter = function ( x ) {
+    if ( typeof x === 'string' ){ // Is a string selector
+        return zzDOM.buildInstance( 
+            this.el.matches( x )? [ this.el ]: []
+        );
+    }
+    
+    if ( typeof x === 'function' ){ // Is a function
+        return zzDOM.buildInstance(
+            x( this )? [ this.el ]: []
+        );
+    }  
+    
+    throw 'Method "filter" not ready for that type!';
 };
 
 SimpleZZDom.prototype.find = function ( selector ) {
@@ -344,5 +354,10 @@ SimpleZZDom.prototype.hide = function () {
 
 SimpleZZDom.prototype.show = function () {
     this.el.style.display = '';
+    return this;
+};
+
+SimpleZZDom.prototype.each = function ( eachFn ) {
+    eachFn( this );
     return this;
 };

@@ -56,7 +56,7 @@ MultipleZZDom.prototype.each = function ( eachFn ) {
     return this;
 };
 
-SimpleZZDom.prototype.find = function () {
+MultipleZZDom.prototype.find = function () {
     var nodes = [];
     for ( var i = 0; i < this.list.length; i++ ) {
         var simpleZZDOM = this.list[ i ];
@@ -67,7 +67,7 @@ SimpleZZDom.prototype.find = function () {
     return zzDOM.buildInstance( nodes );
 };
 
-SimpleZZDom.prototype.filter = function () {
+MultipleZZDom.prototype.filter = function () {
     var nodes = [];
     for ( var i = 0; i < this.list.length; i++ ) {
         var simpleZZDOM = this.list[ i ];

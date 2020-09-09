@@ -230,16 +230,35 @@ SimpleZZDom.prototype.index = function () {
     return i;
 };
 
-SimpleZZDom.prototype.is = function ( other ) {
-    // other is a SimpleZZDom
-    if ( other instanceof SimpleZZDom ) {
-        return this.el === other.el;
+SimpleZZDom.prototype.is = function ( x ) {
+    // Return false if it is null
+    if ( x == null ){
+        return false;    
+    }
+    
+    // Is it a Element?
+    if ( x instanceof Element ){
+        return this.el === x;
+    }
+    
+    // Is it a SimpleZZDom?
+    if ( x instanceof SimpleZZDom ) {
+        return this.el === x.el;
     } 
     
-    // other is string
-    if ( typeof other === 'string' ){
-        var selector = other;
-        return ( this.el.matches || this.el.matchesSelector || this.el.msMatchesSelector || this.el.mozMatchesSelector || this.el.webkitMatchesSelector || this.el.oMatchesSelector ).call( this.el, selector );
+    // Is it a MultipleZZDom?
+    if ( x instanceof MultipleZZDom ) {
+        for ( var i = 0; i < x.nodes.length; ++i ){
+            if ( this.el === x.nodes[ i ] ){
+                return true;
+            }
+        }
+        return false;
+    } 
+    
+    // Is it a string?
+    if ( typeof x === 'string' ){
+        return this.el.matches( x );
     }
     
     throw 'Method "is" not ready for that type!';
@@ -249,7 +268,18 @@ SimpleZZDom.prototype.next = function () {
     return new SimpleZZDom( this.el.nextElementSibling );
 };
 
-SimpleZZDom.prototype.offset = function () {
+SimpleZZDom.prototype.offset = function ( c ) {
+    
+    // set top and left using css
+    if ( c ){
+        this.setCssUsingObject({
+            top: c.top,
+            left: c.left
+        });
+        return;
+    }
+    
+    // get
     var rect = this.el.getBoundingClientRect();
     return {
         top: rect.top + document.body.scrollTop,

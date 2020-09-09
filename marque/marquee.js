@@ -76,10 +76,6 @@ var Marquee = function ( defaults ) {
     this.play = function() {
         this.element.style.animationPlayState = 'running';
     };
-    
-    this.remove = function() {
-
-    };
 
     this.addEventListeners = function(){
         if ( this.pauseOnMouseEnter ) {

@@ -251,3 +251,41 @@ QUnit.test( 'css test', function( assert ) {
     assert.equal( zz( '#t11-5' ).css( 'color' ), 'rgb(255, 255, 255)' );
     assert.equal( zz( '#t11-5' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
 });
+
+QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert ) {
+    zz( '#t12-1' ).height( '2em' );
+    assert.equal( document.getElementById( 't12-1' ).getAttribute( 'style' ), 'height: 2em;' );
+    assert.equal( zz( '#t12-1' ).height(), 32 );
+    
+    zz( '#t12-2' ).height( 100 );
+    assert.equal( document.getElementById( 't12-2' ).getAttribute( 'style' ), 'height: 100px;' );
+    assert.equal( zz( '#t12-2' ).height(), 100 );
+
+    zz( '#t12-3' ).width( '10em' );
+    assert.equal( document.getElementById( 't12-3' ).getAttribute( 'style' ), 'width: 10em;' );
+    assert.equal( zz( '#t12-3' ).width(), 160 );
+    
+    zz( '#t12-4' ).height( 800 );
+    assert.equal( document.getElementById( 't12-4' ).getAttribute( 'style' ), 'height: 800px;' );
+    assert.equal( zz( '#t12-4' ).height(), 800 );
+
+    zz( '#t12-5' ).height( '2em' );
+    assert.equal( document.getElementById( 't12-5' ).getAttribute( 'style' ), 'height: 2em;' );
+    assert.equal( zz( '#t12-5' ).outerHeight(), 64 );
+    assert.equal( zz( '#t12-5' ).outerHeight( true ), 80 );
+    
+    zz( '#t12-6' ).height( 100 );
+    assert.equal( document.getElementById( 't12-6' ).getAttribute( 'style' ), 'height: 100px;' );
+    assert.equal( zz( '#t12-6' ).outerHeight(), 132 );
+    assert.equal( zz( '#t12-6' ).outerHeight( true ), 148 );
+    
+    zz( '#t12-7' ).height( '10em' );
+    assert.equal( document.getElementById( 't12-7' ).getAttribute( 'style' ), 'height: 10em;' );
+    assert.equal( zz( '#t12-7' ).outerHeight(), 192 );
+    assert.equal( zz( '#t12-7' ).outerHeight( true ), 208 );
+    
+    zz( '#t12-8' ).height( 800 );
+    assert.equal( document.getElementById( 't12-8' ).getAttribute( 'style' ), 'height: 800px;' );
+    assert.equal( zz( '#t12-8' ).outerHeight(), 832 );
+    assert.equal( zz( '#t12-8' ).outerHeight( true ), 848 );
+});

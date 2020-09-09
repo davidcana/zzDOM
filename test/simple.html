@@ -10,6 +10,14 @@
         <script src="js/app/htmlComparator.js" defer></script>
         <script src="js/app/utils.js" defer></script>
         <script src="js/app/simple.js" defer></script>
+        
+        <style>
+            .outerTests{
+                padding: 1em; 
+                border: 5px; 
+                margin: .5em
+            }
+        </style>
     </head>
     <body>
         <div id="qunit"></div>
@@ -226,8 +234,31 @@
         </ol>
         
         <h2>
-            height, width, outerHeight and outerWidth
+            12. height, width, outerHeight and outerWidth
         </h2>
+        zz( '#t12-1' ).height( '2em' ):
+        <div id="t12-1">Div 1</div>
+
+        zz( '#t12-2' ).height( 100 ):
+        <div id="t12-2">Div 2</div>
+
+        zz( '#t12-3' ).width( '10em' ):
+        <div id="t12-3">Div 3</div>
+
+        zz( '#t12-4' ).width( 800 ):
+        <div id="t12-4">Div 4</div>
+
+        zz( '#t12-5' ).height( '2em' ). Test outerHeight: 
+        <div id="t12-5" class="outerTests">Div 5</div>
+
+        zz( '#t12-6' ).height( 100 ). Test outerHeight:
+        <div id="t12-6" class="outerTests">Div 6</div>
+
+        zz( '#t12-7' ).width( '10em' ). Test outerWidth:
+        <div id="t12-7" class="outerTests">Div 7</div>
+
+        zz( '#t12-8' ).width( 800 ). Test outerWidth:
+        <div id="t12-8" class="outerTests">Div 8</div>.
         
         <h2>
             offset, offsetParent, position

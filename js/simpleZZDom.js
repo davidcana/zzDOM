@@ -31,8 +31,7 @@ SimpleZZDom.prototype.styleProperty = function ( property, value ) {
     return this;
 };
 
-SimpleZZDom.prototype.setCssUsingKeyValue = function ( _key, value ) {
-    var key = _key.replace(/-\w/g, function ( s ) { return s.charAt( 1 ).toUpperCase(); } );
+SimpleZZDom.prototype.setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
 };
 

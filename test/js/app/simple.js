@@ -209,3 +209,45 @@ QUnit.test( 'filter and find test', function( assert ) {
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-2' ] );           
 });
+
+QUnit.test( 'css test', function( assert ) {
+    var t11_1_original = null,
+        t11_1_modified = 'color: red;';
+    assert.equal( document.getElementById( 't11-1' ).getAttribute( 'style' ), t11_1_original );
+    zz( '#t11-1' ).css( 'color', 'red' );
+    assert.equal( document.getElementById( 't11-1' ).getAttribute( 'style' ), t11_1_modified );
+    assert.equal( zz( '#t11-1' ).css( 'color' ), 'rgb(255, 0, 0)' );
+    
+    var t11_2_original = null,
+        t11_2_modified = 'background-color: red;';
+    assert.equal( document.getElementById( 't11-2' ).getAttribute( 'style' ), t11_2_original );
+    zz( '#t11-2' ).css( 'background-color', 'red' );
+    assert.equal( document.getElementById( 't11-2' ).getAttribute( 'style' ), t11_2_modified );
+    assert.equal( zz( '#t11-2' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+    
+    var t11_3_original = 'color: green',
+        t11_3_modified = 'color: red;';
+    assert.equal( document.getElementById( 't11-3' ).getAttribute( 'style' ), t11_3_original );
+    zz( '#t11-3' ).css( 'color', 'red' );
+    assert.equal( document.getElementById( 't11-3' ).getAttribute( 'style' ), t11_3_modified );
+    assert.equal( zz( '#t11-3' ).css( 'color' ), 'rgb(255, 0, 0)' );
+    
+    var t11_4_original = 'color: green',
+        t11_4_modified = 'color: green; background-color: red;';
+    assert.equal( document.getElementById( 't11-4' ).getAttribute( 'style' ), t11_4_original );
+    zz( '#t11-4' ).css( 'background-color', 'red' );
+    assert.equal( document.getElementById( 't11-4' ).getAttribute( 'style' ), t11_4_modified );
+    assert.equal( zz( '#t11-4' ).css( 'color' ), 'rgb(0, 128, 0)' );
+    assert.equal( zz( '#t11-4' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+    
+    var t11_5_original = null,
+        t11_5_modified = 'color: white; background-color: red;';
+    assert.equal( document.getElementById( 't11-5' ).getAttribute( 'style' ), t11_5_original );
+    zz( '#t11-5' ).css({
+        color: 'white',
+        'background-color': 'red' 
+    });
+    assert.equal( document.getElementById( 't11-5' ).getAttribute( 'style' ), t11_5_modified );
+    assert.equal( zz( '#t11-5' ).css( 'color' ), 'rgb(255, 255, 255)' );
+    assert.equal( zz( '#t11-5' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+});

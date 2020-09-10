@@ -305,3 +305,20 @@ QUnit.test( 'offset, offsetParent and position test', function( assert ) {
     assert.equal( position.top, 35 );
     assert.equal( position.left, 320 );
 });
+
+QUnit.test( 'trigger test', function( assert ) {
+    // Use t14-2 as a counter of clicks
+    zz( '#t14-1' ).el.addEventListener( 
+        'click', 
+        function(){ 
+            var current = parseInt( zz( '#t14-2' ).text() );
+            zz( '#t14-2' ).text( ++current );
+        } 
+    );
+    
+    assert.equal( zz( '#t14-2' ).text(), '0' );
+    zz( '#t14-1' ).trigger( 'click' );
+    assert.equal( zz( '#t14-2' ).text(), '1' );
+    zz( '#t14-1' ).trigger( 'click' );
+    assert.equal( zz( '#t14-2' ).text(), '2' );
+});

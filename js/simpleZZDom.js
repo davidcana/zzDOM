@@ -421,6 +421,12 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
         );
     }
     
+    // Is it a SimpleZZDom or a MultipleZZDom?
+    if ( x instanceof SimpleZZDom || x instanceof MultipleZZDom ) {
+        x.append( this.el );
+        return this;
+    }
+    /*
     // Is it a SimpleZZDom?
     if ( x instanceof SimpleZZDom ) {
         x.el.appendChild( this.el );
@@ -434,6 +440,6 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
         }
         return this;
     } 
-    
+    */
     throw 'Method "is" not ready for that type!';
 };

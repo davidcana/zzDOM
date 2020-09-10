@@ -289,3 +289,19 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     assert.equal( zz( '#t12-8' ).outerHeight(), 832 );
     assert.equal( zz( '#t12-8' ).outerHeight( true ), 848 );
 });
+
+QUnit.test( 'offset, offsetParent and position test', function( assert ) {
+    zz( '#t13-1-div' ).offset( { top: 25, left: 30 } );
+    var offset = zz( '#t13-1-div' ).offset();
+    assert.equal( document.getElementById( 't13-1-div' ).getAttribute( 'style' ), 'top: 25px; left: 30px;' );
+    
+    // TODO Test offset() is hard!
+    
+    assert.notOk( zz( '#t13-2-1' ).hasClass( 'selected' ) );
+    zz( '#t13-2-2' ).offsetParent().addClass( 'selected' );
+    assert.ok( zz( '#t13-2-1' ).hasClass( 'selected' ) );
+    
+    var position = zz( '#t13-3-div' ).position();
+    assert.equal( position.top, 35 );
+    assert.equal( position.left, 320 );
+});

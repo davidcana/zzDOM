@@ -12,10 +12,30 @@
         <script src="js/app/simple.js" defer></script>
         
         <style>
-            .outerTests{
+            .outerTests {
                 padding: 1em; 
                 border: 5px; 
                 margin: .5em
+            }
+            div.offsetTests {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                background-color: green;
+                color: white;
+                cursor: pointer;
+            }
+            #t13-1-div {
+                left: 220px;
+                top: 35px;
+            }
+            .selected {
+                background-color: green;
+                color: white;
+            }
+            #t13-3-div {
+                left: 320px;
+                top: 35px;
             }
         </style>
     </head>
@@ -47,7 +67,7 @@
         </p>
         
         <h2>
-            4. attr and removeAttr
+            4. attr, removeAttr and prop (TODO)
         </h2>
         <ol>
             <li>Link 1: <a id="t4-1" href="https://www.fsf.org/">FSF</a>. Original href attribute is <em>https://www.fsf.org/</em>, modified must be <em>https://www.mozilla.org/</em>.</li>
@@ -261,8 +281,38 @@
         <div id="t12-8" class="outerTests">Div 8</div>.
         
         <h2>
-            offset, offsetParent, position
+            offset, offsetParent and position
         </h2>
+        <div id="t13-1">
+            zz( '#t13-1' ).offset( { top: 10, left: 30 } )
+            <div id="t13-1-div" class="offsetTests">t13-1-div</div>
+        </div>
+        <div>
+            zz( '#t13-2-2' ).offsetParent().addClass( 'selected' )
+            <ul id="t13-2">
+                <li>I</li>
+                <li id="t13-2-1" style="position: relative;">
+                    II
+                    <ul>
+                        <li>A</li>
+                        <li>
+                            B
+                            <ul>
+                                <li>1</li>
+                                <li id="t13-2-2">2</li>
+                                <li>3</li>
+                            </ul>
+                        </li>
+                        <li>C</li>
+                    </ul>
+                </li>
+                <li>III</li>
+            </ul>
+        </div>
+        <div id="t13-3">
+            var position = zz( '#t13-3-div' ).position();
+            <div id="t13-3-div" class="offsetTests">t13-3-div</div>
+        </div>
         
         <h2>
             trigger

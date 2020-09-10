@@ -1,3 +1,8 @@
+
+:root {
+  --marquee-text-indent: -10em; /* This is overwritten by javascript */
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -10,21 +15,14 @@ body {
     overflow: hidden;
     white-space: nowrap;
     box-sizing: border-box;
-    /*animation: marquee 15s linear infinite;*/
     font-family: "Courier New", Courier, monospace; /* Must be a monospace */
 }
-/*
-.marquee:hover {
-    animation-play-state: paused
-}
-*/
+
 /* Make it move */
-/*
 @keyframes marquee {
-    0%   { text-indent: 60em }
-    100% { text-indent: -60em }
+    0%   { text-indent: 100% }
+    100% { text-indent: var(--marquee-text-indent) }
 }
-*/
 
 /* Make it pretty */
 #myMarquee {

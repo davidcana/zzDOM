@@ -9,26 +9,38 @@
 </head>
 
 <body>
-    <p id="myMarquee" class="marquee"></p>
+    <p id="myMarquee" class="marquee">Default text</p>
     
     <p>
         <button id="pause">Pause</button>
         <button id="play">Play</button>
         <button id="destroy">Destroy</button>
+        <button id="updateText">Update text</button>
+        <input id="text" type="text" placeholder="Type your text and click on Update text" size="100">
     </p>
     
     <script>
-        var myMarquee = new Marquee({
+        var myMarquee = new CSSMarquee({
             id: 'myMarquee',
             text: 'Game over! player1: 200 points, player2: 150 points, player3: 100 points, player4: 20 points.',
-            speed: 20,
+            speed: 30,
             pauseOnMouseEnter: true,
             playOnMouseLeave: true
+            //animation: 'marquee {0}s ease-in-out infinite'
         });
         
         document.getElementById( 'pause' ).addEventListener( 'click', function(){ myMarquee.pause(); } );
         document.getElementById( 'play' ).addEventListener( 'click', function(){ myMarquee.play(); } );
-        document.getElementById( 'destroy' ).addEventListener( 'click', function(){ myMarquee.destroy(); } );
+        document.getElementById( 'destroy' ).addEventListener( 'click', function(){ myMarquee.destroy( false ); } );
+        document.getElementById( 'updateText' ).addEventListener( 
+            'click', 
+            function(){ 
+                var newText = document.getElementById( 'text' ).value.trim();
+                if ( newText !== '' ){
+                    myMarquee.updateText( newText );
+                }
+            }
+        );
     </script>
 </body>
 

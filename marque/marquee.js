@@ -1,74 +1,82 @@
 /*
-	Vanilla Javascript Marquee
+    CSSMarquee
+	Vanilla Javascript Marquee using CSS animations
 
-	new Marquee({
+	var myMarquee = new AnimationMarquee({
 		id: 'myMarquee',
         text: 'Game over! player1: 200 points, player2: 150 points, player3: 100 points, player4: 20 points.',
         speed: 20,
         pauseOnMouseEnter: true,
-        playOnMouseLeave: false
+        playOnMouseLeave: false,
+        element: document.getElementById( 'aDiv' ),
+        animation: 'marquee {0}s ease-in-out infinite'
 	});
 */
-var Marquee = function ( defaults ) {
-    this.options = defaults === undefined? {}: defaults;
+var CSSMarquee = function ( defaults ) {
+    this.options = defaults || {};
     
     // Get configuration options
     this.id = this.options.id;
     this.text = this.options.text;
     this.speed = this.options.speed || 15;
-    this.pauseOnMouseEnter = this.options.pauseOnMouseEnter;
-    this.playOnMouseLeave = this.options.playOnMouseLeave;
+    this.pauseOnMouseEnter = !! this.options.pauseOnMouseEnter;
+    this.playOnMouseLeave = !! this.options.playOnMouseLeave;
+    this.element = this.options.element;
+    this.id = this.options.id;
+    this.animation = this.options.animation || 'marquee {0}s linear infinite';
+    
+    // Check configuration options
+    if ( ! this.element && ! this.id ){
+        throw 'Error initializing Marquee, element or id must be set!';
+    }
     
     this.constructor = function() {
-        
         // Resolve element
-        this.element = document.getElementById( this.id );
+        this.element = this.element || document.getElementById( this.id );
         if ( ! this.element ){
             throw 'Error initializing Marquee, element not found: ' + this.id;
+        }
+        
+        // Set text of element if it was set; otherwise get the text from element
+        if ( this.text && this.text !== '' ){
+            this.element.textContent = this.text;
+        } else {
+            this.text = this.element.textContent.trim();
+        }
+        if ( this.text === '' ){
+            throw 'Error initializing Marquee, set "text" option to customize your Marquee or type some text in the element!';
         }
         
         // Add listeners for mouseEnter and mouseLeave if needed
         this.addEventListeners();
         
-        // Set text
-        if ( this.text ){
-            this.element.textContent = this.text;
-        }
-        
-        // Insert CSS rule
-        this.insertStyleSheetRule( 
-            this.buildKeyframesRule() 
-        );
-        
         // Start animation!
-        this.element.style.animation = 'marquee ' + this.speed + 's linear infinite';
+        this.start();
     };
     
-    this.insertStyleSheetRule = function( ruleText ) {
-        var sheets = document.styleSheets;
-
-        if ( sheets.length == 0 ){
-            var style = document.createElement( 'style' );
-            style.appendChild( 
-                document.createTextNode( '' ) 
-            );
-            document.head.appendChild( style );
+    this.addEventListeners = function(){
+        var self = this;
+        if ( this.pauseOnMouseEnter ) {
+            this.element.addEventListener( 'mouseenter', function(){ self.pause(); } );
         }
-
-        var sheet = sheets[ sheets.length - 1 ];
-        sheet.insertRule(
-            ruleText, 
-            sheet.rules? sheet.rules.length: sheet.cssRules.length
-        );
+        if ( this.playOnMouseLeave ){
+            this.element.addEventListener( 'mouseleave', function(){ self.play(); } );
+        }
     };
     
-    this.buildKeyframesRule = function() {
-        //return '@keyframes marquee {0% { text-indent: 60em } 100% { text-indent: -60em }';
-        var em = Math.trunc( this.text.length * .66 );
+    this.changeCSSVars = function(){
+        var em = Math.trunc( this.text.length * .8 );
+        //var em = this.text.length;
         //alert( this.text.length + ' : ' + em );
-        return '@keyframes marquee {0% { text-indent: ' + em + 'em } 100% { text-indent: -' + em + 'em }';
+        document.documentElement.style.setProperty( '--marquee-text-indent', -em + 'em' );
     };
-
+    
+    this.start = function() {
+        this.changeCSSVars();
+        this.element.style.animation = this.animation.replaceAll( '{0}', this.speed );
+    };
+    
+    /* Start public methods */
     this.pause = function() {
         this.element.style.animationPlayState = 'paused';
     };
@@ -76,15 +84,25 @@ var Marquee = function ( defaults ) {
     this.play = function() {
         this.element.style.animationPlayState = 'running';
     };
-
-    this.addEventListeners = function(){
-        if ( this.pauseOnMouseEnter ) {
-            this.element.addEventListener( 'mouseenter', function(){ myMarquee.pause(); } );
-        }
-        if ( this.playOnMouseLeave ){
-            this.element.addEventListener( 'mouseleave', function(){ myMarquee.play(); } );
-        }
+    
+    this.updateText = function( newText ) {
+        this.text = newText;
+        this.element.textContent = newText;
+        this.element.style.animation = '';
+        this.start();
     };
+    
+    this.destroy = function( removeText ) {
+        this.element.style.animation = '';
+        if ( removeText ){
+            this.element.textContent = '';
+        }
+        // Replace element with cloned to remove all listeners
+        this.element.replaceWith( 
+            this.element.cloneNode( true ) 
+        );
+    };
+    /* End public methods */
     
     // Initialize
     this.constructor();

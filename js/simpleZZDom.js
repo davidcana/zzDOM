@@ -261,7 +261,7 @@ SimpleZZDom.prototype.is = function ( x ) {
         return this.el.matches( x );
     }
     
-    throw 'Method "is" not ready for that type!';
+    return false;
 };
 
 SimpleZZDom.prototype.next = function () {
@@ -400,4 +400,40 @@ SimpleZZDom.prototype.isVisible = function () {
 SimpleZZDom.prototype.each = function ( eachFn ) {
     eachFn( this );
     return this;
+};
+
+SimpleZZDom.prototype.appendTo = function ( x ) {
+    // Do nothing and return this if it is null
+    if ( x == null ){
+        return this;    
+    }
+    
+    // Is it a Element?
+    if ( x instanceof Element ){
+        x.appendChild( this.el );
+        return this;
+    }
+    
+    // Is it a string?
+    if ( typeof x === 'string' ){
+        x = zzDOM.buildInstance(
+            document.querySelectorAll( x )
+        );
+    }
+    
+    // Is it a SimpleZZDom?
+    if ( x instanceof SimpleZZDom ) {
+        x.el.appendChild( this.el );
+        return this;
+    } 
+    
+    // Is it a MultipleZZDom?
+    if ( x instanceof MultipleZZDom ) {
+        for ( var i = 0; i < x.nodes.length; ++i ){
+            nodes[ i ].appendChild( this.el );
+        }
+        return this;
+    } 
+    
+    throw 'Method "is" not ready for that type!';
 };

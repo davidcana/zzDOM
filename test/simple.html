@@ -40,6 +40,9 @@
             #t15-2, #t15-4, #t15-6 {
                 display: none;
             }
+            .container {
+                background-color: yellow;
+            }
         </style>
     </head>
     <body>
@@ -330,32 +333,38 @@
             15. hide, show, toggle and isVisible
         </h2>
         <div>
-            z( '#t15-1' ).hide()
+            zz( '#t15-1' ).hide()
             <div id="t15-1">Must be hided</div>
         </div>
         <div>
-            z( '#t15-2' ).show()
+            zz( '#t15-2' ).show()
             <div id="t15-2">Must be shown</div>
         </div>
         <div>
-            '#t15-3' is visible: z( '#t15-3' ).toggle()
+            '#t15-3' is visible: zz( '#t15-3' ).toggle()
             <div id="t15-3">Must be toggled</div>
         </div>
         <div>
-            '#t15-4' is NOT visible: z( '#t15-4' ).toggle()
+            '#t15-4' is NOT visible: zz( '#t15-4' ).toggle()
             <div id="t15-4">Must be toggled</div>
         </div>
         <div>
-            z( '#t15-5' ).isVisible()
+            zz( '#t15-5' ).isVisible()
             <div id="t15-5">Is visible</div>
         </div>
         <div>
-            z( '#t15-6' ).isVisible()
+            zz( '#t15-6' ).isVisible()
             <div id="t15-6">Is NOT visible</div>
         </div>
         
         <h2>
             16. appendTo
         </h2>
+        <div>
+            zz( -div-A new div-div ).appendTo()
+            <div id="t16-1" class="container">
+                This is a container
+            </div>
+        </div>
     </body>
 </html>

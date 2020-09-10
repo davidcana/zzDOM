@@ -37,6 +37,9 @@
                 left: 320px;
                 top: 35px;
             }
+            #t15-2, #t15-4, #t15-6 {
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -281,7 +284,7 @@
         <div id="t12-8" class="outerTests">Div 8</div>.
         
         <h2>
-            offset, offsetParent and position
+            13. offset, offsetParent and position
         </h2>
         <div id="t13-1">
             zz( '#t13-1' ).offset( { top: 10, left: 30 } )
@@ -315,7 +318,7 @@
         </div>
         
         <h2>
-            trigger
+            14. trigger
         </h2>
         <div>
             zz( '#t14-1' ).trigger( 'click' );<br>
@@ -324,7 +327,35 @@
         </div>
         
         <h2>
-            hide, show and toggle
+            15. hide, show, toggle and isVisible
+        </h2>
+        <div>
+            z( '#t15-1' ).hide()
+            <div id="t15-1">Must be hided</div>
+        </div>
+        <div>
+            z( '#t15-2' ).show()
+            <div id="t15-2">Must be shown</div>
+        </div>
+        <div>
+            '#t15-3' is visible: z( '#t15-3' ).toggle()
+            <div id="t15-3">Must be toggled</div>
+        </div>
+        <div>
+            '#t15-4' is NOT visible: z( '#t15-4' ).toggle()
+            <div id="t15-4">Must be toggled</div>
+        </div>
+        <div>
+            z( '#t15-5' ).isVisible()
+            <div id="t15-5">Is visible</div>
+        </div>
+        <div>
+            z( '#t15-6' ).isVisible()
+            <div id="t15-6">Is NOT visible</div>
+        </div>
+        
+        <h2>
+            16. appendTo
         </h2>
     </body>
 </html>

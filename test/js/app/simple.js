@@ -322,3 +322,59 @@ QUnit.test( 'trigger test', function( assert ) {
     zz( '#t14-1' ).trigger( 'click' );
     assert.equal( zz( '#t14-2' ).text(), '2' );
 });
+
+QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
+    
+    // t15-1 is visible
+    assert.notEqual( zz( '#t15-1' ).el.offsetParent, null );
+    zz( '#t15-1' ).hide();
+    assert.equal( zz( '#t15-1' ).el.offsetParent, null );
+    zz( '#t15-1' ).show();
+    assert.notEqual( zz( '#t15-1' ).el.offsetParent, null );
+    zz( '#t15-1' ).hide();
+    assert.equal( zz( '#t15-1' ).el.offsetParent, null );
+    
+    // t15-2 is NOT visible
+    assert.equal( zz( '#t15-2' ).el.offsetParent, null );
+    zz( '#t15-2' ).show();
+    assert.notEqual( zz( '#t15-2' ).el.offsetParent, null );
+    zz( '#t15-2' ).hide();
+    assert.equal( zz( '#t15-2' ).el.offsetParent, null );
+    zz( '#t15-2' ).show();
+    assert.notEqual( zz( '#t15-2' ).el.offsetParent, null );
+    
+    // t15-3 is visible
+    assert.notEqual( zz( '#t15-3' ).el.offsetParent, null );
+    zz( '#t15-3' ).toggle();
+    assert.equal( zz( '#t15-3' ).el.offsetParent, null );
+    zz( '#t15-3' ).toggle();
+    assert.notEqual( zz( '#t15-3' ).el.offsetParent, null );
+    zz( '#t15-3' ).toggle();
+    assert.equal( zz( '#t15-3' ).el.offsetParent, null );
+    
+    // t15-4 is NOT visible
+    assert.equal( zz( '#t15-4' ).el.offsetParent, null );
+    zz( '#t15-4' ).toggle();
+    assert.notEqual( zz( '#t15-4' ).el.offsetParent, null );
+    zz( '#t15-4' ).toggle();
+    assert.equal( zz( '#t15-4' ).el.offsetParent, null );
+    zz( '#t15-4' ).toggle();
+    assert.notEqual( zz( '#t15-4' ).el.offsetParent, null );
+    
+    // t15-5 is visible
+    assert.notEqual( zz( '#t15-5' ).el.offsetParent, null );
+    assert.ok(  zz( '#t15-5' ).isVisible() );
+    zz( '#t15-5' ).hide();
+    assert.notOk(  zz( '#t15-5' ).isVisible() );
+    zz( '#t15-5' ).show();
+    assert.ok(  zz( '#t15-5' ).isVisible() );
+    
+    // t15-6 is NOT visible
+    assert.equal( zz( '#t15-6' ).el.offsetParent, null );
+    assert.notOk(  zz( '#t15-6' ).isVisible() );
+    zz( '#t15-6' ).show();
+    assert.ok(  zz( '#t15-6' ).isVisible() );
+    zz( '#t15-6' ).hide();
+    assert.notOk(  zz( '#t15-6' ).isVisible() );
+});
+

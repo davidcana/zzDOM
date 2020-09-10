@@ -375,13 +375,26 @@ SimpleZZDom.prototype.trigger = function ( eventName ) {
 };
 
 SimpleZZDom.prototype.hide = function () {
+    if ( this.el.style.display ){
+        this.attr( 'data-display', this.el.style.display );
+    }
     this.el.style.display = 'none';
     return this;
 };
 
 SimpleZZDom.prototype.show = function () {
-    this.el.style.display = '';
+    var display = this.attr( 'data-display' );
+    this.el.style.display = display? display: 'block';
     return this;
+};
+
+SimpleZZDom.prototype.toggle = function () {
+    return this.isVisible()? this.hide(): this.show();
+};
+
+SimpleZZDom.prototype.isVisible = function () {
+    return !! this.el.offsetParent;
+    //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
 };
 
 SimpleZZDom.prototype.each = function ( eachFn ) {

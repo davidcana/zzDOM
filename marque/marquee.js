@@ -23,7 +23,7 @@ var CSSMarquee = function ( defaults ) {
     this.playOnMouseLeave = !! this.options.playOnMouseLeave;
     this.element = this.options.element;
     this.id = this.options.id;
-    this.animation = this.options.animation || 'marquee {0}s linear infinite';
+    this.animation = this.options.animation || 'marqueeTextIndent {0}s linear infinite';
     
     // Check configuration options
     if ( ! this.element && ! this.id ){
@@ -68,7 +68,7 @@ var CSSMarquee = function ( defaults ) {
         var em = Math.trunc( this.text.length * .8 );
         //var em = this.text.length;
         //alert( this.text.length + ' : ' + em );
-        document.documentElement.style.setProperty( '--marquee-text-indent', -em + 'em' );
+        document.documentElement.style.setProperty( '--marquee-text-size', -em + 'em' );
     };
     
     this.start = function() {

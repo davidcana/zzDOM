@@ -35,10 +35,10 @@
     "qunit-composite": "^2.0.0"
   },
   "scripts": {
-    "testNode": "qunit test/js/app/node.js", //TODO implement this
+    "testNode": "qunit test/js/app/node.js",
     "testBrowser": "grunt qunit",
     "test": "npm-run-all testBrowser testNode",
     "http-server": "http-server -p 9000",
-    "web": "cd ./docs; http-server -p 9001" //TODO implement web
+    "web": "cd ./docs; http-server -p 9001"
   }
 }

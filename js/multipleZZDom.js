@@ -40,10 +40,11 @@ var MultipleZZDom_init = function(){
 }();
 */
 /* Methods NOT included in jquery */
+/*
 MultipleZZDom.prototype.get = function () {
     return this.list;
 };
-
+*/
 /*
 MultipleZZDom.prototype.iterate = function ( iterateFn ) {
     for ( var i = 0; i < this.list.length; i++ ) {

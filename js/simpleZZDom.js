@@ -7,10 +7,11 @@ var SimpleZZDom = function ( _el ) {
 };
 
 /* Methods NOT included in jquery */
+/*
 SimpleZZDom.prototype.get = function () {
     return this.el;
 };
-
+*/
 SimpleZZDom.prototype.styleProperty = function ( property, value ) {
     // get
     if ( value === undefined ){
@@ -42,14 +43,20 @@ SimpleZZDom.prototype.setCssUsingObject = function ( object ) {
 };
 
 SimpleZZDom.prototype.insertHelper = function ( position, x ) {
-    if ( x instanceof Element ){  // x is Element
+    if ( x instanceof Element ){
         this.el.insertAdjacent( position, x );
     } else if ( x instanceof SimpleZZDom ){
         this.el.insertAdjacent( position, x.el );
-    } else {
+    } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( position, x );
+    } else {
+        throw 'Insert operation not ready for that type!';
     }
     return this;
+};
+
+SimpleZZDom.prototype.buildError = function ( method ) {
+    return 'Method "' + method + '" not ready for that type!';
 };
 
 /* Methods included in jquery */
@@ -67,8 +74,10 @@ SimpleZZDom.prototype.append = function ( x ) {
         this.el.appendChild( x );
     } else if ( x instanceof SimpleZZDom ){
         this.el.appendChild( x.el );
-    } else {
+    } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( 'beforeend', x );
+    } else {
+        throw this.buildError( 'append' );
     }
     return this;
 };
@@ -129,7 +138,7 @@ SimpleZZDom.prototype.filter = function ( x ) {
         );
     }  
     
-    throw 'Method "filter" not ready for that type!';
+    throw this.buildError( 'filter' );
 };
 
 SimpleZZDom.prototype.find = function ( selector ) {
@@ -231,22 +240,18 @@ SimpleZZDom.prototype.index = function () {
 };
 
 SimpleZZDom.prototype.is = function ( x ) {
-    // Return false if it is null
     if ( x == null ){
         return false;    
     }
     
-    // Is it a Element?
     if ( x instanceof Element ){
         return this.el === x;
     }
     
-    // Is it a SimpleZZDom?
     if ( x instanceof SimpleZZDom ) {
         return this.el === x.el;
     } 
-    
-    // Is it a MultipleZZDom?
+
     if ( x instanceof MultipleZZDom ) {
         for ( var i = 0; i < x.nodes.length; ++i ){
             if ( this.el === x.nodes[ i ] ){
@@ -255,8 +260,7 @@ SimpleZZDom.prototype.is = function ( x ) {
         }
         return false;
     } 
-    
-    // Is it a string?
+
     if ( typeof x === 'string' ){
         return this.el.matches( x );
     }
@@ -331,9 +335,13 @@ SimpleZZDom.prototype.position = function ( relativeToViewport ) {
 
 SimpleZZDom.prototype.prepend = function ( x ) {
     if ( x instanceof Element ){
-        this.el.insertBefore( otherEl, this.el.firstChild );
-    } else {
+        this.el.insertBefore( x, this.el.firstChild );
+    } else if ( x instanceof SimpleZZDom ){
+        this.el.insertBefore( x.el, this.el.firstChild );
+    } else if ( typeof x === 'string' ){
         this.el.insertAdjacentHTML( 'afterbegin', x );
+    } else {
+        throw this.buildError( 'prepend' );
     }
     return this;
 };
@@ -441,5 +449,5 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
         return this;
     } 
     
-    throw 'Method "is" not ready for that type!';
+    throw this.buildError( 'is' );
 };

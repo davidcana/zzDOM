@@ -378,3 +378,104 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     assert.notOk(  zz( '#t15-6' ).isVisible() );
 });
 
+QUnit.test( 'appendTo test', function( assert ) {
+    var t16_1_original = 'This is the container t16-1',
+        t16_1_modified = `
+This is the container t16-1
+
+<div id="t16-1-1">
+  New div 1
+</div>
+`;
+    utils.assertHtml( assert, 't16-1', t16_1_original );
+    zz( '<div id="t16-1-1">New div 1</div>' ).appendTo( '#t16-1' );
+    utils.assertHtml( assert, 't16-1', t16_1_modified );
+    
+    var t16_2_original = 'This is the container t16-2',
+        t16_2_modified = `
+This is the container t16-2
+
+<div id="t16-2-1">
+  New div 2
+</div>
+`;
+    utils.assertHtml( assert, 't16-2', t16_2_original );
+    zz( '<div id="t16-2-1">New div 2</div>' ).appendTo( document.getElementById( 't16-2' ) );
+    utils.assertHtml( assert, 't16-2', t16_2_modified );
+    
+    var t16_3_original = 'This is the container t16-3',
+        t16_3_modified = `
+This is the container t16-3
+
+<div id="t16-3-1">
+  New div 3
+</div>
+`;
+    utils.assertHtml( assert, 't16-3', t16_3_original );
+    zz( '<div id="t16-3-1">New div 3</div>' ).appendTo( zz( '#t16-3' ) );
+    utils.assertHtml( assert, 't16-3', t16_3_modified );
+    
+    var t16_4_original = `
+<div class="container t16-4-class" id="t16-4a">
+  This is the container t16-4a
+</div>
+
+<div>
+  Separator 1
+</div>
+
+<div class="container t16-4-class" id="t16-4b">
+  This is the container t16-4b
+</div>
+
+<div>
+  Separator 2
+</div>
+
+<div class="container t16-4-class" id="t16-4c">
+  This is the container t16-4c
+</div>
+`,
+        t16_4_modified = `
+<div class="container t16-4-class" id="t16-4a">
+  This is the container t16-4a
+
+  <div id="t16-4-1">
+    New div 4
+  </div>
+</div>
+
+<div>
+  Separator 1
+</div>
+
+<div class="container t16-4-class" id="t16-4b">
+  This is the container t16-4b
+
+  <div id="t16-4-1">
+    New div 4
+  </div>
+</div>
+
+<div>
+  Separator 2
+</div>
+
+<div class="container t16-4-class" id="t16-4c">
+  This is the container t16-4c
+
+  <div id="t16-4-1">
+    New div 4
+  </div>
+</div>
+`;
+    utils.assertHtml( assert, 't16-4', t16_4_original );
+    zz( '<div id="t16-4-1">New div 4</div>' ).appendTo( zz( '.t16-4-class' ) );
+    utils.assertHtml( assert, 't16-4', t16_4_modified );
+    
+    var t16_5_original = 'This is the container t16-5',
+        t16_5_modified = t16_5_original;
+    utils.assertHtml( assert, 't16-5', t16_5_original );
+    zz( '<div id="t16-5-1">New div 5</div>' ).appendTo( document.getElementById( 'non-existing-id-DOM' ) );
+    utils.assertHtml( assert, 't16-5', t16_5_modified );
+});

@@ -18,6 +18,7 @@ var MultipleZZDom_init = function(){
     for ( var id in SimpleZZDom.prototype ){
         MultipleZZDom.prototype[ id ] = function(){
             for ( var i = 0; i < this.list.length; i++ ) {
+                var simpleZZDom = this.list[ i ];
                 simpleZZDom[ id ].apply( simpleZZDom, arguments );
             }
             return this;

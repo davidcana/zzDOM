@@ -421,25 +421,25 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
         );
     }
     
-    // Is it a SimpleZZDom or a MultipleZZDom?
-    if ( x instanceof SimpleZZDom || x instanceof MultipleZZDom ) {
-        x.append( this.el );
-        return this;
-    }
-    /*
     // Is it a SimpleZZDom?
     if ( x instanceof SimpleZZDom ) {
+        //x.append( this.el );
         x.el.appendChild( this.el );
         return this;
-    } 
+    }
     
     // Is it a MultipleZZDom?
     if ( x instanceof MultipleZZDom ) {
+        /*
+        for ( var i = 0; i < x.list.length; ++i ){
+            x.list[ i ].append( this.el.cloneNode( true ) );
+        }
+        */
         for ( var i = 0; i < x.nodes.length; ++i ){
-            nodes[ i ].appendChild( this.el );
+            x.nodes[ i ].appendChild( this.el.cloneNode( true ) );
         }
         return this;
     } 
-    */
+    
     throw 'Method "is" not ready for that type!';
 };

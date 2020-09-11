@@ -13,7 +13,7 @@ utils.assertHtml = function ( assert, id, expectedHtml ){
     if ( compare.equals ){
         assert.ok( true );
     } else {
-        Qunit.dump.setParser(
+        QUnit.dump.setParser(
             'string',
             function( str ){
                 return str;

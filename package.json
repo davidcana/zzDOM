@@ -1,7 +1,7 @@
 {
   "name": "zzDOM",
-  "version": "0.0.1",
-  "main": "./js/app/main.js",
+  "version": "0.0.2",
+  "main": "./build/zzDOM.js",
   "description": "A tiny javascript API that implements only the DOM functions of jquery including chaining.",
   "keywords": [
     "DOM",
@@ -19,10 +19,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "beefy": "~2.1.8",
-    "genversion": "^2.2.1",
     "grunt": "~1.1.0",
-    "grunt-browserify": "~5.3.0",
     "grunt-contrib-compress": "~1.5.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
@@ -38,13 +35,10 @@
     "qunit-composite": "^2.0.0"
   },
   "scripts": {
-    "testNode": "qunit test/js/app/node.js",
+    "testNode": "qunit test/js/app/node.js", //TODO implement this
     "testBrowser": "grunt qunit",
     "test": "npm-run-all testBrowser testNode",
     "http-server": "http-server -p 9000",
-    "web": "cd ./docs; http-server -p 9001",
-    "beefy": "cd ./test/js/app; beefy *.js ../../../js/app/standalone.js:standalone.js ../../../samples/js/app/expressionTester.js:expressionTester.js ../../../samples/js/app/performance.js:performance.js",
-    "start": "npm-run-all -p -r beefy http-server",
-    "version": "genversion js/app/version.js"
+    "web": "cd ./docs; http-server -p 9001" //TODO implement web
   }
 }

@@ -8,7 +8,7 @@ module.exports = function(grunt) {
                     timeout: 60000,
                     urls: [
                         'http://localhost:9000/test/simple.html',
-                        'http://localhost:9000/test/simpleChaining.html'
+                        'http://localhost:9000/test/multiple.html'
                     ]
                 }
             }

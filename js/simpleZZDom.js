@@ -278,7 +278,7 @@ SimpleZZDom.prototype.offset = function ( c ) {
     if ( c ){
         this.styleProperty( 'top', c.top );
         this.styleProperty( 'left', c.left );
-        return;
+        return this;
     }
     
     // get

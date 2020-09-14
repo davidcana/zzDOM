@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-11 14:17:13 */
+/*! zzDOM - v0.0.2 - 2020-09-14 10:56:8 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -363,7 +363,7 @@ SimpleZZDom.prototype.offset = function ( c ) {
     if ( c ){
         this.styleProperty( 'top', c.top );
         this.styleProperty( 'left', c.left );
-        return;
+        return this;
     }
     
     // get

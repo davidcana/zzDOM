@@ -2,27 +2,39 @@
 
 // Unit tests
 QUnit.test( 'text and html test', function( assert ) {
-    var t1_1_original = 'white',
+    var t1_1_original = [ 'white', 'black', 'red' ],
         t1_1_modified = 'yellow';
-    assert.equal( document.getElementById( 't1-1' ).textContent, t1_1_original );
-    var id = zz( '#t1-1' )
+    assert.equal( document.getElementById( 't1-1' ).textContent, t1_1_original[ 0 ] );
+    assert.equal( document.getElementById( 't1-2' ).textContent, t1_1_original[ 1 ] );
+    assert.equal( document.getElementById( 't1-3' ).textContent, t1_1_original[ 2 ] );
+    var ids = [];
+    zz( '.t1-1' )
         .text( t1_1_modified )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't1-1' ).textContent, t1_1_modified );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
     assert.equal( zz( '#t1-1' ).text(), t1_1_modified );
-    assert.equal( id, 't1-1' );
+    assert.equal( zz( '#t1-2' ).text(), t1_1_modified );
+    assert.equal( zz( '#t1-3' ).text(), t1_1_modified );
+    assert.deepEqual( ids, [ 't1-1', 't1-2', 't1-3' ] );
     
-    var t1_2_original = '<a href="https://www.fsf.org/">FSF</a>',
+    var t1_2_original = [ 
+        '<a href="https://www.fsf.org/">FSF</a>', 
+        '<a href="https://ubuntu.com/">Ubuntu</a>', 
+        '<a href="https://www.npmjs.com/">NPM</a>' 
+        ],
         t1_2_modified = '<a href="https://www.mozilla.org/">mozilla</a>';
-    assert.equal( document.getElementById( 't1-2' ).innerHTML, t1_2_original );
-    id = zz( '#t1-2' )
+    assert.equal( document.getElementById( 't1-4' ).innerHTML, t1_2_original[ 0 ] );
+    assert.equal( document.getElementById( 't1-5' ).innerHTML, t1_2_original[ 1 ] );
+    assert.equal( document.getElementById( 't1-6' ).innerHTML, t1_2_original[ 2 ] );
+    ids = [];
+    zz( '.t1-2' )
         .html( t1_2_modified )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't1-2' ).innerHTML, t1_2_modified );
-    assert.equal( zz( '#t1-2' ).html(), t1_2_modified );
-    assert.equal( id, 't1-2' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.equal( zz( '#t1-4' ).html(), t1_2_modified );
+    assert.equal( zz( '#t1-5' ).html(), t1_2_modified );
+    assert.equal( zz( '#t1-6' ).html(), t1_2_modified );
+    assert.deepEqual( ids, [ 't1-4', 't1-5', 't1-6' ] );
 });
-
+/*
 QUnit.test( 'remove and empty test', function( assert ) {
     var t2_1_original = 'To remove';
     assert.equal( document.getElementById( 't2-1' ).textContent, t2_1_original );
@@ -611,3 +623,4 @@ This is the container t16-3
     utils.assertHtml( assert, 't16-5', t16_5_modified );
     assert.equal( id, 't16-5-1' );
 });
+*/

@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-14 10:56:8 */
+/*! zzDOM - v0.0.2 - 2020-09-14 13:9:21 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -552,29 +552,20 @@ var MultipleZZDom = function ( _nodes ) {
 // Init prototype functions from SimpleZZDom
 var MultipleZZDom_init = function(){
     for ( var id in SimpleZZDom.prototype ){
-        MultipleZZDom.prototype[ id ] = function(){
-            for ( var i = 0; i < this.list.length; i++ ) {
-                var simpleZZDom = this.list[ i ];
-                simpleZZDom[ id ].apply( simpleZZDom, arguments );
-            }
-            return this;
-        };
-    }
-}();
-/*
-var MultipleZZDom_init = function(){
-    for ( var id in SimpleZZDom.prototype ){
-        MultipleZZDom.prototype[ id ] = function(){
-            this.iterate(
-                function( simpleZZDom ){
-                    simpleZZDom[ id ].apply( simpleZZDom, arguments );
+        var closure = function(){
+            var functionId = id;
+            return function(){
+                for ( var i = 0; i < this.list.length; i++ ) {
+                    var simpleZZDom = this.list[ i ];
+                    simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
                 }
-            );
-            return this;
+                return this;
+            };
         };
+        MultipleZZDom.prototype[ id ] = closure();
     }
 }();
-*/
+
 /* Methods NOT included in jquery */
 /*
 MultipleZZDom.prototype.get = function () {

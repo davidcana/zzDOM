@@ -145,39 +145,56 @@
             <li><span id="t5-10" class="t5-4 toggleclass">A span</span>. Original has <em>toggleclass</em>, modified toggle serveral times</li>
             <li><span id="t5-11" class="t5-4">A span</span>. Original has not <em>myclass</em>, modified toggle serveral times</li>
         </ul>
+        
         <h2>
             6. after, before, append and prepend
         </h2>
-        <ol>
+        after: original contains <em>Text 1</em>, <em>Text 2</em> and <em>Text 3</em>, modified contains <em>Text 1</em>, <em>New text</em>, <em>Text 2</em>, <em>Text 3</em> and <em>New text</em>.
+        <ul id="t6-1">
+            <li id="t6-1-1" class="t6-1">Text 1</li>
+            <li id="t6-1-2">Text 2</li>
+            <li id="t6-1-3" class="t6-1">Text 3</li>
+        </ul>
+        before: original contains <em>Text 1</em>, <em>Text 2</em> and <em>Text 3</em>, modified contains <em>New text</em>, <em>Text 1</em>, <em>Text 2</em>, <em>New text</em> and <em>Text 3</em>.
+        <ul id="t6-2">
+            <li id="t6-2-1" class="t6-2">Text 1</li>
+            <li id="t6-2-2">Text 2</li>
+            <li id="t6-2-3" class="t6-2">Text 3</li>
+        </ul>
+        append:
+        <ul>
             <li>
-                after: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>Text 1</em>, <em>New text</em> and <em>Text 2</em>.
-                <ul id="t6-1">
-                    <li id="t6-1-1">Text 1</li>
-                    <li id="t6-1-2">Text 2</li>
+                List 1
+                <ul id="t6-3-1" class="t6-3">
+                    <li>Text 1</li>
+                    <li>Text 2</li>
                 </ul>
             </li>
             <li>
-                before: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>Text 1</em>, <em>New text</em> and <em>Text 2</em>.
-                <ul id="t6-2">
-                    <li id="t6-2-1">Text 1</li>
-                    <li id="t6-2-2">Text 2</li>
+                List 2
+                <ul id="t6-3-2" class="t6-3">
+                    <li>Text 3</li>
+                    <li>Text 4</li>
+                </ul>
+            </li>
+        </ul>
+        prepend:
+        <ul>
+            <li>
+                List 1
+                <ul id="t6-4-1" class="t6-4">
+                    <li>Text 1</li>
+                    <li>Text 2</li>
                 </ul>
             </li>
             <li>
-                append: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>Text 1</em>, <em>Text 2</em> and <em>New text</em>.
-                <ul id="t6-3">
-                    <li id="t6-3-1">Text 1</li>
-                    <li id="t6-3-2">Text 2</li>
+                List 2
+                <ul id="t6-4-2" class="t6-4">
+                    <li>Text 3</li>
+                    <li>Text 4</li>
                 </ul>
             </li>
-            <li>
-                prepend: original contains <em>Text 1</em> and <em>Text 2</em>, modified contains <em>New text</em>, <em>Text 1</em> and <em>Text 2</em>.
-                <ul id="t6-4">
-                    <li id="t6-4-1">Text 1</li>
-                    <li id="t6-4-2">Text 2</li>
-                </ul>
-            </li>
-        </ol>
+        </ul>
         
         <h2>
             7. siblings, prev and next

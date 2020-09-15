@@ -185,45 +185,57 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     assert.notOk( zz( '#t5-11' ).hasClass( t5_4_class ) );
     assert.deepEqual( ids, [ 't5-10', 't5-11' ] );
 });
-/*
-QUnit.test( 'after, before, append, prepend, prev and next test', function( assert ) {
-    var t6_1_original = '<li id=\"t6-1-1\">Text 1</li><li id=\"t6-1-2\">Text 2</li>',
-        t6_1_modified = '<li id=\"t6-1-1\">Text 1</li><li>New text</li><li id=\"t6-1-2\">Text 2</li>';
-    utils.assertHtml( assert, 't6-1', t6_1_original );
-    var id = zz( '#t6-1-1' )
-        .after( '<li>New text</li>' )
-        .attr( 'id' );
-    utils.assertHtml( assert, 't6-1', t6_1_modified );
-    assert.equal( id, 't6-1-1' );
-    
-    var t6_2_original = '<li id=\"t6-2-1\">Text 1</li><li id=\"t6-2-2\">Text 2</li>',
-        t6_2_modified = '<li id=\"t6-2-1\">Text 1</li><li>New text</li><li id=\"t6-2-2\">Text 2</li>';
-    utils.assertHtml( assert, 't6-2', t6_2_original );
-    id = zz( '#t6-2-2' )
-        .before( '<li>New text</li>' )
-        .attr( 'id' );
-    utils.assertHtml( assert, 't6-2', t6_2_modified );
-    assert.equal( id, 't6-2-2' );
-    
-    var t6_3_original = '<li id=\"t6-3-1\">Text 1</li><li id=\"t6-3-2\">Text 2</li>',
-        t6_3_modified = '<li id=\"t6-3-1\">Text 1</li><li id=\"t6-3-2\">Text 2</li><li>New text</li>';
-    utils.assertHtml( assert, 't6-3', t6_3_original );
-    id = zz( '#t6-3' )
-        .append( '<li>New text</li>' )
-        .attr( 'id' );
-    utils.assertHtml( assert, 't6-3', t6_3_modified );
-    assert.equal( id, 't6-3' );
-    
-    var t6_4_original = '<li id=\"t6-4-1\">Text 1</li><li id=\"t6-4-2\">Text 2</li>',
-        t6_4_modified = '<li>New text</li><li id=\"t6-4-1\">Text 1</li><li id=\"t6-4-2\">Text 2</li>';
-    utils.assertHtml( assert, 't6-4', t6_4_original );
-    id = zz( '#t6-4' )
-        .prepend( '<li>New text</li>' )
-        .attr( 'id' );
-    utils.assertHtml( assert, 't6-4', t6_4_modified );
-    assert.equal( id, 't6-4' );
-});
 
+QUnit.test( 'after, before, append and prepend test', function( assert ) {
+    var t6_1_original = '<li id="t6-1-1" class="t6-1">Text 1</li><li id="t6-1-2">Text 2</li><li id="t6-1-3" class="t6-1">Text 3</li>',
+        t6_1_modified = '<li id="t6-1-1" class="t6-1">Text 1</li><li>New text</li><li id="t6-1-2">Text 2</li><li id="t6-1-3" class="t6-1">Text 3</li><li>New text</li>';
+    utils.assertHtml( assert, 't6-1', t6_1_original );
+    var ids = [];
+    zz( '.t6-1' )
+        .after( '<li>New text</li>' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    utils.assertHtml( assert, 't6-1', t6_1_modified );
+    assert.deepEqual( ids, [ 't6-1-1', 't6-1-3' ] );
+    
+    var t6_2_original = '<li id="t6-2-1" class="t6-2">Text 1</li><li id="t6-2-2">Text 2</li><li id="t6-2-3" class="t6-2">Text 3</li>',
+        t6_2_modified = '<li>New text</li><li id="t6-2-1" class="t6-2">Text 1</li><li id="t6-2-2">Text 2</li><li>New text</li><li id="t6-2-3" class="t6-2">Text 3</li>';
+    utils.assertHtml( assert, 't6-2', t6_2_original );
+    ids = [];
+    zz( '.t6-2' )
+        .before( '<li>New text</li>' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    utils.assertHtml( assert, 't6-2', t6_2_modified );
+    assert.deepEqual( ids, [ 't6-2-1', 't6-2-3' ] );
+    
+    var t6_3_1_original = '<li>Text 1</li><li>Text 2</li>',
+        t6_3_1_modified = '<li>Text 1</li><li>Text 2</li><li>New text</li>',
+        t6_3_2_original = '<li>Text 3</li><li>Text 4</li>',
+        t6_3_2_modified = '<li>Text 3</li><li>Text 4</li><li>New text</li>';
+    utils.assertHtml( assert, 't6-3-1', t6_3_1_original );
+    utils.assertHtml( assert, 't6-3-2', t6_3_2_original );
+    ids = [];
+    zz( '.t6-3' )
+        .append( '<li>New text</li>' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    utils.assertHtml( assert, 't6-3-1', t6_3_1_modified );
+    utils.assertHtml( assert, 't6-3-2', t6_3_2_modified );
+    assert.deepEqual( ids, [ 't6-3-1', 't6-3-2' ] );
+    
+    var t6_4_1_original = '<li>Text 1</li><li>Text 2</li>',
+        t6_4_1_modified = '<li>New text</li><li>Text 1</li><li>Text 2</li>',
+        t6_4_2_original = '<li>Text 3</li><li>Text 4</li>',
+        t6_4_2_modified = '<li>New text</li><li>Text 3</li><li>Text 4</li>';
+    utils.assertHtml( assert, 't6-4-1', t6_4_1_original );
+    utils.assertHtml( assert, 't6-4-2', t6_4_2_original );
+    ids = [];
+    zz( '.t6-4' )
+        .prepend( '<li>New text</li>' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    utils.assertHtml( assert, 't6-4-1', t6_4_1_modified );
+    utils.assertHtml( assert, 't6-4-2', t6_4_2_modified );
+    assert.deepEqual( ids, [ 't6-4-1', 't6-4-2' ] );
+});
+/*
 QUnit.test( 'siblings, prev and next test', function( assert ) {
     var ids = [];
     zz( '#t7-1-2' )

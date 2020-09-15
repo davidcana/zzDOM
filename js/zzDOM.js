@@ -7,8 +7,11 @@ zzDOM.htmlToElement = function ( html ) {
     return template.content.firstChild;
 };
 
-zzDOM.buildInstance = function ( nodes ) {
-    return nodes.length === 1? new SimpleZZDom( nodes[ 0 ] ): new MultipleZZDom( nodes );
+zzDOM.buildInstance = function ( x ) {
+    if ( x instanceof HTMLCollection ){
+        x = Array.prototype.slice.call( x );
+    }
+    return x.length === 1? new SimpleZZDom( x[ 0 ] ): new MultipleZZDom( x );
 };
 
 /*

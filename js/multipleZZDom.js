@@ -18,13 +18,16 @@ var MultipleZZDom_init = function(){
     for ( var id in SimpleZZDom.prototype ){
         var closure = function(){
             var functionId = id;
-            var thisFunction = SimpleZZDom.prototype[ functionId ];
             
-            switch ( thisFunction ){
+            switch ( SimpleZZDom.prototype[ functionId ] ){
                 // Concat functions
                 case SimpleZZDom.prototype.siblings:
                 case SimpleZZDom.prototype.prev:
                 case SimpleZZDom.prototype.next:
+                case SimpleZZDom.prototype.children:
+                case SimpleZZDom.prototype.parent:
+                case SimpleZZDom.prototype.find:
+                case SimpleZZDom.prototype.filter:
                     return function(){
                         var newNodes = [];
                         for ( var i = 0; i < this.list.length; i++ ) {
@@ -107,6 +110,7 @@ MultipleZZDom.prototype.next = function () {
     return zzDOM.buildInstance( newNodes );
 };
 */
+/*
 MultipleZZDom.prototype.find = function () {
     var nodes = [];
     for ( var i = 0; i < this.list.length; i++ ) {
@@ -128,3 +132,4 @@ MultipleZZDom.prototype.filter = function () {
     
     return zzDOM.buildInstance( nodes );
 };
+*/

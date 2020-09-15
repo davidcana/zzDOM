@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-15 13:7:33 */
+/*! zzDOM - v0.0.2 - 2020-09-15 13:36:49 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -7,8 +7,11 @@ zzDOM.htmlToElement = function ( html ) {
     return template.content.firstChild;
 };
 
-zzDOM.buildInstance = function ( nodes ) {
-    return nodes.length === 1? new SimpleZZDom( nodes[ 0 ] ): new MultipleZZDom( nodes );
+zzDOM.buildInstance = function ( x ) {
+    if ( x instanceof HTMLCollection ){
+        x = Array.prototype.slice.call( x );
+    }
+    return x.length === 1? new SimpleZZDom( x[ 0 ] ): new MultipleZZDom( x );
 };
 
 /*
@@ -555,13 +558,16 @@ var MultipleZZDom_init = function(){
     for ( var id in SimpleZZDom.prototype ){
         var closure = function(){
             var functionId = id;
-            var thisFunction = SimpleZZDom.prototype[ functionId ];
             
-            switch ( thisFunction ){
+            switch ( SimpleZZDom.prototype[ functionId ] ){
                 // Concat functions
                 case SimpleZZDom.prototype.siblings:
                 case SimpleZZDom.prototype.prev:
                 case SimpleZZDom.prototype.next:
+                case SimpleZZDom.prototype.children:
+                case SimpleZZDom.prototype.parent:
+                case SimpleZZDom.prototype.find:
+                case SimpleZZDom.prototype.filter:
                     return function(){
                         var newNodes = [];
                         for ( var i = 0; i < this.list.length; i++ ) {
@@ -644,6 +650,7 @@ MultipleZZDom.prototype.next = function () {
     return zzDOM.buildInstance( newNodes );
 };
 */
+/*
 MultipleZZDom.prototype.find = function () {
     var nodes = [];
     for ( var i = 0; i < this.list.length; i++ ) {
@@ -665,3 +672,4 @@ MultipleZZDom.prototype.filter = function () {
     
     return zzDOM.buildInstance( nodes );
 };
+*/

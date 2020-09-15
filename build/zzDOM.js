@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-15 09:21:41 */
+/*! zzDOM - v0.0.2 - 2020-09-15 12:43:1 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -306,6 +306,7 @@ SimpleZZDom.prototype.width = function ( value ) {
     return this.styleProperty( 'width', value );
 };
 
+/* TODO: MultipleZZDOM version must implement any */
 SimpleZZDom.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };
@@ -588,6 +589,42 @@ MultipleZZDom.prototype.each = function ( eachFn ) {
     return this;
 };
 
+MultipleZZDom.prototype.siblings = function () {
+    var newNodes = [];
+    
+    for ( var i = 0; i < this.list.length; i++ ) {
+        var simpleZZDom = this.list[ i ];
+        var x = simpleZZDom.siblings.apply( simpleZZDom, arguments );
+        newNodes = newNodes.concat( x.nodes );
+    }
+    
+    return zzDOM.buildInstance( newNodes );
+};
+
+MultipleZZDom.prototype.prev = function () {
+    var newNodes = [];
+    
+    for ( var i = 0; i < this.list.length; i++ ) {
+        var simpleZZDom = this.list[ i ];
+        var x = simpleZZDom.prev.apply( simpleZZDom, arguments );
+        newNodes = newNodes.concat( x.nodes );
+    }
+    
+    return zzDOM.buildInstance( newNodes );
+};
+
+MultipleZZDom.prototype.next = function () {
+    var newNodes = [];
+    
+    for ( var i = 0; i < this.list.length; i++ ) {
+        var simpleZZDom = this.list[ i ];
+        var x = simpleZZDom.next.apply( simpleZZDom, arguments );
+        newNodes = newNodes.concat( x.nodes );
+    }
+    
+    return zzDOM.buildInstance( newNodes );
+};
+
 MultipleZZDom.prototype.find = function () {
     var nodes = [];
     for ( var i = 0; i < this.list.length; i++ ) {
@@ -609,122 +646,3 @@ MultipleZZDom.prototype.filter = function () {
     
     return zzDOM.buildInstance( nodes );
 };
-
-/*
-MultipleZZDom.prototype.addClass = function ( name ) {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.addClass( name );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.empty = function () {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.empty();
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.attr = function ( name, value ) {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.attr( name, value );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.html = function ( value ) {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.html( value );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.css = function () {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.css.apply( simpleZZDom, arguments );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.text = function ( value ) {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.text( value );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.remove = function () {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.remove();
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.removeAttr = function ( name ) {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.removeAttr( name );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.removeClass = function ( name ) {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.removeClass( name );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.toggleClass = function ( name ) {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.toggleClass( name );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.trigger = function ( name ) {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.trigger( name );
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.hide = function () {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.hide();
-        }
-    );
-    return this;
-};
-
-MultipleZZDom.prototype.show = function () {
-    this.iterate(
-        function( simpleZZDom ){
-            simpleZZDom.show();
-        }
-    );
-    return this;
-};
-*/

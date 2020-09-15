@@ -235,6 +235,26 @@ QUnit.test( 'after, before, append and prepend test', function( assert ) {
     utils.assertHtml( assert, 't6-4-2', t6_4_2_modified );
     assert.deepEqual( ids, [ 't6-4-1', 't6-4-2' ] );
 });
+
+QUnit.test( 'siblings, prev and next test', function( assert ) {
+    var ids = [];
+    zz( '.t7-1' )
+        .siblings()
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't7-1-1-1', 't7-1-1-3', 't7-1-2-1', 't7-1-2-2' ] );
+    
+    ids = [];
+    zz( '.t7-2' )
+        .prev()
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't7-2-1-1', 't7-2-2-1' ] );
+    
+    ids = [];
+    zz( '.t7-2' )
+        .next()
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't7-2-1-3', 't7-2-2-3' ] );
+});
 /*
 QUnit.test( 'siblings, prev and next test', function( assert ) {
     var ids = [];

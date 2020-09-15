@@ -199,41 +199,44 @@
         <h2>
             7. siblings, prev and next
         </h2>
-        <ol>
+        siblings:
+        <ul>
             <li>
-                id attrs of zz( '#t7-1-2' ).siblings() must be [ 't7-1-1', 't7-1-3' ]
-                <ul id="t7-1">
-                    <li id="t7-1-1">Text 1</li>
-                    <li id="t7-1-2">Text 2</li>
-                    <li id="t7-1-3">Text 3</li>
+                List 1
+                <ul id="t7-1-1">
+                    <li id="t7-1-1-1">Text 1</li>
+                    <li id="t7-1-1-2" class="t7-1">Text 2</li>
+                    <li id="t7-1-1-3">Text 3</li>
                 </ul>
             </li>
             <li>
-                id attr of zz( '#t7-2-2' ).prev() must be 't7-1-1'
-                <ul id="t7-2">
-                    <li id="t7-2-1">Text 1</li>
-                    <li id="t7-2-2">Text 2</li>
-                    <li id="t7-2-3">Text 3</li>
+                List 2
+                <ul id="t7-1-2">
+                    <li id="t7-1-2-1">Text 1</li>
+                    <li id="t7-1-2-2">Text 2</li>
+                    <li id="t7-1-2-3" class="t7-1">Text 3</li>
+                </ul>
+            </li>
+        </ul>
+        prev and next:
+        <ul>
+            <li>
+                List 1
+                <ul id="t7-2-1">
+                    <li id="t7-2-1-1">Text 1</li>
+                    <li id="t7-2-1-2" class="t7-2">Text 2</li>
+                    <li id="t7-2-1-3">Text 3</li>
                 </ul>
             </li>
             <li>
-                id attr of zz( '#t7-3-2' ).next() must be 't7-3-3'
-                <ul id="t7-3">
-                    <li id="t7-3-1">Text 1</li>
-                    <li id="t7-3-2">Text 2</li>
-                    <li id="t7-3-3">Text 3</li>
+                List 2
+                <ul id="t7-2-2">
+                    <li id="t7-2-2-1">Text 1</li>
+                    <li id="t7-2-2-2" class="t7-2">Text 2</li>
+                    <li id="t7-2-2-3">Text 3</li>
                 </ul>
             </li>
-            <li>
-                id attrs of zz( '#t7-4-2' ).siblings( '.selected' ) must be [ 't7-4-1', 't7-4-4' ]
-                <ul id="t7-4">
-                    <li id="t7-4-1" class="selected">Text 1</li>
-                    <li id="t7-4-2">Text 2</li>
-                    <li id="t7-4-3">Text 3</li>
-                    <li id="t7-4-4" class="selected">Text 4</li>
-                </ul>
-            </li>
-        </ol>
+        </ul>
         
         <h2>
             8. children, index and parent 

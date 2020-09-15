@@ -133,66 +133,59 @@ QUnit.test( 'attr and removeAttr test', function( assert ) {
     assert.equal( zz( '#t4-6' ).attr( 'href' ), t4_2_modified );
     assert.deepEqual( ids, [ 't4-5', 't4-6' ] );
 });
-/*
-QUnit.test( 'attr and removeAttr test', function( assert ) {
-    var t4_1_original = 'https://www.fsf.org/',
-        t4_1_modified = 'https://www.mozilla.org/';
-    assert.equal( document.getElementById( 't4-1' ).getAttribute( 'href' ), t4_1_original );
-    var id = zz( '#t4-1' )
-        .attr( 'href', t4_1_modified )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't4-1' ).getAttribute( 'href' ), t4_1_modified );
-    assert.equal( zz( '#t4-1' ).attr( 'href' ), t4_1_modified );
-    assert.equal( id, 't4-1' );
-    
-    var t4_2_original = 'FSF';
-    assert.equal( document.getElementById( 't4-2' ).getAttribute( 'name' ), t4_2_original );
-    id = zz( '#t4-2' )
-        .removeAttr( 'name' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't4-2' ).getAttribute( 'name' ), null );
-    assert.equal( zz( '#t4-2' ).attr( 'name' ), null );
-    assert.equal( id, 't4-2' );
-});
 
 QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( assert ) {
     var t5_1_class = 'myclass';
     assert.ok( document.getElementById( 't5-1' ).classList.contains( t5_1_class ) );
-    assert.ok( zz( '#t5-1' ).hasClass( t5_1_class ) );
-
+    assert.notOk( document.getElementById( 't5-2' ).classList.contains( t5_1_class ) );
+    assert.ok( document.getElementById( 't5-3' ).classList.contains( t5_1_class ) );
+    assert.ok( zz( '.t5-1.myclass' ).hasClass( t5_1_class ) );
+    
     var t5_2_class = 'addedclass';
-    assert.notOk( document.getElementById( 't5-2' ).classList.contains( t5_2_class ) );
-    var id = zz( '#t5-2' )
+    assert.notOk( document.getElementById( 't5-4' ).classList.contains( t5_2_class ) );
+    assert.notOk( document.getElementById( 't5-5' ).classList.contains( t5_2_class ) );
+    assert.notOk( document.getElementById( 't5-6' ).classList.contains( t5_2_class ) );
+    var ids = [];
+    zz( '.t5-2' )
         .addClass( t5_2_class )
-        .attr( 'id' );
-    assert.ok( document.getElementById( 't5-2' ).classList.contains( t5_2_class ) );
-    assert.equal( id, 't5-2' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.ok( zz( '#t5-4' ).hasClass( t5_2_class ) );
+    assert.ok( zz( '#t5-5' ).hasClass( t5_2_class ) );
+    assert.ok( zz( '#t5-6' ).hasClass( t5_2_class ) );
+    assert.deepEqual( ids, [ 't5-4', 't5-5', 't5-6' ] );
     
     var t5_3_class = 'otherclass';
-    assert.ok( document.getElementById( 't5-3' ).classList.contains( t5_3_class ) );
-    id = zz( '#t5-3' )
+    assert.ok( document.getElementById( 't5-7' ).classList.contains( t5_3_class ) );
+    assert.ok( document.getElementById( 't5-8' ).classList.contains( t5_3_class ) );
+    assert.ok( document.getElementById( 't5-9' ).classList.contains( t5_3_class ) );
+    var ids = [];
+    zz( '.t5-3' )
         .removeClass( t5_3_class )
-        .attr( 'id' );
-    assert.notOk( document.getElementById( 't5-3' ).classList.contains( t5_3_class ) );
-    assert.equal( id, 't5-3' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.notOk( zz( '#t5-7' ).hasClass( t5_3_class ) );
+    assert.notOk( zz( '#t5-8' ).hasClass( t5_3_class ) );
+    assert.notOk( zz( '#t5-9' ).hasClass( t5_3_class ) );
+    assert.deepEqual( ids, [ 't5-7', 't5-8', 't5-9' ] );
     
-    var t5_4_class = 'addedclass';
-    assert.notOk( document.getElementById( 't5-4' ).classList.contains( t5_4_class ) );
-    id = zz( '#t5-4' )
+    var t5_4_class = 'toggleclass';
+    assert.ok( document.getElementById( 't5-10' ).classList.contains( t5_4_class ) );
+    assert.notOk( document.getElementById( 't5-11' ).classList.contains( t5_4_class ) );
+    var ids = [];
+    zz( '.t5-4' )
         .toggleClass( t5_4_class )
-        .attr( 'id' );
-    assert.ok( document.getElementById( 't5-4' ).classList.contains( t5_4_class ) );
-    assert.equal( id, 't5-4' );
-    
-    var t5_5_class = 'otherclass';
-    assert.ok( document.getElementById( 't5-5' ).classList.contains( t5_5_class ) );
-    id = zz( '#t5-5' )
-        .removeClass( t5_5_class )
-        .attr( 'id' );
-    assert.notOk( document.getElementById( 't5-5' ).classList.contains( t5_5_class ) );
-    assert.equal( id, 't5-5' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.notOk( zz( '#t5-10' ).hasClass( t5_4_class ) );
+    assert.ok( zz( '#t5-11' ).hasClass( t5_4_class ) );
+    assert.deepEqual( ids, [ 't5-10', 't5-11' ] );
+    ids = [];
+    zz( '.t5-4' )
+        .toggleClass( t5_4_class )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.ok( zz( '#t5-10' ).hasClass( t5_4_class ) );
+    assert.notOk( zz( '#t5-11' ).hasClass( t5_4_class ) );
+    assert.deepEqual( ids, [ 't5-10', 't5-11' ] );
 });
-
+/*
 QUnit.test( 'after, before, append, prepend, prev and next test', function( assert ) {
     var t6_1_original = '<li id=\"t6-1-1\">Text 1</li><li id=\"t6-1-2\">Text 2</li>',
         t6_1_modified = '<li id=\"t6-1-1\">Text 1</li><li>New text</li><li id=\"t6-1-2\">Text 2</li>';

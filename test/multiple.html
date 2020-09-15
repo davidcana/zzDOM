@@ -122,14 +122,29 @@
         <h2>
             5. addClass, hasClass, removeClass and toggleClass
         </h2>
-        <ol>
-            <li>hasClass: <span id="t5-1" class="myclass">A span</span>. A span with 1 class: <em>myclass</em></li>
-            <li>addClass: <span id="t5-2" class="myclass">A span</span>. Original has only <em>myclass</em>, modified has also <em>addedclass</em>.</li>
-            <li>removeClass: <span id="t5-3" class="myclass otherclass">A span</span>. Original has <em>myclass</em> and <em>otherclass</em>, modified has only <em>myclass</em>.</li>
-            <li>toggleClass to addClass: <span id="t5-4" class="myclass">A span</span>. Original has only <em>myclass</em>, modified has also <em>addedclass</em>.</li>
-            <li>toggleClass to removeClass: <span id="t5-5" class="myclass otherclass">A span</span>. Original has <em>myclass</em> and <em>otherclass</em>, modified has only <em>myclass</em>.</li>
-        </ol>
-        
+        hasClass: 
+        <ul>
+            <li><span id="t5-1" class="t5-1 myclass">A span</span>. A span with class: <em>myclass</em></li>
+            <li><span id="t5-2" class="t5-1">A span</span>. A span with no class: <em>myclass</em></li>
+            <li><span id="t5-3" class="t5-1 myclass">A span</span>. A span with class: <em>myclass</em></li>
+        </ul>
+        addClass: 
+        <ul>
+            <li><span id="t5-4" class="t5-2 myclass">A span</span>. Original has <em>myclass</em>, modified has also <em>addedclass</em></li>
+            <li><span id="t5-5" class="t5-2">A span</span>. A span with no class: <em>myclass</em>, modified has also <em>addedclass</em></li>
+            <li><span id="t5-6" class="t5-2 myclass">A span</span>. Original has <em>myclass</em>, modified has also <em>addedclass</em></li>
+        </ul>
+        removeClass: 
+        <ul>
+            <li><span id="t5-7" class="t5-3 myclass otherclass">A span</span>. Original has <em>myclass</em> and <em>otherclass</em>, modified removes <em>otherclass</em></li>
+            <li><span id="t5-8" class="t5-3 otherclass">A span</span>. Original has <em>otherclass</em>, modified removes <em>otherclass</em></li>
+            <li><span id="t5-9" class="t5-3 myclass otherclass">A span</span>. Original has <em>myclass</em> and <em>otherclass</em>, modified removes <em>otherclass</em></li>
+        </ul>
+        toggleClass:
+        <ul>
+            <li><span id="t5-10" class="t5-4 toggleclass">A span</span>. Original has <em>toggleclass</em>, modified toggle serveral times</li>
+            <li><span id="t5-11" class="t5-4">A span</span>. Original has not <em>myclass</em>, modified toggle serveral times</li>
+        </ul>
         <h2>
             6. after, before, append and prepend
         </h2>

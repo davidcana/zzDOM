@@ -221,6 +221,7 @@ SimpleZZDom.prototype.width = function ( value ) {
     return this.styleProperty( 'width', value );
 };
 
+/* TODO: MultipleZZDOM version must implement any */
 SimpleZZDom.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };

@@ -109,7 +109,7 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     assert.equal( id, 't5-5' );
 });
 
-QUnit.test( 'after, before, append, prepend, prev and next test', function( assert ) {
+QUnit.test( 'after, before, append and prepend test', function( assert ) {
     var t6_1_original = '<li id=\"t6-1-1\">Text 1</li><li id=\"t6-1-2\">Text 2</li>',
         t6_1_modified = '<li id=\"t6-1-1\">Text 1</li><li>New text</li><li id=\"t6-1-2\">Text 2</li>';
     utils.assertHtml( assert, 't6-1', t6_1_original );

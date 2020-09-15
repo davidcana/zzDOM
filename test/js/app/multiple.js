@@ -34,23 +34,65 @@ QUnit.test( 'text and html test', function( assert ) {
     assert.equal( zz( '#t1-6' ).html(), t1_2_modified );
     assert.deepEqual( ids, [ 't1-4', 't1-5', 't1-6' ] );
 });
-/*
+
 QUnit.test( 'remove and empty test', function( assert ) {
-    var t2_1_original = 'To remove';
-    assert.equal( document.getElementById( 't2-1' ).textContent, t2_1_original );
-    zz( '#t2-1' ).remove();
-    assert.equal( document.getElementById( 't2-1' ), null );
-    // Can not test zz( '#t2-1' ).attr( 'id' ), element was removed!
+    var t2_1_original = [ 'To remove', 'Not to remove', 'To remove' ];
+    assert.equal( document.getElementById( 't2-1' ).textContent, t2_1_original[ 0 ] );
+    assert.equal( document.getElementById( 't2-2' ).textContent, t2_1_original[ 1 ] );
+    assert.equal( document.getElementById( 't2-3' ).textContent, t2_1_original[ 2 ] );
+    var ids = [];
+    zz( '.t2-1.remove' )
+        .remove()
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't2-1', 't2-3' ] );
+    assert.equal( zz( '#t2-2' ).text(), t2_1_original[ 1 ] );
+    ids = [];
+    zz( '.t2-1' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't2-2' ] );
     
-    var t2_2_original = 'To be empty';
-    assert.equal( document.getElementById( 't2-2' ).textContent, t2_2_original );
-    var id = zz( '#t2-2' )
+    var t2_2_original = [ 'To be empty', 'To be empty', 'Not to be empty' ];
+    assert.equal( document.getElementById( 't2-4' ).innerHTML, t2_2_original[ 0 ] );
+    assert.equal( document.getElementById( 't2-5' ).innerHTML, t2_2_original[ 1 ] );
+    assert.equal( document.getElementById( 't2-6' ).innerHTML, t2_2_original[ 2 ] );
+    ids = [];
+    zz( '.t2-2.empty' )
         .empty()
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't2-2' ).textContent, '' );
-    assert.equal( id, 't2-2' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.equal( zz( '#t2-4' ).text(), '' );
+    assert.equal( zz( '#t2-5' ).text(), '' );
+    assert.equal( zz( '#t2-6' ).text(), t2_2_original[ 2 ] );
+    assert.deepEqual( ids, [ 't2-4', 't2-5' ] );
+    ids = [];
+    zz( '.t2-2' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't2-4', 't2-5', 't2-6' ] );
 });
 
+QUnit.test( 'replaceWith test', function( assert ) {
+    var t3_1_original = [ 
+        '<span id="t3-1-in" class="t3-1-in replace">To replace</span>', 
+        '<span id="t3-2-in" class="t3-1-in">Not to replace</span>', 
+        '<span id="t3-3-in" class="t3-1-in replace">To replace</span>'
+    ],
+        t3_1_modified = 'Replaced text';
+    assert.equal( document.getElementById( 't3-1' ).innerHTML, t3_1_original[ 0 ] );
+    assert.equal( document.getElementById( 't3-2' ).innerHTML, t3_1_original[ 1 ] );
+    assert.equal( document.getElementById( 't3-3' ).innerHTML, t3_1_original[ 2 ] );
+    var ids = [];
+    zz( '.t3-1-in.replace' )
+        .replaceWith( t3_1_modified )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't3-1-in', 't3-3-in' ] );
+    assert.equal( zz( '#t3-1' ).html(), t3_1_modified );
+    assert.equal( zz( '#t3-2' ).html(), t3_1_original[ 1 ] );
+    assert.equal( zz( '#t3-3' ).html(), t3_1_modified );
+    ids = [];
+    zz( '.t3-1-in' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't3-2-in' ] );
+});
+/*
 QUnit.test( 'replaceWith test', function( assert ) {
     var t3_1_original = '<span id="t3-1-in">To replace</span>',
         t3_1_modified = 'Replaced text';

@@ -75,16 +75,33 @@
             2. remove and empty
         </h2>
         <ol>
-            <li>remove: <span id="t2-1">To remove</span>. Original value is <em>To remove</em>, modified must be removed.</li>
-            <li>empty: <span id="t2-2">To be empty</span>. Original value is <em>To be empty</em>, modified must be empty.</li>
+            <li>
+                remove: 
+                <ul>
+                    <li><span id="t2-1" class="t2-1 remove">To remove</span>. Original value is <em>To remove</em>, modified must be removed.</li>
+                    <li><span id="t2-2" class="t2-1">Not to remove</span>. Original value is <em>Not to remove</em>, modified must be not removed.</li>
+                    <li><span id="t2-3" class="t2-1 remove">To remove</span>. Original value is <em>To remove</em>, modified must be removed.</li>
+                </ul>
+            <li>
+                empty: 
+                <ul>
+                    <li><span id="t2-4" class="t2-2 empty">To be empty</span>. Original value is <em>To be empty</em>, modified must be empty.</li>
+                    <li><span id="t2-5" class="t2-2 empty">To be empty</span>. Original value is <em>To be empty</em>, modified must be empty.</li>
+                    <li><span id="t2-6" class="t2-2">Not to be empty</span>. Original value is <em>Not to be empty</em>, modified must be not empty.</li>
+                </ul>
         </ol>
         
         <h2>
             3. replaceWith
         </h2>
-        <p>
-            replaceWith: <span id="t3-1"><span id="t3-1-in">To replace</span></span>. Original value is <em>To replace</em>, modified must be <em>Replaced text</em>.
-        </p>
+        <div>
+            replaceWith: 
+                <ul>
+                    <li><span id="t3-1"><span id="t3-1-in" class="t3-1-in replace">To replace</span></span>. Original value is <em>To replace</em>, modified must be <em>Replaced text</em>.</li>
+                    <li><span id="t3-2"><span id="t3-2-in" class="t3-1-in">Not to replace</span></span>. Original value is <em>Not to replace</em>, modified must be not replaced.</li>
+                    <li><span id="t3-3"><span id="t3-3-in" class="t3-1-in replace">To replace</span></span>. Original value is <em>To replace</em>, modified must be <em>Replaced text</em>.</li>
+                </ul>
+        </div>
         
         <h2>
             4. attr and removeAttr

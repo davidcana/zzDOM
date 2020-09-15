@@ -92,18 +92,45 @@ QUnit.test( 'replaceWith test', function( assert ) {
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't3-2-in' ] );
 });
-/*
-QUnit.test( 'replaceWith test', function( assert ) {
-    var t3_1_original = '<span id="t3-1-in">To replace</span>',
-        t3_1_modified = 'Replaced text';
-    assert.equal( document.getElementById( 't3-1' ).innerHTML, t3_1_original );
-    var id = zz( '#t3-1-in' )
-        .replaceWith( t3_1_modified )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't3-1' ).innerHTML, t3_1_modified );
-    assert.equal( id, 't3-1-in' );
-});
 
+QUnit.test( 'attr and removeAttr test', function( assert ) {
+    var t4_1_original = [ 
+        'https://www.fsf.org/', 
+        'https://ubuntu.com/', 
+        'https://www.npmjs.com/' 
+        ],
+        t4_1_modified = '<a href="https://www.mozilla.org/">mozilla</a>';
+    assert.equal( zz( '#t4-1' ).attr( 'href' ), t4_1_original[ 0 ] );
+    assert.equal( zz( '#t4-2' ).attr( 'href' ), t4_1_original[ 1 ] );
+    assert.equal( zz( '#t4-3' ).attr( 'href' ), t4_1_original[ 2 ] );
+    var ids = [];
+    zz( '.t4-1.attr' )
+        .attr( 'href', t4_1_modified )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.equal( zz( '#t4-1' ).attr( 'href' ), t4_1_original[ 0 ] );
+    assert.equal( zz( '#t4-2' ).attr( 'href' ), t4_1_modified );
+    assert.equal( zz( '#t4-3' ).attr( 'href' ), t4_1_modified );
+    assert.deepEqual( ids, [ 't4-2', 't4-3' ] );
+    
+    var t4_2_original = [ 
+        'https://www.fsf.org/', 
+        'https://ubuntu.com/', 
+        'https://www.npmjs.com/' 
+        ],
+        t4_2_modified = null;
+    assert.equal( zz( '#t4-4' ).attr( 'href' ), t4_2_original[ 0 ] );
+    assert.equal( zz( '#t4-5' ).attr( 'href' ), t4_2_original[ 1 ] );
+    assert.equal( zz( '#t4-6' ).attr( 'href' ), t4_2_original[ 2 ] );
+    var ids = [];
+    zz( '.t4-2.removeAttr' )
+        .removeAttr( 'href' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.equal( zz( '#t4-4' ).attr( 'href' ), t4_2_original[ 0 ] );
+    assert.equal( zz( '#t4-5' ).attr( 'href' ), t4_2_modified );
+    assert.equal( zz( '#t4-6' ).attr( 'href' ), t4_2_modified );
+    assert.deepEqual( ids, [ 't4-5', 't4-6' ] );
+});
+/*
 QUnit.test( 'attr and removeAttr test', function( assert ) {
     var t4_1_original = 'https://www.fsf.org/',
         t4_1_modified = 'https://www.mozilla.org/';

@@ -106,10 +106,18 @@
         <h2>
             4. attr and removeAttr
         </h2>
-        <ol>
-            <li>Link 1: <a id="t4-1" href="https://www.fsf.org/">FSF</a>. Original href attribute is <em>https://www.fsf.org/</em>, modified must be <em>https://www.mozilla.org/</em>.</li>
-            <li>Link 2: <a id="t4-2" href="https://www.fsf.org/" name="FSF">FSF</a>. Original name attribute is <em>FSF</em>, modified must be removed.</li>
-        </ol>
+        attr:
+        <ul>
+            <li><a id="t4-1" class="t4-1" href="https://www.fsf.org/">FSF</a>. Original value is <em>FSF</em>, modified must be the same.</li>
+            <li><a  id="t4-2" class="t4-1 attr" href="https://ubuntu.com/">Ubuntu</a>. Original value is <em>Ubuntu</em>, modified must be <em>https://www.mozilla.org/</em>.</li>
+            <li><a id="t4-3" class="t4-1 attr" href="https://www.npmjs.com/">NPM</a>. Original value is <em>NPM</em>, modified must be <em>https://www.mozilla.org/</em>.</li>
+        </ul>
+        removeAttr:
+        <ul>
+            <li><a id="t4-4" class="t4-2" href="https://www.fsf.org/">FSF</a>. Original value is <em>FSF</em>, modified must be the same.</li>
+            <li><a id="t4-5" class="t4-2 removeAttr" href="https://ubuntu.com/">Ubuntu</a>. Original value is <em>Ubuntu</em>, modified must be removed.</li>
+            <li><a id="t4-6" class="t4-2 removeAttr" href="https://www.npmjs.com/">NPM</a>. Original value is <em>NPM</em>, modified must be removed.</li>
+        </ul>
         
         <h2>
             5. addClass, hasClass, removeClass and toggleClass

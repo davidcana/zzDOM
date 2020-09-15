@@ -21,7 +21,10 @@ var MultipleZZDom_init = function(){
             return function(){
                 for ( var i = 0; i < this.list.length; i++ ) {
                     var simpleZZDom = this.list[ i ];
-                    simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+                    var r = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+                    if ( i == 0 && ! ( r instanceof SimpleZZDom ) ){
+                        return r;
+                    }
                 }
                 return this;
             };

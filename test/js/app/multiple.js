@@ -15,6 +15,7 @@ QUnit.test( 'text and html test', function( assert ) {
     assert.equal( zz( '#t1-2' ).text(), t1_1_modified );
     assert.equal( zz( '#t1-3' ).text(), t1_1_modified );
     assert.deepEqual( ids, [ 't1-1', 't1-2', 't1-3' ] );
+    assert.equal( zz( '.t1-1' ).text(), t1_1_modified );
     
     var t1_2_original = [ 
         '<a href="https://www.fsf.org/">FSF</a>', 
@@ -33,6 +34,7 @@ QUnit.test( 'text and html test', function( assert ) {
     assert.equal( zz( '#t1-5' ).html(), t1_2_modified );
     assert.equal( zz( '#t1-6' ).html(), t1_2_modified );
     assert.deepEqual( ids, [ 't1-4', 't1-5', 't1-6' ] );
+    assert.equal( zz( '.t1-2' ).html(), t1_2_modified );
 });
 
 QUnit.test( 'remove and empty test', function( assert ) {
@@ -111,6 +113,7 @@ QUnit.test( 'attr and removeAttr test', function( assert ) {
     assert.equal( zz( '#t4-2' ).attr( 'href' ), t4_1_modified );
     assert.equal( zz( '#t4-3' ).attr( 'href' ), t4_1_modified );
     assert.deepEqual( ids, [ 't4-2', 't4-3' ] );
+    assert.deepEqual( zz( '.t4-1.attr' ).attr( 'href' ), t4_1_modified );
     
     var t4_2_original = [ 
         'https://www.fsf.org/', 

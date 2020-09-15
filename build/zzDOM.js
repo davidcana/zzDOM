@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-15 12:43:1 */
+/*! zzDOM - v0.0.2 - 2020-09-15 13:7:33 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -555,16 +555,35 @@ var MultipleZZDom_init = function(){
     for ( var id in SimpleZZDom.prototype ){
         var closure = function(){
             var functionId = id;
-            return function(){
-                for ( var i = 0; i < this.list.length; i++ ) {
-                    var simpleZZDom = this.list[ i ];
-                    var r = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
-                    if ( i == 0 && ! ( r instanceof SimpleZZDom ) ){
-                        return r;
-                    }
-                }
-                return this;
-            };
+            var thisFunction = SimpleZZDom.prototype[ functionId ];
+            
+            switch ( thisFunction ){
+                // Concat functions
+                case SimpleZZDom.prototype.siblings:
+                case SimpleZZDom.prototype.prev:
+                case SimpleZZDom.prototype.next:
+                    return function(){
+                        var newNodes = [];
+                        for ( var i = 0; i < this.list.length; i++ ) {
+                            var simpleZZDom = this.list[ i ];
+                            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+                            newNodes = newNodes.concat( x.nodes );
+                        }
+                        return zzDOM.buildInstance( newNodes );
+                    };
+                default:
+                    // Default function
+                    return function(){
+                        for ( var i = 0; i < this.list.length; i++ ) {
+                            var simpleZZDom = this.list[ i ];
+                            var r = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+                            if ( i == 0 && ! ( r instanceof SimpleZZDom ) ){
+                                return r;
+                            }
+                        }
+                        return this;
+                    };
+            }
         };
         MultipleZZDom.prototype[ id ] = closure();
     }
@@ -588,7 +607,7 @@ MultipleZZDom.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );
     return this;
 };
-
+/*
 MultipleZZDom.prototype.siblings = function () {
     var newNodes = [];
     
@@ -624,7 +643,7 @@ MultipleZZDom.prototype.next = function () {
     
     return zzDOM.buildInstance( newNodes );
 };
-
+*/
 MultipleZZDom.prototype.find = function () {
     var nodes = [];
     for ( var i = 0; i < this.list.length; i++ ) {

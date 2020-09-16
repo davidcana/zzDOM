@@ -429,69 +429,109 @@ QUnit.test( 'css test', function( assert ) {
     assert.equal( zz( '.t11-5' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
     assert.equal( zz( '.t11-5' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
 });
-/*
-QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert ) {
-    var id = zz( '#t12-1' )
-        .height( '2em' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't12-1' ).getAttribute( 'style' ), 'height: 2em;' );
-    assert.equal( zz( '#t12-1' ).height(), 32 );
-    assert.equal( id, 't12-1' );
-    
-    id = zz( '#t12-2' )
-        .height( 100 )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't12-2' ).getAttribute( 'style' ), 'height: 100px;' );
-    assert.equal( zz( '#t12-2' ).height(), 100 );
-    assert.equal( id, 't12-2' );
-    
-    id = zz( '#t12-3' )
-        .width( '10em' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't12-3' ).getAttribute( 'style' ), 'width: 10em;' );
-    assert.equal( zz( '#t12-3' ).width(), 160 );
-    assert.equal( id, 't12-3' );
-    
-    id = zz( '#t12-4' )
-        .height( 800 )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't12-4' ).getAttribute( 'style' ), 'height: 800px;' );
-    assert.equal( zz( '#t12-4' ).height(), 800 );
-    assert.equal( id, 't12-4' );
-    
-    id = zz( '#t12-5' )
-        .height( '2em' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't12-5' ).getAttribute( 'style' ), 'height: 2em;' );
-    assert.equal( zz( '#t12-5' ).outerHeight(), 64 );
-    assert.equal( zz( '#t12-5' ).outerHeight( true ), 80 );
-    assert.equal( id, 't12-5' );
-    
-    id = zz( '#t12-6' )
-        .height( 100 )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't12-6' ).getAttribute( 'style' ), 'height: 100px;' );
-    assert.equal( zz( '#t12-6' ).outerHeight(), 132 );
-    assert.equal( zz( '#t12-6' ).outerHeight( true ), 148 );
-    assert.equal( id, 't12-6' );
-    
-    id = zz( '#t12-7' )
-        .height( '10em' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't12-7' ).getAttribute( 'style' ), 'height: 10em;' );
-    assert.equal( zz( '#t12-7' ).outerHeight(), 192 );
-    assert.equal( zz( '#t12-7' ).outerHeight( true ), 208 );
-    assert.equal( id, 't12-7' );
-    
-    id = zz( '#t12-8' )
-        .height( 800 )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't12-8' ).getAttribute( 'style' ), 'height: 800px;' );
-    assert.equal( zz( '#t12-8' ).outerHeight(), 832 );
-    assert.equal( zz( '#t12-8' ).outerHeight( true ), 848 );
-    assert.equal( id, 't12-8' );
-});
 
+QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert ) {
+    var ids = [];
+    zz( '.t12-1' )
+        .height( '2em' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't12-1-1', 't12-1-2' ] );
+    assert.equal( document.getElementById( 't12-1-1' ).getAttribute( 'style' ), 'height: 2em;' );
+    assert.equal( document.getElementById( 't12-1-2' ).getAttribute( 'style' ), 'height: 2em;' );
+    assert.equal( zz( '#t12-1-1' ).height(), 32 );
+    assert.equal( zz( '#t12-1-2' ).height(), 32 );
+    assert.equal( zz( '.t12-1' ).height(), 32 );
+    
+    ids = [];
+    zz( '.t12-2' )
+        .height( 100 )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't12-2-1', 't12-2-2' ] );
+    assert.equal( document.getElementById( 't12-2-1' ).getAttribute( 'style' ), 'height: 100px;' );
+    assert.equal( document.getElementById( 't12-2-2' ).getAttribute( 'style' ), 'height: 100px;' );
+    assert.equal( zz( '#t12-2-1' ).height(), 100 );
+    assert.equal( zz( '#t12-2-2' ).height(), 100 );
+    assert.equal( zz( '.t12-2' ).height(), 100 );
+    
+    ids = [];
+    zz( '.t12-3' )
+        .width( '10em' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't12-3-1', 't12-3-2' ] );
+    assert.equal( document.getElementById( 't12-3-1' ).getAttribute( 'style' ), 'width: 10em;' );
+    assert.equal( document.getElementById( 't12-3-2' ).getAttribute( 'style' ), 'width: 10em;' );
+    assert.equal( zz( '#t12-3-1' ).width(), 160 );
+    assert.equal( zz( '#t12-3-2' ).width(), 160 );
+    assert.equal( zz( '.t12-3' ).width(), 160 );
+    
+    ids = [];
+    zz( '.t12-4' )
+        .height( 800 )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't12-4-1', 't12-4-2' ] );
+    assert.equal( document.getElementById( 't12-4-1' ).getAttribute( 'style' ), 'height: 800px;' );
+    assert.equal( document.getElementById( 't12-4-2' ).getAttribute( 'style' ), 'height: 800px;' );
+    assert.equal( zz( '#t12-4-1' ).height(), 800 );
+    assert.equal( zz( '#t12-4-2' ).height(), 800 );
+    assert.equal( zz( '.t12-4' ).height(), 800 );
+    
+    ids = [];
+    zz( '.t12-5' )
+        .height( '2em' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't12-5-1', 't12-5-2' ] );
+    assert.equal( document.getElementById( 't12-5-1' ).getAttribute( 'style' ), 'height: 2em;' );
+    assert.equal( document.getElementById( 't12-5-2' ).getAttribute( 'style' ), 'height: 2em;' );
+    assert.equal( zz( '#t12-5-1' ).outerHeight(), 64 );
+    assert.equal( zz( '#t12-5-2' ).outerHeight(), 64 );
+    assert.equal( zz( '#t12-5-1' ).outerHeight( true ), 80 );
+    assert.equal( zz( '#t12-5-2' ).outerHeight( true ), 80 );
+    assert.equal( zz( '.t12-5' ).outerHeight(), 64 );
+    assert.equal( zz( '.t12-5' ).outerHeight( true ), 80 );
+    
+    ids = [];
+    zz( '.t12-6' )
+        .height( 100 )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't12-6-1', 't12-6-2' ] );
+    assert.equal( document.getElementById( 't12-6-1' ).getAttribute( 'style' ), 'height: 100px;' );
+    assert.equal( document.getElementById( 't12-6-2' ).getAttribute( 'style' ), 'height: 100px;' );
+    assert.equal( zz( '#t12-6-1' ).outerHeight(), 132 );
+    assert.equal( zz( '#t12-6-2' ).outerHeight(), 132 );
+    assert.equal( zz( '#t12-6-1' ).outerHeight( true ), 148 );
+    assert.equal( zz( '#t12-6-2' ).outerHeight( true ), 148 );
+    assert.equal( zz( '.t12-6' ).outerHeight(), 132 );
+    assert.equal( zz( '.t12-6' ).outerHeight( true ), 148 );
+    
+    ids = [];
+    zz( '.t12-7' )
+        .height( '10em' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't12-7-1', 't12-7-2' ] );
+    assert.equal( document.getElementById( 't12-7-1' ).getAttribute( 'style' ), 'height: 10em;' );
+    assert.equal( document.getElementById( 't12-7-2' ).getAttribute( 'style' ), 'height: 10em;' );
+    assert.equal( zz( '#t12-7-1' ).outerHeight(), 192 );
+    assert.equal( zz( '#t12-7-2' ).outerHeight(), 192 );
+    assert.equal( zz( '#t12-7-1' ).outerHeight( true ), 208 );
+    assert.equal( zz( '#t12-7-2' ).outerHeight( true ), 208 );
+    assert.equal( zz( '.t12-7' ).outerHeight(), 192 );
+    assert.equal( zz( '.t12-7' ).outerHeight( true ), 208 );
+    
+    ids = [];
+    zz( '.t12-8' )
+        .height( 800 )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't12-8-1', 't12-8-2' ] );
+    assert.equal( document.getElementById( 't12-8-1' ).getAttribute( 'style' ), 'height: 800px;' );
+    assert.equal( document.getElementById( 't12-8-2' ).getAttribute( 'style' ), 'height: 800px;' );
+    assert.equal( zz( '#t12-8-1' ).outerHeight(), 832 );
+    assert.equal( zz( '#t12-8-2' ).outerHeight(), 832 );
+    assert.equal( zz( '#t12-8-1' ).outerHeight( true ), 848 );
+    assert.equal( zz( '#t12-8-2' ).outerHeight( true ), 848 );
+    assert.equal( zz( '.t12-8' ).outerHeight(), 832 );
+    assert.equal( zz( '.t12-8' ).outerHeight( true ), 848 );
+});
+/*
 QUnit.test( 'offset, offsetParent and position test', function( assert ) {
     var id = zz( '#t13-1-div' )
         .offset( { top: 25, left: 30 } )

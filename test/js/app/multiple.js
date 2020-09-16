@@ -602,104 +602,119 @@ QUnit.test( 'trigger test', function( assert ) {
     assert.equal( zz( '#t14-1c' ).text(), '2' );
     assert.equal( zz( '#t14-2c' ).text(), '3' );
 });
-/*
-QUnit.test( 'trigger test', function( assert ) {
-    // Use t14-2 as a counter of clicks
-    zz( '#t14-1' ).el.addEventListener( 
-        'click', 
-        function(){ 
-            var current = parseInt( zz( '#t14-2' ).text() );
-            zz( '#t14-2' ).text( ++current );
-        } 
-    );
-    
-    assert.equal( zz( '#t14-2' ).text(), '0' );
-    var id = zz( '#t14-1' )
-        .trigger( 'click' )
-        .attr( 'id' );
-    assert.equal( zz( '#t14-2' ).text(), '1' );
-    assert.equal( id, 't14-1' );
-    
-    id = zz( '#t14-1' )
-        .trigger( 'click' )
-        .attr( 'id' );
-    assert.equal( zz( '#t14-2' ).text(), '2' );
-    assert.equal( id, 't14-1' );
-});
 
 QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
-    
-    // t15-1 is visible
-    assert.notEqual( zz( '#t15-1' ).el.offsetParent, null );
-    var id = zz( '#t15-1' )
+    // .t15-1 is visible
+    assert.notEqual( zz( '#t15-1-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-1-2' ).el.offsetParent, null );
+    var ids = [];
+    zz( '.t15-1' )
         .hide()
-        .attr( 'id' );
-    assert.equal( id, 't15-1' );
-    assert.equal( zz( '#t15-1' ).el.offsetParent, null );
-    id = zz( '#t15-1' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't15-1-1', 't15-1-2' ] );
+    assert.equal( zz( '#t15-1-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-1-2' ).el.offsetParent, null );
+    ids = [];
+    zz( '.t15-1' )
         .show()
-        .attr( 'id' );
-    assert.notEqual( zz( '#t15-1' ).el.offsetParent, null );
-    assert.equal( id, 't15-1' );
-    id = zz( '#t15-1' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't15-1-1', 't15-1-2' ] );
+    assert.notEqual( zz( '#t15-1-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-1-2' ).el.offsetParent, null );
+    ids = [];
+    zz( '.t15-1' )
         .hide()
-        .attr( 'id' );
-    assert.equal( zz( '#t15-1' ).el.offsetParent, null );
-    assert.equal( id, 't15-1' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't15-1-1', 't15-1-2' ] );
+    assert.equal( zz( '#t15-1-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-1-2' ).el.offsetParent, null );
     
-    // t15-2 is NOT visible
-    assert.equal( zz( '#t15-2' ).el.offsetParent, null );
-    zz( '#t15-2' ).show();
-    assert.notEqual( zz( '#t15-2' ).el.offsetParent, null );
-    zz( '#t15-2' ).hide();
-    assert.equal( zz( '#t15-2' ).el.offsetParent, null );
-    zz( '#t15-2' ).show();
-    assert.notEqual( zz( '#t15-2' ).el.offsetParent, null );
+    // .t15-2 is NOT visible
+    assert.equal( zz( '#t15-2-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-2-2' ).el.offsetParent, null );
+    zz( '.t15-2' ).show();
+    assert.notEqual( zz( '#t15-2-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-2-2' ).el.offsetParent, null );
+    zz( '.t15-2' ).hide();
+    assert.equal( zz( '#t15-2-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-2-2' ).el.offsetParent, null );
+    zz( '.t15-2' ).show();
+    assert.notEqual( zz( '#t15-2-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-2-2' ).el.offsetParent, null );
     
-    // t15-3 is visible
-    assert.notEqual( zz( '#t15-3' ).el.offsetParent, null );
-    id = zz( '#t15-3' )
+    // .t15-3 is visible
+    assert.notEqual( zz( '#t15-3-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-3-2' ).el.offsetParent, null );
+    ids = [];
+    zz( '.t15-3' )
         .toggle()
-        .attr( 'id' );
-    assert.equal( zz( '#t15-3' ).el.offsetParent, null );
-    assert.equal( id, 't15-3' );
-    id = zz( '#t15-3' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't15-3-1', 't15-3-2' ] );
+    assert.equal( zz( '#t15-3-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-3-2' ).el.offsetParent, null );
+    ids = [];
+    zz( '.t15-3' )
         .toggle()
-        .attr( 'id' );
-    assert.notEqual( zz( '#t15-3' ).el.offsetParent, null );
-    assert.equal( id, 't15-3' );
-    id = zz( '#t15-3' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't15-3-1', 't15-3-2' ] );
+    assert.notEqual( zz( '#t15-3-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-3-2' ).el.offsetParent, null );
+    ids = [];
+    zz( '.t15-3' )
         .toggle()
-        .attr( 'id' );
-    assert.equal( zz( '#t15-3' ).el.offsetParent, null );
-    assert.equal( id, 't15-3' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't15-3-1', 't15-3-2' ] );
+    assert.equal( zz( '#t15-3-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-3-2' ).el.offsetParent, null );
     
-    // t15-4 is NOT visible
-    assert.equal( zz( '#t15-4' ).el.offsetParent, null );
-    zz( '#t15-4' ).toggle();
-    assert.notEqual( zz( '#t15-4' ).el.offsetParent, null );
-    zz( '#t15-4' ).toggle();
-    assert.equal( zz( '#t15-4' ).el.offsetParent, null );
-    zz( '#t15-4' ).toggle();
-    assert.notEqual( zz( '#t15-4' ).el.offsetParent, null );
+    // .t15-4 is NOT visible
+    assert.equal( zz( '#t15-4-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-4-2' ).el.offsetParent, null );
+    zz( '.t15-4' ).toggle();
+    assert.notEqual( zz( '#t15-4-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-4-2' ).el.offsetParent, null );
+    zz( '.t15-4' ).toggle();
+    assert.equal( zz( '#t15-4-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-4-2' ).el.offsetParent, null );
+    zz( '.t15-4' ).toggle();
+    assert.notEqual( zz( '#t15-4-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-4-2' ).el.offsetParent, null );
     
-    // t15-5 is visible
-    assert.notEqual( zz( '#t15-5' ).el.offsetParent, null );
-    assert.ok(  zz( '#t15-5' ).isVisible() );
-    zz( '#t15-5' ).hide();
-    assert.notOk(  zz( '#t15-5' ).isVisible() );
-    zz( '#t15-5' ).show();
-    assert.ok(  zz( '#t15-5' ).isVisible() );
+    // .t15-5 is visible
+    assert.notEqual( zz( '#t15-5-1' ).el.offsetParent, null );
+    assert.notEqual( zz( '#t15-5-2' ).el.offsetParent, null );
+    assert.ok( zz( '#t15-5-1' ).isVisible() );
+    assert.ok( zz( '#t15-5-2' ).isVisible() );
+    zz( '.t15-5' ).hide();
+    assert.notOk( zz( '#t15-5-1' ).isVisible() );
+    assert.notOk( zz( '#t15-5-2' ).isVisible() );
+    zz( '.t15-5' ).show();
+    assert.ok( zz( '#t15-5-1' ).isVisible() );
+    assert.ok( zz( '#t15-5-2' ).isVisible() );
     
-    // t15-6 is NOT visible
-    assert.equal( zz( '#t15-6' ).el.offsetParent, null );
-    assert.notOk(  zz( '#t15-6' ).isVisible() );
-    zz( '#t15-6' ).show();
-    assert.ok(  zz( '#t15-6' ).isVisible() );
-    zz( '#t15-6' ).hide();
-    assert.notOk(  zz( '#t15-6' ).isVisible() );
-});
-
+    // .t15-6 is NOT visible
+    assert.equal( zz( '#t15-6-1' ).el.offsetParent, null );
+    assert.equal( zz( '#t15-6-2' ).el.offsetParent, null );
+    assert.notOk( zz( '#t15-6-1' ).isVisible() );
+    assert.notOk( zz( '#t15-6-2' ).isVisible() );
+    zz( '.t15-6' ).show();
+    assert.ok(  zz( '#t15-6-1' ).isVisible() );
+    assert.ok(  zz( '#t15-6-2' ).isVisible() );
+    zz( '.t15-6' ).hide();
+    assert.notOk(  zz( '#t15-6-1' ).isVisible() );
+    assert.notOk(  zz( '#t15-6-2' ).isVisible() );
+    
+    // #t15-7-1 is visible and #t15-7-2 is NOT visible
+    assert.ok( zz( '#t15-7-1' ).isVisible() );
+    assert.notOk( zz( '#t15-7-2' ).isVisible() );
+    zz( '.t15-7' ).toggle();
+    assert.notOk( zz( '#t15-7-1' ).isVisible() );
+    assert.ok( zz( '#t15-7-2' ).isVisible() );
+    zz( '.t15-7' ).toggle();
+    assert.ok( zz( '#t15-7-1' ).isVisible() );
+    assert.notOk( zz( '#t15-7-2' ).isVisible() );
+}); 
+/*
 QUnit.test( 'appendTo test', function( assert ) {
     var t16_1_original = 'This is the container t16-1',
         t16_1_modified = `

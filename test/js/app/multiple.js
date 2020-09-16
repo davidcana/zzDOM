@@ -564,6 +564,44 @@ QUnit.test( 'offset, offsetParent and position test', function( assert ) {
     assert.equal( position.top, 35 );
     assert.equal( position.left, 320 );
 });
+
+QUnit.test( 'trigger test', function( assert ) {
+    // Use t14-1c as a counter of clicks
+    zz( '#t14-1b' ).el.addEventListener( 
+        'click', 
+        function(){ 
+            var current = parseInt( zz( '#t14-1c' ).text() );
+            zz( '#t14-1c' ).text( ++current );
+        } 
+    );
+    zz( '#t14-2b' ).el.addEventListener( 
+        'click', 
+        function(){ 
+            var current = parseInt( zz( '#t14-2c' ).text() );
+            zz( '#t14-2c' ).text( ++current );
+        } 
+    );
+    
+    assert.equal( zz( '#t14-1c' ).text(), '0' );
+    assert.equal( zz( '#t14-2c' ).text(), '0' );
+    var ids = [];
+    zz( '.t14-1' )
+        .trigger( 'click' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't14-1b', 't14-2b' ] );
+    assert.equal( zz( '#t14-1c' ).text(), '1' );
+    assert.equal( zz( '#t14-2c' ).text(), '1' );
+    zz( '#t14-2b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-1c' ).text(), '1' );
+    assert.equal( zz( '#t14-2c' ).text(), '2' );
+    ids = [];
+    zz( '.t14-1' )
+        .trigger( 'click' )
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't14-1b', 't14-2b' ] );
+    assert.equal( zz( '#t14-1c' ).text(), '2' );
+    assert.equal( zz( '#t14-2c' ).text(), '3' );
+});
 /*
 QUnit.test( 'trigger test', function( assert ) {
     // Use t14-2 as a counter of clicks

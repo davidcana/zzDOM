@@ -347,64 +347,89 @@ QUnit.test( 'filter and find test', function( assert ) {
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
 });
-    
-/*
-QUnit.test( 'css test', function( assert ) {
+
+QUnit.test( 'css test', function( assert ) {  
     var t11_1_original = null,
         t11_1_modified = 'color: red;';
-    assert.equal( document.getElementById( 't11-1' ).getAttribute( 'style' ), t11_1_original );
-    var id = zz( '#t11-1' )
+    assert.equal( document.getElementById( 't11-1-1' ).getAttribute( 'style' ), t11_1_original );
+    assert.equal( document.getElementById( 't11-1-2' ).getAttribute( 'style' ), t11_1_original );
+    var ids = [];
+    zz( '.t11-1' )
         .css( 'color', 'red' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't11-1' ).getAttribute( 'style' ), t11_1_modified );
-    assert.equal( zz( '#t11-1' ).css( 'color' ), 'rgb(255, 0, 0)' );
-    assert.equal( id, 't11-1' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't11-1-1', 't11-1-2' ] );
+    assert.equal( document.getElementById( 't11-1-1' ).getAttribute( 'style' ), t11_1_modified );
+    assert.equal( document.getElementById( 't11-1-2' ).getAttribute( 'style' ), t11_1_modified );
+    assert.equal( zz( '#t11-1-1' ).css( 'color' ), 'rgb(255, 0, 0)' );
+    assert.equal( zz( '#t11-1-2' ).css( 'color' ), 'rgb(255, 0, 0)' );
     
     var t11_2_original = null,
         t11_2_modified = 'background-color: red;';
-    assert.equal( document.getElementById( 't11-2' ).getAttribute( 'style' ), t11_2_original );
-    id = zz( '#t11-2' )
+    assert.equal( document.getElementById( 't11-2-1' ).getAttribute( 'style' ), t11_2_original );
+    assert.equal( document.getElementById( 't11-2-2' ).getAttribute( 'style' ), t11_2_original );
+    ids = [];
+    zz( '.t11-2' )
         .css( 'background-color', 'red' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't11-2' ).getAttribute( 'style' ), t11_2_modified );
-    assert.equal( zz( '#t11-2' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
-    assert.equal( id, 't11-2' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't11-2-1', 't11-2-2' ] );
+    assert.equal( document.getElementById( 't11-2-1' ).getAttribute( 'style' ), t11_2_modified );
+    assert.equal( document.getElementById( 't11-2-2' ).getAttribute( 'style' ), t11_2_modified );
+    assert.equal( zz( '#t11-2-1' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+    assert.equal( zz( '#t11-2-2' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
     
     var t11_3_original = 'color: green',
         t11_3_modified = 'color: red;';
-    assert.equal( document.getElementById( 't11-3' ).getAttribute( 'style' ), t11_3_original );
-    id = zz( '#t11-3' )
+    assert.equal( document.getElementById( 't11-3-1' ).getAttribute( 'style' ), t11_3_original );
+    assert.equal( document.getElementById( 't11-3-2' ).getAttribute( 'style' ), t11_3_original );
+    ids = [];
+    zz( '.t11-3' )
         .css( 'color', 'red' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't11-3' ).getAttribute( 'style' ), t11_3_modified );
-    assert.equal( zz( '#t11-3' ).css( 'color' ), 'rgb(255, 0, 0)' );
-    assert.equal( id, 't11-3' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't11-3-1', 't11-3-2' ] );
+    assert.equal( document.getElementById( 't11-3-1' ).getAttribute( 'style' ), t11_3_modified );
+    assert.equal( document.getElementById( 't11-3-2' ).getAttribute( 'style' ), t11_3_modified );
+    assert.equal( zz( '#t11-3-1' ).css( 'color' ), 'rgb(255, 0, 0)' );
+    assert.equal( zz( '#t11-3-2' ).css( 'color' ), 'rgb(255, 0, 0)' );
     
     var t11_4_original = 'color: green',
         t11_4_modified = 'color: green; background-color: red;';
-    assert.equal( document.getElementById( 't11-4' ).getAttribute( 'style' ), t11_4_original );
-    id = zz( '#t11-4' )
+    assert.equal( document.getElementById( 't11-4-1' ).getAttribute( 'style' ), t11_4_original );
+    assert.equal( document.getElementById( 't11-4-2' ).getAttribute( 'style' ), t11_4_original );
+    ids = [];
+    zz( '.t11-4' )
         .css( 'background-color', 'red' )
-        .attr( 'id' );
-    assert.equal( document.getElementById( 't11-4' ).getAttribute( 'style' ), t11_4_modified );
-    assert.equal( zz( '#t11-4' ).css( 'color' ), 'rgb(0, 128, 0)' );
-    assert.equal( zz( '#t11-4' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
-    assert.equal( id, 't11-4' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't11-4-1', 't11-4-2' ] );
+    assert.equal( document.getElementById( 't11-4-1' ).getAttribute( 'style' ), t11_4_modified );
+    assert.equal( document.getElementById( 't11-4-2' ).getAttribute( 'style' ), t11_4_modified );
+    assert.equal( zz( '#t11-4-1' ).css( 'color' ), 'rgb(0, 128, 0)' );
+    assert.equal( zz( '#t11-4-2' ).css( 'color' ), 'rgb(0, 128, 0)' );
+    assert.equal( zz( '#t11-4-1' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+    assert.equal( zz( '#t11-4-2' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
     
     var t11_5_original = null,
         t11_5_modified = 'color: white; background-color: red;';
-    assert.equal( document.getElementById( 't11-5' ).getAttribute( 'style' ), t11_5_original );
-    id = zz( '#t11-5' )
-        .css({
-            color: 'white',
-            'background-color': 'red' 
-        }).attr( 'id' );
-    assert.equal( document.getElementById( 't11-5' ).getAttribute( 'style' ), t11_5_modified );
-    assert.equal( zz( '#t11-5' ).css( 'color' ), 'rgb(255, 255, 255)' );
-    assert.equal( zz( '#t11-5' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
-    assert.equal( id, 't11-5' );
+    assert.equal( document.getElementById( 't11-5-1' ).getAttribute( 'style' ), t11_5_original );
+    assert.equal( document.getElementById( 't11-5-2' ).getAttribute( 'style' ), t11_5_original );
+    ids = [];
+    zz( '.t11-5' )
+        .css(
+            {
+                color: 'white',
+                'background-color': 'red' 
+            }
+        ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't11-5-1', 't11-5-2' ] );
+    assert.equal( document.getElementById( 't11-5-1' ).getAttribute( 'style' ), t11_5_modified );
+    assert.equal( document.getElementById( 't11-5-2' ).getAttribute( 'style' ), t11_5_modified );
+    assert.equal( zz( '#t11-5-1' ).css( 'color' ), 'rgb(255, 255, 255)' );
+    assert.equal( zz( '#t11-5-2' ).css( 'color' ), 'rgb(255, 255, 255)' );
+    assert.equal( zz( '#t11-5-1' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+    assert.equal( zz( '#t11-5-2' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+    assert.equal( zz( '.t11-5' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+    assert.equal( zz( '.t11-5' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
 });
-
+/*
 QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert ) {
     var id = zz( '#t12-1' )
         .height( '2em' )

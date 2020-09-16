@@ -28,6 +28,7 @@ var MultipleZZDom_init = function(){
                 case SimpleZZDom.prototype.parent:
                 case SimpleZZDom.prototype.find:
                 case SimpleZZDom.prototype.filter:
+                case SimpleZZDom.prototype.offsetParent:
                     return function(){
                         var newNodes = [];
                         for ( var i = 0; i < this.list.length; i++ ) {

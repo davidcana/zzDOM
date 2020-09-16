@@ -531,30 +531,40 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     assert.equal( zz( '.t12-8' ).outerHeight(), 832 );
     assert.equal( zz( '.t12-8' ).outerHeight( true ), 848 );
 });
-/*
+
 QUnit.test( 'offset, offsetParent and position test', function( assert ) {
-    var id = zz( '#t13-1-div' )
+    var ids = [];
+    zz( '.t13-1' )
         .offset( { top: 25, left: 30 } )
-        .attr( 'id' );
-    var offset = zz( '#t13-1-div' ).offset();
-    assert.equal( document.getElementById( 't13-1-div' ).getAttribute( 'style' ), 'top: 25px; left: 30px;' );
-    assert.equal( id, 't13-1-div' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't13-1-1', 't13-1-2' ] );
+    assert.equal( document.getElementById( 't13-1-1' ).getAttribute( 'style' ), 'top: 25px; left: 30px;' );
+    assert.equal( document.getElementById( 't13-1-2' ).getAttribute( 'style' ), 'top: 25px; left: 30px;' );
     
     // TODO Test offset() is hard!
     
     assert.notOk( zz( '#t13-2-1' ).hasClass( 'selected' ) );
-    id = zz( '#t13-2-2' )
+    assert.notOk( zz( '#t13-2-3' ).hasClass( 'selected' ) );
+    ids = [];
+    zz( '.t13-2' )
         .offsetParent()
         .addClass( 'selected' )
-        .attr( 'id' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't13-2-1', 't13-2-3' ] );
     assert.ok( zz( '#t13-2-1' ).hasClass( 'selected' ) );
-    assert.equal( id, 't13-2-1' );
+    assert.ok( zz( '#t13-2-3' ).hasClass( 'selected' ) );
     
-    var position = zz( '#t13-3-div' ).position();
+    var position = zz( '#t13-3-1' ).position();
+    assert.equal( position.top, 35 );
+    assert.equal( position.left, 320 );
+    position = zz( '#t13-3-2' ).position();
+    assert.equal( position.top, 35 );
+    assert.equal( position.left, 320 );
+    position = zz( '.t13-3' ).position();
     assert.equal( position.top, 35 );
     assert.equal( position.left, 320 );
 });
-
+/*
 QUnit.test( 'trigger test', function( assert ) {
     // Use t14-2 as a counter of clicks
     zz( '#t14-1' ).el.addEventListener( 

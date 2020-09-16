@@ -33,7 +33,8 @@
                 background-color: green;
                 color: white;
             }
-            #t13-3-div {
+            #t13-3-div,
+            .t13-3 {
                 left: 320px;
                 top: 35px;
             }
@@ -429,12 +430,13 @@
             13. offset, offsetParent and position
         </h2>
         <div id="t13-1">
-            zz( '#t13-1' ).offset( { top: 10, left: 30 } )
-            <div id="t13-1-div" class="offsetTests">t13-1-div</div>
+            zz( '.t13-1' ).offset( { top: 10, left: 30 } )
+            <div id="t13-1-1" class="t13-1 offsetTests">t13-1-1-div</div>
+            <div id="t13-1-2" class="t13-1 offsetTests">t13-1-2-div</div>
         </div>
         <div>
-            zz( '#t13-2-2' ).offsetParent().addClass( 'selected' )
-            <ul id="t13-2">
+            zz( '.t13-2' ).offsetParent().addClass( 'selected' )
+            <ul>
                 <li>I</li>
                 <li id="t13-2-1" style="position: relative;">
                     II
@@ -444,7 +446,26 @@
                             B
                             <ul>
                                 <li>1</li>
-                                <li id="t13-2-2">2</li>
+                                <li id="t13-2-2" class="t13-2">2</li>
+                                <li>3</li>
+                            </ul>
+                        </li>
+                        <li>C</li>
+                    </ul>
+                </li>
+                <li>III</li>
+            </ul>
+            <ul>
+                <li>I</li>
+                <li id="t13-2-3" style="position: relative;">
+                    II
+                    <ul>
+                        <li>A</li>
+                        <li>
+                            B
+                            <ul>
+                                <li>1</li>
+                                <li id="t13-2-4" class="t13-2">2</li>
                                 <li>3</li>
                             </ul>
                         </li>
@@ -455,8 +476,9 @@
             </ul>
         </div>
         <div id="t13-3">
-            var position = zz( '#t13-3-div' ).position();
-            <div id="t13-3-div" class="offsetTests">t13-3-div</div>
+            var position = zz( '.t13-3' ).position();
+            <div id="t13-3-1" class="t13-3 offsetTests">t13-3-1</div>
+            <div id="t13-3-2" class="t13-3 offsetTests">t13-3-2</div>
         </div>
         
         <h2>

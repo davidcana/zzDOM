@@ -285,38 +285,48 @@
             9. filter and find
         </h2>
         <div id="t9-1">
-            id attrs of zz( '#t9-1' ).find( '.a' ) must be [ 't9-1-1', 't9-1-2', 't9-1-3-1' ]<br>
-            id attrs of zz( '#t9-1' ).find( '.b' ) must be [ 't9-1-1', 't9-1-3-2', 't9-1-4', 't9-1-4-2' ]<br>
-            id attrs of zz( '#t9-1' ).find( '.a.b' ) must be [ 't9-1-1' ]<br>
-            id attrs of zz( '#t9-1' ).find( '.c' ) must be []<br>
-            <div id="t9-1-1" class="a b">A div</div>
-            <div id="t9-1-2" class="a">A div</div>
-            <div id="t9-1-3">
-                A div
-                <div id="t9-1-3-1" class="a">A nested div</div>
-                <div id="t9-1-3-2" class="b">A nested div</div>
+            Find:
+            <div id="t9-1-1" class="t9-1">
+                <div id="t9-1-1-1" class="a b">A div</div>
+                <div id="t9-1-1-2" class="a">A div</div>
+                <div id="t9-1-1-3">
+                    A div
+                    <div id="t9-1-1-3-1" class="a">A nested div</div>
+                    <div id="t9-1-1-3-2" class="b">A nested div</div>
+                </div>
+                <div id="t9-1-1-4" class="b">
+                    A div
+                    <div id="t9-1-1-4-1">A nested div</div>
+                    <div id="t9-1-1-4-2" class="b">A nested div</div>
+                </div>
             </div>
-            <div id="t9-1-4" class="b">
-                A div
-                <div id="t9-1-4-1">A nested div</div>
-                <div id="t9-1-4-2" class="b">A nested div</div>
+            <div id="t9-1-2" class="t9-1">
+                <div id="t9-1-2-1" class="a b">A div</div>
+                <div id="t9-1-2-2" class="a">A div</div>
+                <div id="t9-1-2-3">
+                    A div
+                    <div id="t9-1-2-3-1" class="a">A nested div</div>
+                    <div id="t9-1-2-3-2" class="b">A nested div</div>
+                </div>
+                <div id="t9-1-2-4" class="b">
+                    A div
+                    <div id="t9-1-2-4-1">A nested div</div>
+                    <div id="t9-1-2-4-2" class="b">A nested div</div>
+                </div>
             </div>
         </div>
         <div id="t9-2">
-            id attrs of zz( '#t9-2-1' ).filter( '.a' ) must be [ 't9-2-1' ]<br>
-            id attrs of zz( '#t9-2-1' ).filter( '.b' ) must be []<br>
-            id attrs of zz( '#t9-2-1' ).filter( '.a.b' ) must be []<br>
-            id attrs of zz( '#t9-2-2' ).filter( '.a' ) must be [ 't9-2-2' ]<br>
-            id attrs of zz( '#t9-2-2' ).filter( '.b' ) must be [ 't9-2-2']<br>
-            id attrs of zz( '#t9-2-2' ).filter( '.a.b' ) must be [ 't9-2-2']<br>
-            id attrs of zz( '#t9-2-3' ).filter( '.a' ) must be []<br>
-            id attrs of zz( '#t9-2-3' ).filter( '.b' ) must be []<br>
-            id attrs of zz( '#t9-2-3' ).filter( '.a.b' ) must be []<br>
-            id attrs of zz( '#t9-2-1' ).filter( function( zzEl ){ return zzEl.attr( 'class') === 'a b' }; ) must be []<br>
-            id attrs of zz( '#t9-2-2' ).filter( function( zzEl ){ return zzEl.attr( 'class') === 'a b' }; ) must be [ 't9-2-2' ]<br>
-            <div id="t9-2-1" class="a">A div with a class</div>
-            <div id="t9-2-2" class="a b">A div with a and b class</div>
-            <div id="t9-2-3">A div with no class</div>
+            Filter:
+            <div>
+                <div id="t9-2-1-1" class="t9-2 a">A div with a class</div>
+                <div id="t9-2-1-2" class="t9-2 a b">A div with a and b class</div>
+                <div id="t9-2-1-3" class="t9-2">A div with no class</div>
+            </div>
+            <div>
+                <div id="t9-2-2-1" class="t9-2 a">A div with a class</div>
+                <div id="t9-2-2-2" class="t9-2 a b">A div with a and b class</div>
+                <div id="t9-2-2-3" class="t9-2">A div with no class</div>
+            </div>
         </div>
             
         <h2>

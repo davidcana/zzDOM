@@ -8,7 +8,7 @@ zzDOM.htmlToElement = function ( html ) {
 };
 
 zzDOM.buildInstance = function ( x ) {
-    if ( x instanceof HTMLCollection ){
+    if ( x instanceof HTMLCollection || x instanceof NodeList ){
         x = Array.prototype.slice.call( x );
     }
     return x.length === 1? new SimpleZZDom( x[ 0 ] ): new MultipleZZDom( x );

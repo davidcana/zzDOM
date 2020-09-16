@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-15 13:36:49 */
+/*! zzDOM - v0.0.2 - 2020-09-16 08:25:27 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -8,7 +8,7 @@ zzDOM.htmlToElement = function ( html ) {
 };
 
 zzDOM.buildInstance = function ( x ) {
-    if ( x instanceof HTMLCollection ){
+    if ( x instanceof HTMLCollection || x instanceof NodeList ){
         x = Array.prototype.slice.call( x );
     }
     return x.length === 1? new SimpleZZDom( x[ 0 ] ): new MultipleZZDom( x );

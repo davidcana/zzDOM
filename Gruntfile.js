@@ -8,7 +8,8 @@ module.exports = function(grunt) {
                     timeout: 60000,
                     urls: [
                         'http://localhost:9000/test/simple.html',
-                        'http://localhost:9000/test/multiple.html'
+                        'http://localhost:9000/test/multiple.html',
+                        'http://localhost:9000/test/zz.html'
                     ]
                 }
             }
@@ -73,7 +74,7 @@ module.exports = function(grunt) {
                 src: [
                     'js/zzDOM.js', 
                     'js/simpleZZDom.js', 
-                    'js/multipleZZDom.js',
+                    'js/multipleZZDom.js'
                 ],
                 dest: 'build/zzDOM.js',
                 nonull: true

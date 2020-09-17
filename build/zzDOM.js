@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-17 12:7:1 */
+/*! zzDOM - v0.0.2 - 2020-09-17 14:18:51 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -29,9 +29,10 @@ zzDOM.buildInstance = function ( x ) {
     zz( 'n', 'name' );
     zz( 's', 'string selector' );
     zz( document.getElementById( 'id' ) ); // Element
-    zz( document.getElementsByClassName( 'className' ) ); // NodeList
-    zz( '<div>New div</div>' ); // HTML code in string
+    zz( document.getElementsByClassName( 'className' ) ); // HTMLCollection
+    zz( document.getElementsByName( 'name' ) ); // NodeList
     zz( 'table.className tr td' ); // String selector
+    zz( '<div>New div</div>' ); // HTML code in string
 */
 zzDOM.zz = function( x, s1, s2 ){
     
@@ -61,36 +62,23 @@ zzDOM.zz = function( x, s1, s2 ){
         }
     }
     
-    // x must be an Element, a NodeList or a standard string selector
-    
     // Is it an Element?
     if ( x instanceof Element ){
         return new SimpleZZDom( x );
     }
     
-    // Is it an HTMLCollection?
-    if ( x instanceof HTMLCollection ){
+    // Is it an HTMLCollection or a NodeList?
+    if ( x instanceof HTMLCollection || x instanceof NodeList ){
         return zzDOM.buildInstance( x );
     }
     
-    var nodes;
-    // Is it a NodeList?
-    if ( x instanceof NodeList ){
-        nodes = x;
-        
-    } else if ( typeof x === 'string' ){
-        // Is it HTML code?
-        if ( x.charAt( 0 ) === '<' ){
-            return zzDOM.buildInstance( zzDOM.htmlToElement( x ) );
-            
-        // Must be a standard selector
-        } else {
-            nodes = document.querySelectorAll( x );
-        }
-    }
-
-    if ( nodes ){
-        return zzDOM.buildInstance( nodes );
+    if ( typeof x === 'string' ){
+        x = x.trim();
+        return zzDOM.buildInstance(
+            x.charAt( 0 ) === '<'? // Is it HTML code?
+            zzDOM.htmlToElement( x ):
+            document.querySelectorAll( x ) // Must be a standard selector
+        );
     }
     
     throw 'Unsupported selector type found running zz function.';

@@ -257,6 +257,53 @@ QUnit.test( 'filter and find test', function( assert ) {
     assert.deepEqual( ids, [ 't9-2-2' ] );           
 });
 
+QUnit.test( 'clone and is test', function( assert ) {
+    var t10_1_original = `
+<div class="t10-1-1">
+  Hello
+</div>
+
+<div id="t10-1-2">
+  Goodbye
+</div>
+`,
+        t10_1_modified = `
+	
+<div class="t10-1-1">
+  Hello
+</div>
+
+<div id="t10-1-2">
+  Goodbye
+
+  <div class="t10-1-1">
+    Hello
+  </div>
+</div>
+`;
+    utils.assertHtml( assert, 't10-1', t10_1_original );
+    var cssClass = zz( '.t10-1-1' )
+        .clone()
+        .appendTo( '#t10-1-2' )
+        .attr( 'class' );
+        assert.equal( cssClass, 't10-1-1' );
+    utils.assertHtml( assert, 't10-1', t10_1_modified );
+    
+    assert.notOk( zz( '#t10-2' ).is( null ) );
+    
+    assert.ok( zz( '#t10-2' ).is( document.getElementById( 't10-2' ) ) );
+    assert.notOk( zz( '#t10-2' ).is( document.getElementById( 't10-1' ) ) );
+    
+    assert.ok( zz( '#t10-2' ).is( zz( '#t10-2' ) ) );
+    assert.notOk( zz( '#t10-2' ).is( zz( '#t10-1' ) ) );
+    
+    assert.ok( zz( '#t10-2' ).is( 'div' ) );
+    assert.notOk( zz( '#t10-2' ).is( 'span' ) );
+    
+    assert.ok( zz( '#t10-3-1' ).is( zz( '.t10-3' ) ) );
+    assert.notOk( zz( '#t10-3' ).is( zz( '.t10-3' ) ) );
+});
+
 QUnit.test( 'css test', function( assert ) {
     var t11_1_original = null,
         t11_1_modified = 'color: red;';

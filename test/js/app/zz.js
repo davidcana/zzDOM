@@ -72,17 +72,16 @@ QUnit.test( 'ZZDom selectors test', function( assert ) {
     assert.equal( document.getElementById( 't1-5-1' ).textContent, t1_5_1_original );
     assert.equal( document.getElementById( 't1-5-2' ).textContent, t1_5_2_original );
     assert.equal( document.getElementById( 't1-5-3' ).textContent, t1_5_3_original );
-    var ids = [];
-    zz( '#t1-5 span.selected' )
+    id = zz( 's', '#t1-5 span.selected' )
         .text( t1_5_modified )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
-    assert.deepEqual( ids, [ 't1-5-2', 't1-5-3' ] );
-    assert.equal( document.getElementById( 't1-5-1' ).textContent, t1_4_1_original );
-    assert.equal( document.getElementById( 't1-5-2' ).textContent, t1_4_modified );
-    assert.equal( document.getElementById( 't1-5-3' ).textContent, t1_4_modified );
-    assert.equal( zz( '#t1-5-1' ).text(), t1_4_1_original );
-    assert.equal( zz( '#t1-5-2' ).text(), t1_4_modified );
-    assert.equal( zz( '#t1-5-3' ).text(), t1_4_modified );
+        .attr( 'id' );
+    assert.equal( id, 't1-5-2' );
+    assert.equal( document.getElementById( 't1-5-1' ).textContent, t1_5_1_original );
+    assert.equal( document.getElementById( 't1-5-2' ).textContent, t1_5_modified );
+    assert.equal( document.getElementById( 't1-5-3' ).textContent, t1_5_3_original );
+    assert.equal( zz( '#t1-5-1' ).text(), t1_5_1_original );
+    assert.equal( zz( '#t1-5-2' ).text(), t1_5_modified );
+    assert.equal( zz( '#t1-5-3' ).text(), t1_5_3_original );
 });
 
 QUnit.test( 'Element test', function( assert ) {

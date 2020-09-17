@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-17 08:7:28 */
+/*! zzDOM - v0.0.2 - 2020-09-17 09:53:22 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -574,6 +574,7 @@ var MultipleZZDom_init = function(){
                 case SimpleZZDom.prototype.find:
                 case SimpleZZDom.prototype.filter:
                 case SimpleZZDom.prototype.offsetParent:
+                case SimpleZZDom.prototype.clone:
                     return function(){
                         var newNodes = [];
                         for ( var i = 0; i < this.list.length; i++ ) {
@@ -582,6 +583,18 @@ var MultipleZZDom_init = function(){
                             newNodes = newNodes.concat( x.nodes );
                         }
                         return zzDOM.buildInstance( newNodes );
+                    };
+                // Boolean functions
+                case SimpleZZDom.prototype.is:
+                    return function(){
+                        for ( var i = 0; i < this.list.length; i++ ) {
+                            var simpleZZDom = this.list[ i ];
+                            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+                            if ( x ){
+                                return true;
+                            }
+                        }
+                        return false;
                     };
                 default:
                     // Default function

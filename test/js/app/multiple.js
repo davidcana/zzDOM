@@ -348,6 +348,69 @@ QUnit.test( 'filter and find test', function( assert ) {
     assert.deepEqual( ids, [] );
 });
 
+QUnit.test( 'clone and is test', function( assert ) {
+    var t10_1_original = `
+<div class="t10-1-1">
+  Hello 1
+</div>
+<div class="t10-1-1">
+  Hello 2
+</div>
+
+<div id="t10-1-2">
+  Goodbye
+</div>
+`,
+        t10_1_modified = `
+<div class="t10-1-1">
+  Hello 1
+</div>
+
+<div class="t10-1-1">
+  Hello 2
+</div>
+
+<div id="t10-1-2">
+  Goodbye
+
+  <div class="t10-1-1">
+    Hello 1
+  </div>
+
+  <div class="t10-1-1">
+    Hello 2
+  </div>
+</div>
+`;
+    utils.assertHtml( assert, 't10-1', t10_1_original );
+    var cssClasses = [];
+    zz( '.t10-1-1' )
+        .clone()
+        .appendTo( '#t10-1-2' )
+        .each( function( zzEl ){ cssClasses.push( zzEl.attr( 'class' ) ); } );
+    assert.deepEqual( cssClasses, [ 't10-1-1', 't10-1-1' ] );
+    utils.assertHtml( assert, 't10-1', t10_1_modified );
+    
+    assert.notOk( zz( '.t10-2' ).is( null ) );
+    
+    assert.ok( zz( '.t10-2' ).is( document.getElementById( 't10-2-1' ) ) );
+    assert.ok( zz( '.t10-2' ).is( document.getElementById( 't10-2-2' ) ) );
+    assert.notOk( zz( '.t10-2' ).is( document.getElementById( 't10-2' ) ) );
+    
+    assert.ok( zz( '.t10-2' ).is( zz( '#t10-2-1' ) ) );
+    assert.ok( zz( '.t10-2' ).is( zz( '#t10-2-2' ) ) );
+    assert.notOk( zz( '.t10-2' ).is( zz( '#t10-2' ) ) );
+    
+    assert.ok( zz( '.t10-2' ).is( 'div' ) );
+    assert.notOk( zz( '.t10-2' ).is( 'span' ) );
+    assert.ok( zz( '.t10-2' ).is( '.selected' ) );
+    assert.notOk( zz( '.t10-2' ).is( '.class-with-no-elements' ) );
+    
+    assert.ok( zz( '.t10-2' ).is( zz( 'div.t10-2' ) ) );
+    assert.notOk( zz( '.t10-2' ).is( zz( 'span.t10-2' ) ) );
+    assert.notOk( zz( '.t10-2' ).is( zz( '.t10-3' ) ) );
+});
+
 QUnit.test( 'css test', function( assert ) {  
     var t11_1_original = null,
         t11_1_modified = 'color: red;';

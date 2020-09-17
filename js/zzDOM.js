@@ -29,9 +29,10 @@ zzDOM.buildInstance = function ( x ) {
     zz( 'n', 'name' );
     zz( 's', 'string selector' );
     zz( document.getElementById( 'id' ) ); // Element
-    zz( document.getElementsByClassName( 'className' ) ); // NodeList
-    zz( '<div>New div</div>' ); // HTML code in string
+    zz( document.getElementsByClassName( 'className' ) ); // HTMLCollection
+    zz( document.getElementsByName( 'name' ) ); // NodeList
     zz( 'table.className tr td' ); // String selector
+    zz( '<div>New div</div>' ); // HTML code in string
 */
 zzDOM.zz = function( x, s1, s2 ){
     
@@ -66,6 +67,11 @@ zzDOM.zz = function( x, s1, s2 ){
     // Is it an Element?
     if ( x instanceof Element ){
         return new SimpleZZDom( x );
+    }
+    
+    // Is it an HTMLCollection?
+    if ( x instanceof HTMLCollection ){
+        return zzDOM.buildInstance( x );
     }
     
     var nodes;

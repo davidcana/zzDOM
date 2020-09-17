@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-17 09:53:22 */
+/*! zzDOM - v0.0.2 - 2020-09-17 12:7:1 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -66,6 +66,11 @@ zzDOM.zz = function( x, s1, s2 ){
     // Is it an Element?
     if ( x instanceof Element ){
         return new SimpleZZDom( x );
+    }
+    
+    // Is it an HTMLCollection?
+    if ( x instanceof HTMLCollection ){
+        return zzDOM.buildInstance( x );
     }
     
     var nodes;

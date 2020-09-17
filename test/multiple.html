@@ -541,25 +541,26 @@
             16. appendTo
         </h2>
         <div>
-            appendTo string: zz( -div id="t16-1-1"-New div-div ).appendTo( '#t16-1' )
+            appendTo string: zz( ... ).appendTo( '#t16-1' )
             <div id="t16-1" class="container">
                 This is the container t16-1
             </div>
         </div>
         <div>
-            appendTo Element: zz( -div  id="t16-1-2"-New div-div ).appendTo( document.getElementById( 't16-2' ) )
+            appendTo Element: zz( ... ).appendTo( document.getElementById( 't16-2' ) )
+            
             <div id="t16-2" class="container">
                 This is the container t16-2
             </div>
         </div>
         <div>
-            appendTo simpleZZDOM: zz( -div id="t16-1-3"-New div-div ).appendTo( zz( '#t16-3' ) )
+            appendTo simpleZZDOM: zz( ... ).appendTo( zz( '#t16-3' ) )
             <div id="t16-3" class="container">
                 This is the container t16-3
             </div>
         </div>
         <div>
-            appendTo multipleZZDOM: zz( -div id="t16-1-4"-New div-div ).appendTo( zz( '.t16-4-class' ) )
+            appendTo multipleZZDOM: zz( ... ).appendTo( zz( '.t16-4-class' ) )
             <div id="t16-4">
                 <div id="t16-4a" class="container t16-4-class">
                     This is the container t16-4a
@@ -575,7 +576,7 @@
             </div>
         </div>
         <div>
-            appendTo Element: zz( -div  id="t16-1-5"-New div-div ).appendTo( document.getElementById( 'non-existing-id-DOM' ) )
+            appendTo Element: zz( ... ).appendTo( document.getElementById( 'non-existing-id-DOM' ) )
             <div id="t16-5" class="container">
                 This is the container t16-5
             </div>

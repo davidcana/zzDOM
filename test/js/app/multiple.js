@@ -713,8 +713,8 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     zz( '.t15-7' ).toggle();
     assert.ok( zz( '#t15-7-1' ).isVisible() );
     assert.notOk( zz( '#t15-7-2' ).isVisible() );
-}); 
-/*
+});
+
 QUnit.test( 'appendTo test', function( assert ) {
     var t16_1_original = 'This is the container t16-1',
         t16_1_modified = `
@@ -723,44 +723,59 @@ This is the container t16-1
 <div id="t16-1-1">
   New div 1
 </div>
+
+<div id="t16-1-2">
+  New div 2
+</div>
 `;
     utils.assertHtml( assert, 't16-1', t16_1_original );
-    var id = zz( '<div id="t16-1-1">New div 1</div>' )
+    var ids = [];
+    zz( '<div id="t16-1-1">New div 1</div><div id="t16-1-2">New div 2</div>' )
         .appendTo( '#t16-1' )
-        .attr( 'id' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't16-1-1', 't16-1-2' ] );
     utils.assertHtml( assert, 't16-1', t16_1_modified );
-    assert.equal( id, 't16-1-1' );
     
     var t16_2_original = 'This is the container t16-2',
         t16_2_modified = `
 This is the container t16-2
 
 <div id="t16-2-1">
+  New div 1
+</div>
+
+<div id="t16-2-2">
   New div 2
 </div>
 `;
     utils.assertHtml( assert, 't16-2', t16_2_original );
-    id = zz( '<div id="t16-2-1">New div 2</div>' )
+    ids = [];
+    zz( '<div id="t16-2-1">New div 1</div><div id="t16-2-2">New div 2</div>' )
         .appendTo( document.getElementById( 't16-2' ) )
-        .attr( 'id' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't16-2-1', 't16-2-2' ] );
     utils.assertHtml( assert, 't16-2', t16_2_modified );
-    assert.equal( id, 't16-2-1' );
-    
+
     var t16_3_original = 'This is the container t16-3',
         t16_3_modified = `
 This is the container t16-3
 
 <div id="t16-3-1">
-  New div 3
+  New div 1
+</div>
+
+<div id="t16-3-2">
+  New div 2
 </div>
 `;
     utils.assertHtml( assert, 't16-3', t16_3_original );
-    id = zz( '<div id="t16-3-1">New div 3</div>' )
+    ids = [];
+    zz( '<div id="t16-3-1">New div 1</div><div id="t16-3-2">New div 2</div>' )
         .appendTo( zz( '#t16-3' ) )
-        .attr( 'id' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't16-3-1', 't16-3-2' ] );
     utils.assertHtml( assert, 't16-3', t16_3_modified );
-    assert.equal( id, 't16-3-1' );
-    
+
     var t16_4_original = `
 <div class="container t16-4-class" id="t16-4a">
   This is the container t16-4a
@@ -786,8 +801,11 @@ This is the container t16-3
 <div class="container t16-4-class" id="t16-4a">
   This is the container t16-4a
 
-  <div id="t16-4-1">
-    New div 4
+  <div class="t16-4-1">
+    New div 1
+  </div>
+  <div class="t16-4-2">
+    New div 2
   </div>
 </div>
 
@@ -798,8 +816,11 @@ This is the container t16-3
 <div class="container t16-4-class" id="t16-4b">
   This is the container t16-4b
 
-  <div id="t16-4-1">
-    New div 4
+  <div class="t16-4-1">
+    New div 1
+  </div>
+  <div class="t16-4-2">
+    New div 2
   </div>
 </div>
 
@@ -810,25 +831,29 @@ This is the container t16-3
 <div class="container t16-4-class" id="t16-4c">
   This is the container t16-4c
 
-  <div id="t16-4-1">
-    New div 4
+  <div class="t16-4-1">
+    New div 1
+  </div>
+  <div class="t16-4-2">
+    New div 2
   </div>
 </div>
 `;
     utils.assertHtml( assert, 't16-4', t16_4_original );
-    id = zz( '<div id="t16-4-1">New div 4</div>' )
+    var classes = [];
+    zz( '<div class="t16-4-1">New div 1</div><div class="t16-4-2">New div 2</div>' )
         .appendTo( zz( '.t16-4-class' ) )
-        .attr( 'id' );
+        .each( function( zzEl ){ classes.push( zzEl.attr( 'class' ) ); } );
+    assert.deepEqual( classes, [ 't16-4-1', 't16-4-2' ] );
     utils.assertHtml( assert, 't16-4', t16_4_modified );
-    assert.equal( id, 't16-4-1' );
     
     var t16_5_original = 'This is the container t16-5',
         t16_5_modified = t16_5_original;
     utils.assertHtml( assert, 't16-5', t16_5_original );
-    id = zz( '<div id="t16-5-1">New div 5</div>' )
+    var ids = [];
+    zz( '<div id="t16-5-1">New div 1</div><div id="t16-5-2">New div 2</div>' )
         .appendTo( document.getElementById( 'non-existing-id-DOM' ) )
-        .attr( 'id' );
+        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    assert.deepEqual( ids, [ 't16-5-1', 't16-5-2' ] );
     utils.assertHtml( assert, 't16-5', t16_5_modified );
-    assert.equal( id, 't16-5-1' );
 });
-*/

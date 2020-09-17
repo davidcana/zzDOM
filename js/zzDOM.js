@@ -4,10 +4,15 @@ var zzDOM = {};
 zzDOM.htmlToElement = function ( html ) {
     var template = document.createElement( 'template' );
     template.innerHTML = html.trim();
-    return template.content.firstChild;
+    return template.content.childElementCount === 1?
+        template.content.firstChild:
+        template.content.childNodes;
 };
 
 zzDOM.buildInstance = function ( x ) {
+    if ( x instanceof Element ){
+        return new SimpleZZDom( x );
+    }
     if ( x instanceof HTMLCollection || x instanceof NodeList ){
         x = Array.prototype.slice.call( x );
     }
@@ -71,7 +76,7 @@ zzDOM.zz = function( x, s1, s2 ){
     } else if ( typeof x === 'string' ){
         // Is it HTML code?
         if ( x.charAt( 0 ) === '<' ){
-            return new SimpleZZDom( zzDOM.htmlToElement( x ) );
+            return zzDOM.buildInstance( zzDOM.htmlToElement( x ) );
             
         // Must be a standard selector
         } else {

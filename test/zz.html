@@ -127,14 +127,28 @@
         <h2>
             8. Null
         </h2>
-        No html needed
+        <div>
+            zz( document.querySelectorAll( '#non-existing-id' ) ).text( 'this is useless' );
+        </div>
+        <div>
+            var instance = zz( document.querySelectorAll( '#non-existing-id' ) );
+        </div>
+        <div>
+            instance = zz( '#non-existing-id' );
+        </div>
         
         <h2>
             9. Exceptions
         </h2>
-        
         <h3>Unsupported selector id</h3>
+        <div>
+            zz( 'unknown', 'some text' ).text( 'yellow' );
+        </div>
         
         <h3>Unsupported selector type</h3>
+        <div>
+            zz( 1 ).text( 'this is useless' );
+        </div>
+            
     </body>
 </html>

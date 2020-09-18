@@ -233,5 +233,20 @@ QUnit.test( 'Null test', function( assert ) {
     assert.deepEqual( instance.nodes, [] );
 });
 
+QUnit.test( 'Exceptions test', function( assert ) {
+    assert.throws(
+        function() {
+            zz( 'unknown', 'some text' ).text( 'this is useless' );
+        },
+        'Unsupported selector id found running zz function: unknown'
+    );
+    
+    assert.throws(
+        function() {
+            zz( 1 ).text( 'this is useless' );
+        },
+        'Unsupported selector id found running zz function: unknown'
+    );
 
+});
 

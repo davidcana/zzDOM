@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-18 12:11:9 */
+/*! zzDOM - v0.0.2 - 2020-09-18 13:5:9 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {

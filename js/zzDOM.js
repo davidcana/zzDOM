@@ -84,5 +84,62 @@ zzDOM.zz = function( x, s1, s2 ){
     throw 'Unsupported selector type found running zz function.';
 };
 
+zzDOM.events = {};
+
+zzDOM.addEventListener = function( simpleZZDom, eventName, listener, useCapture ){
+    var el = simpleZZDom.el;
+    var elId = el.getElId();
+    var thisEvents = zzDOM.events[ elId ];
+    if ( ! thisEvents ){
+        thisEvents = {};
+        zzDOM.events[ elId ] = thisEvents;
+    }
+    var thisListeners = thisEvents[ eventName ];
+    if ( ! thisListeners ){
+        thisListeners = [];
+        thisEvents[ eventName ] = thisListeners;
+    }
+    thisListeners.push( listener );
+    
+    // addEventListener
+    el.addEventListener( eventName, listener, useCapture );
+};
+
+zzDOM.removeEventListener = function( simpleZZDom, eventName, listener, useCapture ){
+    var el = simpleZZDom.el;
+    var elId = el.getElId();
+    var thisEvents = zzDOM.events[ elId ];
+    if ( ! thisEvents ){
+        return;
+    }
+    
+    if ( ! eventName ){ 
+        // Must remove all events
+        for ( var currentEventName in thisEvents ){
+            var currentListeners = thisEvents[ currentEventName ];
+            zzDOM.removeListeners( el, currentListeners, null, useCapture, currentEventName );
+        }
+        return;
+    }
+    
+    // Must remove listeners of only one event
+    var thisListeners = thisEvents[ eventName ];
+    zzDOM.removeListeners( el, thisListeners, listener, useCapture, eventName );
+};
+
+zzDOM.removeListeners = function( el, thisListeners, listener, useCapture, eventName ){
+    if ( ! thisListeners ){
+        return;
+    }
+    for ( var i = 0; i < thisListeners.length; ++i ){
+        var currentListener = thisListeners[ i ];
+        if ( ! listener || currentListener === listener ){
+            delete thisListeners[ i ];
+            el.removeEventListener( eventName, listener, useCapture );
+            return;
+        }
+    } 
+};
+
 // Register zz function
 window.zz = zzDOM.zz;

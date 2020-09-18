@@ -100,6 +100,7 @@ module.exports = {
         "zz": true,
         "Element": true,
         "NodeList": true,
+        "HTMLCollection": true,
         "getComputedStyle": true
     },
     "parserOptions": {

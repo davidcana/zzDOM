@@ -376,13 +376,6 @@ SimpleZZDom.prototype.toggleClass = function ( name ) {
     return this;
 };
 
-SimpleZZDom.prototype.trigger = function ( eventName ) {
-    var event = document.createEvent( 'HTMLEvents' );
-    event.initEvent( eventName, true, false );
-    this.el.dispatchEvent( event );
-    return this;
-};
-
 SimpleZZDom.prototype.hide = function () {
     if ( this.el.style.display ){
         this.attr( 'data-display', this.el.style.display );
@@ -451,4 +444,34 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
     } 
     
     throw this.buildError( 'is' );
+};
+
+SimpleZZDom.prototype.trigger = function ( eventName ) {
+    var event = document.createEvent( 'HTMLEvents' );
+    event.initEvent( eventName, true, false );
+    this.el.dispatchEvent( event );
+    return this;
+};
+
+SimpleZZDom.prototype.getElId = function(){
+    var elId = this.el.getAttribute( 'data-elId' );
+    if ( ! elId ){
+        // Generate a random string with 4 chars
+        elId = Math.floor( ( 1 + Math.random() ) * 0x10000 )
+            .toString( 16 )
+            .substring( 1 );
+        this.el.setAttribute( 'data-elId', elId );
+    }
+    return elId;
+};
+
+
+SimpleZZDom.prototype.on = function ( eventName, listener, useCapture ) {
+    zzDOM.addEventListener( this, eventName, listener, useCapture );
+    return this;
+};
+
+SimpleZZDom.prototype.off = function ( eventName, listener, useCapture ) {
+    zzDOM.removeEventListener( this, eventName, listener, useCapture );
+    return this;
 };

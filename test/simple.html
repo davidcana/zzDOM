@@ -337,12 +337,27 @@
         </div>
         
         <h2>
-            14. trigger
+            14. trigger, on and off
         </h2>
         <div>
             zz( '#t14-1' ).trigger( 'click' );<br>
-            <button id="t14-1">Button</button><br>
-            Counter: <span id="t14-2">0</span>
+            <button id="t14-1b">Button</button><br>
+            Counter: <span id="t14-1c">0</span>
+        </div>
+        <div>
+            zz( '#t14-2b' ).off( 'click' );<br>
+            <button id="t14-2b">Button</button><br>
+            Counter: <span id="t14-2c">0</span>
+        </div>
+        <div>
+            zz( '#t14-3b' ).off();<br>
+            <button id="t14-3b">Button</button><br>
+            Counter: <span id="t14-3c">0</span>
+        </div>
+        <div>
+            zz( '#t14-4b' ).off( 'click', listener );<br>
+            <button id="t14-4b">Button</button><br>
+            Counter: <span id="t14-4c">0</span>
         </div>
         
         <h2>

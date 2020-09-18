@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-18 11:48:51 */
+/*! zzDOM - v0.0.2 - 2020-09-18 12:11:9 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -88,7 +88,7 @@ zzDOM.events = {};
 
 zzDOM.addEventListener = function( simpleZZDom, eventName, listener, useCapture ){
     var el = simpleZZDom.el;
-    var elId = el.getElId();
+    var elId = simpleZZDom.getElId();
     var thisEvents = zzDOM.events[ elId ];
     if ( ! thisEvents ){
         thisEvents = {};
@@ -107,7 +107,7 @@ zzDOM.addEventListener = function( simpleZZDom, eventName, listener, useCapture 
 
 zzDOM.removeEventListener = function( simpleZZDom, eventName, listener, useCapture ){
     var el = simpleZZDom.el;
-    var elId = el.getElId();
+    var elId = simpleZZDom.getElId();
     var thisEvents = zzDOM.events[ elId ];
     if ( ! thisEvents ){
         return;
@@ -135,7 +135,7 @@ zzDOM.removeListeners = function( el, thisListeners, listener, useCapture, event
         var currentListener = thisListeners[ i ];
         if ( ! listener || currentListener === listener ){
             delete thisListeners[ i ];
-            el.removeEventListener( eventName, listener, useCapture );
+            el.removeEventListener( eventName, currentListener, useCapture );
             return;
         }
     } 

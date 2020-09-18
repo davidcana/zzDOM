@@ -445,28 +445,81 @@ QUnit.test( 'offset, offsetParent and position test', function( assert ) {
     assert.equal( position.left, 320 );
 });
 
-QUnit.test( 'trigger test', function( assert ) {
-    // Use t14-2 as a counter of clicks
-    zz( '#t14-1' ).el.addEventListener( 
+QUnit.test( 'trigger, on and off test', function( assert ) {
+    // Test trigger, event using vanilla addEventListener
+    // Use t14-1c as a counter of clicks
+    zz( '#t14-1b' ).el.addEventListener( 
         'click', 
         function(){ 
-            var current = parseInt( zz( '#t14-2' ).text() );
-            zz( '#t14-2' ).text( ++current );
+            var current = parseInt( zz( '#t14-1c' ).text() );
+            zz( '#t14-1c' ).text( ++current );
         } 
     );
     
-    assert.equal( zz( '#t14-2' ).text(), '0' );
-    var id = zz( '#t14-1' )
+    assert.equal( zz( '#t14-1c' ).text(), '0' );
+    var id = zz( '#t14-1b' )
         .trigger( 'click' )
         .attr( 'id' );
-    assert.equal( zz( '#t14-2' ).text(), '1' );
-    assert.equal( id, 't14-1' );
+    assert.equal( zz( '#t14-1c' ).text(), '1' );
+    assert.equal( id, 't14-1b' );
     
-    id = zz( '#t14-1' )
+    id = zz( '#t14-1b' )
         .trigger( 'click' )
         .attr( 'id' );
-    assert.equal( zz( '#t14-2' ).text(), '2' );
-    assert.equal( id, 't14-1' );
+    assert.equal( zz( '#t14-1c' ).text(), '2' );
+    assert.equal( id, 't14-1b' );
+    
+    // Test on/off using event name
+    // Use t14-2c as a counter of clicks
+    zz( '#t14-2b' ).on( 
+        'click', 
+        function(){ 
+            var current = parseInt( zz( '#t14-2c' ).text() );
+            zz( '#t14-2c' ).text( ++current );
+        } 
+    );
+    
+    assert.equal( zz( '#t14-2c' ).text(), '0' );
+    zz( '#t14-2b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-2c' ).text(), '1' );
+    
+    zz( '#t14-2b' ).off( 'click' );
+    zz( '#t14-2b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-2c' ).text(), '1' );
+    
+    // Test on/off using NO event name
+    // Use t14-3c as a counter of clicks
+    zz( '#t14-3b' ).on( 
+        'click', 
+        function(){ 
+            var current = parseInt( zz( '#t14-3c' ).text() );
+            zz( '#t14-3c' ).text( ++current );
+        } 
+    );
+    
+    assert.equal( zz( '#t14-3c' ).text(), '0' );
+    zz( '#t14-3b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-3c' ).text(), '1' );
+    
+    zz( '#t14-3b' ).off();
+    zz( '#t14-3b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-3c' ).text(), '1' );
+    
+    // Test on/off using event name and listener
+    // Use t14-4c as a counter of clicks
+    var t142Listener = function(){ 
+        var current = parseInt( zz( '#t14-4c' ).text() );
+        zz( '#t14-4c' ).text( ++current );
+    };
+    zz( '#t14-4b' ).on( 'click', t142Listener );
+    
+    assert.equal( zz( '#t14-4c' ).text(), '0' );
+    zz( '#t14-4b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-4c' ).text(), '1' );
+    
+    zz( '#t14-4b' ).off( 'click', t142Listener );
+    zz( '#t14-4b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-4c' ).text(), '1' );
 });
 
 QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {

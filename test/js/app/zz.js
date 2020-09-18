@@ -212,3 +212,26 @@ This is the container t7-2
     assert.deepEqual( ids, [ 't7-2-in1', 't7-2-in2' ] );
     utils.assertHtml( assert, 't7-2', t7_2_modified );
 });
+
+QUnit.test( 'Null test', function( assert ) {
+    zz( document.querySelectorAll( '#non-existing-id' ) ).text( 'this is useless' );
+    assert.ok( true );
+    
+    var instance = zz( document.querySelectorAll( '#non-existing-id' ) ).attr( 'id' );
+    assert.ok( instance instanceof MultipleZZDom );
+    assert.deepEqual( instance.list, [] );
+    assert.deepEqual( instance.nodes, [] );
+    
+    instance = zz( document.querySelectorAll( '#non-existing-id' ) );
+    assert.ok( instance instanceof MultipleZZDom );
+    assert.deepEqual( instance.list, [] );
+    assert.deepEqual( instance.nodes, [] );
+    
+    instance = zz( '#non-existing-id' );
+    assert.ok( instance instanceof MultipleZZDom );
+    assert.deepEqual( instance.list, [] );
+    assert.deepEqual( instance.nodes, [] );
+});
+
+
+

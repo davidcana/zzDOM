@@ -88,7 +88,7 @@ zzDOM.events = {};
 
 zzDOM.addEventListener = function( simpleZZDom, eventName, listener, useCapture ){
     var el = simpleZZDom.el;
-    var elId = simpleZZDom.getElId();
+    var elId = simpleZZDom._getElId();
     var thisEvents = zzDOM.events[ elId ];
     if ( ! thisEvents ){
         thisEvents = {};
@@ -107,7 +107,7 @@ zzDOM.addEventListener = function( simpleZZDom, eventName, listener, useCapture 
 
 zzDOM.removeEventListener = function( simpleZZDom, eventName, listener, useCapture ){
     var el = simpleZZDom.el;
-    var elId = simpleZZDom.getElId();
+    var elId = simpleZZDom._getElId();
     var thisEvents = zzDOM.events[ elId ];
     if ( ! thisEvents ){
         return;

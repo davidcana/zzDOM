@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-19 08:9:54 */
+/*! zzDOM - v0.0.2 - 2020-09-19 12:25:23 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -690,9 +690,9 @@ MultipleZZDom.init = function(){
 /*
 Add a new function to prototype of MultipleZZDom. Example:
 
-MultipleZZDom.register( 
+MultipleZZDom.add( 
     SimpleZZDom.prototype.myCustomFunction, 
-    MultipleZZDom.constructors.concat( functionId )
+    MultipleZZDom.constructors.concat
 );
 */
 MultipleZZDom.add = function( sPrototype, constructor ){

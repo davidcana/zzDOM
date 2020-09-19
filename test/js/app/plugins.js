@@ -3,7 +3,7 @@
 // Unit tests
 QUnit.test( 'Hello world test', function( assert ) {
     
-    zzDOM.MM.add( 
+    zzDOM.add( 
         zzDOM.SS.prototype.hello = function(){
             this.el.textContent = 'Hello, world!';
             return this;
@@ -36,7 +36,7 @@ QUnit.test( 'Hello world test', function( assert ) {
 
 QUnit.test( 'is numeric test', function( assert ) {
     
-    zzDOM.MM.add( 
+    zzDOM.add( 
         zzDOM.SS.prototype.isNumeric = function(){
             return ! isNaN( this.el.textContent );
         },
@@ -73,7 +73,7 @@ QUnit.test( 'is numeric test', function( assert ) {
 
 QUnit.test( 'velocity with 1 element test', function( assert ) {
     
-    zzDOM.MM.add( 
+    zzDOM.add( 
         zzDOM.SS.prototype.velocity = function( options1, options2 ){
             Velocity( this.el, options1, options2 );
             return this;
@@ -121,7 +121,7 @@ QUnit.test( 'velocity with 1 element test', function( assert ) {
 
 QUnit.test( 'velocity with several elements test', function( assert ) {
     
-    zzDOM.MM.add( 
+    zzDOM.add( 
         zzDOM.SS.prototype.velocity = function( options1, options2 ){
             Velocity( this.el, options1, options2 );
             return this;

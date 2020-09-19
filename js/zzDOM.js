@@ -66,6 +66,34 @@ zzDOM.zz = function( x, s1, s2 ){
     throw 'Unsupported selector type found running zz function.';
 };
 
+/*
+Unify the definition of a function of zzDOM.SS.prototype and a definition of zzDOM.MM.prototype. Example:
+
+    zzDOM.add( 
+        zzDOM.SS.prototype.myCustomFunction = function(){
+            ...
+            return this;
+        },
+        zzDOM.MM.constructors.concat
+    );
+);
+*/
+zzDOM.add = function( ssPrototype, constructor ){
+    for ( var id in zzDOM.SS.prototype ){
+        var current = zzDOM.SS.prototype[ id ];
+        if ( ssPrototype === current ){
+            var closure = function(){
+                var functionId = id;
+                return constructor? constructor( functionId ): zzDOM.MM.constructors.default( functionId );
+            };
+            zzDOM.MM.prototype[ id ] = closure();
+            return;
+        }
+    }
+    
+    throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
+};
+
 zzDOM._htmlToElement = function ( html ) {
     var template = document.createElement( 'template' );
     template.innerHTML = html.trim();

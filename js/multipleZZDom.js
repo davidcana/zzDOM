@@ -80,30 +80,6 @@ zzDOM.MM.init = function(){
     }
 }();
 
-/*
-Add a new function to prototype of zzDOM.MM. Example:
-
-zzDOM.MM.add( 
-    zzDOM.SS.prototype.myCustomFunction, 
-    zzDOM.MM.constructors.concat
-);
-*/
-zzDOM.MM.add = function( sPrototype, constructor ){
-    for ( var id in zzDOM.SS.prototype ){
-        var current = zzDOM.SS.prototype[ id ];
-        if ( sPrototype === current ){
-            var closure = function(){
-                var functionId = id;
-                return constructor? constructor( functionId ): zzDOM.MM.constructors.default( functionId );
-            };
-            zzDOM.MM.prototype[ id ] = closure();
-            return;
-        }
-    }
-    
-    throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
-};
-
 /* Methods included in jquery */
 zzDOM.MM.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );

@@ -3,8 +3,8 @@
 // Unit tests
 QUnit.test( 'Hello world test', function( assert ) {
     
-    MultipleZZDom.add( 
-        SimpleZZDom.prototype.hello = function(){
+    zzDOM.MM.add( 
+        zzDOM.SS.prototype.hello = function(){
             this.el.textContent = 'Hello, world!';
             return this;
         }
@@ -36,11 +36,11 @@ QUnit.test( 'Hello world test', function( assert ) {
 
 QUnit.test( 'is numeric test', function( assert ) {
     
-    MultipleZZDom.add( 
-        SimpleZZDom.prototype.isNumeric = function(){
+    zzDOM.MM.add( 
+        zzDOM.SS.prototype.isNumeric = function(){
             return ! isNaN( this.el.textContent );
         },
-        MultipleZZDom.constructors.booleanOr
+        zzDOM.MM.constructors.booleanOr
     );
     
     var t2_1_original = 'white',
@@ -73,8 +73,8 @@ QUnit.test( 'is numeric test', function( assert ) {
 
 QUnit.test( 'velocity with 1 element test', function( assert ) {
     
-    MultipleZZDom.add( 
-        SimpleZZDom.prototype.velocity = function( options1, options2 ){
+    zzDOM.MM.add( 
+        zzDOM.SS.prototype.velocity = function( options1, options2 ){
             Velocity( this.el, options1, options2 );
             return this;
         }
@@ -121,8 +121,8 @@ QUnit.test( 'velocity with 1 element test', function( assert ) {
 
 QUnit.test( 'velocity with several elements test', function( assert ) {
     
-    MultipleZZDom.add( 
-        SimpleZZDom.prototype.velocity = function( options1, options2 ){
+    zzDOM.MM.add( 
+        zzDOM.SS.prototype.velocity = function( options1, options2 ){
             Velocity( this.el, options1, options2 );
             return this;
         }

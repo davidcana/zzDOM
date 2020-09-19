@@ -1,35 +1,35 @@
 /*
-    MultipleZZDom class
+    zzDOM.MM class
 */
-var MultipleZZDom = function ( _nodes ) {    
+zzDOM.MM = function ( _nodes ) {    
     
     // Init list and nodes 
     this.list = [];
     this.nodes = _nodes;
     for ( var i = 0; i < this.nodes.length; i++ ) {
         this.list.push( 
-            new SimpleZZDom( this.nodes[ i ] )
+            new zzDOM.SS( this.nodes[ i ] )
         );
     }
 };
 
-MultipleZZDom.constructors = {};
-MultipleZZDom.constructors.concat = function( functionId ){
+zzDOM.MM.constructors = {};
+zzDOM.MM.constructors.concat = function( functionId ){
     return function(){
         var newNodes = [];
         for ( var i = 0; i < this.list.length; i++ ) {
-            var simpleZZDom = this.list[ i ];
-            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
             newNodes = newNodes.concat( x.nodes );
         }
-        return zzDOM.buildInstance( newNodes );
+        return zzDOM._build( newNodes );
     };
 };
-MultipleZZDom.constructors.booleanOr = function( functionId ){
+zzDOM.MM.constructors.booleanOr = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
-            var simpleZZDom = this.list[ i ];
-            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
             if ( x ){
                 return true;
             }
@@ -37,12 +37,12 @@ MultipleZZDom.constructors.booleanOr = function( functionId ){
         return false;
     };
 };
-MultipleZZDom.constructors.default = function( functionId ){
+zzDOM.MM.constructors.default = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
-            var simpleZZDom = this.list[ i ];
-            var r = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
-            if ( i === 0 && ! ( r instanceof SimpleZZDom ) ){
+            var ss = this.list[ i ];
+            var r = ss[ functionId ].apply( ss, arguments );
+            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
                 return r;
             }
         }
@@ -50,62 +50,62 @@ MultipleZZDom.constructors.default = function( functionId ){
     };
 };
 
-// Init prototype functions from SimpleZZDom
-MultipleZZDom.init = function(){
-    for ( var id in SimpleZZDom.prototype ){
+// Init prototype functions from zzDOM.SS
+zzDOM.MM.init = function(){
+    for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
             
-            switch ( SimpleZZDom.prototype[ functionId ] ){
+            switch ( zzDOM.SS.prototype[ functionId ] ){
             // Concat functions
-            case SimpleZZDom.prototype.siblings:
-            case SimpleZZDom.prototype.prev:
-            case SimpleZZDom.prototype.next:
-            case SimpleZZDom.prototype.children:
-            case SimpleZZDom.prototype.parent:
-            case SimpleZZDom.prototype.find:
-            case SimpleZZDom.prototype.filter:
-            case SimpleZZDom.prototype.offsetParent:
-            case SimpleZZDom.prototype.clone:
-                return MultipleZZDom.constructors.concat( functionId );
+            case zzDOM.SS.prototype.siblings:
+            case zzDOM.SS.prototype.prev:
+            case zzDOM.SS.prototype.next:
+            case zzDOM.SS.prototype.children:
+            case zzDOM.SS.prototype.parent:
+            case zzDOM.SS.prototype.find:
+            case zzDOM.SS.prototype.filter:
+            case zzDOM.SS.prototype.offsetParent:
+            case zzDOM.SS.prototype.clone:
+                return zzDOM.MM.constructors.concat( functionId );
             // Boolean functions
-            case SimpleZZDom.prototype.is:
-                return MultipleZZDom.constructors.booleanOr( functionId );
+            case zzDOM.SS.prototype.is:
+                return zzDOM.MM.constructors.booleanOr( functionId );
             // Default function
             default:
-                return MultipleZZDom.constructors.default( functionId );
+                return zzDOM.MM.constructors.default( functionId );
             }
         };
-        MultipleZZDom.prototype[ id ] = closure();
+        zzDOM.MM.prototype[ id ] = closure();
     }
 }();
 
 /*
-Add a new function to prototype of MultipleZZDom. Example:
+Add a new function to prototype of zzDOM.MM. Example:
 
-MultipleZZDom.add( 
-    SimpleZZDom.prototype.myCustomFunction, 
-    MultipleZZDom.constructors.concat
+zzDOM.MM.add( 
+    zzDOM.SS.prototype.myCustomFunction, 
+    zzDOM.MM.constructors.concat
 );
 */
-MultipleZZDom.add = function( sPrototype, constructor ){
-    for ( var id in SimpleZZDom.prototype ){
-        var current = SimpleZZDom.prototype[ id ];
+zzDOM.MM.add = function( sPrototype, constructor ){
+    for ( var id in zzDOM.SS.prototype ){
+        var current = zzDOM.SS.prototype[ id ];
         if ( sPrototype === current ){
             var closure = function(){
                 var functionId = id;
-                return constructor? constructor( functionId ): MultipleZZDom.constructors.default( functionId );
+                return constructor? constructor( functionId ): zzDOM.MM.constructors.default( functionId );
             };
-            MultipleZZDom.prototype[ id ] = closure();
+            zzDOM.MM.prototype[ id ] = closure();
             return;
         }
     }
     
-    throw 'Error registering MultipleZZDom: SimpleZZDom not found.';
+    throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
 };
 
 /* Methods included in jquery */
-MultipleZZDom.prototype.each = function ( eachFn ) {
+zzDOM.MM.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );
     return this;
 };

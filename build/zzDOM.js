@@ -1,23 +1,5 @@
-/*! zzDOM - v0.0.2 - 2020-09-19 12:25:23 */
+/*! zzDOM - v0.0.2 - 2020-09-19 18:6:25 */
 var zzDOM = {};
-
-zzDOM.htmlToElement = function ( html ) {
-    var template = document.createElement( 'template' );
-    template.innerHTML = html.trim();
-    return template.content.childElementCount === 1?
-        template.content.firstChild:
-        template.content.childNodes;
-};
-
-zzDOM.buildInstance = function ( x ) {
-    if ( x instanceof Element ){
-        return new SimpleZZDom( x );
-    }
-    if ( x instanceof HTMLCollection || x instanceof NodeList ){
-        x = Array.prototype.slice.call( x );
-    }
-    return x.length === 1? new SimpleZZDom( x[ 0 ] ): new MultipleZZDom( x );
-};
 
 /*
     zz function
@@ -64,19 +46,19 @@ zzDOM.zz = function( x, s1, s2 ){
     
     // Is it an Element?
     if ( x instanceof Element ){
-        return new SimpleZZDom( x );
+        return new zzDOM.SS( x );
     }
     
     // Is it an HTMLCollection or a NodeList?
     if ( x instanceof HTMLCollection || x instanceof NodeList ){
-        return zzDOM.buildInstance( x );
+        return zzDOM._build( x );
     }
     
     if ( typeof x === 'string' ){
         x = x.trim();
-        return zzDOM.buildInstance(
+        return zzDOM._build(
             x.charAt( 0 ) === '<'? // Is it HTML code?
-            zzDOM.htmlToElement( x ):
+            zzDOM._htmlToElement( x ):
             document.querySelectorAll( x ) // Must be a standard selector
         );
     }
@@ -84,15 +66,34 @@ zzDOM.zz = function( x, s1, s2 ){
     throw 'Unsupported selector type found running zz function.';
 };
 
-zzDOM.events = {};
+zzDOM._htmlToElement = function ( html ) {
+    var template = document.createElement( 'template' );
+    template.innerHTML = html.trim();
+    return template.content.childElementCount === 1?
+        template.content.firstChild:
+        template.content.childNodes;
+};
 
-zzDOM.addEventListener = function( simpleZZDom, eventName, listener, useCapture ){
-    var el = simpleZZDom.el;
-    var elId = simpleZZDom._getElId();
-    var thisEvents = zzDOM.events[ elId ];
+zzDOM._build = function ( x ) {
+    if ( x instanceof Element ){
+        return new zzDOM.SS( x );
+    }
+    if ( x instanceof HTMLCollection || x instanceof NodeList ){
+        x = Array.prototype.slice.call( x );
+    }
+    return x.length === 1? new zzDOM.SS( x[ 0 ] ): new zzDOM.MM( x );
+};
+
+/* Events */
+zzDOM._events = {};
+
+zzDOM._addEventListener = function( ss, eventName, listener, useCapture ){
+    var el = ss.el;
+    var elId = ss._getElId();
+    var thisEvents = zzDOM._events[ elId ];
     if ( ! thisEvents ){
         thisEvents = {};
-        zzDOM.events[ elId ] = thisEvents;
+        zzDOM._events[ elId ] = thisEvents;
     }
     var thisListeners = thisEvents[ eventName ];
     if ( ! thisListeners ){
@@ -105,10 +106,10 @@ zzDOM.addEventListener = function( simpleZZDom, eventName, listener, useCapture 
     el.addEventListener( eventName, listener, useCapture );
 };
 
-zzDOM.removeEventListener = function( simpleZZDom, eventName, listener, useCapture ){
-    var el = simpleZZDom.el;
-    var elId = simpleZZDom._getElId();
-    var thisEvents = zzDOM.events[ elId ];
+zzDOM._removeEventListener = function( ss, eventName, listener, useCapture ){
+    var el = ss.el;
+    var elId = ss._getElId();
+    var thisEvents = zzDOM._events[ elId ];
     if ( ! thisEvents ){
         return;
     }
@@ -117,17 +118,17 @@ zzDOM.removeEventListener = function( simpleZZDom, eventName, listener, useCaptu
         // Must remove all events
         for ( var currentEventName in thisEvents ){
             var currentListeners = thisEvents[ currentEventName ];
-            zzDOM.removeListeners( el, currentListeners, null, useCapture, currentEventName );
+            zzDOM._removeListeners( el, currentListeners, null, useCapture, currentEventName );
         }
         return;
     }
     
     // Must remove listeners of only one event
     var thisListeners = thisEvents[ eventName ];
-    zzDOM.removeListeners( el, thisListeners, listener, useCapture, eventName );
+    zzDOM._removeListeners( el, thisListeners, listener, useCapture, eventName );
 };
 
-zzDOM.removeListeners = function( el, thisListeners, listener, useCapture, eventName ){
+zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, eventName ){
     if ( ! thisListeners ){
         return;
     }
@@ -140,17 +141,18 @@ zzDOM.removeListeners = function( el, thisListeners, listener, useCapture, event
         }
     } 
 };
+/* End of events */
 
 // Register zz function
 window.zz = zzDOM.zz;
 
-var SimpleZZDom = function ( _el ) {    
+zzDOM.SS = function ( _el ) {    
     this.el = _el;
     this.nodes = [ _el ];
 };
 
 /* Methods NOT included in jquery */
-SimpleZZDom.prototype._styleProperty = function ( property, value ) {
+zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     // get
     if ( value === undefined ){
         return parseFloat(
@@ -170,20 +172,21 @@ SimpleZZDom.prototype._styleProperty = function ( property, value ) {
     return this;
 };
 
-SimpleZZDom.prototype._setCssUsingKeyValue = function ( key, value ) {
+/* TODO: replace key using regular expression */
+zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
 };
 
-SimpleZZDom.prototype._setCssUsingObject = function ( object ) {
+zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
     for ( var key in object ) {
         this._setCssUsingKeyValue( key, object[ key ] );
     }
 };
 
-SimpleZZDom.prototype._insertHelper = function ( position, x ) {
+zzDOM.SS.prototype._insertHelper = function ( position, x ) {
     if ( x instanceof Element ){
         this.el.insertAdjacent( position, x );
-    } else if ( x instanceof SimpleZZDom ){
+    } else if ( x instanceof zzDOM.SS ){
         this.el.insertAdjacent( position, x.el );
     } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( position, x );
@@ -193,11 +196,11 @@ SimpleZZDom.prototype._insertHelper = function ( position, x ) {
     return this;
 };
 
-SimpleZZDom.prototype._buildError = function ( method ) {
+zzDOM.SS.prototype._buildError = function ( method ) {
     return 'Method "' + method + '" not ready for that type!';
 };
 
-SimpleZZDom.prototype._getElId = function(){
+zzDOM.SS.prototype._getElId = function(){
     var elId = this.el.getAttribute( 'data-elId' );
     if ( ! elId ){
         // Generate a random string with 4 chars
@@ -210,19 +213,19 @@ SimpleZZDom.prototype._getElId = function(){
 };
 
 /* Methods included in jquery */
-SimpleZZDom.prototype.addClass = function ( name ) {
+zzDOM.SS.prototype.addClass = function ( name ) {
     this.el.classList.add( name );
     return this;
 };
 
-SimpleZZDom.prototype.after = function ( x ) {
+zzDOM.SS.prototype.after = function ( x ) {
     return this._insertHelper( 'afterend', x );
 };
 
-SimpleZZDom.prototype.append = function ( x ) {
+zzDOM.SS.prototype.append = function ( x ) {
     if ( x instanceof Element ){
         this.el.appendChild( x );
-    } else if ( x instanceof SimpleZZDom ){
+    } else if ( x instanceof zzDOM.SS ){
         this.el.appendChild( x.el );
     } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( 'beforeend', x );
@@ -232,12 +235,12 @@ SimpleZZDom.prototype.append = function ( x ) {
     return this;
 };
 
-SimpleZZDom.prototype.before = function ( x ) {
+zzDOM.SS.prototype.before = function ( x ) {
     return this._insertHelper( 'beforebegin', x );
 };
 
-SimpleZZDom.prototype.children = function ( selector ) {
-    return zzDOM.buildInstance( 
+zzDOM.SS.prototype.children = function ( selector ) {
+    return zzDOM._build( 
         selector?
         Array.prototype.filter.call(
             this.el.children, 
@@ -249,7 +252,7 @@ SimpleZZDom.prototype.children = function ( selector ) {
     );
 };
 
-SimpleZZDom.prototype.siblings = function ( selector ) {
+zzDOM.SS.prototype.siblings = function ( selector ) {
     var self = this;
     var nodes = Array.prototype.filter.call( 
         this.el.parentNode.children, 
@@ -261,29 +264,29 @@ SimpleZZDom.prototype.siblings = function ( selector ) {
                 return child !== self.el;
             }
     );
-    return zzDOM.buildInstance( nodes );
+    return zzDOM._build( nodes );
 };
 
-SimpleZZDom.prototype.clone = function (  ) {
-    return new SimpleZZDom( this.el.cloneNode( true ) );
+zzDOM.SS.prototype.clone = function (  ) {
+    return new zzDOM.SS( this.el.cloneNode( true ) );
 };
 
-SimpleZZDom.prototype.empty = function (  ) {
+zzDOM.SS.prototype.empty = function (  ) {
     while( this.el.firstChild ){
         this.el.removeChild( this.el.firstChild );
     }
     return this;
 };
 
-SimpleZZDom.prototype.filter = function ( x ) {
+zzDOM.SS.prototype.filter = function ( x ) {
     if ( typeof x === 'string' ){ // Is a string selector
-        return zzDOM.buildInstance( 
+        return zzDOM._build( 
             this.el.matches( x )? [ this.el ]: []
         );
     }
     
     if ( typeof x === 'function' ){ // Is a function
-        return zzDOM.buildInstance(
+        return zzDOM._build(
             x( this )? [ this.el ]: []
         );
     }  
@@ -291,13 +294,13 @@ SimpleZZDom.prototype.filter = function ( x ) {
     throw this._buildError( 'filter' );
 };
 
-SimpleZZDom.prototype.find = function ( selector ) {
-    return zzDOM.buildInstance( 
+zzDOM.SS.prototype.find = function ( selector ) {
+    return zzDOM._build( 
         this.el.querySelectorAll( selector )
     );
 };
 
-SimpleZZDom.prototype.attr = function ( name, value ) {
+zzDOM.SS.prototype.attr = function ( name, value ) {
     // get
     if ( value === undefined ){
         return this.el.getAttribute( name );
@@ -308,11 +311,11 @@ SimpleZZDom.prototype.attr = function ( name, value ) {
     return this;
 };
 
-SimpleZZDom.prototype.height = function ( value ) {
+zzDOM.SS.prototype.height = function ( value ) {
     return this._styleProperty( 'height', value );
 };
 
-SimpleZZDom.prototype.html = function ( value ) {
+zzDOM.SS.prototype.html = function ( value ) {
     // get
     if ( value === undefined ){
         return this.el.innerHTML;
@@ -323,7 +326,7 @@ SimpleZZDom.prototype.html = function ( value ) {
     return this;
 };
 
-SimpleZZDom.prototype.css = function () {
+zzDOM.SS.prototype.css = function () {
     var number = arguments.length;
     
     if ( number === 1 ){
@@ -356,7 +359,7 @@ SimpleZZDom.prototype.css = function () {
     throw 'Wrong number of arguments in css method!';
 };
 
-SimpleZZDom.prototype.text = function ( value ) {
+zzDOM.SS.prototype.text = function ( value ) {
     // get
     if ( value === undefined ){
         return this.el.textContent;
@@ -367,16 +370,16 @@ SimpleZZDom.prototype.text = function ( value ) {
     return this;
 };
 
-SimpleZZDom.prototype.width = function ( value ) {
+zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
 
 /* TODO: MultipleZZDOM version must implement any */
-SimpleZZDom.prototype.hasClass = function ( name ) {
+zzDOM.SS.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };
 
-SimpleZZDom.prototype.index = function () {
+zzDOM.SS.prototype.index = function () {
     if ( ! this.el ){
         return -1;
     }
@@ -390,7 +393,7 @@ SimpleZZDom.prototype.index = function () {
     return i;
 };
 
-SimpleZZDom.prototype.is = function ( x ) {
+zzDOM.SS.prototype.is = function ( x ) {
     if ( x == null ){
         return false;    
     }
@@ -399,11 +402,11 @@ SimpleZZDom.prototype.is = function ( x ) {
         return this.el === x;
     }
     
-    if ( x instanceof SimpleZZDom ) {
+    if ( x instanceof zzDOM.SS ) {
         return this.el === x.el;
     } 
 
-    if ( x instanceof MultipleZZDom ) {
+    if ( x instanceof zzDOM.MM ) {
         for ( var i = 0; i < x.nodes.length; ++i ){
             if ( this.el === x.nodes[ i ] ){
                 return true;
@@ -419,11 +422,11 @@ SimpleZZDom.prototype.is = function ( x ) {
     return false;
 };
 
-SimpleZZDom.prototype.next = function () {
-    return new SimpleZZDom( this.el.nextElementSibling );
+zzDOM.SS.prototype.next = function () {
+    return new zzDOM.SS( this.el.nextElementSibling );
 };
 
-SimpleZZDom.prototype.offset = function ( c ) {
+zzDOM.SS.prototype.offset = function ( c ) {
     
     // set top and left using css
     if ( c ){
@@ -440,12 +443,12 @@ SimpleZZDom.prototype.offset = function ( c ) {
     };
 };
 
-SimpleZZDom.prototype.offsetParent = function () {
+zzDOM.SS.prototype.offsetParent = function () {
     var offsetParent = this.el.offsetParent;
-    return offsetParent? new SimpleZZDom( offsetParent ): this;
+    return offsetParent? new zzDOM.SS( offsetParent ): this;
 };
 
-SimpleZZDom.prototype.outerHeight = function ( withMargin ) {
+zzDOM.SS.prototype.outerHeight = function ( withMargin ) {
     var height = this.el.offsetHeight;
     
     // No margin
@@ -458,7 +461,7 @@ SimpleZZDom.prototype.outerHeight = function ( withMargin ) {
     return height + parseInt( style.marginTop ) + parseInt( style.marginBottom );
 };
 
-SimpleZZDom.prototype.outerWidth = function ( withMargin ) {
+zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
     var width = this.el.offsetWidth;
 
     // No margin
@@ -471,11 +474,11 @@ SimpleZZDom.prototype.outerWidth = function ( withMargin ) {
     return width + parseInt( style.marginLeft ) + parseInt( style.marginRight );
 };
 
-SimpleZZDom.prototype.parent = function () {
-    return new SimpleZZDom( this.el.parentNode );
+zzDOM.SS.prototype.parent = function () {
+    return new zzDOM.SS( this.el.parentNode );
 };
 
-SimpleZZDom.prototype.position = function ( relativeToViewport ) {
+zzDOM.SS.prototype.position = function ( relativeToViewport ) {
     return relativeToViewport?
         this.el.getBoundingClientRect():
         { 
@@ -484,10 +487,10 @@ SimpleZZDom.prototype.position = function ( relativeToViewport ) {
         };
 };
 
-SimpleZZDom.prototype.prepend = function ( x ) {
+zzDOM.SS.prototype.prepend = function ( x ) {
     if ( x instanceof Element ){
         this.el.insertBefore( x, this.el.firstChild );
-    } else if ( x instanceof SimpleZZDom ){
+    } else if ( x instanceof zzDOM.SS ){
         this.el.insertBefore( x.el, this.el.firstChild );
     } else if ( typeof x === 'string' ){
         this.el.insertAdjacentHTML( 'afterbegin', x );
@@ -497,36 +500,36 @@ SimpleZZDom.prototype.prepend = function ( x ) {
     return this;
 };
 
-SimpleZZDom.prototype.prev = function () {
-    return new SimpleZZDom( this.el.previousElementSibling );
+zzDOM.SS.prototype.prev = function () {
+    return new zzDOM.SS( this.el.previousElementSibling );
 };
 
-SimpleZZDom.prototype.remove = function () {
+zzDOM.SS.prototype.remove = function () {
     this.el.parentNode.removeChild( this.el );
     return this;
 };
 
-SimpleZZDom.prototype.removeAttr = function ( name ) {
+zzDOM.SS.prototype.removeAttr = function ( name ) {
     this.el.removeAttribute( name );
     return this;
 };
 
-SimpleZZDom.prototype.removeClass = function ( name ) {
+zzDOM.SS.prototype.removeClass = function ( name ) {
     this.el.classList.remove( name );
     return this;
 };
 
-SimpleZZDom.prototype.replaceWith = function ( value ) {
+zzDOM.SS.prototype.replaceWith = function ( value ) {
     this.el.outerHTML = value;
     return this;
 };
 
-SimpleZZDom.prototype.toggleClass = function ( name ) {
+zzDOM.SS.prototype.toggleClass = function ( name ) {
     this.el.classList.toggle( name );
     return this;
 };
 
-SimpleZZDom.prototype.hide = function () {
+zzDOM.SS.prototype.hide = function () {
     if ( this.el.style.display ){
         this.attr( 'data-display', this.el.style.display );
     }
@@ -534,27 +537,27 @@ SimpleZZDom.prototype.hide = function () {
     return this;
 };
 
-SimpleZZDom.prototype.show = function () {
+zzDOM.SS.prototype.show = function () {
     var display = this.attr( 'data-display' );
     this.el.style.display = display? display: 'block';
     return this;
 };
 
-SimpleZZDom.prototype.toggle = function () {
+zzDOM.SS.prototype.toggle = function () {
     return this.isVisible()? this.hide(): this.show();
 };
 
-SimpleZZDom.prototype.isVisible = function () {
+zzDOM.SS.prototype.isVisible = function () {
     return !! this.el.offsetParent;
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
 };
 
-SimpleZZDom.prototype.each = function ( eachFn ) {
+zzDOM.SS.prototype.each = function ( eachFn ) {
     eachFn( this );
     return this;
 };
 
-SimpleZZDom.prototype.appendTo = function ( x ) {
+zzDOM.SS.prototype.appendTo = function ( x ) {
     // Do nothing and return this if it is null
     if ( x == null ){
         return this;    
@@ -568,20 +571,20 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
     
     // Is it a string?
     if ( typeof x === 'string' ){
-        x = zzDOM.buildInstance(
+        x = zzDOM._build(
             document.querySelectorAll( x )
         );
     }
     
-    // Is it a SimpleZZDom?
-    if ( x instanceof SimpleZZDom ) {
+    // Is it a zzDOM.SS?
+    if ( x instanceof zzDOM.SS ) {
         //x.append( this.el );
         x.el.appendChild( this.el );
         return this;
     }
     
-    // Is it a MultipleZZDom?
-    if ( x instanceof MultipleZZDom ) {
+    // Is it a zzDOM.MM?
+    if ( x instanceof zzDOM.MM ) {
         for ( var i = 0; i < x.nodes.length; ++i ){
             x.nodes[ i ].appendChild( this.el.cloneNode( true ) );
         }
@@ -591,52 +594,52 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
     throw this._buildError( 'is' );
 };
 
-SimpleZZDom.prototype.trigger = function ( eventName ) {
+zzDOM.SS.prototype.trigger = function ( eventName ) {
     var event = document.createEvent( 'HTMLEvents' );
     event.initEvent( eventName, true, false );
     this.el.dispatchEvent( event );
     return this;
 };
 
-SimpleZZDom.prototype.on = function ( eventName, listener, useCapture ) {
-    zzDOM.addEventListener( this, eventName, listener, useCapture );
+zzDOM.SS.prototype.on = function ( eventName, listener, useCapture ) {
+    zzDOM._addEventListener( this, eventName, listener, useCapture );
     return this;
 };
 
-SimpleZZDom.prototype.off = function ( eventName, listener, useCapture ) {
-    zzDOM.removeEventListener( this, eventName, listener, useCapture );
+zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {
+    zzDOM._removeEventListener( this, eventName, listener, useCapture );
     return this;
 };
 
-var MultipleZZDom = function ( _nodes ) {    
+zzDOM.MM = function ( _nodes ) {    
     
     // Init list and nodes 
     this.list = [];
     this.nodes = _nodes;
     for ( var i = 0; i < this.nodes.length; i++ ) {
         this.list.push( 
-            new SimpleZZDom( this.nodes[ i ] )
+            new zzDOM.SS( this.nodes[ i ] )
         );
     }
 };
 
-MultipleZZDom.constructors = {};
-MultipleZZDom.constructors.concat = function( functionId ){
+zzDOM.MM.constructors = {};
+zzDOM.MM.constructors.concat = function( functionId ){
     return function(){
         var newNodes = [];
         for ( var i = 0; i < this.list.length; i++ ) {
-            var simpleZZDom = this.list[ i ];
-            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
             newNodes = newNodes.concat( x.nodes );
         }
-        return zzDOM.buildInstance( newNodes );
+        return zzDOM._build( newNodes );
     };
 };
-MultipleZZDom.constructors.booleanOr = function( functionId ){
+zzDOM.MM.constructors.booleanOr = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
-            var simpleZZDom = this.list[ i ];
-            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
             if ( x ){
                 return true;
             }
@@ -644,12 +647,12 @@ MultipleZZDom.constructors.booleanOr = function( functionId ){
         return false;
     };
 };
-MultipleZZDom.constructors.default = function( functionId ){
+zzDOM.MM.constructors.default = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
-            var simpleZZDom = this.list[ i ];
-            var r = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
-            if ( i === 0 && ! ( r instanceof SimpleZZDom ) ){
+            var ss = this.list[ i ];
+            var r = ss[ functionId ].apply( ss, arguments );
+            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
                 return r;
             }
         }
@@ -657,62 +660,62 @@ MultipleZZDom.constructors.default = function( functionId ){
     };
 };
 
-// Init prototype functions from SimpleZZDom
-MultipleZZDom.init = function(){
-    for ( var id in SimpleZZDom.prototype ){
+// Init prototype functions from zzDOM.SS
+zzDOM.MM.init = function(){
+    for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
             
-            switch ( SimpleZZDom.prototype[ functionId ] ){
+            switch ( zzDOM.SS.prototype[ functionId ] ){
             // Concat functions
-            case SimpleZZDom.prototype.siblings:
-            case SimpleZZDom.prototype.prev:
-            case SimpleZZDom.prototype.next:
-            case SimpleZZDom.prototype.children:
-            case SimpleZZDom.prototype.parent:
-            case SimpleZZDom.prototype.find:
-            case SimpleZZDom.prototype.filter:
-            case SimpleZZDom.prototype.offsetParent:
-            case SimpleZZDom.prototype.clone:
-                return MultipleZZDom.constructors.concat( functionId );
+            case zzDOM.SS.prototype.siblings:
+            case zzDOM.SS.prototype.prev:
+            case zzDOM.SS.prototype.next:
+            case zzDOM.SS.prototype.children:
+            case zzDOM.SS.prototype.parent:
+            case zzDOM.SS.prototype.find:
+            case zzDOM.SS.prototype.filter:
+            case zzDOM.SS.prototype.offsetParent:
+            case zzDOM.SS.prototype.clone:
+                return zzDOM.MM.constructors.concat( functionId );
             // Boolean functions
-            case SimpleZZDom.prototype.is:
-                return MultipleZZDom.constructors.booleanOr( functionId );
+            case zzDOM.SS.prototype.is:
+                return zzDOM.MM.constructors.booleanOr( functionId );
             // Default function
             default:
-                return MultipleZZDom.constructors.default( functionId );
+                return zzDOM.MM.constructors.default( functionId );
             }
         };
-        MultipleZZDom.prototype[ id ] = closure();
+        zzDOM.MM.prototype[ id ] = closure();
     }
 }();
 
 /*
-Add a new function to prototype of MultipleZZDom. Example:
+Add a new function to prototype of zzDOM.MM. Example:
 
-MultipleZZDom.add( 
-    SimpleZZDom.prototype.myCustomFunction, 
-    MultipleZZDom.constructors.concat
+zzDOM.MM.add( 
+    zzDOM.SS.prototype.myCustomFunction, 
+    zzDOM.MM.constructors.concat
 );
 */
-MultipleZZDom.add = function( sPrototype, constructor ){
-    for ( var id in SimpleZZDom.prototype ){
-        var current = SimpleZZDom.prototype[ id ];
+zzDOM.MM.add = function( sPrototype, constructor ){
+    for ( var id in zzDOM.SS.prototype ){
+        var current = zzDOM.SS.prototype[ id ];
         if ( sPrototype === current ){
             var closure = function(){
                 var functionId = id;
-                return constructor? constructor( functionId ): MultipleZZDom.constructors.default( functionId );
+                return constructor? constructor( functionId ): zzDOM.MM.constructors.default( functionId );
             };
-            MultipleZZDom.prototype[ id ] = closure();
+            zzDOM.MM.prototype[ id ] = closure();
             return;
         }
     }
     
-    throw 'Error registering MultipleZZDom: SimpleZZDom not found.';
+    throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
 };
 
 /* Methods included in jquery */
-MultipleZZDom.prototype.each = function ( eachFn ) {
+zzDOM.MM.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );
     return this;
 };

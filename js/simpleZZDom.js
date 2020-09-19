@@ -1,13 +1,13 @@
 /*
-    SimpleZZDom class
+    zzDOM.SS class
 */
-var SimpleZZDom = function ( _el ) {    
+zzDOM.SS = function ( _el ) {    
     this.el = _el;
     this.nodes = [ _el ];
 };
 
 /* Methods NOT included in jquery */
-SimpleZZDom.prototype._styleProperty = function ( property, value ) {
+zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     // get
     if ( value === undefined ){
         return parseFloat(
@@ -28,20 +28,20 @@ SimpleZZDom.prototype._styleProperty = function ( property, value ) {
 };
 
 /* TODO: replace key using regular expression */
-SimpleZZDom.prototype._setCssUsingKeyValue = function ( key, value ) {
+zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
 };
 
-SimpleZZDom.prototype._setCssUsingObject = function ( object ) {
+zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
     for ( var key in object ) {
         this._setCssUsingKeyValue( key, object[ key ] );
     }
 };
 
-SimpleZZDom.prototype._insertHelper = function ( position, x ) {
+zzDOM.SS.prototype._insertHelper = function ( position, x ) {
     if ( x instanceof Element ){
         this.el.insertAdjacent( position, x );
-    } else if ( x instanceof SimpleZZDom ){
+    } else if ( x instanceof zzDOM.SS ){
         this.el.insertAdjacent( position, x.el );
     } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( position, x );
@@ -51,11 +51,11 @@ SimpleZZDom.prototype._insertHelper = function ( position, x ) {
     return this;
 };
 
-SimpleZZDom.prototype._buildError = function ( method ) {
+zzDOM.SS.prototype._buildError = function ( method ) {
     return 'Method "' + method + '" not ready for that type!';
 };
 
-SimpleZZDom.prototype._getElId = function(){
+zzDOM.SS.prototype._getElId = function(){
     var elId = this.el.getAttribute( 'data-elId' );
     if ( ! elId ){
         // Generate a random string with 4 chars
@@ -68,19 +68,19 @@ SimpleZZDom.prototype._getElId = function(){
 };
 
 /* Methods included in jquery */
-SimpleZZDom.prototype.addClass = function ( name ) {
+zzDOM.SS.prototype.addClass = function ( name ) {
     this.el.classList.add( name );
     return this;
 };
 
-SimpleZZDom.prototype.after = function ( x ) {
+zzDOM.SS.prototype.after = function ( x ) {
     return this._insertHelper( 'afterend', x );
 };
 
-SimpleZZDom.prototype.append = function ( x ) {
+zzDOM.SS.prototype.append = function ( x ) {
     if ( x instanceof Element ){
         this.el.appendChild( x );
-    } else if ( x instanceof SimpleZZDom ){
+    } else if ( x instanceof zzDOM.SS ){
         this.el.appendChild( x.el );
     } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( 'beforeend', x );
@@ -90,12 +90,12 @@ SimpleZZDom.prototype.append = function ( x ) {
     return this;
 };
 
-SimpleZZDom.prototype.before = function ( x ) {
+zzDOM.SS.prototype.before = function ( x ) {
     return this._insertHelper( 'beforebegin', x );
 };
 
-SimpleZZDom.prototype.children = function ( selector ) {
-    return zzDOM.buildInstance( 
+zzDOM.SS.prototype.children = function ( selector ) {
+    return zzDOM._build( 
         selector?
         Array.prototype.filter.call(
             this.el.children, 
@@ -107,7 +107,7 @@ SimpleZZDom.prototype.children = function ( selector ) {
     );
 };
 
-SimpleZZDom.prototype.siblings = function ( selector ) {
+zzDOM.SS.prototype.siblings = function ( selector ) {
     var self = this;
     var nodes = Array.prototype.filter.call( 
         this.el.parentNode.children, 
@@ -119,29 +119,29 @@ SimpleZZDom.prototype.siblings = function ( selector ) {
                 return child !== self.el;
             }
     );
-    return zzDOM.buildInstance( nodes );
+    return zzDOM._build( nodes );
 };
 
-SimpleZZDom.prototype.clone = function (  ) {
-    return new SimpleZZDom( this.el.cloneNode( true ) );
+zzDOM.SS.prototype.clone = function (  ) {
+    return new zzDOM.SS( this.el.cloneNode( true ) );
 };
 
-SimpleZZDom.prototype.empty = function (  ) {
+zzDOM.SS.prototype.empty = function (  ) {
     while( this.el.firstChild ){
         this.el.removeChild( this.el.firstChild );
     }
     return this;
 };
 
-SimpleZZDom.prototype.filter = function ( x ) {
+zzDOM.SS.prototype.filter = function ( x ) {
     if ( typeof x === 'string' ){ // Is a string selector
-        return zzDOM.buildInstance( 
+        return zzDOM._build( 
             this.el.matches( x )? [ this.el ]: []
         );
     }
     
     if ( typeof x === 'function' ){ // Is a function
-        return zzDOM.buildInstance(
+        return zzDOM._build(
             x( this )? [ this.el ]: []
         );
     }  
@@ -149,13 +149,13 @@ SimpleZZDom.prototype.filter = function ( x ) {
     throw this._buildError( 'filter' );
 };
 
-SimpleZZDom.prototype.find = function ( selector ) {
-    return zzDOM.buildInstance( 
+zzDOM.SS.prototype.find = function ( selector ) {
+    return zzDOM._build( 
         this.el.querySelectorAll( selector )
     );
 };
 
-SimpleZZDom.prototype.attr = function ( name, value ) {
+zzDOM.SS.prototype.attr = function ( name, value ) {
     // get
     if ( value === undefined ){
         return this.el.getAttribute( name );
@@ -166,11 +166,11 @@ SimpleZZDom.prototype.attr = function ( name, value ) {
     return this;
 };
 
-SimpleZZDom.prototype.height = function ( value ) {
+zzDOM.SS.prototype.height = function ( value ) {
     return this._styleProperty( 'height', value );
 };
 
-SimpleZZDom.prototype.html = function ( value ) {
+zzDOM.SS.prototype.html = function ( value ) {
     // get
     if ( value === undefined ){
         return this.el.innerHTML;
@@ -181,7 +181,7 @@ SimpleZZDom.prototype.html = function ( value ) {
     return this;
 };
 
-SimpleZZDom.prototype.css = function () {
+zzDOM.SS.prototype.css = function () {
     var number = arguments.length;
     
     if ( number === 1 ){
@@ -214,7 +214,7 @@ SimpleZZDom.prototype.css = function () {
     throw 'Wrong number of arguments in css method!';
 };
 
-SimpleZZDom.prototype.text = function ( value ) {
+zzDOM.SS.prototype.text = function ( value ) {
     // get
     if ( value === undefined ){
         return this.el.textContent;
@@ -225,16 +225,16 @@ SimpleZZDom.prototype.text = function ( value ) {
     return this;
 };
 
-SimpleZZDom.prototype.width = function ( value ) {
+zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
 
 /* TODO: MultipleZZDOM version must implement any */
-SimpleZZDom.prototype.hasClass = function ( name ) {
+zzDOM.SS.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };
 
-SimpleZZDom.prototype.index = function () {
+zzDOM.SS.prototype.index = function () {
     if ( ! this.el ){
         return -1;
     }
@@ -248,7 +248,7 @@ SimpleZZDom.prototype.index = function () {
     return i;
 };
 
-SimpleZZDom.prototype.is = function ( x ) {
+zzDOM.SS.prototype.is = function ( x ) {
     if ( x == null ){
         return false;    
     }
@@ -257,11 +257,11 @@ SimpleZZDom.prototype.is = function ( x ) {
         return this.el === x;
     }
     
-    if ( x instanceof SimpleZZDom ) {
+    if ( x instanceof zzDOM.SS ) {
         return this.el === x.el;
     } 
 
-    if ( x instanceof MultipleZZDom ) {
+    if ( x instanceof zzDOM.MM ) {
         for ( var i = 0; i < x.nodes.length; ++i ){
             if ( this.el === x.nodes[ i ] ){
                 return true;
@@ -277,11 +277,11 @@ SimpleZZDom.prototype.is = function ( x ) {
     return false;
 };
 
-SimpleZZDom.prototype.next = function () {
-    return new SimpleZZDom( this.el.nextElementSibling );
+zzDOM.SS.prototype.next = function () {
+    return new zzDOM.SS( this.el.nextElementSibling );
 };
 
-SimpleZZDom.prototype.offset = function ( c ) {
+zzDOM.SS.prototype.offset = function ( c ) {
     
     // set top and left using css
     if ( c ){
@@ -298,12 +298,12 @@ SimpleZZDom.prototype.offset = function ( c ) {
     };
 };
 
-SimpleZZDom.prototype.offsetParent = function () {
+zzDOM.SS.prototype.offsetParent = function () {
     var offsetParent = this.el.offsetParent;
-    return offsetParent? new SimpleZZDom( offsetParent ): this;
+    return offsetParent? new zzDOM.SS( offsetParent ): this;
 };
 
-SimpleZZDom.prototype.outerHeight = function ( withMargin ) {
+zzDOM.SS.prototype.outerHeight = function ( withMargin ) {
     var height = this.el.offsetHeight;
     
     // No margin
@@ -316,7 +316,7 @@ SimpleZZDom.prototype.outerHeight = function ( withMargin ) {
     return height + parseInt( style.marginTop ) + parseInt( style.marginBottom );
 };
 
-SimpleZZDom.prototype.outerWidth = function ( withMargin ) {
+zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
     var width = this.el.offsetWidth;
 
     // No margin
@@ -329,11 +329,11 @@ SimpleZZDom.prototype.outerWidth = function ( withMargin ) {
     return width + parseInt( style.marginLeft ) + parseInt( style.marginRight );
 };
 
-SimpleZZDom.prototype.parent = function () {
-    return new SimpleZZDom( this.el.parentNode );
+zzDOM.SS.prototype.parent = function () {
+    return new zzDOM.SS( this.el.parentNode );
 };
 
-SimpleZZDom.prototype.position = function ( relativeToViewport ) {
+zzDOM.SS.prototype.position = function ( relativeToViewport ) {
     return relativeToViewport?
         this.el.getBoundingClientRect():
         { 
@@ -342,10 +342,10 @@ SimpleZZDom.prototype.position = function ( relativeToViewport ) {
         };
 };
 
-SimpleZZDom.prototype.prepend = function ( x ) {
+zzDOM.SS.prototype.prepend = function ( x ) {
     if ( x instanceof Element ){
         this.el.insertBefore( x, this.el.firstChild );
-    } else if ( x instanceof SimpleZZDom ){
+    } else if ( x instanceof zzDOM.SS ){
         this.el.insertBefore( x.el, this.el.firstChild );
     } else if ( typeof x === 'string' ){
         this.el.insertAdjacentHTML( 'afterbegin', x );
@@ -355,36 +355,36 @@ SimpleZZDom.prototype.prepend = function ( x ) {
     return this;
 };
 
-SimpleZZDom.prototype.prev = function () {
-    return new SimpleZZDom( this.el.previousElementSibling );
+zzDOM.SS.prototype.prev = function () {
+    return new zzDOM.SS( this.el.previousElementSibling );
 };
 
-SimpleZZDom.prototype.remove = function () {
+zzDOM.SS.prototype.remove = function () {
     this.el.parentNode.removeChild( this.el );
     return this;
 };
 
-SimpleZZDom.prototype.removeAttr = function ( name ) {
+zzDOM.SS.prototype.removeAttr = function ( name ) {
     this.el.removeAttribute( name );
     return this;
 };
 
-SimpleZZDom.prototype.removeClass = function ( name ) {
+zzDOM.SS.prototype.removeClass = function ( name ) {
     this.el.classList.remove( name );
     return this;
 };
 
-SimpleZZDom.prototype.replaceWith = function ( value ) {
+zzDOM.SS.prototype.replaceWith = function ( value ) {
     this.el.outerHTML = value;
     return this;
 };
 
-SimpleZZDom.prototype.toggleClass = function ( name ) {
+zzDOM.SS.prototype.toggleClass = function ( name ) {
     this.el.classList.toggle( name );
     return this;
 };
 
-SimpleZZDom.prototype.hide = function () {
+zzDOM.SS.prototype.hide = function () {
     if ( this.el.style.display ){
         this.attr( 'data-display', this.el.style.display );
     }
@@ -392,27 +392,27 @@ SimpleZZDom.prototype.hide = function () {
     return this;
 };
 
-SimpleZZDom.prototype.show = function () {
+zzDOM.SS.prototype.show = function () {
     var display = this.attr( 'data-display' );
     this.el.style.display = display? display: 'block';
     return this;
 };
 
-SimpleZZDom.prototype.toggle = function () {
+zzDOM.SS.prototype.toggle = function () {
     return this.isVisible()? this.hide(): this.show();
 };
 
-SimpleZZDom.prototype.isVisible = function () {
+zzDOM.SS.prototype.isVisible = function () {
     return !! this.el.offsetParent;
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
 };
 
-SimpleZZDom.prototype.each = function ( eachFn ) {
+zzDOM.SS.prototype.each = function ( eachFn ) {
     eachFn( this );
     return this;
 };
 
-SimpleZZDom.prototype.appendTo = function ( x ) {
+zzDOM.SS.prototype.appendTo = function ( x ) {
     // Do nothing and return this if it is null
     if ( x == null ){
         return this;    
@@ -426,20 +426,20 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
     
     // Is it a string?
     if ( typeof x === 'string' ){
-        x = zzDOM.buildInstance(
+        x = zzDOM._build(
             document.querySelectorAll( x )
         );
     }
     
-    // Is it a SimpleZZDom?
-    if ( x instanceof SimpleZZDom ) {
+    // Is it a zzDOM.SS?
+    if ( x instanceof zzDOM.SS ) {
         //x.append( this.el );
         x.el.appendChild( this.el );
         return this;
     }
     
-    // Is it a MultipleZZDom?
-    if ( x instanceof MultipleZZDom ) {
+    // Is it a zzDOM.MM?
+    if ( x instanceof zzDOM.MM ) {
         for ( var i = 0; i < x.nodes.length; ++i ){
             x.nodes[ i ].appendChild( this.el.cloneNode( true ) );
         }
@@ -449,19 +449,19 @@ SimpleZZDom.prototype.appendTo = function ( x ) {
     throw this._buildError( 'is' );
 };
 
-SimpleZZDom.prototype.trigger = function ( eventName ) {
+zzDOM.SS.prototype.trigger = function ( eventName ) {
     var event = document.createEvent( 'HTMLEvents' );
     event.initEvent( eventName, true, false );
     this.el.dispatchEvent( event );
     return this;
 };
 
-SimpleZZDom.prototype.on = function ( eventName, listener, useCapture ) {
-    zzDOM.addEventListener( this, eventName, listener, useCapture );
+zzDOM.SS.prototype.on = function ( eventName, listener, useCapture ) {
+    zzDOM._addEventListener( this, eventName, listener, useCapture );
     return this;
 };
 
-SimpleZZDom.prototype.off = function ( eventName, listener, useCapture ) {
-    zzDOM.removeEventListener( this, eventName, listener, useCapture );
+zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {
+    zzDOM._removeEventListener( this, eventName, listener, useCapture );
     return this;
 };

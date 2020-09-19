@@ -218,17 +218,17 @@ QUnit.test( 'Null test', function( assert ) {
     assert.ok( true );
     
     var instance = zz( document.querySelectorAll( '#non-existing-id' ) ).attr( 'id' );
-    assert.ok( instance instanceof MultipleZZDom );
+    assert.ok( instance instanceof zzDOM.MM );
     assert.deepEqual( instance.list, [] );
     assert.deepEqual( instance.nodes, [] );
     
     instance = zz( document.querySelectorAll( '#non-existing-id' ) );
-    assert.ok( instance instanceof MultipleZZDom );
+    assert.ok( instance instanceof zzDOM.MM );
     assert.deepEqual( instance.list, [] );
     assert.deepEqual( instance.nodes, [] );
     
     instance = zz( '#non-existing-id' );
-    assert.ok( instance instanceof MultipleZZDom );
+    assert.ok( instance instanceof zzDOM.MM );
     assert.deepEqual( instance.list, [] );
     assert.deepEqual( instance.nodes, [] );
 });

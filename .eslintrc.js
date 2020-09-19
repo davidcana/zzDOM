@@ -102,7 +102,8 @@ module.exports = {
         "Element": true,
         "NodeList": true,
         "HTMLCollection": true,
-        "getComputedStyle": true
+        "getComputedStyle": true,
+        "Velocity": true
     },
     "parserOptions": {
         "ecmaVersion": 6,

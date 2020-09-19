@@ -70,3 +70,108 @@ QUnit.test( 'is numeric test', function( assert ) {
     assert.equal( zz( '#t2-3-1' ).text(), t2_3_original[ 0 ] );
     assert.equal( zz( '#t2-3-2' ).text(), t2_3_original[ 1 ] );
 });
+
+QUnit.test( 'velocity with 1 element test', function( assert ) {
+    
+    MultipleZZDom.add( 
+        SimpleZZDom.prototype.velocity = function( options1, options2 ){
+            Velocity( this.el, options1, options2 );
+            return this;
+        }
+    );
+    
+    var offset_original = {
+        left: 700,
+        top: 400
+    }, offset_modified1 = {
+        left: 1300,
+        top: 400
+    }, offset_modified2 = {
+        left: 1300,
+        top: 600
+    };
+    
+    var offset = zz( '#t3-1' ).offset();
+    assert.equal( offset.left, offset_original.left );
+    assert.equal( offset.top, offset_original.top );
+    
+    var done = assert.async();
+    
+    zz( '#t3-1' )
+        .velocity(
+            {
+                left: offset_modified1.left,
+                top: offset_modified1.top
+            }
+        ).velocity(
+            {
+                left: offset_modified2.left,
+                top: offset_modified2.top
+            },
+            {
+                complete: function(){
+                    offset = zz( '#t3-1' ).offset();
+                    assert.equal( offset.left, offset_modified2.left );
+                    assert.equal( offset.top, offset_modified2.top );
+                    done();
+                }
+            }
+        );
+});
+
+QUnit.test( 'velocity with several elements test', function( assert ) {
+    
+    MultipleZZDom.add( 
+        SimpleZZDom.prototype.velocity = function( options1, options2 ){
+            Velocity( this.el, options1, options2 );
+            return this;
+        }
+    );
+    
+    var offset_original1 = {
+        left: 500,
+        top: 300
+    }, offset_original2 = {
+        left: 700,
+        top: 300
+    }, translate = 200;
+        
+    
+    var offset1 = zz( '#t4-1-1' ).offset();
+    assert.equal( offset1.left, offset_original1.left );
+    assert.equal( offset1.top, offset_original1.top );
+    
+    var offset2 = zz( '#t4-1-2' ).offset();
+    assert.equal( offset2.left, offset_original2.left );
+    assert.equal( offset2.top, offset_original2.top );
+    
+    var done = assert.async();
+    var c = 0;
+    zz( '.t4-1' )
+        .velocity(
+            {
+                translateX: translate + "px"
+            }
+        ).velocity(
+            {
+                translateY: translate + "px"
+            },
+            {
+                complete: function(){
+                    if ( c++ === 1 ){
+                    
+                        offset1 = zz( '#t4-1-1' ).offset();
+                        assert.equal( offset1.left, offset_original1.left + translate );
+                        assert.equal( offset1.top, offset_original1.top + translate );
+                    
+                        offset2 = zz( '#t4-1-2' ).offset();
+                        assert.equal( offset2.left, offset_original2.left + translate );
+                        assert.equal( offset2.top, offset_original2.top + translate );
+                        
+                        done();
+                    }
+                }
+            }
+        );
+});
+

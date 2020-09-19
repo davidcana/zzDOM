@@ -27,6 +27,7 @@ SimpleZZDom.prototype._styleProperty = function ( property, value ) {
     return this;
 };
 
+/* TODO: replace key using regular expression */
 SimpleZZDom.prototype._setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
 };

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Building and testing zzDOM</title>
+        
+        <script type="text/javascript" src="../lib/zpt.min.js" defer></script>
+        <script type="text/javascript" src="../js/zpt.js" defer></script>
+        <script type="text/javascript" src="../lib/syntaxHighlighter/lib.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="../docs.css">
+        <link rel="stylesheet" type="text/css" href="../lib/syntaxHighlighter/theme.css">
+    </head>
+    <body>
+        <div data-use-macro="'page@templates.html'">
+            <div data-fill-slot="'page-header'">
+                <h1>Building and testing zzDOM</h1>
+                <ul>
+                    <li><a href="#starting">Starting zzDOM</a>.</li>
+                    <li><a href="#web">The web of zzDOM</a>.</li>
+                    <li><a href="#testing">Testing</a>.</li>
+                </ul>
+            </div>
+            <article data-fill-slot="'article'">
+                <h2 data-attributes="id 'starting'">Starting zzDOM</h2>
+                <p>
+                    Asumming you have <a href="download.html">downloaded zzDOM</a> before, move to the directory of zzDOM and use the next command to install the dependencies of zzDOM:
+                </p>
+                <pre class="console">
+$ npm run install
+                </pre>
+                <p>
+                    Then use the next command to initialize a <a href="https://www.npmjs.com/package/http-server">HTTP server</a> (port 9000) to serve static files (HTML, CSS and JSON files):
+                </p>
+                <pre class="console">
+$ npm run http-server
+                </pre>
+                <p>
+                    zzDOM uses <a href="http://gruntjs.com/">Grunt</a> as task runner tool. Grunt file uses:
+                </p>
+                <ul>
+                    <li><em>grunt-concat</em>. .</li>
+                    <li><em>grunt-uglify</em>. .</li>
+                </ul>
+                <h2 data-attributes="id 'web'">The web of zzDOM</h2>
+                <p>
+                    Use the next command to initialize a <a href="https://www.npmjs.com/package/http-server">HTTP server</a> (port 9001) to serve static files of the web of zzDOM:
+                </p>
+                <pre class="console">
+$ npm run web
+                </pre> 
+                <p>
+                    Open <a href="http://localhost:9001">http://localhost:9001</a> with your favourite browser to view the web of zzDOM.
+                </p>
+                <h2 data-attributes="id 'testing'">Testing</h2>
+                <p>
+                    zzDOM uses <a href="https://qunitjs.com/">QUnit</a> as testing framework. There are some different ways for testing zzDOM:
+                </p>
+                <ul>
+                    <li>
+                        Open <a href="http://localhost:9000/test/">http://localhost:9000/test/</a> with your favourite browser. Be careful: only related to browser test are run! All tests passed using last versions of Mozilla Firefox (68.0.1, 64-bit) and Chromium (74.0.3729.169, 64-bit). Perhaps some tests fail using other browsers!
+                    </li>
+                    <li>
+                        Test zzDOM using console:
+                        <pre class="console">
+$ npm run testBrowser   // Run the related to browser tests
+$ npm run testNode      // Run the related to node.js tests
+$ npm run test          // Run all tests
+                        </pre>
+                    </li>
+                </ul>
+            </article>
+        </div>
+    </body>
+</html>

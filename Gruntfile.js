@@ -15,10 +15,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-        watch: {
-            files: [ 'js/app/*.js', 'test/js/app/*.js' ],
-            tasks: [ 'concat' ]
-        },
         compress: {
             main: {
                 options: {
@@ -98,23 +94,15 @@ module.exports = function(grunt) {
                 dest: 'docs/lib/zzDOM.min.js'
             }
         },
-        jshint: {
-            all: [ 'Gruntfile.js', 'js/app/*.js', 'test/js/app/*.js' ],
-            options: {
-                jshintrc: '.jshintrc'
-            }
-        },
         exec: {
             check_node: 'node samples/js/app/node.js'
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-exec');
     

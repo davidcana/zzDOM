@@ -34,7 +34,7 @@ QUnit.test( 'Hello world test', function( assert ) {
     assert.deepEqual( ids, [ 't1-2-1', 't1-2-3' ] );
 });
 
-QUnit.test( 'is integer test', function( assert ) {
+QUnit.test( 'is numeric test', function( assert ) {
     
     MultipleZZDom.add( 
         SimpleZZDom.prototype.isNumeric = function(){

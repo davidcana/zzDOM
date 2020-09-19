@@ -98,6 +98,7 @@ module.exports = {
         "SimpleZZDom": true,
         "MultipleZZDom": true,
         "zzDOM": true,
+        "zz": true,
         "Element": true,
         "NodeList": true,
         "HTMLCollection": true,

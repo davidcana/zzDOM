@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>Plugins tests</title>
+        <link rel="stylesheet" href="/node_modules/qunit/qunit/qunit.css">
+        
+        <script src="/node_modules/qunit/qunit/qunit.js" defer></script>
+        <script src="/build/zzDOM.js" defer></script>
+        <script src="js/app/htmlComparator.js" defer></script>
+        <script src="js/app/utils.js" defer></script>
+        <script src="js/app/plugins.js" defer></script>
+        
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+        
+        <h2>
+            1. Hello, world!
+        </h2>
+        
+        <h3>zz( '#t1-1' ).hello();</h3>
+        <div>
+            <span id="t1-1">white</span>. Original value is <em>white</em>, modified must be <em>Hello, world!</em>.
+        </div>
+        <h3>zz( '#t1-2 .selected' ).hello();</h3>
+        <ul id="t1-2">
+            <li>
+                <span id="t1-2-1" class="selected">white</span>. Original value is <em>white</em>, modified must be <em>Hello, world!</em>.
+            </li>
+            <li>
+                <span id="t1-2-2">black</span>. Original value is <em>black</em>, must not be modified.
+            </li>
+            <li>
+                <span id="t1-2-3" class="selected">red</span>. Original value is <em>red</em>, modified must be <em>Hello, world!</em>.
+            </li>
+        </ul>
+    </body>
+</html>

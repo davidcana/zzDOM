@@ -83,7 +83,7 @@ MultipleZZDom.init = function(){
 /*
 Add a new function to prototype of MultipleZZDom. Example:
 
-MultipleZZDom.register( 
+MultipleZZDom.add( 
     SimpleZZDom.prototype.myCustomFunction, 
     MultipleZZDom.constructors.concat( functionId )
 );

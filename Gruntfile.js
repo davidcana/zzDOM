@@ -74,8 +74,8 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     'js/zzDOM.js', 
-                    'js/simpleZZDom.js', 
-                    'js/multipleZZDom.js'
+                    'js/ss.js', 
+                    'js/mm.js'
                 ],
                 dest: 'build/zzDOM.js',
                 nonull: true

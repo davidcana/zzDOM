@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-18 13:5:9 */
+/*! zzDOM - v0.0.2 - 2020-09-19 07:12:4 */
 var zzDOM = {};
 
 zzDOM.htmlToElement = function ( html ) {
@@ -39,26 +39,26 @@ zzDOM.zz = function( x, s1, s2 ){
     // Redefine x if a selector id is found
     if ( s1 ){
         switch ( x ){
-            case '#':
-                x = document.getElementById( s1 );
-                break;
-            case '.':
-                x = document.getElementsByClassName( s1 );
-                break;
-            case 't':
-                x = document.getElementsByTagName( s1 );
-                break;
-            case 'tn':
-                x = document.getElementsByTagNameNS( s1, s2 );
-                break;
-            case 'n':
-                x = document.getElementsByName( s1 );
-                break;
-            case 's':
-                x = document.querySelector( s1 );
-                break;
-            default:
-                throw 'Unsupported selector id found running zz function: ' + x;
+        case '#':
+            x = document.getElementById( s1 );
+            break;
+        case '.':
+            x = document.getElementsByClassName( s1 );
+            break;
+        case 't':
+            x = document.getElementsByTagName( s1 );
+            break;
+        case 'tn':
+            x = document.getElementsByTagNameNS( s1, s2 );
+            break;
+        case 'n':
+            x = document.getElementsByName( s1 );
+            break;
+        case 's':
+            x = document.querySelector( s1 );
+            break;
+        default:
+            throw 'Unsupported selector id found running zz function: ' + x;
         }
     }
     
@@ -150,11 +150,6 @@ var SimpleZZDom = function ( _el ) {
 };
 
 /* Methods NOT included in jquery */
-/*
-SimpleZZDom.prototype.get = function () {
-    return this.el;
-};
-*/
 SimpleZZDom.prototype.styleProperty = function ( property, value ) {
     // get
     if ( value === undefined ){
@@ -631,137 +626,75 @@ var MultipleZZDom = function ( _nodes ) {
     }
 };
 
+MultipleZZDom.prototype._constructors = {};
+MultipleZZDom.prototype._constructors.concat = function( functionId ){
+    return function(){
+        var newNodes = [];
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var simpleZZDom = this.list[ i ];
+            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+            newNodes = newNodes.concat( x.nodes );
+        }
+        return zzDOM.buildInstance( newNodes );
+    };
+};
+MultipleZZDom.prototype._constructors.booleanOr = function( functionId ){
+    return function(){
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var simpleZZDom = this.list[ i ];
+            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+            if ( x ){
+                return true;
+            }
+        }
+        return false;
+    };
+};
+MultipleZZDom.prototype._constructors.default = function( functionId ){
+    return function(){
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var simpleZZDom = this.list[ i ];
+            var r = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
+            if ( i === 0 && ! ( r instanceof SimpleZZDom ) ){
+                return r;
+            }
+        }
+        return this;
+    };
+};
+
 // Init prototype functions from SimpleZZDom
-var MultipleZZDom_init = function(){
+MultipleZZDom.mInit = function(){
     for ( var id in SimpleZZDom.prototype ){
         var closure = function(){
             var functionId = id;
             
             switch ( SimpleZZDom.prototype[ functionId ] ){
-                // Concat functions
-                case SimpleZZDom.prototype.siblings:
-                case SimpleZZDom.prototype.prev:
-                case SimpleZZDom.prototype.next:
-                case SimpleZZDom.prototype.children:
-                case SimpleZZDom.prototype.parent:
-                case SimpleZZDom.prototype.find:
-                case SimpleZZDom.prototype.filter:
-                case SimpleZZDom.prototype.offsetParent:
-                case SimpleZZDom.prototype.clone:
-                    return function(){
-                        var newNodes = [];
-                        for ( var i = 0; i < this.list.length; i++ ) {
-                            var simpleZZDom = this.list[ i ];
-                            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
-                            newNodes = newNodes.concat( x.nodes );
-                        }
-                        return zzDOM.buildInstance( newNodes );
-                    };
-                // Boolean functions
-                case SimpleZZDom.prototype.is:
-                    return function(){
-                        for ( var i = 0; i < this.list.length; i++ ) {
-                            var simpleZZDom = this.list[ i ];
-                            var x = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
-                            if ( x ){
-                                return true;
-                            }
-                        }
-                        return false;
-                    };
-                default:
-                    // Default function
-                    return function(){
-                        for ( var i = 0; i < this.list.length; i++ ) {
-                            var simpleZZDom = this.list[ i ];
-                            var r = simpleZZDom[ functionId ].apply( simpleZZDom, arguments );
-                            if ( i == 0 && ! ( r instanceof SimpleZZDom ) ){
-                                return r;
-                            }
-                        }
-                        return this;
-                    };
+            // Concat functions
+            case SimpleZZDom.prototype.siblings:
+            case SimpleZZDom.prototype.prev:
+            case SimpleZZDom.prototype.next:
+            case SimpleZZDom.prototype.children:
+            case SimpleZZDom.prototype.parent:
+            case SimpleZZDom.prototype.find:
+            case SimpleZZDom.prototype.filter:
+            case SimpleZZDom.prototype.offsetParent:
+            case SimpleZZDom.prototype.clone:
+                return MultipleZZDom.prototype._constructors.concat( functionId );
+            // Boolean functions
+            case SimpleZZDom.prototype.is:
+                return MultipleZZDom.prototype._constructors.booleanOr( functionId );
+            // Default function
+            default:
+                return MultipleZZDom.prototype._constructors.default( functionId );
             }
         };
         MultipleZZDom.prototype[ id ] = closure();
     }
 }();
 
-/* Methods NOT included in jquery */
-/*
-MultipleZZDom.prototype.get = function () {
-    return this.list;
-};
-*/
-/*
-MultipleZZDom.prototype.iterate = function ( iterateFn ) {
-    for ( var i = 0; i < this.list.length; i++ ) {
-        iterateFn( this.list[ i ] );
-    }
-};
-*/
 /* Methods included in jquery */
 MultipleZZDom.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );
     return this;
 };
-/*
-MultipleZZDom.prototype.siblings = function () {
-    var newNodes = [];
-    
-    for ( var i = 0; i < this.list.length; i++ ) {
-        var simpleZZDom = this.list[ i ];
-        var x = simpleZZDom.siblings.apply( simpleZZDom, arguments );
-        newNodes = newNodes.concat( x.nodes );
-    }
-    
-    return zzDOM.buildInstance( newNodes );
-};
-
-MultipleZZDom.prototype.prev = function () {
-    var newNodes = [];
-    
-    for ( var i = 0; i < this.list.length; i++ ) {
-        var simpleZZDom = this.list[ i ];
-        var x = simpleZZDom.prev.apply( simpleZZDom, arguments );
-        newNodes = newNodes.concat( x.nodes );
-    }
-    
-    return zzDOM.buildInstance( newNodes );
-};
-
-MultipleZZDom.prototype.next = function () {
-    var newNodes = [];
-    
-    for ( var i = 0; i < this.list.length; i++ ) {
-        var simpleZZDom = this.list[ i ];
-        var x = simpleZZDom.next.apply( simpleZZDom, arguments );
-        newNodes = newNodes.concat( x.nodes );
-    }
-    
-    return zzDOM.buildInstance( newNodes );
-};
-*/
-/*
-MultipleZZDom.prototype.find = function () {
-    var nodes = [];
-    for ( var i = 0; i < this.list.length; i++ ) {
-        var simpleZZDOM = this.list[ i ];
-        var thisNodes = simpleZZDOM.find.apply( simpleZZDOM, arguments ).nodes;
-        nodes = nodes.concat( thisNodes );
-    }
-    
-    return zzDOM.buildInstance( nodes );
-};
-
-MultipleZZDom.prototype.filter = function () {
-    var nodes = [];
-    for ( var i = 0; i < this.list.length; i++ ) {
-        var simpleZZDOM = this.list[ i ];
-        var thisNodes = simpleZZDOM.filter.apply( simpleZZDOM, arguments ).nodes;
-        nodes = nodes.concat( thisNodes );
-    }
-    
-    return zzDOM.buildInstance( nodes );
-};
-*/

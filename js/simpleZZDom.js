@@ -7,11 +7,6 @@ var SimpleZZDom = function ( _el ) {
 };
 
 /* Methods NOT included in jquery */
-/*
-SimpleZZDom.prototype.get = function () {
-    return this.el;
-};
-*/
 SimpleZZDom.prototype.styleProperty = function ( property, value ) {
     // get
     if ( value === undefined ){

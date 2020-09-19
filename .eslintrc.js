@@ -97,7 +97,7 @@ module.exports = {
         "QUnit": true,
         "SimpleZZDom": true,
         "MultipleZZDom": true,
-        "zz": true,
+        "zzDOM": true,
         "Element": true,
         "NodeList": true,
         "HTMLCollection": true,

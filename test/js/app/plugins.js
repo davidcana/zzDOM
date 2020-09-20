@@ -74,8 +74,19 @@ QUnit.test( 'is numeric test', function( assert ) {
 QUnit.test( 'velocity with 1 element test', function( assert ) {
     
     zzDOM.add( 
-        zzDOM.SS.prototype.velocity = function( options1, options2 ){
-            Velocity( this.el, options1, options2 );
+        zzDOM.SS.prototype.velocity = function(){
+            /* 
+                Conventional Velocity call:
+                Velocity( this.el, options1, options2 );
+            */
+            
+            // Build args array with this.el as first position and then the arguments of this function
+            var args = Array.prototype.slice.call( arguments );
+            args.unshift( this.el );
+            
+            // Call Velocity using the new array
+            Velocity.apply( Velocity, args );
+            
             return this;
         }
     );
@@ -122,8 +133,19 @@ QUnit.test( 'velocity with 1 element test', function( assert ) {
 QUnit.test( 'velocity with several elements test', function( assert ) {
     
     zzDOM.add( 
-        zzDOM.SS.prototype.velocity = function( options1, options2 ){
-            Velocity( this.el, options1, options2 );
+        zzDOM.SS.prototype.velocity = function(){
+            /* 
+                Conventional Velocity call:
+                Velocity( this.el, options1, options2 );
+            */
+            
+            // Build args array with this.el as first position and then the arguments of this function
+            var args = Array.prototype.slice.call( arguments );
+            args.unshift( this.el );
+            
+            // Call Velocity using the new array
+            Velocity.apply( Velocity, args );
+            
             return this;
         }
     );

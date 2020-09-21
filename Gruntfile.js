@@ -124,6 +124,20 @@ module.exports = function(grunt) {
                     output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=sample.min.js.map',
                     debug: true
                 }
+            },
+            minimal: {
+                options: {
+                    js: [
+                        'samples/minimal1.js',
+                        'samples/minimal2.js'
+                    ],
+                    js_output_file: 'build/minimal.min.js',
+                    compilation_level: 'SIMPLE',
+                    create_source_map: 'build/minimal.min.js.map',
+                    warning_level: 'VERBOSE',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=minimal.min.js.map',
+                    debug: true
+                }
             }
         },
         exec: {
@@ -138,7 +152,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-exec');
     
-    require('google-closure-compiler').grunt(grunt);
+    require('google-closure-compiler').grunt(grunt, {
+      platform: ['native', 'java', 'javascript'],
+      max_parallel_compilations: require('os').cpus().length
+    });
+    //require('google-closure-compiler').grunt(grunt);
     // The load-grunt-tasks plugin won’t automatically load closure-compiler
 
     grunt.registerTask('test', ['qunit']);

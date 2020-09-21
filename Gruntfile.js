@@ -97,20 +97,19 @@ module.exports = function(grunt) {
         'closure-compiler': {
             all: {
                 files: {
-                    'build/simple-tests.min.js': [ 
-                        'js/zzDOM.js', 
-                        'js/ss.js', 
+                    'build/simple-tests.min.js': [
+                        'js/zzDOM.js',
+                        'js/ss.js',
                         'js/mm.js',
-                        'node_modules/qunit/qunit/qunit.js',
-                        'js/app/htmlComparator.js',
-                        'js/app/utils.js',
+                        'test/js/app/htmlComparator.js',
+                        'test/js/app/utils.js',
                         'test/js/app/simple.js'
                     ]
                 },
                 options: {
-                    compilation_level: 'SIMPLE',
-                    language_in: 'ECMASCRIPT5_STRICT',
-                    create_source_map: 'build/simple-tests.min.js.map'
+                    compilation_level: 'ADVANCED',
+                    create_source_map: 'build/simple-tests.min.js.map',
+                    externs: 'externs.js'
                 }
             }
         },

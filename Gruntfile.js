@@ -107,9 +107,9 @@ module.exports = function(grunt) {
                     ]
                 },
                 options: {
-                    compilation_level: 'ADVANCED',
+                    compilation_level: 'SIMPLE',
                     create_source_map: 'build/simple-tests.min.js.map',
-                    externs: 'externs.js'
+                    externs: 'externs/qunit-2.11.2.js'
                 }
             }
         },

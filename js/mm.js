@@ -70,6 +70,7 @@ zzDOM.MM.init = function(){
                 return zzDOM.MM.constructors.concat( functionId );
             // Boolean functions
             case zzDOM.SS.prototype.is:
+            case zzDOM.SS.prototype.hasClass:
                 return zzDOM.MM.constructors.booleanOr( functionId );
             // Default function
             default:

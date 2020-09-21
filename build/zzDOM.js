@@ -1,4 +1,4 @@
-/*! zzDOM - v0.0.2 - 2020-09-19 18:57:2 */
+/*! zzdom - v0.2.0 - 2020-09-21 09:59:10 */
 var zzDOM = {};
 
 /*
@@ -200,7 +200,6 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     return this;
 };
 
-/* TODO: replace key using regular expression */
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
 };
@@ -708,6 +707,7 @@ zzDOM.MM.init = function(){
                 return zzDOM.MM.constructors.concat( functionId );
             // Boolean functions
             case zzDOM.SS.prototype.is:
+            case zzDOM.SS.prototype.hasClass:
                 return zzDOM.MM.constructors.booleanOr( functionId );
             // Default function
             default:

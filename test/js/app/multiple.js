@@ -184,6 +184,18 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     assert.ok( zz( '#t5-10' ).hasClass( t5_4_class ) );
     assert.notOk( zz( '#t5-11' ).hasClass( t5_4_class ) );
     assert.deepEqual( ids, [ 't5-10', 't5-11' ] );
+    
+    var t5_5_class = 'myclass';
+    assert.notOk( document.getElementById( 't5-12' ).classList.contains( t5_5_class ) );
+    assert.notOk( document.getElementById( 't5-13' ).classList.contains( t5_5_class ) );
+    assert.ok( document.getElementById( 't5-14' ).classList.contains( t5_5_class ) );
+    assert.ok( zz( '.t5-5' ).hasClass( t5_5_class ) );
+    
+    var t5_6_class = 'myclass';
+    assert.notOk( document.getElementById( 't5-15' ).classList.contains( t5_6_class ) );
+    assert.notOk( document.getElementById( 't5-16' ).classList.contains( t5_6_class ) );
+    assert.notOk( document.getElementById( 't5-17' ).classList.contains( t5_6_class ) );
+    assert.notOk( zz( '.t5-6' ).hasClass( t5_6_class ) );
 });
 
 QUnit.test( 'after, before, append and prepend test', function( assert ) {

@@ -27,7 +27,6 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     return this;
 };
 
-/* TODO: replace key using regular expression */
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
 };
@@ -229,7 +228,6 @@ zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
 
-/* TODO: MultipleZZDOM version must implement any */
 zzDOM.SS.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };

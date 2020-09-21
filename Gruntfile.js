@@ -109,6 +109,21 @@ module.exports = function(grunt) {
                     create_source_map: 'build/simple-tests.min.js.map',
                     externs: 'externs/qunit-2.11.2.js'
                 }
+            },
+            sample: {
+                files: {
+                    'build/sample.min.js': [
+                        'build/zzDOM.js',
+                        'samples/sample.js'
+                    ]
+                },
+                options: {
+                    compilation_level: 'SIMPLE',
+                    create_source_map: 'build/sample.min.js.map',
+                    warning_level: 'VERBOSE',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=sample.min.js.map',
+                    debug: true
+                }
             }
         },
         exec: {

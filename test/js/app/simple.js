@@ -358,6 +358,19 @@ QUnit.test( 'css test', function( assert ) {
     assert.equal( zz( '#t11-5' ).css( 'color' ), 'rgb(255, 255, 255)' );
     assert.equal( zz( '#t11-5' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
     assert.equal( id, 't11-5' );
+    
+    var t11_6_original = null,
+        t11_6_modified = 'color: white; background-color: red;';
+    assert.equal( document.getElementById( 't11-6' ).getAttribute( 'style' ), t11_6_original );
+    id = zz( '#t11-6' )
+        .css({
+            color: 'white',
+            'background-color': 'red' 
+        }).attr( 'id' );
+    assert.equal( document.getElementById( 't11-6' ).getAttribute( 'style' ), t11_6_modified );
+    assert.equal( zz( '#t11-6' ).css( 'color' ), 'rgb(255, 255, 255)' );
+    assert.equal( zz( '#t11-6' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
+    assert.equal( id, 't11-6' );
 });
 
 QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert ) {

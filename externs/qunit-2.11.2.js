@@ -197,5 +197,5 @@ var QUnit = {
     "moduleDone": function () {},
     "urlParams": function () {},
     "diff": function () {}
-}
+};
 

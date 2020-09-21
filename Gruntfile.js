@@ -98,9 +98,7 @@ module.exports = function(grunt) {
             all: {
                 files: {
                     'build/simple-tests.min.js': [
-                        'js/zzDOM.js',
-                        'js/ss.js',
-                        'js/mm.js',
+                        'build/zzDOM.js',
                         'test/js/app/htmlComparator.js',
                         'test/js/app/utils.js',
                         'test/js/app/simple.js'

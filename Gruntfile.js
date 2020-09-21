@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-
+    
     grunt.initConfig({
         pkg: grunt.file.readJSON( 'package.json' ),
         qunit: {
@@ -94,6 +94,26 @@ module.exports = function(grunt) {
                 dest: 'docs/lib/zzDOM.min.js'
             }
         },
+        'closure-compiler': {
+            all: {
+                files: {
+                    'build/simple-tests.min.js': [ 
+                        'js/zzDOM.js', 
+                        'js/ss.js', 
+                        'js/mm.js',
+                        'node_modules/qunit/qunit/qunit.js',
+                        'js/app/htmlComparator.js',
+                        'js/app/utils.js',
+                        'test/js/app/simple.js'
+                    ]
+                },
+                options: {
+                    compilation_level: 'SIMPLE',
+                    language_in: 'ECMASCRIPT5_STRICT',
+                    create_source_map: 'build/simple-tests.min.js.map'
+                }
+            }
+        },
         exec: {
             check_node: 'node samples/js/app/node.js'
         }
@@ -106,6 +126,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-exec');
     
+    require('google-closure-compiler').grunt(grunt);
+    // The load-grunt-tasks plugin won’t automatically load closure-compiler
+
     grunt.registerTask('test', ['qunit']);
     grunt.registerTask('default', ['concat']);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);

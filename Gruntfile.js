@@ -95,16 +95,15 @@ module.exports = function(grunt) {
             }
         },
         'closure-compiler': {
-            all: {
-                files: {
-                    'build/simple-tests.min.js': [
+            simple: {
+                options: {
+                    js: [
                         'build/zzDOM.js',
                         'test/js/app/htmlComparator.js',
                         'test/js/app/utils.js',
                         'test/js/app/simple.js'
-                    ]
-                },
-                options: {
+                    ],
+                    js_output_file: 'build/simple-tests.min.js',
                     compilation_level: 'SIMPLE',
                     create_source_map: 'build/simple-tests.min.js.map',
                     externs: 'externs/qunit-2.11.2.js'

@@ -405,7 +405,11 @@ var htmlComparator = (function() {
       
       return deserializedNodeHtml;
     };
-
+    
+    /**
+     * @param {string} serializedHtmlNodes
+     * @param {number=} _depth
+     */
     var deserializeHtml = function( serializedHtmlNodes, _depth ) {
       var i, len,
           deserializedHtml = "",

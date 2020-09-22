@@ -287,5 +287,10 @@ var assert = {
     /**
      * @param {number=} increment
      */
-    "stop": function(increment){}
+    "stop": function(increment){},
+    
+    /**
+     * @param {Object} data
+     */
+    "pushResult": function(data){}
 };

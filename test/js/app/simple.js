@@ -467,7 +467,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     zz( '#t14-1b' ).el.addEventListener( 
         'click', 
         function(){ 
-            var current = parseInt( zz( '#t14-1c' ).text() );
+            var current = parseInt( zz( '#t14-1c' ).text(), 10 );
             zz( '#t14-1c' ).text( ++current );
         } 
     );
@@ -490,7 +490,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     zz( '#t14-2b' ).on( 
         'click', 
         function(){ 
-            var current = parseInt( zz( '#t14-2c' ).text() );
+            var current = parseInt( zz( '#t14-2c' ).text(), 10 );
             zz( '#t14-2c' ).text( ++current );
         } 
     );
@@ -508,7 +508,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     zz( '#t14-3b' ).on( 
         'click', 
         function(){ 
-            var current = parseInt( zz( '#t14-3c' ).text() );
+            var current = parseInt( zz( '#t14-3c' ).text(), 10 );
             zz( '#t14-3c' ).text( ++current );
         } 
     );
@@ -524,7 +524,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using event name and listener
     // Use t14-4c as a counter of clicks
     var t4Listener = function(){ 
-        var current = parseInt( zz( '#t14-4c' ).text() );
+        var current = parseInt( zz( '#t14-4c' ).text(), 10 );
         zz( '#t14-4c' ).text( ++current );
     };
     zz( '#t14-4b' ).on( 'click', t4Listener );
@@ -540,12 +540,12 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using event name and listener: 2 listeners
     // Use t14-5c as a counter of clicks
     var t5Listener1 = function(){ 
-        var current = parseInt( zz( '#t14-5c' ).text() );
+        var current = parseInt( zz( '#t14-5c' ).text(), 10 );
         zz( '#t14-5c' ).text( ++current );
     };
     zz( '#t14-5b' ).on( 'click', t5Listener1 );
     var t5Listener2 = function(){ 
-        var current = parseInt( zz( '#t14-5c' ).text() );
+        var current = parseInt( zz( '#t14-5c' ).text(), 10 );
         zz( '#t14-5c' ).text( 10 + current );
     };
     zz( '#t14-5b' ).on( 'click', t5Listener2 );
@@ -561,12 +561,12 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using event name and listener: 2 listeners from 2 different events
     // Use t14-6c as a counter of clicks
     var t6Listener1 = function(){ 
-        var current = parseInt( zz( '#t14-6c' ).text() );
+        var current = parseInt( zz( '#t14-6c' ).text(), 10 );
         zz( '#t14-6c' ).text( ++current );
     };
     zz( '#t14-6b' ).on( 'click', t6Listener1 );
     var t6Listener2 = function(){ 
-        var current = parseInt( zz( '#t14-6c' ).text() );
+        var current = parseInt( zz( '#t14-6c' ).text(), 10 );
         zz( '#t14-6c' ).text( 10 + current );
     };
     zz( '#t14-6b' ).on( 'focus', t6Listener2 );
@@ -586,12 +586,12 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using event name: 2 listeners from 2 different events
     // Use t14-7c as a counter of clicks
     var t7Listener1 = function(){ 
-        var current = parseInt( zz( '#t14-7c' ).text() );
+        var current = parseInt( zz( '#t14-7c' ).text(), 10 );
         zz( '#t14-7c' ).text( ++current );
     };
     zz( '#t14-7b' ).on( 'click', t7Listener1 );
     var t7Listener2 = function(){ 
-        var current = parseInt( zz( '#t14-7c' ).text() );
+        var current = parseInt( zz( '#t14-7c' ).text(), 10 );
         zz( '#t14-7c' ).text( 10 + current );
     };
     zz( '#t14-7b' ).on( 'focus', t7Listener2 );
@@ -611,12 +611,12 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using NO event name: 2 listeners from 2 different events
     // Use t14-8c as a counter of clicks
     var t8Listener1 = function(){ 
-        var current = parseInt( zz( '#t14-8c' ).text() );
+        var current = parseInt( zz( '#t14-8c' ).text(), 10 );
         zz( '#t14-8c' ).text( ++current );
     };
     zz( '#t14-8b' ).on( 'click', t8Listener1 );
     var t8Listener2 = function(){ 
-        var current = parseInt( zz( '#t14-8c' ).text() );
+        var current = parseInt( zz( '#t14-8c' ).text(), 10 );
         zz( '#t14-8c' ).text( 10 + current );
     };
     zz( '#t14-8b' ).on( 'focus', t8Listener2 );

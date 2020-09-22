@@ -111,13 +111,12 @@ module.exports = function(grunt) {
                 }
             },
             sample: {
-                files: {
-                    'build/sample.min.js': [
+                options: {
+                    js: [
                         'build/zzDOM.js',
                         'samples/sample.js'
-                    ]
-                },
-                options: {
+                    ],
+                    js_output_file: 'build/sample.min.js',
                     compilation_level: 'SIMPLE',
                     create_source_map: 'build/sample.min.js.map',
                     warning_level: 'VERBOSE',

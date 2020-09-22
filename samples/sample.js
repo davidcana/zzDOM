@@ -23,7 +23,7 @@ document.getElementById( 't1' ).addEventListener(
         equal( zz( '#t1-1' ).text(), t1_1_modified );
         equal( id, 't1-1' );
 
-        if ( ! errors ){
+        if ( errors !== 0 ){
             alert( 'Number of errors: ' + errors );
         } else {
             alert( 'No errors!');

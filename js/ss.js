@@ -1,7 +1,8 @@
 /*
-    zzDOM.SS class
-*/
-zzDOM.SS = function ( _el ) {    
+ * zzDOM.SS class
+ */
+/** @constructor */
+zzDOM.SS = function ( _el ) {
     this.el = _el;
     this.nodes = [ _el ];
 };
@@ -39,9 +40,9 @@ zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
 
 zzDOM.SS.prototype._insertHelper = function ( position, x ) {
     if ( x instanceof Element ){
-        this.el.insertAdjacent( position, x );
+        this.el.insertAdjacentElement( position, x );
     } else if ( x instanceof zzDOM.SS ){
-        this.el.insertAdjacent( position, x.el );
+        this.el.insertAdjacentElement( position, x.el );
     } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( position, x );
     } else {
@@ -154,6 +155,10 @@ zzDOM.SS.prototype.find = function ( selector ) {
     );
 };
 
+/**
+ * @param {string} name
+ * @param {string=} value
+ */
 zzDOM.SS.prototype.attr = function ( name, value ) {
     // get
     if ( value === undefined ){
@@ -311,7 +316,7 @@ zzDOM.SS.prototype.outerHeight = function ( withMargin ) {
     
     // With margin
     var style = getComputedStyle( this.el );
-    return height + parseInt( style.marginTop ) + parseInt( style.marginBottom );
+    return height + parseInt( style.marginTop, 10 ) + parseInt( style.marginBottom, 10 );
 };
 
 zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
@@ -324,7 +329,7 @@ zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
     
     // With margin
     var style = getComputedStyle( this.el );
-    return width + parseInt( style.marginLeft ) + parseInt( style.marginRight );
+    return width + parseInt( style.marginLeft, 10 ) + parseInt( style.marginRight, 10 );
 };
 
 zzDOM.SS.prototype.parent = function () {

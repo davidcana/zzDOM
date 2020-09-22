@@ -115,7 +115,9 @@ module.exports = function(grunt) {
             sample: {
                 options: {
                     js: [
-                        'build/zzDOM.js',
+                        'js/zzDOM.js', 
+                        'js/ss.js', 
+                        'js/mm.js',
                         'samples/sample.js'
                     ],
                     js_output_file: 'build/sample.min.js',

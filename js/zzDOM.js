@@ -1,4 +1,8 @@
 /* zzDOM object */
+/**
+ * A namespace.
+ * @const
+ */
 var zzDOM = {};
 
 /*
@@ -16,6 +20,11 @@ var zzDOM = {};
     zz( 'table.className tr td' ); // String selector
     zz( '<div>New div</div>' ); // HTML code in string
 */
+/**
+ * @param {string|Element|HTMLCollection|NodeList} x
+ * @param {string=} s1
+ * @param {string=} s2 
+ */
 zzDOM.zz = function( x, s1, s2 ){
     
     // Redefine x if a selector id is found
@@ -31,7 +40,7 @@ zzDOM.zz = function( x, s1, s2 ){
             x = document.getElementsByTagName( s1 );
             break;
         case 'tn':
-            x = document.getElementsByTagNameNS( s1, s2 );
+            x = document.getElementsByTagNameNS( s1, s2 || '' );
             break;
         case 'n':
             x = document.getElementsByName( s1 );

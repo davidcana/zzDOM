@@ -1,4 +1,8 @@
-/*! zzdom - v0.2.0 - 2020-09-21 09:59:10 */
+/*! zzdom - v0.2.0 - 2020-09-22 11:48:27 */
+/**
+ * A namespace.
+ * @const
+ */
 var zzDOM = {};
 
 /*
@@ -16,6 +20,11 @@ var zzDOM = {};
     zz( 'table.className tr td' ); // String selector
     zz( '<div>New div</div>' ); // HTML code in string
 */
+/**
+ * @param {string|Element|HTMLCollection|NodeList} x
+ * @param {string=} s1
+ * @param {string=} s2 
+ */
 zzDOM.zz = function( x, s1, s2 ){
     
     // Redefine x if a selector id is found
@@ -31,7 +40,7 @@ zzDOM.zz = function( x, s1, s2 ){
             x = document.getElementsByTagName( s1 );
             break;
         case 'tn':
-            x = document.getElementsByTagNameNS( s1, s2 );
+            x = document.getElementsByTagNameNS( s1, s2 || '' );
             break;
         case 'n':
             x = document.getElementsByName( s1 );
@@ -174,7 +183,8 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
 // Register zz function
 window.zz = zzDOM.zz;
 
-zzDOM.SS = function ( _el ) {    
+/** @constructor */
+zzDOM.SS = function ( _el ) {
     this.el = _el;
     this.nodes = [ _el ];
 };
@@ -212,9 +222,9 @@ zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
 
 zzDOM.SS.prototype._insertHelper = function ( position, x ) {
     if ( x instanceof Element ){
-        this.el.insertAdjacent( position, x );
+        this.el.insertAdjacentElement( position, x );
     } else if ( x instanceof zzDOM.SS ){
-        this.el.insertAdjacent( position, x.el );
+        this.el.insertAdjacentElement( position, x.el );
     } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( position, x );
     } else {
@@ -327,6 +337,10 @@ zzDOM.SS.prototype.find = function ( selector ) {
     );
 };
 
+/**
+ * @param {string} name
+ * @param {string=} value
+ */
 zzDOM.SS.prototype.attr = function ( name, value ) {
     // get
     if ( value === undefined ){
@@ -401,7 +415,6 @@ zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
 
-/* TODO: MultipleZZDOM version must implement any */
 zzDOM.SS.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };
@@ -485,7 +498,7 @@ zzDOM.SS.prototype.outerHeight = function ( withMargin ) {
     
     // With margin
     var style = getComputedStyle( this.el );
-    return height + parseInt( style.marginTop ) + parseInt( style.marginBottom );
+    return height + parseInt( style.marginTop, 10 ) + parseInt( style.marginBottom, 10 );
 };
 
 zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
@@ -498,7 +511,7 @@ zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
     
     // With margin
     var style = getComputedStyle( this.el );
-    return width + parseInt( style.marginLeft ) + parseInt( style.marginRight );
+    return width + parseInt( style.marginLeft, 10 ) + parseInt( style.marginRight, 10 );
 };
 
 zzDOM.SS.prototype.parent = function () {
@@ -638,6 +651,7 @@ zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {
     return this;
 };
 
+/** @constructor */
 zzDOM.MM = function ( _nodes ) {    
     
     // Init list and nodes 

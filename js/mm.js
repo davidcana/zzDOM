@@ -1,6 +1,7 @@
 /*
-    zzDOM.MM class
-*/
+ * zzDOM.MM class
+ */
+/** @constructor */
 zzDOM.MM = function ( _nodes ) {    
     
     // Init list and nodes 

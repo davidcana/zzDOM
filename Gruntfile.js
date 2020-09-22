@@ -10,7 +10,8 @@ module.exports = function(grunt) {
                         'http://localhost:9000/test/simple.html',
                         'http://localhost:9000/test/multiple.html',
                         'http://localhost:9000/test/zz.html',
-                        'http://localhost:9000/test/plugins.html'
+                        'http://localhost:9000/test/plugins.html',
+                        'http://localhost:9000/test/simple-gcc.html'
                     ]
                 }
             }

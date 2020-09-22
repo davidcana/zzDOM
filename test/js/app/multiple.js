@@ -1,5 +1,8 @@
 "use strict";
 
+//TODO must remove this
+var zz = zzDOM.zz;
+
 // Unit tests
 QUnit.test( 'text and html test', function( assert ) {
     var t1_1_original = [ 'white', 'black', 'red' ],
@@ -124,7 +127,7 @@ QUnit.test( 'attr and removeAttr test', function( assert ) {
     assert.equal( zz( '#t4-4' ).attr( 'href' ), t4_2_original[ 0 ] );
     assert.equal( zz( '#t4-5' ).attr( 'href' ), t4_2_original[ 1 ] );
     assert.equal( zz( '#t4-6' ).attr( 'href' ), t4_2_original[ 2 ] );
-    var ids = [];
+    ids = [];
     zz( '.t4-2.removeAttr' )
         .removeAttr( 'href' )
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
@@ -158,7 +161,7 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     assert.ok( document.getElementById( 't5-7' ).classList.contains( t5_3_class ) );
     assert.ok( document.getElementById( 't5-8' ).classList.contains( t5_3_class ) );
     assert.ok( document.getElementById( 't5-9' ).classList.contains( t5_3_class ) );
-    var ids = [];
+    ids = [];
     zz( '.t5-3' )
         .removeClass( t5_3_class )
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
@@ -170,7 +173,7 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     var t5_4_class = 'toggleclass';
     assert.ok( document.getElementById( 't5-10' ).classList.contains( t5_4_class ) );
     assert.notOk( document.getElementById( 't5-11' ).classList.contains( t5_4_class ) );
-    var ids = [];
+    ids = [];
     zz( '.t5-4' )
         .toggleClass( t5_4_class )
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
@@ -645,14 +648,14 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     zz( '#t14-1-1b' ).el.addEventListener( 
         'click', 
         function(){ 
-            var current = parseInt( zz( '#t14-1-1c' ).text() );
+            var current = parseInt( zz( '#t14-1-1c' ).text(), 10 );
             zz( '#t14-1-1c' ).text( ++current );
         } 
     );
     zz( '#t14-1-2b' ).el.addEventListener( 
         'click', 
         function(){ 
-            var current = parseInt( zz( '#t14-1-2c' ).text() );
+            var current = parseInt( zz( '#t14-1-2c' ).text(), 10 );
             zz( '#t14-1-2c' ).text( ++current );
         } 
     );
@@ -682,7 +685,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     zz( '.t14-2' ).on( 
         'click', 
         function(){ 
-            var current = parseInt( zz( '#t14-2c' ).text() );
+            var current = parseInt( zz( '#t14-2c' ).text(), 10 );
             zz( '#t14-2c' ).text( ++current );
         } 
     );
@@ -704,7 +707,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     zz( '.t14-3' ).on( 
         'click', 
         function(){ 
-            var current = parseInt( zz( '#t14-3c' ).text() );
+            var current = parseInt( zz( '#t14-3c' ).text(), 10 );
             zz( '#t14-3c' ).text( ++current );
         } 
     );
@@ -724,7 +727,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using event name and listener
     // Use t14-4c as a counter of clicks
     var t4Listener = function(){ 
-        var current = parseInt( zz( '#t14-4c' ).text() );
+        var current = parseInt( zz( '#t14-4c' ).text(), 10 );
         zz( '#t14-4c' ).text( ++current );
     };
     zz( '.t14-4' ).on( 'click', t4Listener );
@@ -744,11 +747,11 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using event name and listener: 2 listeners
     // Use t14-5c as a counter of clicks
     var t5Listener1 = function(){ 
-        var current = parseInt( zz( '#t14-5c' ).text() );
+        var current = parseInt( zz( '#t14-5c' ).text(), 10 );
         zz( '#t14-5c' ).text( ++current );
     };
     var t5Listener2 = function(){ 
-        var current = parseInt( zz( '#t14-5c' ).text() );
+        var current = parseInt( zz( '#t14-5c' ).text(), 10 );
         zz( '#t14-5c' ).text( 10 + current );
     };
     zz( '.t14-5-1' ).on( 'click', t5Listener1 );
@@ -787,11 +790,11 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using event name and listener: 2 listeners from 2 different events
     // Use t14-6c as a counter of clicks
     var t6Listener1 = function(){ 
-        var current = parseInt( zz( '#t14-6c' ).text() );
+        var current = parseInt( zz( '#t14-6c' ).text(), 10 );
         zz( '#t14-6c' ).text( ++current );
     };
     var t6Listener2 = function(){ 
-        var current = parseInt( zz( '#t14-6c' ).text() );
+        var current = parseInt( zz( '#t14-6c' ).text(), 10 );
         zz( '#t14-6c' ).text( 10 + current );
     };
     zz( '.t14-6-1' ).on( 'click', t6Listener1 );
@@ -830,11 +833,11 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using event name: 2 listeners from 2 different events
     // Use t14-7c as a counter of clicks
     var t7Listener1 = function(){ 
-        var current = parseInt( zz( '#t14-7c' ).text() );
+        var current = parseInt( zz( '#t14-7c' ).text(), 10 );
         zz( '#t14-7c' ).text( ++current );
     };
     var t7Listener2 = function(){ 
-        var current = parseInt( zz( '#t14-7c' ).text() );
+        var current = parseInt( zz( '#t14-7c' ).text(), 10 );
         zz( '#t14-7c' ).text( 10 + current );
     };
     zz( '.t14-7-1' ).on( 'click', t7Listener1 );
@@ -873,11 +876,11 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test on/off using NO event name: 2 listeners from 2 different events
     // Use t14-8c as a counter of clicks
     var t8Listener1 = function(){ 
-        var current = parseInt( zz( '#t14-8c' ).text() );
+        var current = parseInt( zz( '#t14-8c' ).text(), 10 );
         zz( '#t14-8c' ).text( ++current );
     };
     var t8Listener2 = function(){ 
-        var current = parseInt( zz( '#t14-8c' ).text() );
+        var current = parseInt( zz( '#t14-8c' ).text(), 10 );
         zz( '#t14-8c' ).text( 10 + current );
     };
     zz( '.t14-8-1' ).on( 'click', t8Listener1 );
@@ -1161,7 +1164,7 @@ This is the container t16-3
     var t16_5_original = 'This is the container t16-5',
         t16_5_modified = t16_5_original;
     utils.assertHtml( assert, 't16-5', t16_5_original );
-    var ids = [];
+    ids = [];
     zz( '<div id="t16-5-1">New div 1</div><div id="t16-5-2">New div 2</div>' )
         .appendTo( document.getElementById( 'non-existing-id-DOM' ) )
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );

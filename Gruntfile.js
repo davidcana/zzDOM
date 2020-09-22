@@ -115,6 +115,25 @@ module.exports = function(grunt) {
                     externs: 'externs/qunit-2.11.2.js'
                 }
             },
+            multiple: {
+                options: {
+                    js: [
+                        'js/zzDOM.js', 
+                        'js/ss.js', 
+                        'js/mm.js',
+                        'test/js/app/htmlComparator.js',
+                        'test/js/app/utils.js',
+                        'test/js/app/multiple.js'
+                    ],
+                    js_output_file: 'build/multiple-tests.min.js',
+                    compilation_level: 'ADVANCED',
+                    create_source_map: 'build/multiple-tests.min.js.map',
+                    warning_level: 'VERBOSE',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=multiple-tests.min.js.map',
+                    debug: true,
+                    externs: 'externs/qunit-2.11.2.js'
+                }
+            },
             sample: {
                 options: {
                     js: [

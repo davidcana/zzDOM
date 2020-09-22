@@ -12,7 +12,10 @@ document.getElementById( 't1' ).addEventListener(
             alert( 'No equals: ' + v1 + ' != ' + v2 );
             ++errors;
         };
+        
+        //TODO must remove this
         var zz = zzDOM.zz;
+        
         var t1_1_original = 'white',
             t1_1_modified = 'yellow';
         equal( document.getElementById( 't1-1' ).textContent, t1_1_original );

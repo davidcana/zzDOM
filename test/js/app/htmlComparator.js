@@ -4,6 +4,37 @@
 "use strict";
 
 var htmlComparator = (function() {
+    /**
+     * Find an appropriate `Assert` context to `push` results to.
+     */
+    
+    function _getPushContext(context) {
+      var pushContext;
+
+      if (context && typeof context.push === "function") {
+        // `context` is an `Assert` context
+        pushContext = context;
+      }
+      else if (context && context.assert && typeof context.assert.push === "function") {
+        // `context` is a `Test` context
+        pushContext = context.assert;
+      }
+      else if (
+        QUnit && QUnit.config && QUnit.config.current && QUnit.config.current.assert &&
+        typeof QUnit.config.current.assert.push === "function"
+      ) {
+        // `context` is an unknown context but we can find the `Assert` context via QUnit
+        pushContext = QUnit.config.current.assert;
+      }
+      else if (QUnit && typeof QUnit.push === "function") {
+        pushContext = QUnit.push;
+      }
+      else {
+        throw new Error("Could not find the QUnit `Assert` context to push results");
+      }
+
+      return pushContext;
+    };
     
     var trim = function( s ) {
       if ( !s ) {
@@ -395,7 +426,7 @@ var htmlComparator = (function() {
         serializedExpected = serializeHtml( expected );
 
         // Don't escape quotes!
-        Qunit.dump.setParser(
+        QUnit.dump.setParser(
             'string',
             function( str ){
                 return str;
@@ -431,11 +462,6 @@ var htmlComparator = (function() {
         
       /**
        * Compare two snippets of HTML for equality after normalization.
-       *
-       * @example assert.htmlEqual("<B>Hello, QUnit!</B>  ", "<b>Hello, QUnit!</b>", "HTML should be equal");
-       * @param {String} actual The actual HTML before normalization.
-       * @param {String} expected The excepted HTML before normalization.
-       * @param {String} [message] Optional message to display in the results.
        */
       htmlEqual: function( actual, expected, message ) {
         return genericEqual( actual, expected, message, true );
@@ -443,23 +469,13 @@ var htmlComparator = (function() {
 
       /**
        * Compare two snippets of HTML for inequality after normalization.
-       *
-       * @example assert.notHtmlEqual("<b>Hello, <i>QUnit!</i></b>", "<b>Hello, QUnit!</b>", "HTML should not be equal");
-       * @param {String} actual The actual HTML before normalization.
-       * @param {String} expected The excepted HTML before normalization.
-       * @param {String} [message] Optional message to display in the results.
        */
       notHtmlEqual: function( actual, expected, message ) {
         return genericEqual( actual, expected, message, false );
       },
         
       /**
-       * @private
        * Normalize and serialize an HTML snippet. Primarily only exposed for unit testing purposes.
-       *
-       * @example assert._serializeHtml('<b style="color:red;">Test</b>');
-       * @param {String} html The HTML snippet to normalize and serialize.
-       * @returns {Object[]} The normalized and serialized form of the HTML snippet.
        */
       _serializeHtml: serializeHtml
 

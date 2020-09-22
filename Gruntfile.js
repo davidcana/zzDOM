@@ -106,6 +106,9 @@ module.exports = function(grunt) {
                     js_output_file: 'build/simple-tests.min.js',
                     compilation_level: 'SIMPLE',
                     create_source_map: 'build/simple-tests.min.js.map',
+                    warning_level: 'VERBOSE',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=simple-tests.min.js.map',
+                    debug: true,
                     externs: 'externs/qunit-2.11.2.js'
                 }
             },
@@ -116,7 +119,7 @@ module.exports = function(grunt) {
                         'samples/sample.js'
                     ],
                     js_output_file: 'build/sample.min.js',
-                    compilation_level: 'SIMPLE',
+                    compilation_level: 'ADVANCED',
                     create_source_map: 'build/sample.min.js.map',
                     warning_level: 'VERBOSE',
                     output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=sample.min.js.map',
@@ -130,7 +133,7 @@ module.exports = function(grunt) {
                         'samples/minimal2.js'
                     ],
                     js_output_file: 'build/minimal.min.js',
-                    compilation_level: 'SIMPLE',
+                    compilation_level: 'ADVANCED',
                     create_source_map: 'build/minimal.min.js.map',
                     warning_level: 'VERBOSE',
                     output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=minimal.min.js.map',

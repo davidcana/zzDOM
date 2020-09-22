@@ -1,5 +1,8 @@
 "use strict";
 
+//TODO must remove this
+var zz = zzDOM.zz;
+
 // Unit tests
 QUnit.test( 'text and html test', function( assert ) {
     var t1_1_original = 'white',
@@ -158,7 +161,7 @@ QUnit.test( 'siblings, prev and next test', function( assert ) {
     
     assert.equal( zz( '#t7-2-2' ).next().attr( 'id' ), 't7-2-3' );
     
-    var ids = [];
+    ids = [];
     zz( '#t7-4-2' )
         .siblings( '.selected' )
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );

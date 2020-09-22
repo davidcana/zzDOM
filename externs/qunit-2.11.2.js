@@ -232,6 +232,12 @@ var assert = {
     "ok": function(state, message){},
 
     /**
+     * @param {*} state
+     * @param {string=} message
+     */
+    "notOk": function(state, message){},
+    
+    /**
      * @param {*} actual
      * @param {*} expected
      * @param {string=} message

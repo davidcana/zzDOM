@@ -199,3 +199,87 @@ var QUnit = {
     "diff": function () {}
 };
 
+var assert = {
+    /**
+     * @param {string} name
+     * @param {Object=} lifecycle
+     */
+    "module": function(name, lifecycle) {},
+
+    /**
+     * @param {string} title
+     * @param {number|Function} expected
+     * @param {Function=} test_func
+     */
+    "test": function(title, expected, test_func){},
+
+    /**
+     * @param {string} name
+     * @param {number|Function} expected
+     * @param {Function=} test_func
+     */
+    "asyncTest": function(name, expected, test_func){},
+
+    /**
+     * @param {number} amount
+     */
+    "expect": function(amount){},
+
+    /**
+     * @param {*} state
+     * @param {string=} message
+     */
+    "ok": function(state, message){},
+
+    /**
+     * @param {*} actual
+     * @param {*} expected
+     * @param {string=} message
+     */
+    "equal": function(actual, expected, message){},
+
+    /**
+     * @param {*} actual
+     * @param {*} expected
+     * @param {string=} message
+     */
+    "notEqual": function(actual, expected, message){},
+
+    /**
+     * @param {*} actual
+     * @param {*} expected
+     * @param {string=} message
+     */
+    "deepEqual": function(actual, expected, message){},
+
+    /**
+     * @param {*} actual
+     * @param {*} expected
+     * @param {string=} message
+     */
+    "notDeepEqual": function(actual, expected, message){},
+
+    /**
+     * @param {*} actual
+     * @param {*} expected
+     * @param {string=} message
+     */
+    "strictEqual": function(actual, expected, message){},
+
+    /**
+     * @param {*} actual
+     * @param {*} expected
+     * @param {string=} message
+     */
+    "notStrictEqual": function(actual, expected, message){},
+
+    /**
+     * @param {number=} increment
+     */
+    "start": function(increment){},
+
+    /**
+     * @param {number=} increment
+     */
+    "stop": function(increment){}
+};

@@ -148,9 +148,31 @@ module.exports = function(grunt) {
                     compilation_level: 'ADVANCED',
                     create_source_map: 'build/zz-tests.min.js.map',
                     warning_level: 'VERBOSE',
-                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=simple-tests.min.js.map',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=zz-tests.min.js.map',
                     debug: true,
                     externs: 'externs/qunit-2.11.2.js'
+                }
+            },
+            plugins: {
+                options: {
+                    js: [
+                        'js/zzDOM.js', 
+                        'js/ss.js', 
+                        'js/mm.js',
+                        'test/js/app/htmlComparator.js',
+                        'test/js/app/utils.js',
+                        'test/js/app/plugins.js'
+                    ],
+                    js_output_file: 'build/plugins-tests.min.js',
+                    compilation_level: 'ADVANCED',
+                    create_source_map: 'build/plugins-tests.min.js.map',
+                    warning_level: 'VERBOSE',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=plugins-tests.min.js.map',
+                    debug: true,
+                    externs: [
+                        'externs/qunit-2.11.2.js',
+                        'externs/velocity.js'
+                    ]
                 }
             },
             sample: {

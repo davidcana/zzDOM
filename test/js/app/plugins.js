@@ -1,5 +1,8 @@
 "use strict";
 
+//TODO must remove this
+var zz = zzDOM.zz;
+
 // Unit tests
 QUnit.test( 'Hello world test', function( assert ) {
     
@@ -52,7 +55,7 @@ QUnit.test( 'is numeric test', function( assert ) {
     assert.equal( zz( '#t2-1-1' ).text(), t2_1_original );
     assert.equal( zz( '#t2-1-2' ).text(), t2_2_original );
     
-    var t2_2_original = [ 'white', '7' ];
+    t2_2_original = [ 'white', '7' ];
     assert.equal( zz( '#t2-2-1' ).text(), t2_2_original[ 0 ] );
     assert.equal( zz( '#t2-2-2' ).text(), t2_2_original[ 1 ] );
     assert.notOk( zz( '#t2-2-1' ).isNumeric() );

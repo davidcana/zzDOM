@@ -87,6 +87,10 @@ Unify the definition of a function of zzDOM.SS.prototype and a definition of zzD
     );
 );
 */
+/**
+ * @param {Function} ssPrototype
+ * @param {Function=} constructor
+ */
 zzDOM.add = function( ssPrototype, constructor ){
     for ( var id in zzDOM.SS.prototype ){
         var current = zzDOM.SS.prototype[ id ];

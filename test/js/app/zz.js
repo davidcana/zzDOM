@@ -1,5 +1,8 @@
 "use strict";
 
+//TODO must remove this
+var zz = zzDOM.zz;
+
 // Unit tests
 QUnit.test( 'ZZDom selectors test', function( assert ) {
     var t1_1_original = 'white',
@@ -34,7 +37,7 @@ QUnit.test( 'ZZDom selectors test', function( assert ) {
     assert.equal( document.getElementById( 't1-3-1' ).textContent, t1_3_1_original );
     assert.equal( document.getElementById( 't1-3-2' ).textContent, t1_3_2_original );
     assert.equal( document.getElementById( 't1-3-3' ).textContent, t1_3_3_original );
-    var ids = [];
+    ids = [];
     zz( 't', 'i' )
         .text( t1_3_modified )
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
@@ -53,7 +56,7 @@ QUnit.test( 'ZZDom selectors test', function( assert ) {
     assert.equal( document.getElementById( 't1-4-1' ).textContent, t1_4_1_original );
     assert.equal( document.getElementById( 't1-4-2' ).textContent, t1_4_2_original );
     assert.equal( document.getElementById( 't1-4-3' ).textContent, t1_4_3_original );
-    var ids = [];
+    ids = [];
     zz( 'n', 'myname' )
         .text( t1_4_modified )
         .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );

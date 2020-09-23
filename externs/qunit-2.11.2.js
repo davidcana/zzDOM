@@ -292,5 +292,12 @@ var assert = {
     /**
      * @param {Object} data
      */
-    "pushResult": function(data){}
+    "pushResult": function(data){},
+    
+    /**
+     * @param {Function} blockFn
+     * @param {string=} expectedMatcher
+     * @param {string=} message
+     */
+    "throws": function(blockFn, expectedMatcher, message){}
 };

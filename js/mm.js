@@ -53,6 +53,8 @@ zzDOM.MM.constructors.default = function( functionId ){
 
 // Init prototype functions from zzDOM.SS
 zzDOM.MM.init = function(){
+    var proto = zzDOM.SS.prototype;
+    console.log( proto ); 
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;

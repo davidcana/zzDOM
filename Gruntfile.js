@@ -7,11 +7,14 @@ module.exports = function(grunt) {
                 options: {
                     timeout: 60000,
                     urls: [
-                        'http://localhost:9000/test/simple.html',
-                        'http://localhost:9000/test/multiple.html',
-                        'http://localhost:9000/test/zz.html',
-                        'http://localhost:9000/test/plugins.html',
-                        'http://localhost:9000/test/simple-gcc.html'
+                        'http://localhost:9000/test/simple-closures.html',
+                        'http://localhost:9000/test/multiple-closures.html',
+                        'http://localhost:9000/test/zz-closures.html',
+                        'http://localhost:9000/test/plugins-closures.html',
+                        'http://localhost:9000/test/simple-gcc.html',
+                        'http://localhost:9000/test/multiple-gcc.html',
+                        'http://localhost:9000/test/zz-gcc.html',
+                        'http://localhost:9000/test/plugins-gcc.html'
                     ]
                 }
             }
@@ -68,13 +71,22 @@ module.exports = function(grunt) {
                 stripBanners: true,
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd HH:M:s") %> */\n'
             },
-            dist: {
+            closures: {
                 src: [
                     'js/zzDOM.js', 
                     'js/ss.js', 
-                    'js/mm.js'
+                    'js/mm-closures.js'
                 ],
-                dest: 'build/zzDOM.js',
+                dest: 'build/zzDOM-closures.js',
+                nonull: true
+            },
+            gcc: {
+                src: [
+                    'js/zzDOM.js', 
+                    'js/ss.js', 
+                    'js/mm-gcc.js'
+                ],
+                dest: 'build/zzDOM-gcc.js',
                 nonull: true
             }
         },
@@ -101,7 +113,7 @@ module.exports = function(grunt) {
                     js: [
                         'js/zzDOM.js', 
                         'js/ss.js', 
-                        'js/mm.js',
+                        'js/mm-gcc.js',
                         'test/js/app/htmlComparator.js',
                         'test/js/app/utils.js',
                         'test/js/app/simple.js'
@@ -139,7 +151,7 @@ module.exports = function(grunt) {
                     js: [
                         'js/zzDOM.js', 
                         'js/ss.js', 
-                        'js/mm.js',
+                        'js/mm-gcc.js',
                         'test/js/app/htmlComparator.js',
                         'test/js/app/utils.js',
                         'test/js/app/zz.js'
@@ -158,7 +170,7 @@ module.exports = function(grunt) {
                     js: [
                         'js/zzDOM.js', 
                         'js/ss.js', 
-                        'js/mm.js',
+                        'js/mm-gcc.js',
                         'test/js/app/htmlComparator.js',
                         'test/js/app/utils.js',
                         'test/js/app/plugins.js'
@@ -180,7 +192,7 @@ module.exports = function(grunt) {
                     js: [
                         'js/zzDOM.js', 
                         'js/ss.js', 
-                        'js/mm.js',
+                        'js/mm-closures.js',
                         'samples/sample.js'
                     ],
                     js_output_file: 'build/sample.min.js',
@@ -226,6 +238,6 @@ module.exports = function(grunt) {
     // The load-grunt-tasks plugin won’t automatically load closure-compiler
 
     grunt.registerTask('test', ['qunit']);
-    grunt.registerTask('default', ['concat']);
+    grunt.registerTask('default', ['concat', 'closure-compiler']);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
 };

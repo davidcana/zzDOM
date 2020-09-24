@@ -15,6 +15,37 @@ zzDOM.MM = function ( _nodes ) {
     }
 };
 
+/*
+Unify the definition of a function of zzDOM.SS.prototype and a definition of zzDOM.MM.prototype. Example:
+
+    zzDOM.add( 
+        zzDOM.SS.prototype.myCustomFunction = function(){
+            ...
+            return this;
+        },
+        zzDOM.MM.constructors.concat
+    );
+);
+*/
+/**
+ * @param {Function} ssPrototype
+ * @param {Function=} constructor
+ */
+zzDOM.add = function( ssPrototype, constructor ){
+    for ( var id in zzDOM.SS.prototype ){
+        var current = zzDOM.SS.prototype[ id ];
+        if ( ssPrototype === current ){
+            var c = constructor || zzDOM.MM.constructors.default;
+            zzDOM.MM.prototype[ id ] = function(){
+                return c( this, ssPrototype, arguments );
+            };
+            return;
+        }
+    }
+    
+    throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
+};
+
 zzDOM.MM.constructors = {};
 zzDOM.MM.constructors.concat = function( mm, fn, args ){
     var newNodes = [];

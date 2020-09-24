@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-24 11:25:15 */
+/*! zzdom - v0.2.0 - 2020-09-24 14:26:18 */
 /**
  * A namespace.
  * @const
@@ -73,38 +73,6 @@ zzDOM.zz = function( x, s1, s2 ){
     }
     
     throw 'Unsupported selector type found running zz function.';
-};
-
-/*
-Unify the definition of a function of zzDOM.SS.prototype and a definition of zzDOM.MM.prototype. Example:
-
-    zzDOM.add( 
-        zzDOM.SS.prototype.myCustomFunction = function(){
-            ...
-            return this;
-        },
-        zzDOM.MM.constructors.concat
-    );
-);
-*/
-/**
- * @param {Function} ssPrototype
- * @param {Function=} constructor
- */
-zzDOM.add = function( ssPrototype, constructor ){
-    for ( var id in zzDOM.SS.prototype ){
-        var current = zzDOM.SS.prototype[ id ];
-        if ( ssPrototype === current ){
-            var closure = function(){
-                var functionId = id;
-                return constructor? constructor( functionId ): zzDOM.MM.constructors.default( functionId );
-            };
-            zzDOM.MM.prototype[ id ] = closure();
-            return;
-        }
-    }
-    
-    throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
 };
 
 zzDOM._htmlToElement = function ( html ) {
@@ -254,6 +222,12 @@ zzDOM.SS.prototype._getElId = function(){
 };
 
 /* Methods included in jquery */
+zzDOM.SS.prototype.each = function ( eachFn ) {
+    eachFn( this );
+    return this;
+};
+
+
 zzDOM.SS.prototype.addClass = function ( name ) {
     this.el.classList.add( name );
     return this;
@@ -596,11 +570,6 @@ zzDOM.SS.prototype.isVisible = function () {
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
 };
 
-zzDOM.SS.prototype.each = function ( eachFn ) {
-    eachFn( this );
-    return this;
-};
-
 zzDOM.SS.prototype.appendTo = function ( x ) {
     // Do nothing and return this if it is null
     if ( x == null ){
@@ -666,6 +635,38 @@ zzDOM.MM = function ( _nodes ) {
             new zzDOM.SS( this.nodes[ i ] )
         );
     }
+};
+
+/*
+Unify the definition of a function of zzDOM.SS.prototype and a definition of zzDOM.MM.prototype. Example:
+
+    zzDOM.add( 
+        zzDOM.SS.prototype.myCustomFunction = function(){
+            ...
+            return this;
+        },
+        zzDOM.MM.constructors.concat
+    );
+);
+*/
+/**
+ * @param {Function} ssPrototype
+ * @param {Function=} constructor
+ */
+zzDOM.add = function( ssPrototype, constructor ){
+    for ( var id in zzDOM.SS.prototype ){
+        var current = zzDOM.SS.prototype[ id ];
+        if ( ssPrototype === current ){
+            var closure = function(){
+                var functionId = id;
+                return constructor? constructor( functionId ): zzDOM.MM.constructors.default( functionId );
+            };
+            zzDOM.MM.prototype[ id ] = closure();
+            return;
+        }
+    }
+    
+    throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
 };
 
 zzDOM.MM.constructors = {};

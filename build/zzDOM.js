@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-22 18:41:28 */
+/*! zzdom - v0.2.0 - 2020-09-24 11:25:15 */
 /**
  * A namespace.
  * @const
@@ -87,6 +87,10 @@ Unify the definition of a function of zzDOM.SS.prototype and a definition of zzD
     );
 );
 */
+/**
+ * @param {Function} ssPrototype
+ * @param {Function=} constructor
+ */
 zzDOM.add = function( ssPrototype, constructor ){
     for ( var id in zzDOM.SS.prototype ){
         var current = zzDOM.SS.prototype[ id ];
@@ -703,6 +707,8 @@ zzDOM.MM.constructors.default = function( functionId ){
 
 // Init prototype functions from zzDOM.SS
 zzDOM.MM.init = function(){
+    var proto = zzDOM.SS.prototype;
+    console.log( proto ); 
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;

@@ -120,7 +120,7 @@ module.exports = function(grunt) {
                     js: [
                         'js/zzDOM.js', 
                         'js/ss.js', 
-                        'js/mm.js',
+                        'js/mm-gcc.js',
                         'test/js/app/htmlComparator.js',
                         'test/js/app/utils.js',
                         'test/js/app/multiple.js'

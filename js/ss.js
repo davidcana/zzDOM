@@ -68,6 +68,12 @@ zzDOM.SS.prototype._getElId = function(){
 };
 
 /* Methods included in jquery */
+zzDOM.SS.prototype.each = function ( eachFn ) {
+    eachFn( this );
+    return this;
+};
+
+
 zzDOM.SS.prototype.addClass = function ( name ) {
     this.el.classList.add( name );
     return this;
@@ -408,11 +414,6 @@ zzDOM.SS.prototype.toggle = function () {
 zzDOM.SS.prototype.isVisible = function () {
     return !! this.el.offsetParent;
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
-};
-
-zzDOM.SS.prototype.each = function ( eachFn ) {
-    eachFn( this );
-    return this;
 };
 
 zzDOM.SS.prototype.appendTo = function ( x ) {

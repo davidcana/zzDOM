@@ -133,7 +133,7 @@ QUnit.test( 'velocity with 1 element test', function( assert ) {
 });
 
 QUnit.test( 'velocity with several elements test', function( assert ) {
-    /*
+    
     zzDOM.add( 
         zzDOM.SS.prototype.velocity = function(){
              
@@ -150,7 +150,8 @@ QUnit.test( 'velocity with several elements test', function( assert ) {
             return this;
         }
     );
-    */
+    
+    /*
     zzDOM.SS.prototype.velocity = function(){
          
         //    Conventional Velocity call:
@@ -169,7 +170,7 @@ QUnit.test( 'velocity with several elements test', function( assert ) {
     zzDOM.MM.prototype.velocity = function () {
         return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.velocity, arguments );
     };
-    
+    */
     var offset_original1 = {
         left: 500,
         top: 300

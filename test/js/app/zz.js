@@ -236,7 +236,7 @@ QUnit.test( 'Null test', function( assert ) {
     assert.deepEqual( instance.nodes, [] );
 });
 
-QUnit.test( 'Exceptions test', function( assert ) {
+QUnit.test( 'Exceptions test', /** @suppress {checkTypes} */ function( assert ) {
     assert.throws(
         function() {
             zz( 'unknown', 'some text' ).text( 'this is useless' );

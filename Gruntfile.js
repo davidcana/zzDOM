@@ -103,9 +103,14 @@ module.exports = function(grunt) {
             }
         },
         uglify: {
-            standalone: {
+            closures: {
                 files: {
-                    'build/zzDOM.min.js': [ 'build/zzDOM.js' ]
+                    'build/zzDOM-closures.min.js': [ 'build/zzDOM-closures.js' ]
+                }
+            },
+            gcc: {
+                files: {
+                    'build/zzDOM-gcc.min.js': [ 'build/zzDOM-gcc.js' ]
                 }
             }
         },
@@ -269,6 +274,6 @@ module.exports = function(grunt) {
     // The load-grunt-tasks plugin won’t automatically load closure-compiler
 
     grunt.registerTask('test', ['qunit']);
-    grunt.registerTask('default', ['concat', 'closure-compiler']);
+    grunt.registerTask('default', ['concat', 'uglify', 'closure-compiler']);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
 };

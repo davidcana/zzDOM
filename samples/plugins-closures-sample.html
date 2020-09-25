@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>Plugins Google closure compiler tests</title>
+
+        <script src="/node_modules/velocity-animate/velocity.js" defer></script>
+        <script src="/js/zzDOM.js" defer></script>
+        <script src="/js/ss.js" defer></script>
+        <script src="/js/mm-closures.js" defer></script>
+        <script src="js/app/htmlComparator.js" defer></script>
+        <script src="js/app/utils.js" defer></script>
+        <script src="plugins-sample.js" defer></script>
+        
+        <style>
+            .square {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+            }
+            #t3-1 {
+                background-color: blue;
+                left: 700px;
+                top: 400px;
+            }
+            #t4-1-1 {
+                background-color: red;
+                left: 500px;
+                top: 300px;
+            }
+            #t4-1-2 {
+                background-color: green;
+                left: 700px;
+                top: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+        
+        <h2>
+            1. velocity with 1 element
+        </h2>
+        <button id="t3">Start 1</button>
+        
+        <div id="t3-1" class="square"></div>
+        
+        <h2>
+            2. velocity with several elements
+        </h2>
+        <button id="t4">Start 2</button>
+        
+        <div id="t4-1-1" class="square t4-1"></div>
+        <div id="t4-1-2" class="square t4-1"></div>
+        
+    </body>
+</html>

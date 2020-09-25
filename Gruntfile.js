@@ -187,6 +187,25 @@ module.exports = function(grunt) {
                     ]
                 }
             },
+            'plugins-sample': {
+                options: {
+                    js: [
+                        'js/zzDOM.js', 
+                        'js/ss.js', 
+                        'js/mm-gcc.js',
+                        'samples/plugins-sample.js'
+                    ],
+                    js_output_file: 'build/plugins-sample.min.js',
+                    compilation_level: 'ADVANCED',
+                    create_source_map: 'build/plugins-sample.min.js.map',
+                    warning_level: 'VERBOSE',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=plugins-sample.min.js.map',
+                    debug: true,
+                    externs: [
+                        'externs/velocity.js'
+                    ]
+                }
+            },
             sample: {
                 options: {
                     js: [

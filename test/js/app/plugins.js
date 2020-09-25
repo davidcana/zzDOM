@@ -113,16 +113,16 @@ QUnit.test( 'velocity with 1 element test', function( assert ) {
     zz( '#t3-1' )
         .velocity(
             {
-                left: offset_modified1.left,
-                top: offset_modified1.top
+                'left': offset_modified1.left,
+                'top': offset_modified1.top
             }
         ).velocity(
             {
-                left: offset_modified2.left,
-                top: offset_modified2.top
+                'left': offset_modified2.left,
+                'top': offset_modified2.top
             },
             {
-                complete: function(){
+                'complete': function(){
                     offset = zz( '#t3-1' ).offset();
                     assert.equal( offset.left, offset_modified2.left );
                     assert.equal( offset.top, offset_modified2.top );
@@ -133,7 +133,7 @@ QUnit.test( 'velocity with 1 element test', function( assert ) {
 });
 
 QUnit.test( 'velocity with several elements test', function( assert ) {
-    
+
     zzDOM.add( 
         zzDOM.SS.prototype.velocity = function(){
              
@@ -150,7 +150,7 @@ QUnit.test( 'velocity with several elements test', function( assert ) {
             return this;
         }
     );
-    
+
     /*
     zzDOM.SS.prototype.velocity = function(){
          
@@ -171,6 +171,7 @@ QUnit.test( 'velocity with several elements test', function( assert ) {
         return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.velocity, arguments );
     };
     */
+    
     var offset_original1 = {
         left: 500,
         top: 300
@@ -193,14 +194,14 @@ QUnit.test( 'velocity with several elements test', function( assert ) {
     zz( '.t4-1' )
         .velocity(
             {
-                translateX: translate + "px"
+                'translateX': translate + "px"
             }
         ).velocity(
             {
-                translateY: translate + "px"
+                'translateY': translate + "px"
             },
             {
-                complete: function(){
+                'complete': function(){
                     if ( c++ === 1 ){
                     
                         offset1 = zz( '#t4-1-1' ).offset();

@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                         dest: 'test'
                     }, 
                     {
-                        cwd: 'js/',
+                        cwd: 'src/',
                         expand: true,
                         src: ['**/*', '!**/*~'],
                         dest: 'js'
@@ -73,18 +73,18 @@ module.exports = function(grunt) {
             },
             closures: {
                 src: [
-                    'js/zzDOM.js', 
-                    'js/ss.js', 
-                    'js/mm-closures.js'
+                    'src/zzDOM.js', 
+                    'src/ss.js', 
+                    'src/mm-closures.js'
                 ],
                 dest: 'build/zzDOM-closures.js',
                 nonull: true
             },
             gcc: {
                 src: [
-                    'js/zzDOM.js', 
-                    'js/ss.js', 
-                    'js/mm-gcc.js'
+                    'src/zzDOM.js', 
+                    'src/ss.js', 
+                    'src/mm-gcc.js'
                 ],
                 dest: 'build/zzDOM-gcc.js',
                 nonull: true
@@ -111,12 +111,12 @@ module.exports = function(grunt) {
             simple: {
                 options: {
                     js: [
-                        'js/zzDOM.js', 
-                        'js/ss.js', 
-                        'js/mm-gcc.js',
-                        'test/js/app/htmlComparator.js',
-                        'test/js/app/utils.js',
-                        'test/js/app/simple.js'
+                        'src/zzDOM.js', 
+                        'src/ss.js', 
+                        'src/mm-gcc.js',
+                        'test/src/app/htmlComparator.js',
+                        'test/src/app/utils.js',
+                        'test/src/app/simple.js'
                     ],
                     js_output_file: 'build/simple-tests.min.js',
                     compilation_level: 'ADVANCED',
@@ -130,12 +130,12 @@ module.exports = function(grunt) {
             multiple: {
                 options: {
                     js: [
-                        'js/zzDOM.js', 
-                        'js/ss.js', 
-                        'js/mm-gcc.js',
-                        'test/js/app/htmlComparator.js',
-                        'test/js/app/utils.js',
-                        'test/js/app/multiple.js'
+                        'src/zzDOM.js', 
+                        'src/ss.js', 
+                        'src/mm-gcc.js',
+                        'test/src/app/htmlComparator.js',
+                        'test/src/app/utils.js',
+                        'test/src/app/multiple.js'
                     ],
                     js_output_file: 'build/multiple-tests.min.js',
                     compilation_level: 'ADVANCED',
@@ -149,12 +149,12 @@ module.exports = function(grunt) {
             zz: {
                 options: {
                     js: [
-                        'js/zzDOM.js', 
-                        'js/ss.js', 
-                        'js/mm-gcc.js',
-                        'test/js/app/htmlComparator.js',
-                        'test/js/app/utils.js',
-                        'test/js/app/zz.js'
+                        'src/zzDOM.js', 
+                        'src/ss.js', 
+                        'src/mm-gcc.js',
+                        'test/src/app/htmlComparator.js',
+                        'test/src/app/utils.js',
+                        'test/src/app/zz.js'
                     ],
                     js_output_file: 'build/zz-tests.min.js',
                     compilation_level: 'ADVANCED',
@@ -168,12 +168,12 @@ module.exports = function(grunt) {
             plugins: {
                 options: {
                     js: [
-                        'js/zzDOM.js', 
-                        'js/ss.js', 
-                        'js/mm-gcc.js',
-                        'test/js/app/htmlComparator.js',
-                        'test/js/app/utils.js',
-                        'test/js/app/plugins.js'
+                        'src/zzDOM.js', 
+                        'src/ss.js', 
+                        'src/mm-gcc.js',
+                        'test/src/app/htmlComparator.js',
+                        'test/src/app/utils.js',
+                        'test/src/app/plugins.js'
                     ],
                     js_output_file: 'build/plugins-tests.min.js',
                     compilation_level: 'ADVANCED',
@@ -190,9 +190,9 @@ module.exports = function(grunt) {
             'plugins-sample': {
                 options: {
                     js: [
-                        'js/zzDOM.js', 
-                        'js/ss.js', 
-                        'js/mm-gcc.js',
+                        'src/zzDOM.js', 
+                        'src/ss.js', 
+                        'src/mm-gcc.js',
                         'samples/plugins-sample.js'
                     ],
                     js_output_file: 'build/plugins-sample.min.js',
@@ -209,9 +209,9 @@ module.exports = function(grunt) {
             sample: {
                 options: {
                     js: [
-                        'js/zzDOM.js', 
-                        'js/ss.js', 
-                        'js/mm-closures.js',
+                        'src/zzDOM.js', 
+                        'src/ss.js', 
+                        'src/mm-closures.js',
                         'samples/sample.js'
                     ],
                     js_output_file: 'build/sample.min.js',
@@ -238,7 +238,7 @@ module.exports = function(grunt) {
             }
         },
         exec: {
-            check_node: 'node samples/js/app/node.js'
+            check_node: 'node samples/src/app/node.js'
         }
     });
 

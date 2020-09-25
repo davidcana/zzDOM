@@ -28,23 +28,35 @@ module.exports = function(grunt) {
                 expand: true,
                 files: [
                     {
-                        cwd: 'test/',
-                        expand: true,
-                        src: ['**/*', '!**/*~'],
-                        dest: 'test'
-                    }, 
-                    {
-                        cwd: 'src/',
-                        expand: true,
-                        src: ['**/*', '!**/*~'],
-                        dest: 'js'
-                    },
-                    {
                         cwd: 'docs/',
                         expand: true,
                         src: ['**/*', '!**/*~'],
                         dest: 'docs'
                     },
+                    {
+                        cwd: 'externs/',
+                        expand: true,
+                        src: ['**/*', '!**/*~'],
+                        dest: 'externs'
+                    },
+                    {
+                        cwd: 'samples/',
+                        expand: true,
+                        src: ['**/*', '!**/*~'],
+                        dest: 'samples'
+                    },
+                    {
+                        cwd: 'src/',
+                        expand: true,
+                        src: ['**/*', '!**/*~'],
+                        dest: 'src'
+                    },
+                    {
+                        cwd: 'test/',
+                        expand: true,
+                        src: ['**/*', '!**/*~'],
+                        dest: 'test'
+                    }, 
                     {
                         src: ['changes.txt']
                     },
@@ -53,12 +65,12 @@ module.exports = function(grunt) {
                     }, 
                     {
                         src: ['LICENSE']
-                    }, 
-                    {
-                        src: ['package-lock.json']
                     },
                     {
                         src: ['package.json']
+                    },
+                    {
+                        src: ['package-lock.json']
                     },
                     {
                         src: ['README.md']

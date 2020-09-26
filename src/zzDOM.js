@@ -153,4 +153,8 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
 /* End of events */
 
 // Register zz function
-window.zz = zzDOM.zz;
+//window.zz = zzDOM.zz;
+var zz;
+(function() { 
+    zz = zzDOM.zz; 
+})();

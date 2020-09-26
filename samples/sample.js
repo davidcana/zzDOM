@@ -14,7 +14,7 @@ document.getElementById( 't1' ).addEventListener(
         };
         
         //TODO must remove this
-        var zz = zzDOM.zz;
+        //var zz = zzDOM.zz;
         
         var t1_1_original = 'white',
             t1_1_modified = 'yellow';

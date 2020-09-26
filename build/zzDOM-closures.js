@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-26 14:13:19 */
+/*! zzdom - v0.2.0 - 2020-09-26 21:4:25 */
 /**
  * A namespace.
  * @const
@@ -153,7 +153,11 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
 /* End of events */
 
 // Register zz function
-window.zz = zzDOM.zz;
+//window.zz = zzDOM.zz;
+var zz;
+(function() { 
+    zz = zzDOM.zz; 
+})();
 
 /** @constructor */
 zzDOM.SS = function ( _el ) {

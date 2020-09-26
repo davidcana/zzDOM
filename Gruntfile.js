@@ -14,7 +14,15 @@ module.exports = function(grunt) {
                         'http://localhost:9000/test/simple-gcc.html',
                         'http://localhost:9000/test/multiple-gcc.html',
                         'http://localhost:9000/test/zz-gcc.html',
-                        'http://localhost:9000/test/plugins-gcc.html'
+                        'http://localhost:9000/test/plugins-gcc.html',
+                        'http://localhost:9000/test/simple-closures-concat.html',
+                        'http://localhost:9000/test/multiple-closures-concat.html',
+                        'http://localhost:9000/test/zz-closures-concat.html',
+                        'http://localhost:9000/test/plugins-closures-concat.html',
+                        'http://localhost:9000/test/simple-gcc-concat.html',
+                        'http://localhost:9000/test/multiple-gcc-concat.html',
+                        'http://localhost:9000/test/zz-gcc-concat.html',
+                        'http://localhost:9000/test/plugins-gcc-concat.html'
                     ]
                 }
             }

@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-27 13:37:36 */
+/*! zzdom - v0.2.0 - 2020-09-27 18:58:10 */
 /**
  * A namespace.
  * @const
@@ -618,8 +618,18 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
     return this;
 };
 
-zzDOM.SS.prototype.on = function ( eventName, listener, useCapture ) {
-    zzDOM._addEventListener( this, eventName, listener, useCapture );
+zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
+    zzDOM._addEventListener( 
+        this, 
+        eventName, 
+        data? 
+            function( e ){
+                e.data = data;
+                return listener();
+            }:
+            listener, 
+        useCapture 
+    );
     return this;
 };
 

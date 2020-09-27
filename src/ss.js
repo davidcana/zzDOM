@@ -460,8 +460,18 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
     return this;
 };
 
-zzDOM.SS.prototype.on = function ( eventName, listener, useCapture ) {
-    zzDOM._addEventListener( this, eventName, listener, useCapture );
+zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
+    zzDOM._addEventListener( 
+        this, 
+        eventName, 
+        data? 
+            function( e ){
+                e.data = data;
+                return listener();
+            }:
+            listener, 
+        useCapture 
+    );
     return this;
 };
 

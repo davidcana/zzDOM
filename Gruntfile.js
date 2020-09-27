@@ -95,7 +95,8 @@ module.exports = function(grunt) {
                 src: [
                     'src/zzDOM.js', 
                     'src/ss.js', 
-                    'src/mm-closures.js'
+                    'src/mm-closures.js',
+                    'src/export.js'
                 ],
                 dest: 'build/zzDOM-closures.js',
                 nonull: true
@@ -104,7 +105,8 @@ module.exports = function(grunt) {
                 src: [
                     'src/zzDOM.js', 
                     'src/ss.js', 
-                    'src/mm-gcc.js'
+                    'src/mm-gcc.js',
+                    'src/export.js'
                 ],
                 dest: 'build/zzDOM-gcc.js',
                 nonull: true
@@ -275,8 +277,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
     
     require('google-closure-compiler').grunt(grunt, {
-      platform: ['native', 'java', 'javascript'],
-      max_parallel_compilations: require('os').cpus().length
+        platform: ['native', 'java', 'javascript'],
+        max_parallel_compilations: require('os').cpus().length
     });
     //require('google-closure-compiler').grunt(grunt);
     // The load-grunt-tasks plugin won’t automatically load closure-compiler

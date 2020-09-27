@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-26 21:4:25 */
+/*! zzdom - v0.2.0 - 2020-09-27 13:37:36 */
 /**
  * A namespace.
  * @const
@@ -748,3 +748,8 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );
     return this;
 };
+
+// Register zzDOM if we are using Node
+if ( typeof module === 'object' && module.exports ) {
+    module.exports = zzDOM;
+}

@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-26 21:4:25 */
+/*! zzdom - v0.2.0 - 2020-09-27 13:37:36 */
 /**
  * A namespace.
  * @const
@@ -877,3 +877,8 @@ zzDOM.MM.prototype.on = function ( eventName, listener, useCapture ) {
 zzDOM.MM.prototype.off = function ( eventName, listener, useCapture ) {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.off, arguments );
 };
+
+// Register zzDOM if we are using Node
+if ( typeof module === 'object' && module.exports ) {
+    module.exports = zzDOM;
+}

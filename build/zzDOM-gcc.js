@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-28 11:32:10 */
+/*! zzdom - v0.2.0 - 2020-09-28 19:10:29 */
 /**
  * A namespace.
  * @const
@@ -225,16 +225,30 @@ zzDOM.SS.prototype._getElId = function(){
     return elId;
 };
 
+zzDOM.SS.prototype._iterate = function( value, fn ){
+    if ( Array.isArray( value ) ){
+        for ( var i = 0; i < value.length; ++i ){
+            fn( this, value[ i ] );
+        }
+    } else {
+        fn( this, value );   
+    }
+    return this;
+};
+
 /* Methods included in jquery */
 zzDOM.SS.prototype.each = function ( eachFn ) {
     eachFn( this );
     return this;
 };
 
-
-zzDOM.SS.prototype.addClass = function ( name ) {
-    this.el.classList.add( name );
-    return this;
+zzDOM.SS.prototype.addClass = function ( value ) {
+    return this._iterate(
+        value,
+        function( self, v ){
+            self.el.classList.add( v ); 
+        }
+    );
 };
 
 zzDOM.SS.prototype.after = function ( x ) {
@@ -536,9 +550,13 @@ zzDOM.SS.prototype.removeAttr = function ( name ) {
     return this;
 };
 
-zzDOM.SS.prototype.removeClass = function ( name ) {
-    this.el.classList.remove( name );
-    return this;
+zzDOM.SS.prototype.removeClass = function ( value ) {
+    return this._iterate(
+        value,
+        function( self, v ){
+            self.el.classList.remove( v );
+        }
+    );
 };
 
 zzDOM.SS.prototype.replaceWith = function ( value ) {

@@ -67,8 +67,8 @@ zzDOM.zz = function( x, s1, s2 ){
         x = x.trim();
         return zzDOM._build(
             x.charAt( 0 ) === '<'? // Is it HTML code?
-            zzDOM._htmlToElement( x ):
-            document.querySelectorAll( x ) // Must be a standard selector
+                zzDOM._htmlToElement( x ):
+                document.querySelectorAll( x ) // Must be a standard selector
         );
     }
     
@@ -153,7 +153,6 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
 /* End of events */
 
 // Register zz function
-//window.zz = zzDOM.zz;
 var zz;
 (function() { 
     zz = zzDOM.zz; 

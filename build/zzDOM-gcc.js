@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-28 19:18:40 */
+/*! zzdom - v0.2.0 - 2020-09-28 19:29:59 */
 /**
  * A namespace.
  * @const
@@ -334,17 +334,24 @@ zzDOM.SS.prototype.find = function ( selector ) {
 };
 
 /**
- * @param {string} name
+ * @param {string|Object} x
  * @param {string=} value
  */
-zzDOM.SS.prototype.attr = function ( name, value ) {
+zzDOM.SS.prototype.attr = function ( x, value ) {
+    // set using object
+    if ( typeof x === 'object' ){
+        for ( var key in x ) {
+            this.el.setAttribute( key, x[ key ] );
+        }
+    }
+    
     // get
     if ( value === undefined ){
-        return this.el.getAttribute( name );
+        return this.el.getAttribute( x );
     }
     
     // set
-    this.el.setAttribute( name, value );
+    this.el.setAttribute( x, value );
     return this;
 };
 

@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-27 18:58:11 */
+/*! zzdom - v0.2.0 - 2020-09-28 11:32:10 */
 /**
  * A namespace.
  * @const
@@ -261,13 +261,13 @@ zzDOM.SS.prototype.before = function ( x ) {
 zzDOM.SS.prototype.children = function ( selector ) {
     return zzDOM._build( 
         selector?
-        Array.prototype.filter.call(
-            this.el.children, 
-            function( child ){
-                return child.matches( selector );
-            }
-        ):
-        this.el.children 
+            Array.prototype.filter.call(
+                this.el.children, 
+                function( child ){
+                    return child.matches( selector );
+                }
+            ):
+            this.el.children 
     );
 };
 
@@ -546,8 +546,12 @@ zzDOM.SS.prototype.replaceWith = function ( value ) {
     return this;
 };
 
-zzDOM.SS.prototype.toggleClass = function ( name ) {
-    this.el.classList.toggle( name );
+zzDOM.SS.prototype.toggleClass = function ( name, state ) {
+    if ( state === undefined ){
+        this.el.classList.toggle( name );
+    } else {
+        this.el.classList.toggle( name, state );
+    }
     return this;
 };
 
@@ -595,7 +599,6 @@ zzDOM.SS.prototype.appendTo = function ( x ) {
     
     // Is it a zzDOM.SS?
     if ( x instanceof zzDOM.SS ) {
-        //x.append( this.el );
         x.el.appendChild( this.el );
         return this;
     }
@@ -852,7 +855,7 @@ zzDOM.MM.prototype.replaceWith = function ( value ) {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.replaceWith, arguments );
 };
 
-zzDOM.MM.prototype.toggleClass = function ( name ) {
+zzDOM.MM.prototype.toggleClass = function ( name, value ) {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.toggleClass, arguments );
 };
 

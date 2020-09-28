@@ -103,13 +103,13 @@ zzDOM.SS.prototype.before = function ( x ) {
 zzDOM.SS.prototype.children = function ( selector ) {
     return zzDOM._build( 
         selector?
-        Array.prototype.filter.call(
-            this.el.children, 
-            function( child ){
-                return child.matches( selector );
-            }
-        ):
-        this.el.children 
+            Array.prototype.filter.call(
+                this.el.children, 
+                function( child ){
+                    return child.matches( selector );
+                }
+            ):
+            this.el.children 
     );
 };
 
@@ -388,8 +388,12 @@ zzDOM.SS.prototype.replaceWith = function ( value ) {
     return this;
 };
 
-zzDOM.SS.prototype.toggleClass = function ( name ) {
-    this.el.classList.toggle( name );
+zzDOM.SS.prototype.toggleClass = function ( name, state ) {
+    if ( state === undefined ){
+        this.el.classList.toggle( name );
+    } else {
+        this.el.classList.toggle( name, state );
+    }
     return this;
 };
 
@@ -437,7 +441,6 @@ zzDOM.SS.prototype.appendTo = function ( x ) {
     
     // Is it a zzDOM.SS?
     if ( x instanceof zzDOM.SS ) {
-        //x.append( this.el );
         x.el.appendChild( this.el );
         return this;
     }

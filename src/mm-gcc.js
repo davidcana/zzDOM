@@ -216,7 +216,7 @@ zzDOM.MM.prototype.replaceWith = function ( value ) {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.replaceWith, arguments );
 };
 
-zzDOM.MM.prototype.toggleClass = function ( name ) {
+zzDOM.MM.prototype.toggleClass = function ( name, value ) {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.toggleClass, arguments );
 };
 

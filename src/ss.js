@@ -84,9 +84,9 @@ zzDOM.SS.prototype.each = function ( eachFn ) {
     return this;
 };
 
-zzDOM.SS.prototype.addClass = function ( value ) {
+zzDOM.SS.prototype.addClass = function ( name ) {
     return this._iterate(
-        value,
+        name,
         function( self, v ){
             self.el.classList.add( v ); 
         }
@@ -392,9 +392,9 @@ zzDOM.SS.prototype.removeAttr = function ( name ) {
     return this;
 };
 
-zzDOM.SS.prototype.removeClass = function ( value ) {
+zzDOM.SS.prototype.removeClass = function ( name ) {
     return this._iterate(
-        value,
+        name,
         function( self, v ){
             self.el.classList.remove( v );
         }
@@ -407,12 +407,16 @@ zzDOM.SS.prototype.replaceWith = function ( value ) {
 };
 
 zzDOM.SS.prototype.toggleClass = function ( name, state ) {
-    if ( state === undefined ){
-        this.el.classList.toggle( name );
-    } else {
-        this.el.classList.toggle( name, state );
-    }
-    return this;
+    return this._iterate(
+        name,
+        state === undefined?
+            function( self, v ){
+                self.el.classList.toggle( v );
+            }:
+            function( self, v ){
+                self.el.classList.toggle( v, state );
+            }
+    );
 };
 
 zzDOM.SS.prototype.hide = function () {

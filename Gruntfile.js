@@ -22,7 +22,11 @@ module.exports = function(grunt) {
                         'http://localhost:9000/test/simple-gcc-concat.html',
                         'http://localhost:9000/test/multiple-gcc-concat.html',
                         'http://localhost:9000/test/zz-gcc-concat.html',
-                        'http://localhost:9000/test/plugins-gcc-concat.html'
+                        'http://localhost:9000/test/plugins-gcc-concat.html',
+                        'http://localhost:9000/test/multiple-gcc-debug.html',
+                        'http://localhost:9000/test/plugins-gcc-debug.html',
+                        'http://localhost:9000/test/simple-gcc-debug.html',
+                        'http://localhost:9000/test/zz-gcc-debug.html'
                     ]
                 }
             }
@@ -159,6 +163,18 @@ module.exports = function(grunt) {
                 dest: 'test/multiple-gcc-concat.html',
                 nonull: true
             },
+            'multiple-gcc-debug': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/multiple-gcc-debug.head.html',
+                    'test/multiple.body.html'
+                ],
+                dest: 'test/multiple-gcc-debug.html',
+                nonull: true
+            },
             'plugins-closures': {
                 options: {
                     banner: '',
@@ -205,6 +221,18 @@ module.exports = function(grunt) {
                     'test/plugins.body.html'
                 ],
                 dest: 'test/plugins-gcc-concat.html',
+                nonull: true
+            },
+            'plugins-gcc-debug': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/plugins-gcc-debug.head.html',
+                    'test/plugins.body.html'
+                ],
+                dest: 'test/plugins-gcc-debug.html',
                 nonull: true
             },
             'simple-closures': {
@@ -255,6 +283,18 @@ module.exports = function(grunt) {
                 dest: 'test/simple-gcc-concat.html',
                 nonull: true
             },
+            'simple-gcc-debug': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/simple-gcc-debug.head.html',
+                    'test/simple.body.html'
+                ],
+                dest: 'test/simple-gcc-debug.html',
+                nonull: true
+            },
             'zz-closures': {
                 options: {
                     banner: '',
@@ -301,6 +341,18 @@ module.exports = function(grunt) {
                     'test/zz.body.html'
                 ],
                 dest: 'test/zz-gcc-concat.html',
+                nonull: true
+            },
+            'zz-gcc-debug': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/zz-gcc-debug.head.html',
+                    'test/zz.body.html'
+                ],
+                dest: 'test/zz-gcc-debug.html',
                 nonull: true
             }
         },
@@ -482,18 +534,22 @@ module.exports = function(grunt) {
         'concat:multiple-closures-concat', 
         'concat:multiple-gcc',
         'concat:multiple-gcc-concat',
+        'concat:multiple-gcc-debug',
         'concat:plugins-closures',
         'concat:plugins-closures-concat',
         'concat:plugins-gcc',
         'concat:plugins-gcc-concat',
+        'concat:plugins-gcc-debug',
         'concat:simple-closures',
         'concat:simple-closures-concat',
         'concat:simple-gcc',
         'concat:simple-gcc-concat',
+        'concat:simple-gcc-debug',
         'concat:zz-closures',
         'concat:zz-closures-concat',
         'concat:zz-gcc',
-        'concat:zz-gcc-concat'
+        'concat:zz-gcc-concat',
+        'concat:zz-gcc-debug'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
 };

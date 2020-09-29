@@ -14,5 +14,9 @@ QUnit.testSuites([
     { name: "simple gcc concat Test Suite", path: "./simple-gcc-concat.html" },
     { name: "multiple gcc concat Test Suite", path: "./multiple-gcc-concat.html" },
     { name: "zzDom.zz gcc concat Test Suite", path: "./zz-gcc-concat.html" },
-    { name: "plugins gcc concat Test Suite", path: "./plugins-gcc-concat.html" }
+    { name: "plugins gcc concat Test Suite", path: "./plugins-gcc-concat.html" },
+    { name: "simple gcc debug Test Suite", path: "./simple-gcc-debug.html" },
+    { name: "multiple gcc debug Test Suite", path: "./multiple-gcc-debug.html" },
+    { name: "zzDom.zz gcc debug Test Suite", path: "./zz-gcc-debug.html" },
+    { name: "plugins gcc debug Test Suite", path: "./plugins-gcc-debug.html" }
 ]);

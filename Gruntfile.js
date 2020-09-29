@@ -110,6 +110,198 @@ module.exports = function(grunt) {
                 ],
                 dest: 'build/zzDOM-gcc.js',
                 nonull: true
+            },
+            'multiple-closures': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/multiple-closures.head.html',
+                    'test/multiple.body.html'
+                ],
+                dest: 'test/multiple-closures.html',
+                nonull: true
+            },
+            'multiple-closures-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/multiple-closures-concat.head.html',
+                    'test/multiple.body.html'
+                ],
+                dest: 'test/multiple-closures-concat.html',
+                nonull: true
+            },
+            'multiple-gcc': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/multiple-gcc.head.html',
+                    'test/multiple.body.html'
+                ],
+                dest: 'test/multiple-gcc.html',
+                nonull: true
+            },
+            'multiple-gcc-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/multiple-gcc-concat.head.html',
+                    'test/multiple.body.html'
+                ],
+                dest: 'test/multiple-gcc-concat.html',
+                nonull: true
+            },
+            'plugins-closures': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/plugins-closures.head.html',
+                    'test/plugins.body.html'
+                ],
+                dest: 'test/plugins-closures.html',
+                nonull: true
+            },
+            'plugins-closures-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/plugins-closures-concat.head.html',
+                    'test/plugins.body.html'
+                ],
+                dest: 'test/plugins-closures-concat.html',
+                nonull: true
+            },
+            'plugins-gcc': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/plugins-gcc.head.html',
+                    'test/plugins.body.html'
+                ],
+                dest: 'test/plugins-gcc.html',
+                nonull: true
+            },
+            'plugins-gcc-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/plugins-gcc-concat.head.html',
+                    'test/plugins.body.html'
+                ],
+                dest: 'test/plugins-gcc-concat.html',
+                nonull: true
+            },
+            'simple-closures': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/simple-closures.head.html',
+                    'test/simple.body.html'
+                ],
+                dest: 'test/simple-closures.html',
+                nonull: true
+            },
+            'simple-closures-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/simple-closures-concat.head.html',
+                    'test/simple.body.html'
+                ],
+                dest: 'test/simple-closures-concat.html',
+                nonull: true
+            },
+            'simple-gcc': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/simple-gcc.head.html',
+                    'test/simple.body.html'
+                ],
+                dest: 'test/simple-gcc.html',
+                nonull: true
+            },
+            'simple-gcc-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/simple-gcc-concat.head.html',
+                    'test/simple.body.html'
+                ],
+                dest: 'test/simple-gcc-concat.html',
+                nonull: true
+            },
+            'zz-closures': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/zz-closures.head.html',
+                    'test/zz.body.html'
+                ],
+                dest: 'test/zz-closures.html',
+                nonull: true
+            },
+            'zz-closures-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/zz-closures-concat.head.html',
+                    'test/zz.body.html'
+                ],
+                dest: 'test/zz-closures-concat.html',
+                nonull: true
+            },
+            'zz-gcc': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/zz-gcc.head.html',
+                    'test/zz.body.html'
+                ],
+                dest: 'test/zz-gcc.html',
+                nonull: true
+            },
+            'zz-gcc-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/zz-gcc-concat.head.html',
+                    'test/zz.body.html'
+                ],
+                dest: 'test/zz-gcc-concat.html',
+                nonull: true
             }
         },
         uglify: {
@@ -284,6 +476,24 @@ module.exports = function(grunt) {
     // The load-grunt-tasks plugin won’t automatically load closure-compiler
 
     grunt.registerTask('test', ['qunit']);
-    grunt.registerTask('default', ['concat', 'uglify', 'closure-compiler']);
+    grunt.registerTask('default', ['concat:closures', 'concat:gcc', 'uglify', 'closure-compiler']);
+    grunt.registerTask('buildTests', [
+        'concat:multiple-closures', 
+        'concat:multiple-closures-concat', 
+        'concat:multiple-gcc',
+        'concat:multiple-gcc-concat',
+        'concat:plugins-closures',
+        'concat:plugins-closures-concat',
+        'concat:plugins-gcc',
+        'concat:plugins-gcc-concat',
+        'concat:simple-closures',
+        'concat:simple-closures-concat',
+        'concat:simple-gcc',
+        'concat:simple-gcc-concat',
+        'concat:zz-closures',
+        'concat:zz-closures-concat',
+        'concat:zz-gcc',
+        'concat:zz-gcc-concat'
+    ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
 };

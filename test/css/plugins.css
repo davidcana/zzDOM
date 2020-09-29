@@ -1,0 +1,20 @@
+.square {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+#t3-1 {
+    background-color: blue;
+    left: 700px;
+    top: 400px;
+}
+#t4-1-1 {
+    background-color: red;
+    left: 500px;
+    top: 300px;
+}
+#t4-1-2 {
+    background-color: green;
+    left: 700px;
+    top: 300px;
+}

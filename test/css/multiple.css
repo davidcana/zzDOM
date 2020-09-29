@@ -1,0 +1,34 @@
+.outerTests {
+    padding: 1em; 
+    border: 5px; 
+    margin: .5em;
+}
+div.offsetTests {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+#t13-1-div {
+    left: 220px;
+    top: 35px;
+}
+.selected {
+    background-color: green;
+    color: white;
+}
+#t13-3-div,
+.t13-3 {
+    left: 320px;
+    top: 35px;
+}
+#t15-2, #t15-4, #t15-6,
+.t15-2, .t15-4, .t15-6,
+#t15-7-2 {
+    display: none;
+}
+.container {
+    background-color: yellow;
+}

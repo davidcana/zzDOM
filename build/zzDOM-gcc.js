@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-09-29 11:9:34 */
+/*! zzdom - v0.2.0 - 2020-09-30 11:46:33 */
 /**
  * A namespace.
  * @const
@@ -241,6 +241,7 @@ zzDOM.SS.prototype.each = function ( eachFn ) {
     return this;
 };
 
+//TODO test .addClass( array )
 zzDOM.SS.prototype.addClass = function ( name ) {
     return this._iterate(
         name,
@@ -332,6 +333,7 @@ zzDOM.SS.prototype.find = function ( selector ) {
     );
 };
 
+//TODO test .attr( object )
 /**
  * @param {string|Object} x
  * @param {string=} value
@@ -556,7 +558,14 @@ zzDOM.SS.prototype.removeAttr = function ( name ) {
     return this;
 };
 
+//TODO test .removeClass( array )
+//TODO test .removeClass()
 zzDOM.SS.prototype.removeClass = function ( name ) {
+    if ( ! name ){
+        this.el.className = '';
+        return this;
+    }
+    
     return this._iterate(
         name,
         function( self, v ){
@@ -570,6 +579,8 @@ zzDOM.SS.prototype.replaceWith = function ( value ) {
     return this;
 };
 
+//TODO test .toggleClass( array )
+//TODO test .toggleClass( name, state not null )
 zzDOM.SS.prototype.toggleClass = function ( name, state ) {
     return this._iterate(
         name,
@@ -649,6 +660,7 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
     return this;
 };
 
+//TODO test .on( eventName, listener, data not null )
 zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
     zzDOM._addEventListener( 
         this, 

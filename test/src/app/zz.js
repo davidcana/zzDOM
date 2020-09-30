@@ -1,8 +1,5 @@
 "use strict";
 
-//TODO must remove this
-//var zz = zzDOM.zz;
-
 // Unit tests
 QUnit.test( 'ZZDom selectors test', function( assert ) {
     var t1_1_original = 'white',

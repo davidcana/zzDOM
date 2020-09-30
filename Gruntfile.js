@@ -552,4 +552,5 @@ module.exports = function(grunt) {
         'concat:zz-gcc-debug'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
+    grunt.registerTask('all', ['default', 'buildTests', 'test']);
 };

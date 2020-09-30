@@ -1,8 +1,5 @@
 "use strict";
 
-//TODO must remove this
-//var zz = zzDOM.zz;
-
 // Unit tests
 QUnit.test( 'text and html test', function( assert ) {
     var t1_1_original = [ 'white', 'black', 'red' ],
@@ -619,7 +616,7 @@ QUnit.test( 'offset, offsetParent and position test', function( assert ) {
     assert.equal( document.getElementById( 't13-1-1' ).getAttribute( 'style' ), 'top: 25px; left: 30px;' );
     assert.equal( document.getElementById( 't13-1-2' ).getAttribute( 'style' ), 'top: 25px; left: 30px;' );
     
-    // TODO Test offset() is hard!
+    //TODO Test offset() is hard!
     
     assert.notOk( zz( '#t13-2-1' ).hasClass( 'selected' ) );
     assert.notOk( zz( '#t13-2-3' ).hasClass( 'selected' ) );

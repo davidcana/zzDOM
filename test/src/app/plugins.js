@@ -1,8 +1,5 @@
 "use strict";
 
-//TODO must remove this
-//var zz = zzDOM.zz;
-
 // Unit tests
 QUnit.test( 'Hello world test', function( assert ) {
     

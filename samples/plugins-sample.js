@@ -1,8 +1,5 @@
 "use strict";
 
-//TODO must remove this
-//var zz = zzDOM.zz;
-
 zzDOM.add( 
     zzDOM.SS.prototype.velocity = function(){
 

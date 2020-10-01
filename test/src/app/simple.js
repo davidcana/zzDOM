@@ -751,6 +751,26 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     assert.equal( zz( '#t14-8c' ).text(), '11' );
     zz( '#t14-8b' ).trigger( 'focus' );
     assert.equal( zz( '#t14-8c' ).text(), '11' );
+    
+    // Test on using data
+    // Use t14-9c as a counter of clicks
+    var t9Listener = function( e ){ 
+        var current = parseInt( zz( '#t14-9c' ).text(), 10 );
+        zz( '#t14-9c' ).text( current + e.data.delta );
+    };
+    zz( '#t14-9b' ).on( 
+        'click', 
+        t9Listener, 
+        {
+            'delta': 42
+        } 
+    );
+    
+    assert.equal( zz( '#t14-9c' ).text(), '0' );
+    zz( '#t14-9b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-9c' ).text(), '42' );
+    zz( '#t14-9b' ).trigger( 'click' );
+    assert.equal( zz( '#t14-9c' ).text(), '84' );
 });
 
 QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {

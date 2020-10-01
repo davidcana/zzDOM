@@ -498,7 +498,6 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
     return this;
 };
 
-//TODO test .on( eventName, listener, data not null )
 zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
     zzDOM._addEventListener( 
         this, 
@@ -506,7 +505,7 @@ zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
         data? 
             function( e ){
                 e.data = data;
-                return listener();
+                return listener( e );
             }:
             listener, 
         useCapture 

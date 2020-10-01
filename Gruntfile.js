@@ -121,8 +121,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/multiple-closures.head.html',
-                    'test/multiple.body.html'
+                    'test/head/multiple-closures.head.html',
+                    'test/body/multiple.body.html'
                 ],
                 dest: 'test/multiple-closures.html',
                 nonull: true
@@ -133,8 +133,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/multiple-closures-concat.head.html',
-                    'test/multiple.body.html'
+                    'test/head/multiple-closures-concat.head.html',
+                    'test/body/multiple.body.html'
                 ],
                 dest: 'test/multiple-closures-concat.html',
                 nonull: true
@@ -145,8 +145,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/multiple-gcc.head.html',
-                    'test/multiple.body.html'
+                    'test/head/multiple-gcc.head.html',
+                    'test/body/multiple.body.html'
                 ],
                 dest: 'test/multiple-gcc.html',
                 nonull: true
@@ -157,8 +157,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/multiple-gcc-concat.head.html',
-                    'test/multiple.body.html'
+                    'test/head/multiple-gcc-concat.head.html',
+                    'test/body/multiple.body.html'
                 ],
                 dest: 'test/multiple-gcc-concat.html',
                 nonull: true
@@ -169,8 +169,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/multiple-gcc-debug.head.html',
-                    'test/multiple.body.html'
+                    'test/head/multiple-gcc-debug.head.html',
+                    'test/body/multiple.body.html'
                 ],
                 dest: 'test/multiple-gcc-debug.html',
                 nonull: true
@@ -181,8 +181,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/plugins-closures.head.html',
-                    'test/plugins.body.html'
+                    'test/head/plugins-closures.head.html',
+                    'test/body/plugins.body.html'
                 ],
                 dest: 'test/plugins-closures.html',
                 nonull: true
@@ -193,8 +193,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/plugins-closures-concat.head.html',
-                    'test/plugins.body.html'
+                    'test/head/plugins-closures-concat.head.html',
+                    'test/body/plugins.body.html'
                 ],
                 dest: 'test/plugins-closures-concat.html',
                 nonull: true
@@ -205,8 +205,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/plugins-gcc.head.html',
-                    'test/plugins.body.html'
+                    'test/head/plugins-gcc.head.html',
+                    'test/body/plugins.body.html'
                 ],
                 dest: 'test/plugins-gcc.html',
                 nonull: true
@@ -217,8 +217,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/plugins-gcc-concat.head.html',
-                    'test/plugins.body.html'
+                    'test/head/plugins-gcc-concat.head.html',
+                    'test/body/plugins.body.html'
                 ],
                 dest: 'test/plugins-gcc-concat.html',
                 nonull: true
@@ -229,8 +229,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/plugins-gcc-debug.head.html',
-                    'test/plugins.body.html'
+                    'test/head/plugins-gcc-debug.head.html',
+                    'test/body/plugins.body.html'
                 ],
                 dest: 'test/plugins-gcc-debug.html',
                 nonull: true
@@ -241,8 +241,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/simple-closures.head.html',
-                    'test/simple.body.html'
+                    'test/head/simple-closures.head.html',
+                    'test/body/simple.body.html'
                 ],
                 dest: 'test/simple-closures.html',
                 nonull: true
@@ -253,8 +253,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/simple-closures-concat.head.html',
-                    'test/simple.body.html'
+                    'test/head/simple-closures-concat.head.html',
+                    'test/body/simple.body.html'
                 ],
                 dest: 'test/simple-closures-concat.html',
                 nonull: true
@@ -265,8 +265,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/simple-gcc.head.html',
-                    'test/simple.body.html'
+                    'test/head/simple-gcc.head.html',
+                    'test/body/simple.body.html'
                 ],
                 dest: 'test/simple-gcc.html',
                 nonull: true
@@ -277,8 +277,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/simple-gcc-concat.head.html',
-                    'test/simple.body.html'
+                    'test/head/simple-gcc-concat.head.html',
+                    'test/body/simple.body.html'
                 ],
                 dest: 'test/simple-gcc-concat.html',
                 nonull: true
@@ -289,8 +289,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/simple-gcc-debug.head.html',
-                    'test/simple.body.html'
+                    'test/head/simple-gcc-debug.head.html',
+                    'test/body/simple.body.html'
                 ],
                 dest: 'test/simple-gcc-debug.html',
                 nonull: true
@@ -301,8 +301,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/zz-closures.head.html',
-                    'test/zz.body.html'
+                    'test/head/zz-closures.head.html',
+                    'test/body/zz.body.html'
                 ],
                 dest: 'test/zz-closures.html',
                 nonull: true
@@ -313,8 +313,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/zz-closures-concat.head.html',
-                    'test/zz.body.html'
+                    'test/head/zz-closures-concat.head.html',
+                    'test/body/zz.body.html'
                 ],
                 dest: 'test/zz-closures-concat.html',
                 nonull: true
@@ -325,8 +325,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/zz-gcc.head.html',
-                    'test/zz.body.html'
+                    'test/head/zz-gcc.head.html',
+                    'test/body/zz.body.html'
                 ],
                 dest: 'test/zz-gcc.html',
                 nonull: true
@@ -337,8 +337,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/zz-gcc-concat.head.html',
-                    'test/zz.body.html'
+                    'test/head/zz-gcc-concat.head.html',
+                    'test/body/zz.body.html'
                 ],
                 dest: 'test/zz-gcc-concat.html',
                 nonull: true
@@ -349,8 +349,8 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/zz-gcc-debug.head.html',
-                    'test/zz.body.html'
+                    'test/head/zz-gcc-debug.head.html',
+                    'test/body/zz.body.html'
                 ],
                 dest: 'test/zz-gcc-debug.html',
                 nonull: true

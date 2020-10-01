@@ -433,9 +433,10 @@ zzDOM.SS.prototype.toggleClass = function ( name, state ) {
 };
 
 zzDOM.SS.prototype.hide = function () {
-    if ( this.el.style.display ){
-        this.attr( 'data-display', this.el.style.display );
-    }
+    this.attr( 
+        'data-display', 
+        getComputedStyle( this.el, null ).getPropertyValue( 'display' ) 
+    );
     this.el.style.display = 'none';
     return this;
 };

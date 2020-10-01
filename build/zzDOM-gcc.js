@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-01 11:39:22 */
+/*! zzdom - v0.2.0 - 2020-10-01 12:59:56 */
 /**
  * A namespace.
  * @const
@@ -590,9 +590,12 @@ zzDOM.SS.prototype.toggleClass = function ( name, state ) {
 };
 
 zzDOM.SS.prototype.hide = function () {
+    /*
     if ( this.el.style.display ){
         this.attr( 'data-display', this.el.style.display );
     }
+    */
+    this.attr( 'data-display', getComputedStyle( this.el, null ).getPropertyValue( 'display' ) );
     this.el.style.display = 'none';
     return this;
 };
@@ -600,6 +603,7 @@ zzDOM.SS.prototype.hide = function () {
 zzDOM.SS.prototype.show = function () {
     var display = this.attr( 'data-display' );
     this.el.style.display = display? display: 'block';
+    //this.el.style.display = this.attr( 'data-display' ) || getComputedStyle( this.el, null ).getPropertyValue( 'display' );
     return this;
 };
 

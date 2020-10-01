@@ -127,6 +127,51 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
         .attr( 'id' );
     assert.notOk( document.getElementById( 't5-5' ).classList.contains( t5_5_class ) );
     assert.equal( id, 't5-5' );
+    
+    var t5_6_initialClass = 'myclass',
+        t5_6_addedClass1 = 'addedclass',
+        t5_6_addedClass2 = 'otherclass',
+        t5_6_classArray = [ t5_6_addedClass1, t5_6_addedClass2 ];
+    assert.ok( document.getElementById( 't5-6' ).classList.contains( t5_6_initialClass ) );
+    assert.notOk( document.getElementById( 't5-6' ).classList.contains( t5_6_addedClass1 ) );
+    assert.notOk( document.getElementById( 't5-6' ).classList.contains( t5_6_addedClass2 ) );
+    id = zz( '#t5-6' )
+        .addClass( t5_6_classArray )
+        .attr( 'id' );
+    assert.ok( document.getElementById( 't5-6' ).classList.contains( t5_6_initialClass ) );
+    assert.ok( document.getElementById( 't5-6' ).classList.contains( t5_6_addedClass1 ) );
+    assert.ok( document.getElementById( 't5-6' ).classList.contains( t5_6_addedClass2 ) );
+    assert.equal( id, 't5-6' );
+    
+    var t5_7_initialClass1 = 'classtoremove1',
+        t5_7_initialClass2 = 'myclass',
+        t5_7_initialClass3 = 'classtoremove2',
+        t5_7_classArray = [ t5_7_initialClass1, t5_7_initialClass3 ];
+    assert.ok( document.getElementById( 't5-7' ).classList.contains( t5_7_initialClass1 ) );
+    assert.ok( document.getElementById( 't5-7' ).classList.contains( t5_7_initialClass2 ) );
+    assert.ok( document.getElementById( 't5-7' ).classList.contains( t5_7_initialClass3 ) );
+    id = zz( '#t5-7' )
+        .removeClass( t5_7_classArray )
+        .attr( 'id' );
+    assert.notOk( document.getElementById( 't5-7' ).classList.contains( t5_7_initialClass1 ) );
+    assert.ok( document.getElementById( 't5-7' ).classList.contains( t5_7_initialClass2 ) );
+    assert.notOk( document.getElementById( 't5-7' ).classList.contains( t5_7_initialClass3 ) );
+    assert.equal( id, 't5-7' );
+    
+    var t5_8_class1 = 'class1',
+        t5_8_class2 = 'class2',
+        t5_8_class3 = 'class3',
+        t5_8_classArray = [ t5_8_class2, t5_8_class3 ];
+    assert.ok( document.getElementById( 't5-8' ).classList.contains( t5_8_class1 ) );
+    assert.notOk( document.getElementById( 't5-8' ).classList.contains( t5_8_class2 ) );
+    assert.ok( document.getElementById( 't5-8' ).classList.contains( t5_8_class3 ) );
+    id = zz( '#t5-8' )
+        .toggleClass( t5_8_classArray )
+        .attr( 'id' );
+    assert.ok( document.getElementById( 't5-8' ).classList.contains( t5_8_class1 ) );
+    assert.ok( document.getElementById( 't5-8' ).classList.contains( t5_8_class2 ) );
+    assert.notOk( document.getElementById( 't5-8' ).classList.contains( t5_8_class3 ) );
+    assert.equal( id, 't5-8' );
 });
 
 QUnit.test( 'after, before, append and prepend test', function( assert ) {

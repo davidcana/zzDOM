@@ -187,6 +187,7 @@ zzDOM.SS.prototype.attr = function ( x, value ) {
         for ( var key in x ) {
             this.el.setAttribute( key, x[ key ] );
         }
+        return this;
     }
     
     // get

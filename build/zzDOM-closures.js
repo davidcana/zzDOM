@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-01 08:28:53 */
+/*! zzdom - v0.2.0 - 2020-10-01 09:16:45 */
 /**
  * A namespace.
  * @const
@@ -344,6 +344,7 @@ zzDOM.SS.prototype.attr = function ( x, value ) {
         for ( var key in x ) {
             this.el.setAttribute( key, x[ key ] );
         }
+        return this;
     }
     
     // get

@@ -400,7 +400,6 @@ zzDOM.SS.prototype.removeAttr = function ( name ) {
     return this;
 };
 
-//TODO test .removeClass()
 zzDOM.SS.prototype.removeClass = function ( name ) {
     if ( ! name ){
         this.el.className = '';
@@ -420,7 +419,6 @@ zzDOM.SS.prototype.replaceWith = function ( value ) {
     return this;
 };
 
-//TODO test .toggleClass( name, state not null )
 zzDOM.SS.prototype.toggleClass = function ( name, state ) {
     return this._iterate(
         name,

@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-01 11:33:43 */
+/*! zzdom - v0.2.0 - 2020-10-01 11:39:22 */
 /**
  * A namespace.
  * @const
@@ -655,7 +655,6 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
     return this;
 };
 
-//TODO test .on( eventName, listener, data not null )
 zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
     zzDOM._addEventListener( 
         this, 

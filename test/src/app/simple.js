@@ -762,7 +762,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
         'click', 
         t9Listener, 
         {
-            'delta': 42
+            delta: 42
         } 
     );
     

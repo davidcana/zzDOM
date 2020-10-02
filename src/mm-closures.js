@@ -85,32 +85,35 @@ zzDOM.MM.constructors.default = function( functionId ){
 
 // Init prototype functions from zzDOM.SS
 zzDOM.MM.init = function(){
-    var proto = zzDOM.SS.prototype;
-    console.log( proto ); 
+    // Concat functions
+    var concatF = [
+        'siblings',
+        'prev',
+        'next',
+        'children',
+        'parent',
+        'find',
+        'filter',
+        'offsetParent',
+        'clone'
+    ];
+    // Boolean functions
+    var booleanOrF = [
+        'is',
+        'hasClass'
+    ];
+    
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
             
-            switch ( zzDOM.SS.prototype[ functionId ] ){
-            // Concat functions
-            case zzDOM.SS.prototype.siblings:
-            case zzDOM.SS.prototype.prev:
-            case zzDOM.SS.prototype.next:
-            case zzDOM.SS.prototype.children:
-            case zzDOM.SS.prototype.parent:
-            case zzDOM.SS.prototype.find:
-            case zzDOM.SS.prototype.filter:
-            case zzDOM.SS.prototype.offsetParent:
-            case zzDOM.SS.prototype.clone:
+            if ( concatF.indexOf( functionId ) !== -1 ){
                 return zzDOM.MM.constructors.concat( functionId );
-            // Boolean functions
-            case zzDOM.SS.prototype.is:
-            case zzDOM.SS.prototype.hasClass:
-                return zzDOM.MM.constructors.booleanOr( functionId );
-            // Default function
-            default:
-                return zzDOM.MM.constructors.default( functionId );
             }
+            if ( booleanOrF.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.booleanOr( functionId );
+            }
+            return zzDOM.MM.constructors.default( functionId );
         };
         zzDOM.MM.prototype[ id ] = closure();
     }

@@ -84,59 +84,55 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
 };
 
 /* Reimplemented methods for Google closure compiler */
-zzDOM.MM.prototype.addClass = function ( name ) {
+zzDOM.MM.prototype.addClass = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );
 };
 
-zzDOM.MM.prototype.after = function ( x ) {
+zzDOM.MM.prototype.after = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.after, arguments );
 };
 
-zzDOM.MM.prototype.append = function ( x ) {
+zzDOM.MM.prototype.append = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.append, arguments );
 };
 
-zzDOM.MM.prototype.before = function ( x ) {
+zzDOM.MM.prototype.before = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.before, arguments );
 };
 
-zzDOM.MM.prototype.children = function ( selector ) {
+zzDOM.MM.prototype.children = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.children, arguments );
 };
 
-zzDOM.MM.prototype.siblings = function ( selector ) {
+zzDOM.MM.prototype.siblings = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.siblings, arguments );
 };
 
-zzDOM.MM.prototype.clone = function (  ) {
+zzDOM.MM.prototype.clone = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.clone, arguments );
 };
 
-zzDOM.MM.prototype.empty = function (  ) {
+zzDOM.MM.prototype.empty = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.empty, arguments );
 };
 
-zzDOM.MM.prototype.filter = function ( x ) {
+zzDOM.MM.prototype.filter = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
 };
 
-zzDOM.MM.prototype.find = function ( selector ) {
+zzDOM.MM.prototype.find = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.find, arguments );
 };
 
-/**
- * @param {string} name
- * @param {string=} value
- */
-zzDOM.MM.prototype.attr = function ( name, value ) {
+zzDOM.MM.prototype.attr = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.attr, arguments );
 };
 
-zzDOM.MM.prototype.height = function ( value ) {
+zzDOM.MM.prototype.height = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.height, arguments );
 };
 
-zzDOM.MM.prototype.html = function ( name ) {
+zzDOM.MM.prototype.html = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.html, arguments );
 };
 
@@ -144,15 +140,15 @@ zzDOM.MM.prototype.css = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.css, arguments );
 };
 
-zzDOM.MM.prototype.text = function ( name ) {
+zzDOM.MM.prototype.text = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.text, arguments );
 };
 
-zzDOM.MM.prototype.width = function ( value ) {
+zzDOM.MM.prototype.width = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.width, arguments );
 };
 
-zzDOM.MM.prototype.hasClass = function ( name ) {
+zzDOM.MM.prototype.hasClass = function () {
     return zzDOM.MM.constructors.booleanOr( this, zzDOM.SS.prototype.hasClass, arguments );
 };
 
@@ -160,7 +156,7 @@ zzDOM.MM.prototype.index = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.index, arguments );
 };
 
-zzDOM.MM.prototype.is = function ( x ) {
+zzDOM.MM.prototype.is = function () {
     return zzDOM.MM.constructors.booleanOr( this, zzDOM.SS.prototype.is, arguments );
 };
 
@@ -168,7 +164,7 @@ zzDOM.MM.prototype.next = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.next, arguments );
 };
 
-zzDOM.MM.prototype.offset = function ( c ) {
+zzDOM.MM.prototype.offset = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.offset, arguments );
 };
 
@@ -176,11 +172,11 @@ zzDOM.MM.prototype.offsetParent = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.offsetParent, arguments );
 };
 
-zzDOM.MM.prototype.outerHeight = function ( withMargin ) {
+zzDOM.MM.prototype.outerHeight = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.outerHeight, arguments );
 };
 
-zzDOM.MM.prototype.outerWidth = function ( withMargin ) {
+zzDOM.MM.prototype.outerWidth = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.outerWidth, arguments );
 };
 
@@ -188,11 +184,11 @@ zzDOM.MM.prototype.parent = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.parent, arguments );
 };
 
-zzDOM.MM.prototype.position = function ( relativeToViewport ) {
+zzDOM.MM.prototype.position = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.position, arguments );
 };
 
-zzDOM.MM.prototype.prepend = function ( x ) {
+zzDOM.MM.prototype.prepend = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.prepend, arguments );
 };
 
@@ -204,19 +200,19 @@ zzDOM.MM.prototype.remove = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.remove, arguments );
 };
 
-zzDOM.MM.prototype.removeAttr = function ( name ) {
+zzDOM.MM.prototype.removeAttr = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.removeAttr, arguments );
 };
 
-zzDOM.MM.prototype.removeClass = function ( name ) {
+zzDOM.MM.prototype.removeClass = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.removeClass, arguments );
 };
 
-zzDOM.MM.prototype.replaceWith = function ( value ) {
+zzDOM.MM.prototype.replaceWith = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.replaceWith, arguments );
 };
 
-zzDOM.MM.prototype.toggleClass = function ( name, value ) {
+zzDOM.MM.prototype.toggleClass = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.toggleClass, arguments );
 };
 
@@ -236,18 +232,18 @@ zzDOM.MM.prototype.isVisible = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.isVisible, arguments );
 };
 
-zzDOM.MM.prototype.appendTo = function ( x ) {
+zzDOM.MM.prototype.appendTo = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.appendTo, arguments );
 };
 
-zzDOM.MM.prototype.trigger = function ( eventName ) {
+zzDOM.MM.prototype.trigger = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.trigger, arguments );
 };
 
-zzDOM.MM.prototype.on = function ( eventName, listener, useCapture ) {
+zzDOM.MM.prototype.on = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.on, arguments );
 };
 
-zzDOM.MM.prototype.off = function ( eventName, listener, useCapture ) {
+zzDOM.MM.prototype.off = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.off, arguments );
 };

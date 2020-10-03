@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-02 11:5:10 */
+/*! zzdom - v0.2.0 - 2020-10-03 19:40:43 */
 /**
  * A namespace.
  * @const
@@ -599,8 +599,10 @@ zzDOM.SS.prototype.hide = function () {
 };
 
 zzDOM.SS.prototype.show = function () {
-    var display = this.attr( 'data-display' );
-    this.el.style.display = display? display: 'block';
+    if ( ! this.isVisible() ){
+        var display = this.attr( 'data-display' );
+        this.el.style.display = display? display: 'block';
+    }
     return this;
 };
 

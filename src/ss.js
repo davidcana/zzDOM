@@ -442,8 +442,10 @@ zzDOM.SS.prototype.hide = function () {
 };
 
 zzDOM.SS.prototype.show = function () {
-    var display = this.attr( 'data-display' );
-    this.el.style.display = display? display: 'block';
+    if ( ! this.isVisible() ){
+        var display = this.attr( 'data-display' );
+        this.el.style.display = display? display: 'block';
+    }
     return this;
 };
 

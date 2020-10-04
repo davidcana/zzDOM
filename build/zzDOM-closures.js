@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-03 19:40:43 */
+/*! zzdom - v0.2.0 - 2020-10-04 11:40:28 */
 /**
  * A namespace.
  * @const
@@ -590,11 +590,13 @@ zzDOM.SS.prototype.toggleClass = function ( name, state ) {
 };
 
 zzDOM.SS.prototype.hide = function () {
-    this.attr( 
-        'data-display', 
-        getComputedStyle( this.el, null ).getPropertyValue( 'display' ) 
-    );
-    this.el.style.display = 'none';
+    if ( this.isVisible() ){
+        this.attr( 
+            'data-display', 
+            getComputedStyle( this.el, null ).getPropertyValue( 'display' ) 
+        );
+        this.el.style.display = 'none';
+    }
     return this;
 };
 

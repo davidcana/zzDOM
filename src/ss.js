@@ -446,7 +446,8 @@ zzDOM.SS.prototype.hide = function () {
 zzDOM.SS.prototype.show = function () {
     if ( ! this.isVisible() ){
         var display = this.attr( 'data-display' );
-        this.el.style.display = display? display: 'block';
+        //this.el.style.display = display? display: 'block';
+        this.el.style.display = display? display: zzDOM._getDefaultDisplay( this.el );
     }
     return this;
 };

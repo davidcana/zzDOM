@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-04 11:40:28 */
+/*! zzdom - v0.2.0 - 2020-10-04 12:18:0 */
 /**
  * A namespace.
  * @const
@@ -151,6 +151,32 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
     } 
 };
 /* End of events */
+
+/* Default display */
+zzDOM._dd = {};
+
+zzDOM._getDefaultDisplay = function( el ) {
+    var nodeName = el.nodeName;
+    var display = zzDOM._dd[ nodeName ];
+
+    if ( display ) {
+        return display;
+    }
+
+    var doc = el.ownerDocument;
+    var temp = doc.body.appendChild( doc.createElement( nodeName ) );
+    display = getComputedStyle( temp )[ 'display' ];
+
+    temp.parentNode.removeChild( temp );
+
+    if ( display === 'none' ) {
+        display = 'block';
+    }
+    zzDOM._dd[ nodeName ] = display;
+
+    return display;
+};
+/* End of default display */
 
 // Register zz function
 var zz;
@@ -603,7 +629,8 @@ zzDOM.SS.prototype.hide = function () {
 zzDOM.SS.prototype.show = function () {
     if ( ! this.isVisible() ){
         var display = this.attr( 'data-display' );
-        this.el.style.display = display? display: 'block';
+        //this.el.style.display = display? display: 'block';
+        this.el.style.display = display? display: zzDOM._getDefaultDisplay( this.el );
     }
     return this;
 };

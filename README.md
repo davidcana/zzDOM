@@ -15,6 +15,7 @@
 
 ## Methods
 
+### Core
 * addClass = function ( name )
 * after = function ( x )
 * append = function ( x )
@@ -25,20 +26,16 @@
 * clone = function ()
 * css = function ();
 * empty = function ()
-* find = function ( selector )
 * filter = function ( x )
+* find = function ( selector )
 * hasClass = function ( name )
 * height = function ( value )
-* hide = function ()
 * html = function ( name )
 * index = function ()
 * is = function ( x )
-* isVisible = function ()
 * next = function ()
-* off = function ( eventName, listener, useCapture )
 * offset = function ( c )
 * offsetParent = function ()
-* on = function ( eventName, listener, useCapture )
 * outerHeight = function ( withMargin )
 * outerWidth = function ( withMargin )
 * parent = function ()
@@ -49,13 +46,21 @@
 * removeAttr = function ( name )
 * removeClass = function ( name )
 * replaceWith = function ( value )
-* show = function ()
 * siblings = function ( selector )
 * text = function ( name )
-* toggle = function ()
 * toggleClass = function ( name, value )
-* trigger = function ( eventName )
 * width = function ( value )
+
+### Show/hide plugin
+* isVisible = function ()
+* hide = function ()
+* show = function ()
+* toggle = function ()
+
+### Events plugin
+* off = function ( eventName, listener, useCapture )
+* on = function ( eventName, listener, useCapture )
+* trigger = function ( eventName )
 
 Please, take a look at [the zzDOM web](https://davidcana.github.io/zzDOM) for more information about zzDOM.
 

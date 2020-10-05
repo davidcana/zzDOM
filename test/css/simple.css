@@ -19,6 +19,10 @@ div.offsetTests {
     background-color: green;
     color: white;
 }
+#t12-9 {
+    display: none;
+    font-size: 2em;
+}
 #t13-3-div {
     left: 320px;
     top: 35px;

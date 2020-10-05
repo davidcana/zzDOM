@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-05 12:3:12 */
+/*! zzdom - v0.2.0 - 2020-10-05 12:36:40 */
 /**
  * A namespace.
  * @const
@@ -245,7 +245,6 @@ zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
     }
 };
 
-//TODO test not visible height and width
 /**
  * @param {string} property
  * @param {string|Function=} value
@@ -713,11 +712,9 @@ zzDOM.SS.prototype.isVisible = function () {
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
 };
 
-//TODO test when display of el is not 'block'
 zzDOM.SS.prototype.show = function () {
     if ( ! this.isVisible() ){
         var display = this.attr( 'data-display' );
-        //this.el.style.display = display? display: 'block';
         this.el.style.display = display? display: zzDOM._getDefaultDisplay( this.el );
     }
     return this;

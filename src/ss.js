@@ -62,7 +62,6 @@ zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
     }
 };
 
-//TODO test not visible height and width
 /**
  * @param {string} property
  * @param {string|Function=} value

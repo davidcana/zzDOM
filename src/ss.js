@@ -514,7 +514,6 @@ zzDOM.SS.prototype.width = function ( value ) {
 };
 
 /* Show/hide */
-//TODO test when el is not visible
 zzDOM.SS.prototype.hide = function () {
     if ( this.isVisible() ){
         this.attr( 

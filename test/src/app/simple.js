@@ -876,12 +876,21 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     assert.equal( zz( '#t15-10' ).el.offsetParent, null );
     assert.notOk( zz( '#t15-10' ).isVisible() );
     
-    // t15-10 is NOT visible, must be shown
+    // t15-11 is NOT visible, must be shown
     assert.equal( zz( '#t15-11' ).el.offsetParent, null );
     assert.notOk( zz( '#t15-11' ).isVisible() );
     zz( '#t15-11' ).toggle( true );
     assert.notEqual( zz( '#t15-11' ).el.offsetParent, null );
     assert.ok( zz( '#t15-11' ).isVisible() );
+    
+    // t15-12 is NOT visible, do not change
+    assert.equal( zz( '#t15-12' ).el.offsetParent, null );
+    assert.notOk( zz( '#t15-12' ).isVisible() );
+    assert.equal( zz( '#t15-12' ).attr( 'data-display' ), null );
+    zz( '#t15-12' ).hide();
+    assert.equal( zz( '#t15-12' ).el.offsetParent, null );
+    assert.notOk( zz( '#t15-12' ).isVisible() );
+    assert.equal( zz( '#t15-12' ).attr( 'data-display' ), null );
 });
 
 QUnit.test( 'appendTo test', function( assert ) {

@@ -530,11 +530,9 @@ zzDOM.SS.prototype.isVisible = function () {
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
 };
 
-//TODO test when display of el is not 'block'
 zzDOM.SS.prototype.show = function () {
     if ( ! this.isVisible() ){
         var display = this.attr( 'data-display' );
-        //this.el.style.display = display? display: 'block';
         this.el.style.display = display? display: zzDOM._getDefaultDisplay( this.el );
     }
     return this;

@@ -898,6 +898,19 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     zz( '#t15-13' ).show();
     assert.notEqual( zz( '#t15-13' ).el.offsetParent, null );
     assert.ok( zz( '#t15-13' ).isVisible() );
+    
+    // t15-14 is visible and inline, must be hide and shown and already be online
+    assert.notEqual( zz( '#t15-14' ).el.offsetParent, null );
+    assert.ok( zz( '#t15-14' ).isVisible() );
+    assert.equal( getComputedStyle( zz( '#t15-14' ).el ).display, 'inline' );
+    zz( '#t15-14' ).hide();
+    assert.equal( zz( '#t15-14' ).el.offsetParent, null );
+    assert.notOk( zz( '#t15-14' ).isVisible() );
+    assert.equal( getComputedStyle( zz( '#t15-14' ).el ).display, 'none' );
+    zz( '#t15-14' ).show();
+    assert.notEqual( zz( '#t15-14' ).el.offsetParent, null );
+    assert.ok( zz( '#t15-14' ).isVisible() );
+    assert.equal( getComputedStyle( zz( '#t15-14' ).el ).display, 'inline' );
 });
 
 QUnit.test( 'appendTo test', function( assert ) {

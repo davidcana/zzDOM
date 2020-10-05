@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-05 11:30:15 */
+/*! zzdom - v0.2.0 - 2020-10-05 12:3:12 */
 /**
  * A namespace.
  * @const
@@ -697,7 +697,6 @@ zzDOM.SS.prototype.width = function ( value ) {
 };
 
 /* Show/hide */
-//TODO test when el is not visible
 zzDOM.SS.prototype.hide = function () {
     if ( this.isVisible() ){
         this.attr( 
@@ -714,7 +713,6 @@ zzDOM.SS.prototype.isVisible = function () {
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
 };
 
-//TODO test when el is visible
 //TODO test when display of el is not 'block'
 zzDOM.SS.prototype.show = function () {
     if ( ! this.isVisible() ){
@@ -725,7 +723,6 @@ zzDOM.SS.prototype.show = function () {
     return this;
 };
 
-//TODO test when state is not undefined
 zzDOM.SS.prototype.toggle = function ( state ) {
     var value = state !== undefined? ! state: this.isVisible();
     return value? this.hide(): this.show();

@@ -23,10 +23,7 @@ div.offsetTests {
     left: 320px;
     top: 35px;
 }
-#t15-2, #t15-4, #t15-6, #t15-10, #t15-11 {
-    display: none;
-}
-#t15-12 {
+#t15-2, #t15-4, #t15-6, #t15-10, #t15-11, #t15-12 {
     display: none;
 }
 .container {

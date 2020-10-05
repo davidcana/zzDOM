@@ -542,9 +542,8 @@ zzDOM.SS.prototype.show = function () {
     return this;
 };
 
-//TODO test when state is not undefined
 zzDOM.SS.prototype.toggle = function ( state ) {
-    var value = state !== undefined? state: this.isVisible();
+    var value = state !== undefined? ! state: this.isVisible();
     return value? this.hide(): this.show();
 };
 /* End of show/hide */

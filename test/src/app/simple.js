@@ -854,6 +854,34 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     zz( '#t15-7-2' ).show();
     assert.ok(  zz( '#t15-7-2' ).isVisible() );
     assert.equal( getComputedStyle( zz( '#t15-7-2' ).el, null ).getPropertyValue( 'display' ), 'inline' );
+    
+    // t15-8 is visible, must be hide
+    assert.notEqual( zz( '#t15-8' ).el.offsetParent, null );
+    assert.ok( zz( '#t15-8' ).isVisible() );
+    zz( '#t15-8' ).toggle( false );
+    assert.equal( zz( '#t15-8' ).el.offsetParent, null );
+    assert.notOk( zz( '#t15-8' ).isVisible() );
+    
+    // t15-9 is visible, do not change
+    assert.notEqual( zz( '#t15-9' ).el.offsetParent, null );
+    assert.ok( zz( '#t15-9' ).isVisible() );
+    zz( '#t15-9' ).toggle( true );
+    assert.notEqual( zz( '#t15-9' ).el.offsetParent, null );
+    assert.ok( zz( '#t15-9' ).isVisible() );
+    
+    // t15-10 is NOT visible, do not change
+    assert.equal( zz( '#t15-10' ).el.offsetParent, null );
+    assert.notOk( zz( '#t15-10' ).isVisible() );
+    zz( '#t15-10' ).toggle( false );
+    assert.equal( zz( '#t15-10' ).el.offsetParent, null );
+    assert.notOk( zz( '#t15-10' ).isVisible() );
+    
+    // t15-10 is NOT visible, must be shown
+    assert.equal( zz( '#t15-11' ).el.offsetParent, null );
+    assert.notOk( zz( '#t15-11' ).isVisible() );
+    zz( '#t15-11' ).toggle( true );
+    assert.notEqual( zz( '#t15-11' ).el.offsetParent, null );
+    assert.ok( zz( '#t15-11' ).isVisible() );
 });
 
 QUnit.test( 'appendTo test', function( assert ) {

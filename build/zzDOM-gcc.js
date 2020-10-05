@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-05 09:37:57 */
+/*! zzdom - v0.2.0 - 2020-10-05 11:30:15 */
 /**
  * A namespace.
  * @const
@@ -727,7 +727,7 @@ zzDOM.SS.prototype.show = function () {
 
 //TODO test when state is not undefined
 zzDOM.SS.prototype.toggle = function ( state ) {
-    var value = state !== undefined? state: this.isVisible();
+    var value = state !== undefined? ! state: this.isVisible();
     return value? this.hide(): this.show();
 };
 /* End of show/hide */

@@ -47,17 +47,6 @@ zzDOM.add = function( ssPrototype, constructor ){
 };
 
 zzDOM.MM.constructors = {};
-zzDOM.MM.constructors.concat = function( functionId ){
-    return function(){
-        var newNodes = [];
-        for ( var i = 0; i < this.list.length; i++ ) {
-            var ss = this.list[ i ];
-            var x = ss[ functionId ].apply( ss, arguments );
-            newNodes = newNodes.concat( x.nodes );
-        }
-        return zzDOM._build( newNodes );
-    };
-};
 zzDOM.MM.constructors.booleanOr = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
@@ -68,6 +57,17 @@ zzDOM.MM.constructors.booleanOr = function( functionId ){
             }
         }
         return false;
+    };
+};
+zzDOM.MM.constructors.concat = function( functionId ){
+    return function(){
+        var newNodes = [];
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
+            newNodes = newNodes.concat( x.nodes );
+        }
+        return zzDOM._build( newNodes );
     };
 };
 zzDOM.MM.constructors.default = function( functionId ){
@@ -87,20 +87,20 @@ zzDOM.MM.constructors.default = function( functionId ){
 zzDOM.MM.init = function(){
     // Concat functions
     var concatF = [
-        'siblings',
-        'prev',
-        'next',
         'children',
-        'parent',
-        'find',
+        'clone',
         'filter',
+        'find',
+        'next',
         'offsetParent',
-        'clone'
+        'parent',
+        'prev',
+        'siblings'
     ];
     // Boolean functions
     var booleanOrF = [
-        'is',
-        'hasClass'
+        'hasClass',
+        'is'
     ];
     
     for ( var id in zzDOM.SS.prototype ){

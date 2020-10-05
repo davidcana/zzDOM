@@ -10,6 +10,7 @@
         <script src="/src/mm-closures.js" defer></script>
         <script src="src/app/htmlComparator.js" defer></script>
         <script src="src/app/utils.js" defer></script>
+        <script src="lib/jquery-3.5.1.js" defer></script>
         <script src="plugins-sample.js" defer></script>
         
         <style>
@@ -33,6 +34,21 @@
                 left: 700px;
                 top: 300px;
             }
+            .t5 {
+                color: white;
+                background-color: black;
+                font-size: 2em;
+                position: absolute;
+            }
+            #t5-1 {
+	            left: 0;
+	            top: 00;
+            }
+            #t5-2 {
+                left: 0;
+	            top: 100;
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -54,5 +70,12 @@
         <div id="t4-1-1" class="square t4-1"></div>
         <div id="t4-1-2" class="square t4-1"></div>
         
+        <h2>
+            3. Width of not visible elements
+        </h2>
+        <button id="t5">Start 3</button>
+        
+        <div id="t5-1" class="t5">t5-1</div>
+        <div id="t5-2" class="t5">t5-2</div>
     </body>
 </html>

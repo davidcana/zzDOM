@@ -75,14 +75,6 @@ zzDOM.zz = function( x, s1, s2 ){
     throw 'Unsupported selector type found running zz function.';
 };
 
-zzDOM._htmlToElement = function ( html ) {
-    var template = document.createElement( 'template' );
-    template.innerHTML = html.trim();
-    return template.content.childElementCount === 1?
-        template.content.firstChild:
-        template.content.childNodes;
-};
-
 zzDOM._build = function ( x ) {
     if ( x instanceof Element ){
         return new zzDOM.SS( x );
@@ -91,6 +83,14 @@ zzDOM._build = function ( x ) {
         x = Array.prototype.slice.call( x );
     }
     return x.length === 1? new zzDOM.SS( x[ 0 ] ): new zzDOM.MM( x );
+};
+
+zzDOM._htmlToElement = function ( html ) {
+    var template = document.createElement( 'template' );
+    template.innerHTML = html.trim();
+    return template.content.childElementCount === 1?
+        template.content.firstChild:
+        template.content.childNodes;
 };
 
 /* Events */

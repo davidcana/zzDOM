@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-04 12:54:22 */
+/*! zzdom - v0.2.0 - 2020-10-05 09:37:57 */
 /**
  * A namespace.
  * @const
@@ -75,14 +75,6 @@ zzDOM.zz = function( x, s1, s2 ){
     throw 'Unsupported selector type found running zz function.';
 };
 
-zzDOM._htmlToElement = function ( html ) {
-    var template = document.createElement( 'template' );
-    template.innerHTML = html.trim();
-    return template.content.childElementCount === 1?
-        template.content.firstChild:
-        template.content.childNodes;
-};
-
 zzDOM._build = function ( x ) {
     if ( x instanceof Element ){
         return new zzDOM.SS( x );
@@ -91,6 +83,14 @@ zzDOM._build = function ( x ) {
         x = Array.prototype.slice.call( x );
     }
     return x.length === 1? new zzDOM.SS( x[ 0 ] ): new zzDOM.MM( x );
+};
+
+zzDOM._htmlToElement = function ( html ) {
+    var template = document.createElement( 'template' );
+    template.innerHTML = html.trim();
+    return template.content.childElementCount === 1?
+        template.content.firstChild:
+        template.content.childNodes;
 };
 
 /* Events */
@@ -191,34 +191,24 @@ zzDOM.SS = function ( _el ) {
 };
 
 /* Methods NOT included in jquery */
-zzDOM.SS.prototype._styleProperty = function ( property, value ) {
-    // get
-    if ( value === undefined ){
-        return parseFloat(
-            getComputedStyle( this.el, null )[ property ].replace( 'px', '' )
-        );
-    }
-
-    // set
-    if ( typeof value === 'function' ) {
-        value = value();
-    }
-    if ( typeof value === 'string' ){
-        this.el.style[ property ] = value;
-    } else {
-        this.el.style[ property ] = value + 'px';
-    }
-    return this;
+zzDOM.SS.prototype._buildError = function ( method ) {
+    return 'Method "' + method + '" not ready for that type!';
 };
 
-zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
-    this.el.style[ key ] = value;
+zzDOM.SS.prototype._gcs = function ( self, property ) {
+    return getComputedStyle( self.el, null )[ property ].replace( 'px', '' );
 };
 
-zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
-    for ( var key in object ) {
-        this._setCssUsingKeyValue( key, object[ key ] );
+zzDOM.SS.prototype._getElId = function(){
+    var elId = this.el.getAttribute( 'data-elId' );
+    if ( ! elId ){
+        // Generate a random string with 4 chars
+        elId = Math.floor( ( 1 + Math.random() ) * 0x10000 )
+            .toString( 16 )
+            .substring( 1 );
+        this.el.setAttribute( 'data-elId', elId );
     }
+    return elId;
 };
 
 zzDOM.SS.prototype._insertHelper = function ( position, x ) {
@@ -234,22 +224,6 @@ zzDOM.SS.prototype._insertHelper = function ( position, x ) {
     return this;
 };
 
-zzDOM.SS.prototype._buildError = function ( method ) {
-    return 'Method "' + method + '" not ready for that type!';
-};
-
-zzDOM.SS.prototype._getElId = function(){
-    var elId = this.el.getAttribute( 'data-elId' );
-    if ( ! elId ){
-        // Generate a random string with 4 chars
-        elId = Math.floor( ( 1 + Math.random() ) * 0x10000 )
-            .toString( 16 )
-            .substring( 1 );
-        this.el.setAttribute( 'data-elId', elId );
-    }
-    return elId;
-};
-
 zzDOM.SS.prototype._iterate = function( value, fn ){
     if ( Array.isArray( value ) ){
         for ( var i = 0; i < value.length; ++i ){
@@ -259,6 +233,77 @@ zzDOM.SS.prototype._iterate = function( value, fn ){
         fn( this, value );   
     }
     return this;
+};
+
+zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
+    this.el.style[ key ] = value;
+};
+
+zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
+    for ( var key in object ) {
+        this._setCssUsingKeyValue( key, object[ key ] );
+    }
+};
+
+//TODO test not visible height and width
+/**
+ * @param {string} property
+ * @param {string|Function=} value
+ */
+zzDOM.SS.prototype._styleProperty = function ( property, value ) {
+    // get
+    if ( value === undefined ){
+        var self = this;
+        //value = getComputedStyle( this.el, null )[ property ].replace( 'px', '' );
+        value = this._gcs( this, property );
+        return parseFloat( 
+            value !== 'auto'? 
+                value: 
+                this._swap( 
+                    this.el, 
+                    function(){
+                        //return self._styleProperty( property );
+                        //return getComputedStyle( self.el, null )[ property ].replace( 'px', '' );
+                        return self._gcs( self, property );
+                    } 
+                )
+        );
+    }
+
+    // set
+    if ( typeof value === 'function' ) {
+        value = value();
+    }
+    if ( typeof value === 'string' ){
+        this.el.style[ property ] = value;
+    } else {
+        this.el.style[ property ] = value + 'px';
+    }
+    return this;
+};
+
+zzDOM.SS.prototype._swap = function( _el, callback ) {
+    var old = {};
+    var options = {
+        display: 'block',
+        position: 'absolute',
+        visibility: 'hidden'
+    };
+
+    // Remember the old values and insert the new ones
+    for ( var name in options ) {
+        old[ name ] = _el.style[ name ];
+        _el.style[ name ] = options[ name ];
+    }
+
+    var val = callback.call( _el );
+
+    // Revert the old values
+    for ( name in options ) {
+        _el.style[ name ] = old[ name ];
+    }
+
+    return val;
 };
 
 /* Methods included in jquery */
@@ -762,17 +807,6 @@ zzDOM.add = function( ssPrototype, constructor ){
 };
 
 zzDOM.MM.constructors = {};
-zzDOM.MM.constructors.concat = function( functionId ){
-    return function(){
-        var newNodes = [];
-        for ( var i = 0; i < this.list.length; i++ ) {
-            var ss = this.list[ i ];
-            var x = ss[ functionId ].apply( ss, arguments );
-            newNodes = newNodes.concat( x.nodes );
-        }
-        return zzDOM._build( newNodes );
-    };
-};
 zzDOM.MM.constructors.booleanOr = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
@@ -783,6 +817,17 @@ zzDOM.MM.constructors.booleanOr = function( functionId ){
             }
         }
         return false;
+    };
+};
+zzDOM.MM.constructors.concat = function( functionId ){
+    return function(){
+        var newNodes = [];
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
+            newNodes = newNodes.concat( x.nodes );
+        }
+        return zzDOM._build( newNodes );
     };
 };
 zzDOM.MM.constructors.default = function( functionId ){
@@ -802,20 +847,20 @@ zzDOM.MM.constructors.default = function( functionId ){
 zzDOM.MM.init = function(){
     // Concat functions
     var concatF = [
-        'siblings',
-        'prev',
-        'next',
         'children',
-        'parent',
-        'find',
+        'clone',
         'filter',
+        'find',
+        'next',
         'offsetParent',
-        'clone'
+        'parent',
+        'prev',
+        'siblings'
     ];
     // Boolean functions
     var booleanOrF = [
-        'is',
-        'hasClass'
+        'hasClass',
+        'is'
     ];
     
     for ( var id in zzDOM.SS.prototype ){

@@ -74,3 +74,19 @@ document.getElementById( 't4' ).addEventListener(
             );
     }
 );
+
+document.getElementById( 't5' ).addEventListener( 
+    'click', 
+    function(){ 
+        //alert( 'Starting 3!' );
+
+        var width1 = zz( '#t5-1' ).width();
+        alert( 'Width 1: ' + width1 );
+        
+        //var width2jq = $( '#t5-2' ).width();
+        //alert( 'Width 2 jq: ' + width2jq );
+        
+        var width2 = zz( '#t5-2' ).width();
+        alert( 'Width 2: ' + width2 );
+    }
+);

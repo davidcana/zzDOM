@@ -70,7 +70,6 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     // get
     if ( value === undefined ){
         var self = this;
-        //value = getComputedStyle( this.el, null )[ property ].replace( 'px', '' );
         value = this._gcs( this, property );
         return parseFloat( 
             value !== 'auto'? 
@@ -78,8 +77,6 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
                 this._swap( 
                     this.el, 
                     function(){
-                        //return self._styleProperty( property );
-                        //return getComputedStyle( self.el, null )[ property ].replace( 'px', '' );
                         return self._gcs( self, property );
                     } 
                 )

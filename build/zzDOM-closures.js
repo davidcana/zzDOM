@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-05 12:40:49 */
+/*! zzdom - v0.2.0 - 2020-10-05 13:1:23 */
 /**
  * A namespace.
  * @const
@@ -253,7 +253,6 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     // get
     if ( value === undefined ){
         var self = this;
-        //value = getComputedStyle( this.el, null )[ property ].replace( 'px', '' );
         value = this._gcs( this, property );
         return parseFloat( 
             value !== 'auto'? 
@@ -261,8 +260,6 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
                 this._swap( 
                     this.el, 
                     function(){
-                        //return self._styleProperty( property );
-                        //return getComputedStyle( self.el, null )[ property ].replace( 'px', '' );
                         return self._gcs( self, property );
                     } 
                 )
@@ -700,7 +697,7 @@ zzDOM.SS.prototype.hide = function () {
     if ( this.isVisible() ){
         this.attr( 
             'data-display', 
-            getComputedStyle( this.el, null ).getPropertyValue( 'display' ) 
+            getComputedStyle( this.el, null )[ 'display' ]
         );
         this.el.style.display = 'none';
     }

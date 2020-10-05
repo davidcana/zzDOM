@@ -514,7 +514,7 @@ zzDOM.SS.prototype.hide = function () {
     if ( this.isVisible() ){
         this.attr( 
             'data-display', 
-            getComputedStyle( this.el, null ).getPropertyValue( 'display' ) 
+            getComputedStyle( this.el, null )[ 'display' ]
         );
         this.el.style.display = 'none';
     }

@@ -530,7 +530,6 @@ zzDOM.SS.prototype.isVisible = function () {
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
 };
 
-//TODO test when el is visible
 //TODO test when display of el is not 'block'
 zzDOM.SS.prototype.show = function () {
     if ( ! this.isVisible() ){

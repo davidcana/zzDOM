@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-05 13:1:23 */
+/*! zzdom - v0.2.0 - 2020-10-06 11:46:0 */
 /**
  * A namespace.
  * @const
@@ -564,6 +564,42 @@ zzDOM.SS.prototype.offsetParent = function () {
     return offsetParent? new zzDOM.SS( offsetParent ): this;
 };
 
+zzDOM.SS.prototype._outerCalc = function ( self, property, linked1, linked2, withMargin ) {
+    var value = parseFloat( self._gcs( self, property.toLowerCase() ) );
+    var padding = parseFloat( self._gcs( self, 'padding' + linked1 ) ) 
+        + parseFloat( self._gcs( self, 'padding' + linked2 ) );
+    var border = parseFloat( self._gcs( self, 'border' + linked1 + 'Width' ) )
+        + parseFloat( self._gcs( self, 'border' + linked2 + 'Width' ) );
+    
+    var total = value + padding + border;
+    
+    // No margin
+    if ( ! withMargin ){
+        return total;
+    }
+    
+    var margin = parseFloat( self._gcs( self, 'margin' + linked1 ) )
+        + parseFloat( self._gcs( self, 'margin' + linked2 ) );
+    return total + margin;
+};
+
+zzDOM.SS.prototype._outer = function ( property, linked1, linked2, withMargin ) {
+    var value = this.el[ 'offset' + property ];
+    
+    if ( value ) {
+        return this._outerCalc( this, property, linked1, linked2, withMargin );
+    }
+    
+    var self = this;
+    return this._swap( 
+        this.el, 
+        function(){
+            return self._outerCalc( self, property, linked1, linked2, withMargin );
+        } 
+    );
+};
+
+/*
 zzDOM.SS.prototype.outerHeight = function ( withMargin ) {
     var height = this.el.offsetHeight;
     
@@ -576,7 +612,15 @@ zzDOM.SS.prototype.outerHeight = function ( withMargin ) {
     var style = getComputedStyle( this.el );
     return height + parseInt( style.marginTop, 10 ) + parseInt( style.marginBottom, 10 );
 };
+*/
+zzDOM.SS.prototype.outerHeight = function ( withMargin ) {
+    return this._outer( 'Height', 'Top', 'Bottom', withMargin );
+};
 
+zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
+    return this._outer( 'Width', 'Left', 'Right', withMargin );
+};
+/*
 zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
     var width = this.el.offsetWidth;
 
@@ -589,6 +633,7 @@ zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
     var style = getComputedStyle( this.el );
     return width + parseInt( style.marginLeft, 10 ) + parseInt( style.marginRight, 10 );
 };
+*/
 
 zzDOM.SS.prototype.parent = function () {
     return new zzDOM.SS( this.el.parentNode );

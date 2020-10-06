@@ -80,13 +80,13 @@ document.getElementById( 't5' ).addEventListener(
     function(){ 
         //alert( 'Starting 3!' );
 
-        var width1 = zz( '#t5-1' ).width();
-        alert( 'Width 1: ' + width1 );
+        alert( 'outerWidth 1 zz: ' + zz( '#t5-1' ).outerWidth() );
+        alert( 'outerHeight 1 zz: ' + zz( '#t5-1' ).outerHeight() );
         
-        //var width2jq = $( '#t5-2' ).width();
-        //alert( 'Width 2 jq: ' + width2jq );
+        //alert( 'outerWidth 2 jq: ' + $( '#t5-2' ).outerWidth() );
+        //alert( 'outerHeight 2 jq: ' + $( '#t5-2' ).outerHeight() );
         
-        var width2 = zz( '#t5-2' ).width();
-        alert( 'Width 2: ' + width2 );
+        alert( 'outerWidth 2 zz: ' + zz( '#t5-2' ).outerWidth() );
+        alert( 'outerHeight 2 zz: ' + zz( '#t5-2' ).outerHeight() );
     }
 );

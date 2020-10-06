@@ -559,6 +559,16 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     assert.notOk( zz( '#t12-9' ).isVisible() );
     assert.equal( zz( '#t12-9' ).width(), 64 );
     assert.equal( zz( '#t12-9' ).height(), 37 );
+    assert.equal( zz( '#t12-9' ).outerWidth(), 64 );
+    assert.equal( zz( '#t12-9' ).outerHeight(), 37 );
+    
+    assert.notOk( zz( '#t12-10' ).isVisible() );
+    assert.equal( zz( '#t12-10' ).width(), 64 );
+    assert.equal( zz( '#t12-10' ).height(), 37 );
+    assert.equal( zz( '#t12-10' ).outerWidth(), 74 );
+    assert.equal( zz( '#t12-10' ).outerHeight(), 47 );
+    assert.equal( zz( '#t12-10' ).outerWidth( true ), 82 );
+    assert.equal( zz( '#t12-10' ).outerHeight( true ), 55 );
 });
 
 QUnit.test( 'offset, offsetParent and position test', function( assert ) {

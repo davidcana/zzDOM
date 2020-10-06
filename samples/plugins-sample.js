@@ -90,3 +90,11 @@ document.getElementById( 't5' ).addEventListener(
         alert( 'outerHeight 2 zz: ' + zz( '#t5-2' ).outerHeight() );
     }
 );
+
+zz( '#', 't6' ).on( 
+    'click', 
+    function( e ){
+        alert( this.id );
+    }, 
+    {} 
+);

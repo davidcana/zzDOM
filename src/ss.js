@@ -85,8 +85,21 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
     return total + margin;
 };
 
+/*
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
+};
+*/
+//TODO test numeric/aphanumeric values as width/height
+zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
+    if ( typeof value === 'function' ) {
+        value = value();
+    }
+    if ( typeof value === 'string' ){
+        this.el.style[ key ] = value;
+    } else {
+        this.el.style[ key ] = value + 'px';
+    }
 };
 
 zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
@@ -117,6 +130,8 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     }
 
     // set
+    this._setCssUsingKeyValue( property, value );
+    /*
     if ( typeof value === 'function' ) {
         value = value();
     }
@@ -125,6 +140,7 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     } else {
         this.el.style[ property ] = value + 'px';
     }
+    */
     return this;
 };
 

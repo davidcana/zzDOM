@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-06 13:52:12 */
+/*! zzdom - v0.2.0 - 2020-10-07 08:40:58 */
 /**
  * A namespace.
  * @const
@@ -267,9 +267,20 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
         + parseFloat( ss._gcs( ss, 'margin' + linked2 ) );
     return total + margin;
 };
-
+/*
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
+};
+*/
+zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
+    if ( typeof value === 'function' ) {
+        value = value();
+    }
+    if ( typeof value === 'string' ){
+        this.el.style[ key ] = value;
+    } else {
+        this.el.style[ key ] = value + 'px';
+    }
 };
 
 zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
@@ -300,6 +311,8 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     }
 
     // set
+    this._setCssUsingKeyValue( property, value );
+    /*
     if ( typeof value === 'function' ) {
         value = value();
     }
@@ -308,7 +321,13 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     } else {
         this.el.style[ property ] = value + 'px';
     }
+    */
     return this;
+};
+
+zzDOM.SS.prototype._lastIsLetter = function( value ){
+    var n = value.substr( value.length - 1 );
+    return ( n >= 65 && n < 91 ) || ( n >= 97 && n < 123 );
 };
 
 zzDOM.SS.prototype._swap = function( _el, callback ) {

@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-07 08:40:58 */
+/*! zzdom - v0.2.0 - 2020-10-07 08:52:7 */
 /**
  * A namespace.
  * @const
@@ -196,7 +196,8 @@ zzDOM.SS.prototype._buildError = function ( method ) {
 };
 
 zzDOM.SS.prototype._gcs = function ( self, property ) {
-    return getComputedStyle( self.el, null )[ property ].replace( 'px', '' );
+    var x = getComputedStyle( self.el, null )[ property ].replace( 'px', '' );
+    return isNaN( x )? x: parseFloat( x );
 };
 
 zzDOM.SS.prototype._getElId = function(){
@@ -250,11 +251,9 @@ zzDOM.SS.prototype._outer = function ( property, linked1, linked2, withMargin ) 
 };
 
 zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
-    var value = parseFloat( ss._gcs( ss, property.toLowerCase() ) );
-    var padding = parseFloat( ss._gcs( ss, 'padding' + linked1 ) ) 
-        + parseFloat( ss._gcs( ss, 'padding' + linked2 ) );
-    var border = parseFloat( ss._gcs( ss, 'border' + linked1 + 'Width' ) )
-        + parseFloat( ss._gcs( ss, 'border' + linked2 + 'Width' ) );
+    var value = ss._gcs( ss, property.toLowerCase() );
+    var padding = ss._gcs( ss, 'padding' + linked1 ) + ss._gcs( ss, 'padding' + linked2 );
+    var border = ss._gcs( ss, 'border' + linked1 + 'Width' ) + ss._gcs( ss, 'border' + linked2 + 'Width' );
     
     var total = value + padding + border;
     
@@ -263,15 +262,16 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
         return total;
     }
     
-    var margin = parseFloat( ss._gcs( ss, 'margin' + linked1 ) )
-        + parseFloat( ss._gcs( ss, 'margin' + linked2 ) );
+    var margin = ss._gcs( ss, 'margin' + linked1 ) + ss._gcs( ss, 'margin' + linked2 );
     return total + margin;
 };
+
 /*
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     this.el.style[ key ] = value;
 };
 */
+//TODO test numeric/aphanumeric values as width/height
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
         value = value();
@@ -323,11 +323,6 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
     }
     */
     return this;
-};
-
-zzDOM.SS.prototype._lastIsLetter = function( value ){
-    var n = value.substr( value.length - 1 );
-    return ( n >= 65 && n < 91 ) || ( n >= 97 && n < 123 );
 };
 
 zzDOM.SS.prototype._swap = function( _el, callback ) {

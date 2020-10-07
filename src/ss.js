@@ -582,7 +582,7 @@ zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
         data? 
             function( e ){
                 e.data = data;
-                return listener.bind( e.target, e )();
+                return listener.bind( e.currentTarget, e )();
             }:
             listener, 
         useCapture 

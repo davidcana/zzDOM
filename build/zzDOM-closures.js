@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-07 08:52:7 */
+/*! zzdom - v0.2.0 - 2020-10-07 13:2:26 */
 /**
  * A namespace.
  * @const
@@ -765,7 +765,7 @@ zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
         data? 
             function( e ){
                 e.data = data;
-                return listener.bind( e.target, e )();
+                return listener.bind( e.currentTarget, e )();
             }:
             listener, 
         useCapture 

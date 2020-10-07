@@ -78,6 +78,7 @@ zzDOM.MM.constructors.default = function( mm, fn, args ){
 };
 
 /* Methods included in jquery */
+//TODO must register this var
 zzDOM.MM.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( this.list, eachFn );
     return this;

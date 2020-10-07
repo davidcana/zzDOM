@@ -598,3 +598,9 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
     return this;
 };
 /* End of events */
+
+/* Forms */
+
+//TODO Implement .val
+
+/* End of forms */

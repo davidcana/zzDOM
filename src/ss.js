@@ -319,7 +319,6 @@ zzDOM.SS.prototype.empty = function (  ) {
     return this;
 };
 
-//TODO filter call from mm must set index
 zzDOM.SS.prototype.filter = function ( x, index ) {
     if ( typeof x === 'string' ){ // Is a string selector
         return zzDOM._build( 

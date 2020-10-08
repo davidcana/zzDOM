@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-08 11:11:2 */
+/*! zzdom - v0.2.0 - 2020-10-08 12:44:14 */
 /**
  * A namespace.
  * @const
@@ -73,6 +73,13 @@ zzDOM.zz = function( x, s1, s2 ){
     }
     
     throw 'Unsupported selector type found running zz function.';
+};
+
+// Build args array with toInsert as first position and then the arguments of this function
+zzDOM._args = function( previousArgs, toInsert ){
+    var result = Array.prototype.slice.call( previousArgs );
+    result.push( toInsert );
+    return result;
 };
 
 zzDOM._build = function ( x ) {
@@ -502,6 +509,7 @@ zzDOM.SS.prototype.empty = function (  ) {
     return this;
 };
 
+//TODO filter call from mm must set index
 zzDOM.SS.prototype.filter = function ( x, index ) {
     if ( typeof x === 'string' ){ // Is a string selector
         return zzDOM._build( 
@@ -833,10 +841,20 @@ zzDOM.add = function( ssPrototype, constructor ){
 };
 
 zzDOM.MM.constructors = {};
-zzDOM.MM.constructors.concat = function( mm, fn, args ){
+
+/**
+ * @param {boolean=} addIndex
+ */
+zzDOM.MM.constructors.concat = function( mm, fn, args, addIndex ){
     var newNodes = [];
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
+        if ( addIndex ){
+            if ( i > 0 ){
+                args.pop();
+            }
+            args = zzDOM._args( args, i );
+        }
         var x = fn.apply( ss, args );
         newNodes = newNodes.concat( x.nodes );
     }
@@ -864,9 +882,7 @@ zzDOM.MM.constructors.default = function( mm, fn, args ){
 };
 
 /* Methods included in jquery */
-//TODO must register this var
 zzDOM.MM.prototype.each = function ( eachFn ) {
-    //Array.prototype.forEach.call( this.list, eachFn );
     var self = this;
     Array.prototype.forEach.call( 
         this.list, 
@@ -919,7 +935,7 @@ zzDOM.MM.prototype.empty = function () {
 };
 
 zzDOM.MM.prototype.filter = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
+    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments, true );
 };
 
 zzDOM.MM.prototype.find = function () {

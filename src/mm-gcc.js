@@ -47,10 +47,21 @@ zzDOM.add = function( ssPrototype, constructor ){
 };
 
 zzDOM.MM.constructors = {};
-zzDOM.MM.constructors.concat = function( mm, fn, args ){
+
+/**
+ * @param {boolean=} addIndex
+ */
+zzDOM.MM.constructors.concat = function( mm, fn, args, addIndex ){
     var newNodes = [];
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
+        // Add i to args if needed, removing the last added element
+        if ( addIndex ){
+            if ( i > 0 ){
+                args.pop();
+            }
+            args = zzDOM._args( args, i );
+        }
         var x = fn.apply( ss, args );
         newNodes = newNodes.concat( x.nodes );
     }
@@ -131,7 +142,7 @@ zzDOM.MM.prototype.empty = function () {
 };
 
 zzDOM.MM.prototype.filter = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
+    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments, true );
 };
 
 zzDOM.MM.prototype.find = function () {

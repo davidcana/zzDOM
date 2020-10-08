@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-08 11:11:2 */
+/*! zzdom - v0.2.0 - 2020-10-08 12:44:14 */
 /**
  * A namespace.
  * @const
@@ -73,6 +73,13 @@ zzDOM.zz = function( x, s1, s2 ){
     }
     
     throw 'Unsupported selector type found running zz function.';
+};
+
+// Build args array with toInsert as first position and then the arguments of this function
+zzDOM._args = function( previousArgs, toInsert ){
+    var result = Array.prototype.slice.call( previousArgs );
+    result.push( toInsert );
+    return result;
 };
 
 zzDOM._build = function ( x ) {
@@ -502,6 +509,7 @@ zzDOM.SS.prototype.empty = function (  ) {
     return this;
 };
 
+//TODO filter call from mm must set index
 zzDOM.SS.prototype.filter = function ( x, index ) {
     if ( typeof x === 'string' ){ // Is a string selector
         return zzDOM._build( 
@@ -846,12 +854,13 @@ zzDOM.MM.constructors.booleanOr = function( functionId ){
         return false;
     };
 };
-zzDOM.MM.constructors.concat = function( functionId ){
+zzDOM.MM.constructors.concat = function( functionId, addIndex ){
     return function(){
         var newNodes = [];
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
-            var x = ss[ functionId ].apply( ss, arguments );
+            var args = addIndex? zzDOM._args( arguments, i ): arguments;
+            var x = ss[ functionId ].apply( ss, args );
             newNodes = newNodes.concat( x.nodes );
         }
         return zzDOM._build( newNodes );
@@ -889,13 +898,17 @@ zzDOM.MM.init = function(){
         'hasClass',
         'is'
     ];
-    
+    // addIndex functions
+    var addIndexF = [
+        'filter'
+    ];
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
+            var addIndex = addIndexF.indexOf( functionId ) !== -1;
             
             if ( concatF.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.concat( functionId );
+                return zzDOM.MM.constructors.concat( functionId, addIndex );
             }
             if ( booleanOrF.indexOf( functionId ) !== -1 ){
                 return zzDOM.MM.constructors.booleanOr( functionId );
@@ -907,9 +920,7 @@ zzDOM.MM.init = function(){
 }();
 
 /* Methods included in jquery */
-//TODO must register this var
 zzDOM.MM.prototype.each = function ( eachFn ) {
-    //Array.prototype.forEach.call( this.list, eachFn );
     var self = this;
     Array.prototype.forEach.call( 
         this.list, 

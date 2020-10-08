@@ -75,6 +75,13 @@ zzDOM.zz = function( x, s1, s2 ){
     throw 'Unsupported selector type found running zz function.';
 };
 
+// Build args array with toInsert as first position and then the arguments of this function
+zzDOM._args = function( previousArgs, toInsert ){
+    var result = Array.prototype.slice.call( previousArgs );
+    result.push( toInsert );
+    return result;
+};
+
 zzDOM._build = function ( x ) {
     if ( x instanceof Element ){
         return new zzDOM.SS( x );

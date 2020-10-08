@@ -339,25 +339,45 @@ QUnit.test( 'filter and find test', function( assert ) {
         .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
+    var filterFn = function( index, ss ){
+        var result = ss.attr( 'class' ) === 't9-2 a b';
+        if ( result ){
+            indexes.push( index );
+        }
+        return result;
+    };
+    
     ids = [];
+    var indexes = [];
     zz( '.t9-2' )
         .filter( 
-            function( index, ss ){ 
-                return ss.attr( 'class' ) === 't9-2 a b' 
+            function( index, ss ){
+                var result = ss.attr( 'class' ) === 't9-2 a b';
+                if ( result ){
+                    indexes.push( index );
+                }
+                return result;
             }
         )
         .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-1-2', 't9-2-2-2' ] );
+    assert.deepEqual( indexes, [ 1, 4 ] );
     
     ids = [];
+    indexes = [];
     zz( '.t9-2' )
         .filter( 
             function( index, ss ){ 
-                return ss.attr( 'class' ) === 'not-used-class' 
+                var result = ss.attr( 'class' ) === 'not-used-class';
+                if ( result ){
+                    indexes.push( index );
+                }
+                return result;
             }
         )
         .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [] );
 });
 
 QUnit.test( 'clone and is test', function( assert ) {

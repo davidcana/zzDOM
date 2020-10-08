@@ -273,7 +273,7 @@ QUnit.test( 'siblings, prev and next test', function( assert ) {
     var ids = [];
     zz( '#t7-1-2' )
         .siblings()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't7-1-1', 't7-1-3' ] );
     
     assert.equal( zz( '#t7-2-2' ).prev().attr( 'id' ), 't7-2-1' );
@@ -283,13 +283,13 @@ QUnit.test( 'siblings, prev and next test', function( assert ) {
     ids = [];
     zz( '#t7-4-2' )
         .siblings( '.selected' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't7-4-1', 't7-4-4' ] );
 });
 
 QUnit.test( 'children, index and parent test', function( assert ) {
     var ids = [];
-    zz( '#t8-1' ).children().each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t8-1' ).children().each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't8-1-1', 't8-1-2', 't8-1-3' ] );
     
     assert.equal( zz( '#t8-2-1' ).index(), 1 );
@@ -301,81 +301,81 @@ QUnit.test( 'children, index and parent test', function( assert ) {
     assert.equal( zz( '#t8-3-3' ).parent().attr( 'id' ), 't8-3' );
     
     ids = [];
-    zz( '#t8-4' ).children( '.selected' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t8-4' ).children( '.selected' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't8-4-1', 't8-4-3' ] );
 });
 
 QUnit.test( 'filter and find test', function( assert ) {
     var ids = [];
-    zz( '#t9-1' ).find( '.a' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-1' ).find( '.a' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-1-1', 't9-1-2', 't9-1-3-1' ] );
     
     ids = [];
-    zz( '#t9-1' ).find( '.b' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-1' ).find( '.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-1-1', 't9-1-3-2', 't9-1-4', 't9-1-4-2' ] );
     
     ids = [];
-    zz( '#t9-1' ).find( '.a.b' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-1' ).find( '.a.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-1-1' ] );
 
     ids = [];
-    zz( '#t9-1' ).find( '.c' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-1' ).find( '.c' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
-    zz( '#t9-2-1' ).filter( '.a' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-1' ).filter( '.a' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-1' ] );
     
     ids = [];
-    zz( '#t9-2-1' ).filter( '.b' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-1' ).filter( '.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
-    zz( '#t9-2-1' ).filter( '.a.b' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-1' ).filter( '.a.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
-    zz( '#t9-2-2' ).filter( '.a' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-2' ).filter( '.a' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-2' ] );
     
     ids = [];
-    zz( '#t9-2-2' ).filter( '.b' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-2' ).filter( '.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-2' ] );
     
     ids = [];
-    zz( '#t9-2-2' ).filter( '.a.b' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-2' ).filter( '.a.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-2' ] );
     
     ids = [];
-    zz( '#t9-2-3' ).filter( '.a' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-3' ).filter( '.a' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
-    zz( '#t9-2-3' ).filter( '.b' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-3' ).filter( '.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
-    zz( '#t9-2-3' ).filter( '.a.b' ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+    zz( '#t9-2-3' ).filter( '.a.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
     zz( '#t9-2-1' )
         .filter( 
-            function( zzEl ){ 
-                return zzEl.attr( 'class' ) === 'a b' 
+            function( index, ss ){ 
+                return ss.attr( 'class' ) === 'a b' 
             }
         )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
     zz( '#t9-2-2' )
         .filter( 
-            function( zzEl ){ 
-                return zzEl.attr( 'class' ) === 'a b' 
+            function( index, ss ){ 
+                return ss.attr( 'class' ) === 'a b' 
             }
         )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-2' ] );           
 });
 
@@ -1051,7 +1051,7 @@ QUnit.test( 'each test', function( assert ) {
     var thisValues = [];
     
     zz( '#t17-1' ).each( 
-        function( currentValue, index, array ){
+        function( index, currentValue, array ){
             currentValues.push( currentValue );
             indexes.push( index );
             arrays.push( array );

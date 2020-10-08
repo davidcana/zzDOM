@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-08 09:51:26 */
+/*! zzdom - v0.2.0 - 2020-10-08 11:11:2 */
 /**
  * A namespace.
  * @const
@@ -491,7 +491,7 @@ zzDOM.SS.prototype.css = function () {
 
 zzDOM.SS.prototype.each = function ( eachFn ) {
     //eachFn( this );
-    eachFn.bind( this.el, this, 0, this.nodes )();
+    eachFn.bind( this.el, 0, this, this.nodes )();
     return this;
 };
 
@@ -502,7 +502,7 @@ zzDOM.SS.prototype.empty = function (  ) {
     return this;
 };
 
-zzDOM.SS.prototype.filter = function ( x ) {
+zzDOM.SS.prototype.filter = function ( x, index ) {
     if ( typeof x === 'string' ){ // Is a string selector
         return zzDOM._build( 
             this.el.matches( x )? [ this.el ]: []
@@ -511,7 +511,7 @@ zzDOM.SS.prototype.filter = function ( x ) {
     
     if ( typeof x === 'function' ){ // Is a function
         return zzDOM._build(
-            x( this )? [ this.el ]: []
+            x( index === undefined? 0: index, this )? [ this.el ]: []
         );
     }  
     
@@ -914,7 +914,7 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( 
         this.list, 
         function( currentValue, index ){
-            eachFn.bind( currentValue.el, currentValue, index, self.nodes )();
+            eachFn.bind( currentValue.el, index, currentValue, self.nodes )();
         }
     );
     return this;

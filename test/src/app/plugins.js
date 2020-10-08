@@ -27,7 +27,7 @@ QUnit.test( 'Hello world test', function( assert ) {
     var ids = [];
     zz( '#t1-2 .selected' )
         .hello()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.equal( zz( '#t1-2-1' ).text(), t2_1_modified );
     assert.equal( zz( '#t1-2-2' ).text(), t2_1_original[ 1 ] );
     assert.equal( zz( '#t1-2-3' ).text(), t2_1_modified );

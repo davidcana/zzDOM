@@ -215,8 +215,8 @@
             id attrs of zz( '#t9-2-3' ).filter( '.a' ) must be []<br>
             id attrs of zz( '#t9-2-3' ).filter( '.b' ) must be []<br>
             id attrs of zz( '#t9-2-3' ).filter( '.a.b' ) must be []<br>
-            id attrs of zz( '#t9-2-1' ).filter( function( zzEl ){ return zzEl.attr( 'class') === 'a b' }; ) must be []<br>
-            id attrs of zz( '#t9-2-2' ).filter( function( zzEl ){ return zzEl.attr( 'class') === 'a b' }; ) must be [ 't9-2-2' ]<br>
+            id attrs of zz( '#t9-2-1' ).filter( function( index, ss ){ return ss.attr( 'class') === 'a b' }; ) must be []<br>
+            id attrs of zz( '#t9-2-2' ).filter( function( index, ss ){ return ss.attr( 'class') === 'a b' }; ) must be [ 't9-2-2' ]<br>
             <div id="t9-2-1" class="a">A div with a class</div>
             <div id="t9-2-2" class="a b">A div with a and b class</div>
             <div id="t9-2-3">A div with no class</div>
@@ -495,7 +495,7 @@
             17. each
         </h2>
         <div>
-            zz( '#t17-1' ).each( function( currentValue, index, array ){ ... } );<br>
+            zz( '#t17-1' ).each( function( index, currentValue, array ){ ... } );<br>
             <div id="t17-1">
                 This is t17-1
             </div>

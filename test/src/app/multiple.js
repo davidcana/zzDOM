@@ -10,7 +10,7 @@ QUnit.test( 'text and html test', function( assert ) {
     var ids = [];
     zz( '.t1-1' )
         .text( t1_1_modified )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.equal( zz( '#t1-1' ).text(), t1_1_modified );
     assert.equal( zz( '#t1-2' ).text(), t1_1_modified );
     assert.equal( zz( '#t1-3' ).text(), t1_1_modified );
@@ -29,7 +29,7 @@ QUnit.test( 'text and html test', function( assert ) {
     ids = [];
     zz( '.t1-2' )
         .html( t1_2_modified )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.equal( zz( '#t1-4' ).html(), t1_2_modified );
     assert.equal( zz( '#t1-5' ).html(), t1_2_modified );
     assert.equal( zz( '#t1-6' ).html(), t1_2_modified );
@@ -45,12 +45,12 @@ QUnit.test( 'remove and empty test', function( assert ) {
     var ids = [];
     zz( '.t2-1.remove' )
         .remove()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't2-1', 't2-3' ] );
     assert.equal( zz( '#t2-2' ).text(), t2_1_original[ 1 ] );
     ids = [];
     zz( '.t2-1' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't2-2' ] );
     
     var t2_2_original = [ 'To be empty', 'To be empty', 'Not to be empty' ];
@@ -60,14 +60,14 @@ QUnit.test( 'remove and empty test', function( assert ) {
     ids = [];
     zz( '.t2-2.empty' )
         .empty()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.equal( zz( '#t2-4' ).text(), '' );
     assert.equal( zz( '#t2-5' ).text(), '' );
     assert.equal( zz( '#t2-6' ).text(), t2_2_original[ 2 ] );
     assert.deepEqual( ids, [ 't2-4', 't2-5' ] );
     ids = [];
     zz( '.t2-2' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't2-4', 't2-5', 't2-6' ] );
 });
 
@@ -84,14 +84,14 @@ QUnit.test( 'replaceWith test', function( assert ) {
     var ids = [];
     zz( '.t3-1-in.replace' )
         .replaceWith( t3_1_modified )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't3-1-in', 't3-3-in' ] );
     assert.equal( zz( '#t3-1' ).html(), t3_1_modified );
     assert.equal( zz( '#t3-2' ).html(), t3_1_original[ 1 ] );
     assert.equal( zz( '#t3-3' ).html(), t3_1_modified );
     ids = [];
     zz( '.t3-1-in' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't3-2-in' ] );
 });
 
@@ -108,7 +108,7 @@ QUnit.test( 'attr and removeAttr test', function( assert ) {
     var ids = [];
     zz( '.t4-1.attr' )
         .attr( 'href', t4_1_modified )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.equal( zz( '#t4-1' ).attr( 'href' ), t4_1_original[ 0 ] );
     assert.equal( zz( '#t4-2' ).attr( 'href' ), t4_1_modified );
     assert.equal( zz( '#t4-3' ).attr( 'href' ), t4_1_modified );
@@ -127,7 +127,7 @@ QUnit.test( 'attr and removeAttr test', function( assert ) {
     ids = [];
     zz( '.t4-2.removeAttr' )
         .removeAttr( 'href' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.equal( zz( '#t4-4' ).attr( 'href' ), t4_2_original[ 0 ] );
     assert.equal( zz( '#t4-5' ).attr( 'href' ), t4_2_modified );
     assert.equal( zz( '#t4-6' ).attr( 'href' ), t4_2_modified );
@@ -148,7 +148,7 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     var ids = [];
     zz( '.t5-2' )
         .addClass( t5_2_class )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.ok( zz( '#t5-4' ).hasClass( t5_2_class ) );
     assert.ok( zz( '#t5-5' ).hasClass( t5_2_class ) );
     assert.ok( zz( '#t5-6' ).hasClass( t5_2_class ) );
@@ -161,7 +161,7 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     ids = [];
     zz( '.t5-3' )
         .removeClass( t5_3_class )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.notOk( zz( '#t5-7' ).hasClass( t5_3_class ) );
     assert.notOk( zz( '#t5-8' ).hasClass( t5_3_class ) );
     assert.notOk( zz( '#t5-9' ).hasClass( t5_3_class ) );
@@ -173,14 +173,14 @@ QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( as
     ids = [];
     zz( '.t5-4' )
         .toggleClass( t5_4_class )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.notOk( zz( '#t5-10' ).hasClass( t5_4_class ) );
     assert.ok( zz( '#t5-11' ).hasClass( t5_4_class ) );
     assert.deepEqual( ids, [ 't5-10', 't5-11' ] );
     ids = [];
     zz( '.t5-4' )
         .toggleClass( t5_4_class )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.ok( zz( '#t5-10' ).hasClass( t5_4_class ) );
     assert.notOk( zz( '#t5-11' ).hasClass( t5_4_class ) );
     assert.deepEqual( ids, [ 't5-10', 't5-11' ] );
@@ -205,7 +205,7 @@ QUnit.test( 'after, before, append and prepend test', function( assert ) {
     var ids = [];
     zz( '.t6-1' )
         .after( '<li>New text</li>' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     utils.assertHtml( assert, 't6-1', t6_1_modified );
     assert.deepEqual( ids, [ 't6-1-1', 't6-1-3' ] );
     
@@ -215,7 +215,7 @@ QUnit.test( 'after, before, append and prepend test', function( assert ) {
     ids = [];
     zz( '.t6-2' )
         .before( '<li>New text</li>' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     utils.assertHtml( assert, 't6-2', t6_2_modified );
     assert.deepEqual( ids, [ 't6-2-1', 't6-2-3' ] );
     
@@ -228,7 +228,7 @@ QUnit.test( 'after, before, append and prepend test', function( assert ) {
     ids = [];
     zz( '.t6-3' )
         .append( '<li>New text</li>' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     utils.assertHtml( assert, 't6-3-1', t6_3_1_modified );
     utils.assertHtml( assert, 't6-3-2', t6_3_2_modified );
     assert.deepEqual( ids, [ 't6-3-1', 't6-3-2' ] );
@@ -242,7 +242,7 @@ QUnit.test( 'after, before, append and prepend test', function( assert ) {
     ids = [];
     zz( '.t6-4' )
         .prepend( '<li>New text</li>' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     utils.assertHtml( assert, 't6-4-1', t6_4_1_modified );
     utils.assertHtml( assert, 't6-4-2', t6_4_2_modified );
     assert.deepEqual( ids, [ 't6-4-1', 't6-4-2' ] );
@@ -252,19 +252,19 @@ QUnit.test( 'siblings, prev and next test', function( assert ) {
     var ids = [];
     zz( '.t7-1' )
         .siblings()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't7-1-1-1', 't7-1-1-3', 't7-1-2-1', 't7-1-2-2' ] );
     
     ids = [];
     zz( '.t7-2' )
         .prev()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't7-2-1-1', 't7-2-2-1' ] );
     
     ids = [];
     zz( '.t7-2' )
         .next()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't7-2-1-3', 't7-2-2-3' ] );
 });
 
@@ -272,7 +272,7 @@ QUnit.test( 'children, index and parent test', function( assert ) {
     var ids = [];
     zz( '.t8-1' )
         .children()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't8-1-1-1', 't8-1-1-2', 't8-1-1-3', 't8-1-2-1', 't8-1-2-2', 't8-1-2-3' ] );
     
     assert.equal( zz( '.t8-1' ).index(), 1 );
@@ -280,13 +280,13 @@ QUnit.test( 'children, index and parent test', function( assert ) {
     ids = [];
     zz( '.t8-2' )
         .parent()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't8-2-1', 't8-2-2' ] );
     
     ids = [];
     zz( '.t8-1' )
         .children( '.selected' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't8-1-1-2', 't8-1-1-3', 't8-1-2-1' ] );
 });
 
@@ -294,69 +294,69 @@ QUnit.test( 'filter and find test', function( assert ) {
     var ids = [];
     zz( '.t9-1' )
         .find( '.a' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-1-1-1', 't9-1-1-2', 't9-1-1-3-1', 't9-1-2-1', 't9-1-2-2', 't9-1-2-3-1' ] );
     
     ids = [];
     zz( '.t9-1' )
         .find( '.b' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-1-1-1', 't9-1-1-3-2', 't9-1-1-4', 't9-1-1-4-2', 't9-1-2-1', 't9-1-2-3-2', 't9-1-2-4', 't9-1-2-4-2' ] );
     
     ids = [];
     zz( '.t9-1' )
         .find( '.a.b' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-1-1-1', 't9-1-2-1' ] );
     
     ids = [];
     zz( '.t9-1' )
         .find( '.c' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
     zz( '.t9-2' )
         .filter( '.a' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-1-1', 't9-2-1-2', 't9-2-2-1', 't9-2-2-2' ] );
     
     ids = [];
     zz( '.t9-2' )
         .filter( '.b' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-1-2', 't9-2-2-2' ] );
     
     ids = [];
     zz( '.t9-2' )
         .filter( '.a.b' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-1-2', 't9-2-2-2' ] );
     
     ids = [];
     zz( '.t9-2' )
         .filter( '.c' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
     
     ids = [];
     zz( '.t9-2' )
         .filter( 
-            function( zzEl ){ 
-                return zzEl.attr( 'class' ) === 't9-2 a b' 
+            function( index, ss ){ 
+                return ss.attr( 'class' ) === 't9-2 a b' 
             }
         )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't9-2-1-2', 't9-2-2-2' ] );
     
     ids = [];
     zz( '.t9-2' )
         .filter( 
-            function( zzEl ){ 
-                return zzEl.attr( 'class' ) === 'not-used-class' 
+            function( index, ss ){ 
+                return ss.attr( 'class' ) === 'not-used-class' 
             }
         )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [] );
 });
 
@@ -399,7 +399,7 @@ QUnit.test( 'clone and is test', function( assert ) {
     zz( '.t10-1-1' )
         .clone()
         .appendTo( '#t10-1-2' )
-        .each( function( zzEl ){ cssClasses.push( zzEl.attr( 'class' ) ); } );
+        .each( function( index, ss ){ cssClasses.push( ss.attr( 'class' ) ); } );
     assert.deepEqual( cssClasses, [ 't10-1-1', 't10-1-1' ] );
     utils.assertHtml( assert, 't10-1', t10_1_modified );
     
@@ -431,7 +431,7 @@ QUnit.test( 'css test', function( assert ) {
     var ids = [];
     zz( '.t11-1' )
         .css( 'color', 'red' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't11-1-1', 't11-1-2' ] );
     assert.equal( document.getElementById( 't11-1-1' ).getAttribute( 'style' ), t11_1_modified );
     assert.equal( document.getElementById( 't11-1-2' ).getAttribute( 'style' ), t11_1_modified );
@@ -445,7 +445,7 @@ QUnit.test( 'css test', function( assert ) {
     ids = [];
     zz( '.t11-2' )
         .css( 'background-color', 'red' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't11-2-1', 't11-2-2' ] );
     assert.equal( document.getElementById( 't11-2-1' ).getAttribute( 'style' ), t11_2_modified );
     assert.equal( document.getElementById( 't11-2-2' ).getAttribute( 'style' ), t11_2_modified );
@@ -459,7 +459,7 @@ QUnit.test( 'css test', function( assert ) {
     ids = [];
     zz( '.t11-3' )
         .css( 'color', 'red' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't11-3-1', 't11-3-2' ] );
     assert.equal( document.getElementById( 't11-3-1' ).getAttribute( 'style' ), t11_3_modified );
     assert.equal( document.getElementById( 't11-3-2' ).getAttribute( 'style' ), t11_3_modified );
@@ -473,7 +473,7 @@ QUnit.test( 'css test', function( assert ) {
     ids = [];
     zz( '.t11-4' )
         .css( 'background-color', 'red' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't11-4-1', 't11-4-2' ] );
     assert.equal( document.getElementById( 't11-4-1' ).getAttribute( 'style' ), t11_4_modified );
     assert.equal( document.getElementById( 't11-4-2' ).getAttribute( 'style' ), t11_4_modified );
@@ -493,7 +493,7 @@ QUnit.test( 'css test', function( assert ) {
                 color: 'white',
                 'background-color': 'red' 
             }
-        ).each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't11-5-1', 't11-5-2' ] );
     assert.equal( document.getElementById( 't11-5-1' ).getAttribute( 'style' ), t11_5_modified );
     assert.equal( document.getElementById( 't11-5-2' ).getAttribute( 'style' ), t11_5_modified );
@@ -509,7 +509,7 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     var ids = [];
     zz( '.t12-1' )
         .height( '2em' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't12-1-1', 't12-1-2' ] );
     assert.equal( document.getElementById( 't12-1-1' ).getAttribute( 'style' ), 'height: 2em;' );
     assert.equal( document.getElementById( 't12-1-2' ).getAttribute( 'style' ), 'height: 2em;' );
@@ -520,7 +520,7 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     ids = [];
     zz( '.t12-2' )
         .height( 100 )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't12-2-1', 't12-2-2' ] );
     assert.equal( document.getElementById( 't12-2-1' ).getAttribute( 'style' ), 'height: 100px;' );
     assert.equal( document.getElementById( 't12-2-2' ).getAttribute( 'style' ), 'height: 100px;' );
@@ -531,7 +531,7 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     ids = [];
     zz( '.t12-3' )
         .width( '10em' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't12-3-1', 't12-3-2' ] );
     assert.equal( document.getElementById( 't12-3-1' ).getAttribute( 'style' ), 'width: 10em;' );
     assert.equal( document.getElementById( 't12-3-2' ).getAttribute( 'style' ), 'width: 10em;' );
@@ -542,7 +542,7 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     ids = [];
     zz( '.t12-4' )
         .height( 800 )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't12-4-1', 't12-4-2' ] );
     assert.equal( document.getElementById( 't12-4-1' ).getAttribute( 'style' ), 'height: 800px;' );
     assert.equal( document.getElementById( 't12-4-2' ).getAttribute( 'style' ), 'height: 800px;' );
@@ -553,7 +553,7 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     ids = [];
     zz( '.t12-5' )
         .height( '2em' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't12-5-1', 't12-5-2' ] );
     assert.equal( document.getElementById( 't12-5-1' ).getAttribute( 'style' ), 'height: 2em;' );
     assert.equal( document.getElementById( 't12-5-2' ).getAttribute( 'style' ), 'height: 2em;' );
@@ -567,7 +567,7 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     ids = [];
     zz( '.t12-6' )
         .height( 100 )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't12-6-1', 't12-6-2' ] );
     assert.equal( document.getElementById( 't12-6-1' ).getAttribute( 'style' ), 'height: 100px;' );
     assert.equal( document.getElementById( 't12-6-2' ).getAttribute( 'style' ), 'height: 100px;' );
@@ -581,7 +581,7 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     ids = [];
     zz( '.t12-7' )
         .height( '10em' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't12-7-1', 't12-7-2' ] );
     assert.equal( document.getElementById( 't12-7-1' ).getAttribute( 'style' ), 'height: 10em;' );
     assert.equal( document.getElementById( 't12-7-2' ).getAttribute( 'style' ), 'height: 10em;' );
@@ -595,7 +595,7 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     ids = [];
     zz( '.t12-8' )
         .height( 800 )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't12-8-1', 't12-8-2' ] );
     assert.equal( document.getElementById( 't12-8-1' ).getAttribute( 'style' ), 'height: 800px;' );
     assert.equal( document.getElementById( 't12-8-2' ).getAttribute( 'style' ), 'height: 800px;' );
@@ -611,7 +611,7 @@ QUnit.test( 'offset, offsetParent and position test', function( assert ) {
     var ids = [];
     zz( '.t13-1' )
         .offset( { top: 25, left: 30 } )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't13-1-1', 't13-1-2' ] );
     assert.equal( document.getElementById( 't13-1-1' ).getAttribute( 'style' ), 'top: 25px; left: 30px;' );
     assert.equal( document.getElementById( 't13-1-2' ).getAttribute( 'style' ), 'top: 25px; left: 30px;' );
@@ -624,7 +624,7 @@ QUnit.test( 'offset, offsetParent and position test', function( assert ) {
     zz( '.t13-2' )
         .offsetParent()
         .addClass( 'selected' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't13-2-1', 't13-2-3' ] );
     assert.ok( zz( '#t13-2-1' ).hasClass( 'selected' ) );
     assert.ok( zz( '#t13-2-3' ).hasClass( 'selected' ) );
@@ -662,7 +662,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     var ids = [];
     zz( '.t14-1' )
         .trigger( 'click' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't14-1-1b', 't14-1-2b' ] );
     assert.equal( zz( '#t14-1-1c' ).text(), '1' );
     assert.equal( zz( '#t14-1-2c' ).text(), '1' );
@@ -672,7 +672,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     ids = [];
     zz( '.t14-1' )
         .trigger( 'click' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't14-1-1b', 't14-1-2b' ] );
     assert.equal( zz( '#t14-1-1c' ).text(), '2' );
     assert.equal( zz( '#t14-1-2c' ).text(), '3' );
@@ -921,21 +921,21 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     var ids = [];
     zz( '.t15-1' )
         .hide()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't15-1-1', 't15-1-2' ] );
     assert.equal( zz( '#t15-1-1' ).el.offsetParent, null );
     assert.equal( zz( '#t15-1-2' ).el.offsetParent, null );
     ids = [];
     zz( '.t15-1' )
         .show()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't15-1-1', 't15-1-2' ] );
     assert.notEqual( zz( '#t15-1-1' ).el.offsetParent, null );
     assert.notEqual( zz( '#t15-1-2' ).el.offsetParent, null );
     ids = [];
     zz( '.t15-1' )
         .hide()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't15-1-1', 't15-1-2' ] );
     assert.equal( zz( '#t15-1-1' ).el.offsetParent, null );
     assert.equal( zz( '#t15-1-2' ).el.offsetParent, null );
@@ -959,21 +959,21 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     ids = [];
     zz( '.t15-3' )
         .toggle()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't15-3-1', 't15-3-2' ] );
     assert.equal( zz( '#t15-3-1' ).el.offsetParent, null );
     assert.equal( zz( '#t15-3-2' ).el.offsetParent, null );
     ids = [];
     zz( '.t15-3' )
         .toggle()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't15-3-1', 't15-3-2' ] );
     assert.notEqual( zz( '#t15-3-1' ).el.offsetParent, null );
     assert.notEqual( zz( '#t15-3-2' ).el.offsetParent, null );
     ids = [];
     zz( '.t15-3' )
         .toggle()
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't15-3-1', 't15-3-2' ] );
     assert.equal( zz( '#t15-3-1' ).el.offsetParent, null );
     assert.equal( zz( '#t15-3-2' ).el.offsetParent, null );
@@ -1043,7 +1043,7 @@ This is the container t16-1
     var ids = [];
     zz( '<div id="t16-1-1">New div 1</div><div id="t16-1-2">New div 2</div>' )
         .appendTo( '#t16-1' )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't16-1-1', 't16-1-2' ] );
     utils.assertHtml( assert, 't16-1', t16_1_modified );
     
@@ -1063,7 +1063,7 @@ This is the container t16-2
     ids = [];
     zz( '<div id="t16-2-1">New div 1</div><div id="t16-2-2">New div 2</div>' )
         .appendTo( document.getElementById( 't16-2' ) )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't16-2-1', 't16-2-2' ] );
     utils.assertHtml( assert, 't16-2', t16_2_modified );
 
@@ -1083,7 +1083,7 @@ This is the container t16-3
     ids = [];
     zz( '<div id="t16-3-1">New div 1</div><div id="t16-3-2">New div 2</div>' )
         .appendTo( zz( '#t16-3' ) )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't16-3-1', 't16-3-2' ] );
     utils.assertHtml( assert, 't16-3', t16_3_modified );
 
@@ -1154,7 +1154,7 @@ This is the container t16-3
     var classes = [];
     zz( '<div class="t16-4-1">New div 1</div><div class="t16-4-2">New div 2</div>' )
         .appendTo( zz( '.t16-4-class' ) )
-        .each( function( zzEl ){ classes.push( zzEl.attr( 'class' ) ); } );
+        .each( function( index, ss ){ classes.push( ss.attr( 'class' ) ); } );
     assert.deepEqual( classes, [ 't16-4-1', 't16-4-2' ] );
     utils.assertHtml( assert, 't16-4', t16_4_modified );
     
@@ -1164,7 +1164,7 @@ This is the container t16-3
     ids = [];
     zz( '<div id="t16-5-1">New div 1</div><div id="t16-5-2">New div 2</div>' )
         .appendTo( document.getElementById( 'non-existing-id-DOM' ) )
-        .each( function( zzEl ){ ids.push( zzEl.attr( 'id' ) ); } );
+        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
     assert.deepEqual( ids, [ 't16-5-1', 't16-5-2' ] );
     utils.assertHtml( assert, 't16-5', t16_5_modified );
 });
@@ -1176,7 +1176,7 @@ QUnit.test( 'each test', function( assert ) {
     var thisValues = [];
     
     zz( '.t17-1' ).each( 
-        function( currentValue, index, array ){
+        function( index, currentValue, array ){
             currentValues.push( currentValue );
             indexes.push( index );
             arrays.push( array );

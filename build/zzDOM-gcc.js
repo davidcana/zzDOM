@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-08 12:44:14 */
+/*! zzdom - v0.2.0 - 2020-10-08 13:1:2 */
 /**
  * A namespace.
  * @const
@@ -840,6 +840,19 @@ zzDOM.add = function( ssPrototype, constructor ){
     throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
 };
 
+// Add i to args if needed, removing the last added element
+zzDOM.MM._args = function( args, addIndex, i ){
+    if ( ! addIndex ){
+        return args;
+    }
+    if ( i > 0 ){
+        args.pop();
+    }
+    args = zzDOM._args( args, i );
+    
+    return args;
+};
+
 zzDOM.MM.constructors = {};
 
 /**
@@ -849,20 +862,19 @@ zzDOM.MM.constructors.concat = function( mm, fn, args, addIndex ){
     var newNodes = [];
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
-        if ( addIndex ){
-            if ( i > 0 ){
-                args.pop();
-            }
-            args = zzDOM._args( args, i );
-        }
+        args = zzDOM.MM._args( args, addIndex, i );
         var x = fn.apply( ss, args );
         newNodes = newNodes.concat( x.nodes );
     }
     return zzDOM._build( newNodes );
 };
-zzDOM.MM.constructors.booleanOr = function( mm, fn, args ){
+/**
+ * @param {boolean=} addIndex
+ */
+zzDOM.MM.constructors.booleanOr = function( mm, fn, args, addIndex ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
+        args = zzDOM.MM._args( args, addIndex, i );
         var x = fn.apply( ss, args );
         if ( x ){
             return true;
@@ -870,9 +882,13 @@ zzDOM.MM.constructors.booleanOr = function( mm, fn, args ){
     }
     return false;
 };
-zzDOM.MM.constructors.default = function( mm, fn, args ){
+/**
+ * @param {boolean=} addIndex
+ */
+zzDOM.MM.constructors.default = function( mm, fn, args, addIndex ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
+        args = zzDOM.MM._args( args, addIndex, i );
         var r = fn.apply( ss, args );
         if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
             return r;

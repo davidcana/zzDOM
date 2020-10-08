@@ -306,57 +306,88 @@ QUnit.test( 'children, index and parent test', function( assert ) {
 });
 
 QUnit.test( 'filter and find test', function( assert ) {
+    
+    var eachFn = function( index, ss ){
+        ids.push( ss.attr( 'id' ) ); 
+        indexes.push( index );
+    };
+    
     var ids = [];
-    zz( '#t9-1' ).find( '.a' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    var indexes = [];
+    zz( '#t9-1' ).find( '.a' ).each( eachFn );
     assert.deepEqual( ids, [ 't9-1-1', 't9-1-2', 't9-1-3-1' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2 ] );
     
     ids = [];
-    zz( '#t9-1' ).find( '.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-1' ).find( '.b' ).each( eachFn );
     assert.deepEqual( ids, [ 't9-1-1', 't9-1-3-2', 't9-1-4', 't9-1-4-2' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3 ] );
     
     ids = [];
-    zz( '#t9-1' ).find( '.a.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-1' ).find( '.a.b' ).each( eachFn );
     assert.deepEqual( ids, [ 't9-1-1' ] );
-
-    ids = [];
-    zz( '#t9-1' ).find( '.c' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
-    assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [ 0 ] );
     
     ids = [];
-    zz( '#t9-2-1' ).filter( '.a' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-1' ).find( '.c' ).each( eachFn );
+    assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [] );
+    
+    ids = [];
+    indexes = [];
+    zz( '#t9-2-1' ).filter( '.a' ).each( eachFn );
     assert.deepEqual( ids, [ 't9-2-1' ] );
+    assert.deepEqual( indexes, [ 0 ] );
     
     ids = [];
-    zz( '#t9-2-1' ).filter( '.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-2-1' ).filter( '.b' ).each( eachFn );
+    assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [] );
+    
+    ids = [];
+    indexes = [];
+    zz( '#t9-2-1' ).filter( '.a.b' ).each( eachFn );
     assert.deepEqual( ids, [] );
     
     ids = [];
-    zz( '#t9-2-1' ).filter( '.a.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
-    assert.deepEqual( ids, [] );
-    
-    ids = [];
-    zz( '#t9-2-2' ).filter( '.a' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-2-2' ).filter( '.a' ).each( eachFn );
     assert.deepEqual( ids, [ 't9-2-2' ] );
+    assert.deepEqual( indexes, [ 0 ] );
     
     ids = [];
-    zz( '#t9-2-2' ).filter( '.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-2-2' ).filter( '.b' ).each( eachFn );
     assert.deepEqual( ids, [ 't9-2-2' ] );
+    assert.deepEqual( indexes, [ 0 ] );
     
     ids = [];
-    zz( '#t9-2-2' ).filter( '.a.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-2-2' ).filter( '.a.b' ).each( eachFn );
     assert.deepEqual( ids, [ 't9-2-2' ] );
+    assert.deepEqual( indexes, [ 0 ] );
     
     ids = [];
-    zz( '#t9-2-3' ).filter( '.a' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-2-3' ).filter( '.a' ).each( eachFn );
     assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [] );
     
     ids = [];
-    zz( '#t9-2-3' ).filter( '.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-2-3' ).filter( '.b' ).each( eachFn );
     assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [] );
     
     ids = [];
-    zz( '#t9-2-3' ).filter( '.a.b' ).each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+    indexes = [];
+    zz( '#t9-2-3' ).filter( '.a.b' ).each( eachFn );
     assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [] );
     
     ids = [];
     zz( '#t9-2-1' )

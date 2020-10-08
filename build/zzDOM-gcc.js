@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-08 09:33:52 */
+/*! zzdom - v0.2.0 - 2020-10-08 09:51:26 */
 /**
  * A namespace.
  * @const
@@ -872,7 +872,7 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
         this.list, 
         function( currentValue, index ){
             eachFn.bind( currentValue.el, currentValue, index, self.nodes )();
-        } 
+        }
     );
     return this;
 };

@@ -1048,12 +1048,14 @@ QUnit.test( 'each test', function( assert ) {
     var currentValues = [];
     var indexes = [];
     var arrays = [];
+    var thisValues = [];
     
     zz( '#t17-1' ).each( 
         function( currentValue, index, array ){
             currentValues.push( currentValue );
             indexes.push( index );
             arrays.push( array );
+            thisValues.push( this );
         }
     );
     
@@ -1063,4 +1065,6 @@ QUnit.test( 'each test', function( assert ) {
     assert.equal( arrays.length, 1 );
     assert.equal( arrays[ 0 ].length, 1 );
     assert.equal( arrays[ 0 ][ 0 ].getAttribute( 'id' ), 't17-1' );
+    assert.equal( thisValues.length, 1 );
+    assert.equal( thisValues[ 0 ].getAttribute( 'id' ), 't17-1' );
 });

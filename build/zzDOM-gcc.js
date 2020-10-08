@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-07 13:2:26 */
+/*! zzdom - v0.2.0 - 2020-10-08 09:33:52 */
 /**
  * A namespace.
  * @const
@@ -490,7 +490,8 @@ zzDOM.SS.prototype.css = function () {
 };
 
 zzDOM.SS.prototype.each = function ( eachFn ) {
-    eachFn( this );
+    //eachFn( this );
+    eachFn.bind( this.el, this, 0, this.nodes )();
     return this;
 };
 
@@ -781,6 +782,12 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 };
 /* End of events */
 
+/* Forms */
+
+//TODO Implement .val
+
+/* End of forms */
+
 /** @constructor */
 zzDOM.MM = function ( _nodes ) {    
     
@@ -857,8 +864,16 @@ zzDOM.MM.constructors.default = function( mm, fn, args ){
 };
 
 /* Methods included in jquery */
+//TODO must register this var
 zzDOM.MM.prototype.each = function ( eachFn ) {
-    Array.prototype.forEach.call( this.list, eachFn );
+    //Array.prototype.forEach.call( this.list, eachFn );
+    var self = this;
+    Array.prototype.forEach.call( 
+        this.list, 
+        function( currentValue, index ){
+            eachFn.bind( currentValue.el, currentValue, index, self.nodes )();
+        } 
+    );
     return this;
 };
 

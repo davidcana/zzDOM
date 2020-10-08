@@ -1168,3 +1168,27 @@ This is the container t16-3
     assert.deepEqual( ids, [ 't16-5-1', 't16-5-2' ] );
     utils.assertHtml( assert, 't16-5', t16_5_modified );
 });
+
+QUnit.test( 'each test', function( assert ) {
+    var currentValues = [];
+    var indexes = [];
+    var arrays = [];
+    
+    zz( '.t17-1' ).each( 
+        function( currentValue, index, array ){
+            currentValues.push( currentValue );
+            indexes.push( index );
+            arrays.push( array );
+        } 
+    );
+    
+    assert.equal( currentValues.length, 2 );
+    assert.equal( currentValues[ 0 ].attr( 'id' ), 't17-1-1' );
+    assert.equal( currentValues[ 1 ].attr( 'id' ), 't17-1-2' );
+    assert.deepEqual( indexes, [ 0, 1 ] );
+    assert.equal( arrays.length, 2 );
+    assert.equal( arrays[ 0 ][ 0 ].getAttribute( 'id' ), 't17-1-1' );
+    assert.equal( arrays[ 0 ][ 1 ].getAttribute( 'id' ), 't17-1-2' );
+    assert.equal( arrays[ 1 ][ 0 ].getAttribute( 'id' ), 't17-1-1' );
+    assert.equal( arrays[ 1 ][ 1 ].getAttribute( 'id' ), 't17-1-2' );
+});

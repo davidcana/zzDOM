@@ -306,9 +306,9 @@ zzDOM.SS.prototype.css = function () {
     throw 'Wrong number of arguments in css method!';
 };
 
-//TODO must register this var
 zzDOM.SS.prototype.each = function ( eachFn ) {
-    eachFn( this );
+    //eachFn( this );
+    eachFn.bind( this.el, this, 0, this.nodes )();
     return this;
 };
 

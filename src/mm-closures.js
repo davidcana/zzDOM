@@ -122,6 +122,13 @@ zzDOM.MM.init = function(){
 /* Methods included in jquery */
 //TODO must register this var
 zzDOM.MM.prototype.each = function ( eachFn ) {
-    Array.prototype.forEach.call( this.list, eachFn );
+    //Array.prototype.forEach.call( this.list, eachFn );
+    var self = this;
+    Array.prototype.forEach.call( 
+        this.list, 
+        function( currentValue, index ){
+            eachFn.bind( currentValue.el, currentValue, index, self.nodes )();
+        }
+    );
     return this;
 };

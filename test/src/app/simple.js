@@ -1043,3 +1043,24 @@ This is the container t16-3
     utils.assertHtml( assert, 't16-5', t16_5_modified );
     assert.equal( id, 't16-5-1' );
 });
+
+QUnit.test( 'each test', function( assert ) {
+    var currentValues = [];
+    var indexes = [];
+    var arrays = [];
+    
+    zz( '#t17-1' ).each( 
+        function( currentValue, index, array ){
+            currentValues.push( currentValue );
+            indexes.push( index );
+            arrays.push( array );
+        }
+    );
+    
+    assert.equal( currentValues.length, 1 );
+    assert.equal( currentValues[ 0 ].attr( 'id' ), 't17-1' );
+    assert.deepEqual( indexes, [ 0 ] );
+    assert.equal( arrays.length, 1 );
+    assert.equal( arrays[ 0 ].length, 1 );
+    assert.equal( arrays[ 0 ][ 0 ].getAttribute( 'id' ), 't17-1' );
+});

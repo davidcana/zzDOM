@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-08 13:1:2 */
+/*! zzdom - v0.2.0 - 2020-10-09 11:40:18 */
 /**
  * A namespace.
  * @const
@@ -509,7 +509,6 @@ zzDOM.SS.prototype.empty = function (  ) {
     return this;
 };
 
-//TODO filter call from mm must set index
 zzDOM.SS.prototype.filter = function ( x, index ) {
     if ( typeof x === 'string' ){ // Is a string selector
         return zzDOM._build( 
@@ -791,9 +790,69 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 /* End of events */
 
 /* Forms */
+zzDOM.SS.prototype.checked = function ( check ) {
+    if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
+        throw this._buildError( 'checked' );
+    }
+    
+    // get
+    if ( check === undefined ){
+        return !! this.el.checked;
+    }
+    
+    // set
+    this.el.checked = check;
+    return this;
+};
 
-//TODO Implement .val
-
+zzDOM.SS.prototype.val = function ( value ) {
+    // get
+    if ( value === undefined ){
+        switch ( this.el.nodeName ) {
+        case 'INPUT':
+        case 'TEXTAREA':
+        case 'BUTTON':
+            return this.el.value;
+        case 'SELECT':
+            var values = [];
+            for ( var i = 0; i < this.el.length; ++i ) {
+                if ( this.el[ i ].selected ) {
+                    values.push( this.el[ i ].value );
+                }
+            }
+            return values.length > 1? values: values[ 0 ];
+        default:
+            throw this._buildError( 'val' );
+        }
+    }
+    
+    // set
+    switch ( this.el.nodeName ) {
+    case 'INPUT':
+    case 'TEXTAREA':
+    case 'BUTTON':
+        this.el.value = value;
+        break;
+    case 'SELECT':
+        if ( typeof value === 'string' || typeof value === 'number' ) {
+            value = [ value ];
+        }
+        for ( i = 0; i < this.el.length; ++i ) {
+            for ( var j = 0; j < value.length; ++j ) {
+                this.el[ i ].selected = '';
+                if ( this.el[ i ].value === value[ j ] ) {
+                    this.el[ i ].selected = 'selected';
+                    break;
+                }
+            }
+        }
+        break;
+    default:
+        throw this._buildError( 'val' );
+    }
+    
+    return this;
+};
 /* End of forms */
 
 /** @constructor */

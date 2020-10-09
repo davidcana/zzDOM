@@ -600,7 +600,69 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 /* End of events */
 
 /* Forms */
+//TODO test this
+zzDOM.SS.prototype.checked = function ( check ) {
+    if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
+        throw this._buildError( 'checked' );
+    }
+    
+    // get
+    if ( check === undefined ){
+        return !! this.el.checked;
+    }
+    
+    // set
+    this.el.checked = check;
+    return this;
+};
 
-//TODO Implement .val
-
+//TODO test this
+zzDOM.SS.prototype.val = function ( value ) {
+    // get
+    if ( value === undefined ){
+        switch ( this.el.nodeName ) {
+        case 'INPUT':
+        case 'TEXTAREA':
+        case 'BUTTON':
+            return this.el.value;
+        case 'SELECT':
+            var values = [];
+            for ( var i = 0; i < this.el.length; ++i ) {
+                if ( this.el[ i ].selected ) {
+                    values.push( this.el[ i ].value );
+                }
+            }
+            return values.length > 1? values: values[ 0 ];
+        default:
+            throw this._buildError( 'val' );
+        }
+    }
+    
+    // set
+    switch ( this.el.nodeName ) {
+    case 'INPUT':
+    case 'TEXTAREA':
+    case 'BUTTON':
+        this.el.value = value;
+        break;
+    case 'SELECT':
+        if ( typeof value === 'string' || typeof value === 'number' ) {
+            value = [ value ];
+        }
+        for ( i = 0; i < this.el.length; ++i ) {
+            for ( var j = 0; j < value.length; ++j ) {
+                this.el[ i ].selected = '';
+                if ( this.el[ i ].value === value[ j ] ) {
+                    this.el[ i ].selected = 'selected';
+                    break;
+                }
+            }
+        }
+        break;
+    default:
+        throw this._buildError( 'val' );
+    }
+    
+    return this;
+};
 /* End of forms */

@@ -283,3 +283,17 @@ zzDOM.MM.prototype.trigger = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.trigger, arguments );
 };
 /* End of events */
+
+/* Forms */
+//TODO test this
+zzDOM.MM.prototype.checked = function () {
+    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.checked, arguments );
+};
+
+//TODO test this
+zzDOM.MM.prototype.val = function () {
+    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.val, arguments );
+};
+/* End of forms */
+
+

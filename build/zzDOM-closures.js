@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-09 11:40:18 */
+/*! zzdom - v0.2.0 - 2020-10-09 12:32:0 */
 /**
  * A namespace.
  * @const
@@ -790,6 +790,7 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 /* End of events */
 
 /* Forms */
+//TODO test this
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
         throw this._buildError( 'checked' );
@@ -805,6 +806,7 @@ zzDOM.SS.prototype.checked = function ( check ) {
     return this;
 };
 
+//TODO test this
 zzDOM.SS.prototype.val = function ( value ) {
     // get
     if ( value === undefined ){

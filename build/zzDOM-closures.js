@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-09 12:32:0 */
+/*! zzdom - v0.2.0 - 2020-10-10 11:47:13 */
 /**
  * A namespace.
  * @const
@@ -419,6 +419,7 @@ zzDOM.SS.prototype.appendTo = function ( x ) {
     throw this._buildError( 'is' );
 };
 
+//TODO test value == null (remove attr)
 /**
  * @param {string|Object} x
  * @param {string=} value
@@ -435,6 +436,11 @@ zzDOM.SS.prototype.attr = function ( x, value ) {
     // get
     if ( value === undefined ){
         return this.el.getAttribute( x );
+    }
+    
+    // remove attr
+    if ( value === null ){
+        return this.removeAttr( x );    
     }
     
     // set

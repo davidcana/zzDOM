@@ -83,12 +83,9 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
     return total + margin;
 };
 
-/*
-zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
-    this.el.style[ key ] = value;
-};
-*/
 //TODO test numeric/aphanumeric values as width/height
+//TODO test aphanumeric with only numbers
+//TODO test function value
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
         value = value();
@@ -129,16 +126,6 @@ zzDOM.SS.prototype._styleProperty = function ( property, value ) {
 
     // set
     this._setCssUsingKeyValue( property, value );
-    /*
-    if ( typeof value === 'function' ) {
-        value = value();
-    }
-    if ( typeof value === 'string' ){
-        this.el.style[ property ] = value;
-    } else {
-        this.el.style[ property ] = value + 'px';
-    }
-    */
     return this;
 };
 
@@ -313,7 +300,6 @@ zzDOM.SS.prototype.css = function () {
 };
 
 zzDOM.SS.prototype.each = function ( eachFn ) {
-    //eachFn( this );
     eachFn.bind( this.el, 0, this, this.nodes )();
     return this;
 };
@@ -672,3 +658,15 @@ zzDOM.SS.prototype.val = function ( value ) {
     return this;
 };
 /* End of forms */
+
+/* Center */
+//TODO implement this
+/*
+getXCenteredPosition
+getYCenteredPosition
+getCenteredPosition
+center
+centerX
+centerY
+*/
+/* End of center */

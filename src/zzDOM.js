@@ -122,6 +122,7 @@ zzDOM._addEventListener = function( ss, eventName, listener, useCapture ){
     el.addEventListener( eventName, listener, useCapture );
 };
 
+//TODO must remove all listeners when an element is removed
 zzDOM._removeEventListener = function( ss, eventName, listener, useCapture ){
     var el = ss.el;
     var elId = ss._getElId();
@@ -144,6 +145,7 @@ zzDOM._removeEventListener = function( ss, eventName, listener, useCapture ){
     zzDOM._removeListeners( el, thisListeners, listener, useCapture, eventName );
 };
 
+//TODO test all the listeners are removed
 zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, eventName ){
     if ( ! thisListeners ){
         return;
@@ -151,9 +153,11 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
     for ( var i = 0; i < thisListeners.length; ++i ){
         var currentListener = thisListeners[ i ];
         if ( ! listener || currentListener === listener ){
-            delete thisListeners[ i ];
+            thisListeners.splice( i, 1 ); // Delete listener at i position
             el.removeEventListener( eventName, currentListener, useCapture );
-            return;
+            if ( listener ){
+                return;
+            }
         }
     } 
 };

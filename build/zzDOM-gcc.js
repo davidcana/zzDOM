@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-12 13:33:56 */
+/*! zzdom - v0.2.0 - 2020-10-12 19:33:27 */
 /**
  * A namespace.
  * @const
@@ -90,6 +90,10 @@ zzDOM._build = function ( x ) {
         x = Array.prototype.slice.call( x );
     }
     return x.length === 1? new zzDOM.SS( x[ 0 ] ): new zzDOM.MM( x );
+};
+
+zzDOM._getError = function ( method ) {
+    return 'Method "' + method + '" not ready for that type!';
 };
 
 zzDOM._htmlToElement = function ( html ) {
@@ -202,10 +206,6 @@ zzDOM.SS = function ( _el ) {
 };
 
 /* Methods NOT included in jquery */
-zzDOM.SS.prototype._buildError = function ( method ) {
-    return 'Method "' + method + '" not ready for that type!';
-};
-
 zzDOM.SS.prototype._gcs = function ( self, property ) {
     var x = getComputedStyle( self.el, null )[ property ].replace( 'px', '' );
     return isNaN( x )? x: parseFloat( x );
@@ -369,7 +369,7 @@ zzDOM.SS.prototype.append = function ( x ) {
     } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( 'beforeend', x );
     } else {
-        throw this._buildError( 'append' );
+        throw zzDOM._getError( 'append' );
     }
     return this;
 };
@@ -407,7 +407,7 @@ zzDOM.SS.prototype.appendTo = function ( x ) {
         return this;
     } 
     
-    throw this._buildError( 'is' );
+    throw zzDOM._getError( 'is' );
 };
 
 //TODO test value == null (remove attr)
@@ -518,7 +518,7 @@ zzDOM.SS.prototype.filter = function ( x, index ) {
         );
     }  
     
-    throw this._buildError( 'filter' );
+    throw zzDOM._getError( 'filter' );
 };
 
 zzDOM.SS.prototype.find = function ( selector ) {
@@ -644,7 +644,7 @@ zzDOM.SS.prototype.prepend = function ( x ) {
     } else if ( typeof x === 'string' ){
         this.el.insertAdjacentHTML( 'afterbegin', x );
     } else {
-        throw this._buildError( 'prepend' );
+        throw zzDOM._getError( 'prepend' );
     }
     return this;
 };
@@ -789,7 +789,7 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 //TODO test this
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
-        throw this._buildError( 'checked' );
+        throw zzDOM._getError( 'checked' );
     }
     
     // get
@@ -823,7 +823,7 @@ zzDOM.SS.prototype.val = function ( value ) {
             }
             return values.length > 1? values: values[ 0 ];
         default:
-            throw this._buildError( 'val' );
+            throw zzDOM._getError( 'val' );
         }
     }
     
@@ -849,7 +849,7 @@ zzDOM.SS.prototype.val = function ( value ) {
         }
         break;
     default:
-        throw this._buildError( 'val' );
+        throw zzDOM._getError( 'val' );
     }
     
     return this;
@@ -887,7 +887,7 @@ zzDOM.param = function( x ) {
             zzDOM._paramItem( r, i, x[ i ] );
         }
     } else {
-        throw this._buildError( 'param' );
+        throw zzDOM._getError( 'param' );
     }
 
     return r.join( '&' );

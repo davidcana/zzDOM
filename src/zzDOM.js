@@ -92,6 +92,10 @@ zzDOM._build = function ( x ) {
     return x.length === 1? new zzDOM.SS( x[ 0 ] ): new zzDOM.MM( x );
 };
 
+zzDOM._getError = function ( method ) {
+    return 'Method "' + method + '" not ready for that type!';
+};
+
 zzDOM._htmlToElement = function ( html ) {
     var template = document.createElement( 'template' );
     template.innerHTML = html.trim();

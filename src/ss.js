@@ -609,6 +609,9 @@ zzDOM.SS.prototype.checked = function ( check ) {
 };
 
 //TODO test this
+/**
+ * @param {Array<?>|String=} value
+ */
 zzDOM.SS.prototype.val = function ( value ) {
     // get
     if ( value === undefined ){
@@ -658,6 +661,44 @@ zzDOM.SS.prototype.val = function ( value ) {
     return this;
 };
 /* End of forms */
+
+/* Utils */
+
+zzDOM._paramItem = function( r, key, value ) {
+    r.push( 
+        encodeURIComponent( key ) + '=' + encodeURIComponent( value == null? '': value )
+    );
+};
+
+//TODO test this
+// Serialize an array of form elements or a set of key/values into a query string
+/** @nocollapse */
+zzDOM.param = function( x ) {
+	
+    if ( x == null ) {
+        return '';
+    }
+
+    var r = [];
+    
+    if ( x instanceof zzDOM.SS ){
+        zzDOM._paramItem( r, x.attr( 'name' ), x.val() );
+    } else if ( x instanceof zzDOM.MM ){
+        for ( var c = 0; c < x.list.length; ++c ){
+            var ss = x.list[ c ];
+            zzDOM._paramItem( r, ss.attr( 'name' ), ss.val() );
+        }
+    } else if ( typeof x === 'object' ){  
+        for ( var i in x ) {
+            zzDOM._paramItem( r, i, x[ i ] );
+        }
+    } else {
+        throw this._buildError( 'param' );
+    }
+
+    return r.join( '&' );
+};
+/* end of utils */
 
 /* Center */
 //TODO implement this

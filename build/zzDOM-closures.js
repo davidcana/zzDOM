@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-12 11:25:33 */
+/*! zzdom - v0.2.0 - 2020-10-12 13:33:56 */
 /**
  * A namespace.
  * @const
@@ -122,6 +122,7 @@ zzDOM._addEventListener = function( ss, eventName, listener, useCapture ){
     el.addEventListener( eventName, listener, useCapture );
 };
 
+//TODO must remove all listeners when an element is removed
 zzDOM._removeEventListener = function( ss, eventName, listener, useCapture ){
     var el = ss.el;
     var elId = ss._getElId();
@@ -144,6 +145,7 @@ zzDOM._removeEventListener = function( ss, eventName, listener, useCapture ){
     zzDOM._removeListeners( el, thisListeners, listener, useCapture, eventName );
 };
 
+//TODO test all the listeners are removed
 zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, eventName ){
     if ( ! thisListeners ){
         return;
@@ -151,7 +153,6 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
     for ( var i = 0; i < thisListeners.length; ++i ){
         var currentListener = thisListeners[ i ];
         if ( ! listener || currentListener === listener ){
-            //delete thisListeners[ i ];
             thisListeners.splice( i, 1 ); // Delete listener at i position
             el.removeEventListener( eventName, currentListener, useCapture );
             if ( listener ){
@@ -802,6 +803,9 @@ zzDOM.SS.prototype.checked = function ( check ) {
 };
 
 //TODO test this
+/**
+ * @param {Array<?>|String=} value
+ */
 zzDOM.SS.prototype.val = function ( value ) {
     // get
     if ( value === undefined ){
@@ -851,6 +855,44 @@ zzDOM.SS.prototype.val = function ( value ) {
     return this;
 };
 /* End of forms */
+
+/* Utils */
+
+zzDOM._paramItem = function( r, key, value ) {
+    r.push( 
+        encodeURIComponent( key ) + '=' + encodeURIComponent( value == null? '': value )
+    );
+};
+
+//TODO test this
+// Serialize an array of form elements or a set of key/values into a query string
+/** @nocollapse */
+zzDOM.param = function( x ) {
+	
+    if ( x == null ) {
+        return '';
+    }
+
+    var r = [];
+    
+    if ( x instanceof zzDOM.SS ){
+        zzDOM._paramItem( r, x.attr( 'name' ), x.val() );
+    } else if ( x instanceof zzDOM.MM ){
+        for ( var c = 0; c < x.list.length; ++c ){
+            var ss = x.list[ c ];
+            zzDOM._paramItem( r, ss.attr( 'name' ), ss.val() );
+        }
+    } else if ( typeof x === 'object' ){  
+        for ( var i in x ) {
+            zzDOM._paramItem( r, i, x[ i ] );
+        }
+    } else {
+        throw this._buildError( 'param' );
+    }
+
+    return r.join( '&' );
+};
+/* end of utils */
 
 /* Center */
 //TODO implement this

@@ -667,7 +667,7 @@ zzDOM._paramItem = function( r, key, value ) {
 };
 
 //TODO test this
-// Serialize an array of form elements or a set of key/values into a query string
+// Serialize a ss instance, a mm instance or an object into a query string
 /** @nocollapse */
 zzDOM.param = function( x ) {
 	

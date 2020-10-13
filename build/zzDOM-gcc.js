@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-12 19:33:27 */
+/*! zzdom - v0.2.0 - 2020-10-13 10:2:29 */
 /**
  * A namespace.
  * @const
@@ -419,7 +419,8 @@ zzDOM.SS.prototype.attr = function ( x, value ) {
     // set using object
     if ( typeof x === 'object' ){
         for ( var key in x ) {
-            this.el.setAttribute( key, x[ key ] );
+            this.attr( key, x[ key ] );
+            //this.el.setAttribute( key, x[ key ] );
         }
         return this;
     }
@@ -865,7 +866,7 @@ zzDOM._paramItem = function( r, key, value ) {
 };
 
 //TODO test this
-// Serialize an array of form elements or a set of key/values into a query string
+// Serialize a ss instance, a mm instance or an object into a query string
 /** @nocollapse */
 zzDOM.param = function( x ) {
 	

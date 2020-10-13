@@ -212,7 +212,6 @@ zzDOM.SS.prototype.appendTo = function ( x ) {
     throw zzDOM._getError( 'is' );
 };
 
-//TODO test value == null (remove attr)
 /**
  * @param {string|Object} x
  * @param {string=} value
@@ -221,7 +220,7 @@ zzDOM.SS.prototype.attr = function ( x, value ) {
     // set using object
     if ( typeof x === 'object' ){
         for ( var key in x ) {
-            this.el.setAttribute( key, x[ key ] );
+            this.attr( key, x[ key ] );
         }
         return this;
     }

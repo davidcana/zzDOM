@@ -89,6 +89,41 @@ QUnit.test( 'attr and removeAttr test', function( assert ) {
     assert.equal( document.getElementById( 't4-3' ).getAttribute( 'name' ), t4_3_name_modified );
     assert.equal( zz( '#t4-3' ).attr( 'name' ), t4_3_name_modified );
     assert.equal( id, 't4-3' );
+    
+    var t4_4_name_original = 'FSF';
+    assert.equal( document.getElementById( 't4-4' ).getAttribute( 'name' ), t4_4_name_original );
+    assert.equal( zz( '#t4-4' ).attr( 'name' ), t4_4_name_original );
+    assert.ok( document.getElementById( 't4-4' ).hasAttribute( 'name' ) );
+    id = zz( '#t4-4' )
+        .attr( 'name', null )
+        .attr( 'id' );
+    assert.equal( document.getElementById( 't4-4' ).getAttribute( 'name' ), null );
+    assert.equal( zz( '#t4-4' ).attr( 'name' ), null );
+    assert.notOk( document.getElementById( 't4-4' ).hasAttribute( 'name' ) );
+    assert.equal( id, 't4-4' );
+    
+    var t4_5_href_original = 'https://www.fsf.org/',
+        t4_5_href_modified = 'https://www.mozilla.org/',
+        t4_5_name_original = 'FSF';
+    assert.equal( document.getElementById( 't4-5' ).getAttribute( 'href' ), t4_5_href_original );
+    assert.equal( document.getElementById( 't4-5' ).getAttribute( 'name' ), t4_5_name_original );
+    assert.ok( document.getElementById( 't4-5' ).hasAttribute( 'href' ) );
+    assert.ok( document.getElementById( 't4-5' ).hasAttribute( 'name' ) );
+    id = zz( '#t4-5' )
+        .attr( 
+            {
+                'href': t4_5_href_modified,
+                'name': null
+            }
+        )
+        .attr( 'id' );
+    assert.equal( document.getElementById( 't4-5' ).getAttribute( 'href' ), t4_5_href_modified );
+    assert.equal( zz( '#t4-5' ).attr( 'href' ), t4_5_href_modified );
+    assert.equal( document.getElementById( 't4-5' ).getAttribute( 'name' ), null );
+    assert.equal( zz( '#t4-5' ).attr( 'name' ), null );
+    assert.ok( document.getElementById( 't4-5' ).hasAttribute( 'href' ) );
+    assert.notOk( document.getElementById( 't4-5' ).hasAttribute( 'name' ) );
+    assert.equal( id, 't4-5' );
 });
 
 QUnit.test( 'addClass, hasClass, removeClass and toggleClass test', function( assert ) {

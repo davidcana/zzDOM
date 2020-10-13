@@ -292,7 +292,7 @@ zzDOM.SS.prototype.css = function () {
 };
 
 zzDOM.SS.prototype.each = function ( eachFn ) {
-    eachFn.bind( this.el, 0, this, this.nodes )();
+    eachFn.call( this.el, 0, this, this.nodes );
     return this;
 };
 
@@ -567,7 +567,7 @@ zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
         data? 
             function( e ){
                 e.data = data;
-                return listener.bind( e.currentTarget, e )();
+                return listener.call( e.currentTarget, e );
             }:
             listener, 
         useCapture 

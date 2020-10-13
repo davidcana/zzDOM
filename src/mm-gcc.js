@@ -109,7 +109,7 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( 
         this.list, 
         function( currentValue, index ){
-            eachFn.bind( currentValue.el, index, currentValue, self.nodes )();
+            eachFn.call( currentValue.el, index, currentValue, self.nodes );
         }
     );
     return this;

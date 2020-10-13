@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-13 14:29:28 */
+/*! zzdom - v0.2.0 - 2020-10-13 14:34:12 */
 /**
  * A namespace.
  * @const
@@ -490,7 +490,7 @@ zzDOM.SS.prototype.css = function () {
 };
 
 zzDOM.SS.prototype.each = function ( eachFn ) {
-    eachFn.bind( this.el, 0, this, this.nodes )();
+    eachFn.call( this.el, 0, this, this.nodes );
     return this;
 };
 
@@ -765,7 +765,7 @@ zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
         data? 
             function( e ){
                 e.data = data;
-                return listener.bind( e.currentTarget, e )();
+                return listener.call( e.currentTarget, e );
             }:
             listener, 
         useCapture 
@@ -1031,7 +1031,7 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     Array.prototype.forEach.call( 
         this.list, 
         function( currentValue, index ){
-            eachFn.bind( currentValue.el, index, currentValue, self.nodes )();
+            eachFn.call( currentValue.el, index, currentValue, self.nodes );
         }
     );
     return this;

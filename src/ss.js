@@ -79,18 +79,15 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
     return total + margin;
 };
 
-//TODO test numeric/aphanumeric values as width/height
-//TODO test aphanumeric with only numbers
 //TODO test function value
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
         value = value();
     }
-    if ( typeof value === 'string' ){
-        this.el.style[ key ] = value;
-    } else {
-        this.el.style[ key ] = value + 'px';
-    }
+    this.el.style[ key ] = 
+        typeof value === 'string' && ! /^-?\d+\.?\d*$/.test( value )? // if it is a string and is not a float number
+            value: 
+            value + 'px';
 };
 
 zzDOM.SS.prototype._setCssUsingObject = function ( object ) {

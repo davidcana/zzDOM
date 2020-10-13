@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-13 10:2:29 */
+/*! zzdom - v0.2.0 - 2020-10-13 11:13:21 */
 /**
  * A namespace.
  * @const
@@ -284,11 +284,19 @@ zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
         value = value();
     }
+    
+    this.el.style[ key ] = 
+        typeof value === 'string' && ! /^-?\d+\.?\d*$/.test( value )? // if it is a string and is not a float number
+            value: 
+            value + 'px';
+    
+    /*
     if ( typeof value === 'string' ){
         this.el.style[ key ] = value;
     } else {
         this.el.style[ key ] = value + 'px';
     }
+    */
 };
 
 zzDOM.SS.prototype._setCssUsingObject = function ( object ) {
@@ -410,7 +418,6 @@ zzDOM.SS.prototype.appendTo = function ( x ) {
     throw zzDOM._getError( 'is' );
 };
 
-//TODO test value == null (remove attr)
 /**
  * @param {string|Object} x
  * @param {string=} value
@@ -420,7 +427,6 @@ zzDOM.SS.prototype.attr = function ( x, value ) {
     if ( typeof x === 'object' ){
         for ( var key in x ) {
             this.attr( key, x[ key ] );
-            //this.el.setAttribute( key, x[ key ] );
         }
         return this;
     }

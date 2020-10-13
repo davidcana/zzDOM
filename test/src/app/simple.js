@@ -563,6 +563,28 @@ QUnit.test( 'css test', function( assert ) {
     assert.equal( zz( '#t11-6' ).css( 'color' ), 'rgb(255, 255, 255)' );
     assert.equal( zz( '#t11-6' ).css( 'background-color' ), 'rgb(255, 0, 0)' );
     assert.equal( id, 't11-6' );
+    
+    var t11_7_original = null,
+        t11_7_modified = 'font-size: 30px;';
+    assert.equal( document.getElementById( 't11-7' ).getAttribute( 'style' ), t11_7_original );
+    id = zz( '#t11-7' )
+        .css(
+            'font-size', 30 
+        ).attr( 'id' );
+    assert.equal( document.getElementById( 't11-7' ).getAttribute( 'style' ), t11_7_modified );
+    assert.equal( zz( '#t11-7' ).css( 'font-size' ), '30px' );
+    assert.equal( id, 't11-7' );
+    
+    var t11_8_original = null,
+        t11_8_modified = 'font-size: 30px;';
+    assert.equal( document.getElementById( 't11-8' ).getAttribute( 'style' ), t11_8_original );
+    id = zz( '#t11-8' )
+        .css(
+            'font-size', '30'
+        ).attr( 'id' );
+    assert.equal( document.getElementById( 't11-8' ).getAttribute( 'style' ), t11_8_modified );
+    assert.equal( zz( '#t11-8' ).css( 'font-size' ), '30px' );
+    assert.equal( id, 't11-8' );
 });
 
 QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert ) {

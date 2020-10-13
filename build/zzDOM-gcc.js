@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-13 11:13:21 */
+/*! zzdom - v0.2.0 - 2020-10-13 14:29:28 */
 /**
  * A namespace.
  * @const
@@ -277,26 +277,15 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
     return total + margin;
 };
 
-//TODO test numeric/aphanumeric values as width/height
-//TODO test aphanumeric with only numbers
 //TODO test function value
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
-        value = value();
+        value = value.call( this.el );
     }
-    
     this.el.style[ key ] = 
         typeof value === 'string' && ! /^-?\d+\.?\d*$/.test( value )? // if it is a string and is not a float number
             value: 
             value + 'px';
-    
-    /*
-    if ( typeof value === 'string' ){
-        this.el.style[ key ] = value;
-    } else {
-        this.el.style[ key ] = value + 'px';
-    }
-    */
 };
 
 zzDOM.SS.prototype._setCssUsingObject = function ( object ) {

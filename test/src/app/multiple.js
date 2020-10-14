@@ -291,53 +291,75 @@ QUnit.test( 'children, index and parent test', function( assert ) {
 });
 
 QUnit.test( 'filter and find test', function( assert ) {
+    
+    var eachFn = function( index, ss ){
+        ids.push( ss.attr( 'id' ) ); 
+        indexes.push( index );
+    };
+    
     var ids = [];
+    var indexes = [];
     zz( '.t9-1' )
         .find( '.a' )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [ 't9-1-1-1', 't9-1-1-2', 't9-1-1-3-1', 't9-1-2-1', 't9-1-2-2', 't9-1-2-3-1' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3, 4, 5 ] );
     
     ids = [];
+    indexes = [];
     zz( '.t9-1' )
         .find( '.b' )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [ 't9-1-1-1', 't9-1-1-3-2', 't9-1-1-4', 't9-1-1-4-2', 't9-1-2-1', 't9-1-2-3-2', 't9-1-2-4', 't9-1-2-4-2' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3, 4, 5, 6, 7 ] );
     
     ids = [];
+    indexes = [];
     zz( '.t9-1' )
         .find( '.a.b' )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [ 't9-1-1-1', 't9-1-2-1' ] );
+    assert.deepEqual( indexes, [ 0, 1 ] );
     
     ids = [];
+    indexes = [];
     zz( '.t9-1' )
         .find( '.c' )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [] );
     
     ids = [];
+    indexes = [];
     zz( '.t9-2' )
         .filter( '.a' )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [ 't9-2-1-1', 't9-2-1-2', 't9-2-2-1', 't9-2-2-2' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3 ] );
     
     ids = [];
+    indexes = [];
     zz( '.t9-2' )
         .filter( '.b' )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [ 't9-2-1-2', 't9-2-2-2' ] );
+    assert.deepEqual( indexes, [ 0, 1 ] );
     
     ids = [];
+    indexes = [];
     zz( '.t9-2' )
         .filter( '.a.b' )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [ 't9-2-1-2', 't9-2-2-2' ] );
+    assert.deepEqual( indexes, [ 0, 1 ] );
     
     ids = [];
+    indexes = [];
     zz( '.t9-2' )
         .filter( '.c' )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [] );
+    assert.deepEqual( indexes, [] );
     
     var filterFn = function( index, ss ){
         var result = ss.attr( 'class' ) === 't9-2 a b';
@@ -348,34 +370,26 @@ QUnit.test( 'filter and find test', function( assert ) {
     };
     
     ids = [];
-    var indexes = [];
+    indexes = [];
     zz( '.t9-2' )
         .filter( 
-            function( index, ss ){
-                var result = ss.attr( 'class' ) === 't9-2 a b';
-                if ( result ){
-                    indexes.push( index );
-                }
-                return result;
+            function( ss ){
+                return ss.attr( 'class' ) === 't9-2 a b';
             }
         )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [ 't9-2-1-2', 't9-2-2-2' ] );
-    assert.deepEqual( indexes, [ 1, 4 ] );
+    assert.deepEqual( indexes, [ 0, 1 ] );
     
     ids = [];
     indexes = [];
     zz( '.t9-2' )
         .filter( 
-            function( index, ss ){ 
-                var result = ss.attr( 'class' ) === 'not-used-class';
-                if ( result ){
-                    indexes.push( index );
-                }
-                return result;
+            function( ss ){ 
+                return ss.attr( 'class' ) === 'not-used-class';
             }
         )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [] );
     assert.deepEqual( indexes, [] );
 });

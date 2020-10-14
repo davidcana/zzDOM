@@ -303,7 +303,7 @@ zzDOM.SS.prototype.empty = function (  ) {
     return this;
 };
 
-zzDOM.SS.prototype.filter = function ( x, index ) {
+zzDOM.SS.prototype.filter = function ( x ) {
     if ( typeof x === 'string' ){ // Is a string selector
         return zzDOM._build( 
             this.el.matches( x )? [ this.el ]: []
@@ -313,8 +313,8 @@ zzDOM.SS.prototype.filter = function ( x, index ) {
     if ( typeof x === 'function' ){ // Is a function
         return zzDOM._build(
             //TODO register this variable
-            //TODO remove index
-            x( index === undefined? 0: index, this )? [ this.el ]: []
+            //x( index === undefined? 0: index, this )? [ this.el ]: []
+            x( this )? [ this.el ]: []
         );
     }  
     

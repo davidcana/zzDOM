@@ -47,6 +47,7 @@ zzDOM.add = function( ssPrototype, constructor ){
 };
 
 // Add i to args if needed, removing the last added element
+/*
 zzDOM.MM._args = function( args, addIndex, i ){
     if ( ! addIndex ){
         return args;
@@ -58,29 +59,21 @@ zzDOM.MM._args = function( args, addIndex, i ){
     
     return args;
 };
+*/
 
 zzDOM.MM.constructors = {};
-
-/**
- * @param {boolean=} addIndex
- */
-zzDOM.MM.constructors.concat = function( mm, fn, args, addIndex ){
+zzDOM.MM.constructors.concat = function( mm, fn, args ){
     var newNodes = [];
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
-        args = zzDOM.MM._args( args, addIndex, i );
         var x = fn.apply( ss, args );
         newNodes = newNodes.concat( x.nodes );
     }
     return zzDOM._build( newNodes );
 };
-/**
- * @param {boolean=} addIndex
- */
-zzDOM.MM.constructors.booleanOr = function( mm, fn, args, addIndex ){
+zzDOM.MM.constructors.booleanOr = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
-        args = zzDOM.MM._args( args, addIndex, i );
         var x = fn.apply( ss, args );
         if ( x ){
             return true;
@@ -88,13 +81,9 @@ zzDOM.MM.constructors.booleanOr = function( mm, fn, args, addIndex ){
     }
     return false;
 };
-/**
- * @param {boolean=} addIndex
- */
-zzDOM.MM.constructors.default = function( mm, fn, args, addIndex ){
+zzDOM.MM.constructors.default = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
-        args = zzDOM.MM._args( args, addIndex, i );
         var r = fn.apply( ss, args );
         if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
             return r;
@@ -157,7 +146,7 @@ zzDOM.MM.prototype.empty = function () {
 };
 
 zzDOM.MM.prototype.filter = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments, true );
+    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
 };
 
 zzDOM.MM.prototype.find = function () {

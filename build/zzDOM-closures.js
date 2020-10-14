@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-13 14:34:12 */
+/*! zzdom - v0.2.0 - 2020-10-14 10:1:57 */
 /**
  * A namespace.
  * @const
@@ -501,7 +501,7 @@ zzDOM.SS.prototype.empty = function (  ) {
     return this;
 };
 
-zzDOM.SS.prototype.filter = function ( x, index ) {
+zzDOM.SS.prototype.filter = function ( x ) {
     if ( typeof x === 'string' ){ // Is a string selector
         return zzDOM._build( 
             this.el.matches( x )? [ this.el ]: []
@@ -510,7 +510,10 @@ zzDOM.SS.prototype.filter = function ( x, index ) {
     
     if ( typeof x === 'function' ){ // Is a function
         return zzDOM._build(
-            x( index === undefined? 0: index, this )? [ this.el ]: []
+            //TODO register this variable
+            //TODO remove index
+            //x( index === undefined? 0: index, this )? [ this.el ]: []
+            x( this )? [ this.el ]: []
         );
     }  
     
@@ -960,13 +963,12 @@ zzDOM.MM.constructors.booleanOr = function( functionId ){
         return false;
     };
 };
-zzDOM.MM.constructors.concat = function( functionId, addIndex ){
+zzDOM.MM.constructors.concat = function( functionId ){
     return function(){
         var newNodes = [];
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
-            var args = addIndex? zzDOM._args( arguments, i ): arguments;
-            var x = ss[ functionId ].apply( ss, args );
+            var x = ss[ functionId ].apply( ss, arguments );
             newNodes = newNodes.concat( x.nodes );
         }
         return zzDOM._build( newNodes );
@@ -1004,17 +1006,12 @@ zzDOM.MM.init = function(){
         'hasClass',
         'is'
     ];
-    // addIndex functions
-    var addIndexF = [
-        'filter'
-    ];
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
-            var addIndex = addIndexF.indexOf( functionId ) !== -1;
             
             if ( concatF.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.concat( functionId, addIndex );
+                return zzDOM.MM.constructors.concat( functionId );
             }
             if ( booleanOrF.indexOf( functionId ) !== -1 ){
                 return zzDOM.MM.constructors.booleanOr( functionId );

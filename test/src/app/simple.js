@@ -424,19 +424,15 @@ QUnit.test( 'filter and find test', function( assert ) {
     assert.deepEqual( ids, [] );
     assert.deepEqual( indexes, [] );
     
-    var filterFn = function( index, ss ){
-        var result = ss.attr( 'class' ) === 'a b';
-        if ( result ){
-            indexes.push( index );
-        }
-        return result;
+    var filterFn = function( ss ){
+        return ss.attr( 'class' ) === 'a b';
     };
     
     ids = [];
     indexes = [];
     zz( '#t9-2-1' )
         .filter( filterFn )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [] );
     assert.deepEqual( indexes, [] );
     
@@ -444,7 +440,7 @@ QUnit.test( 'filter and find test', function( assert ) {
     indexes = [];
     zz( '#t9-2-2' )
         .filter( filterFn )
-        .each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } );
+        .each( eachFn );
     assert.deepEqual( ids, [ 't9-2-2' ] );
     assert.deepEqual( indexes, [ 0 ] );
 });

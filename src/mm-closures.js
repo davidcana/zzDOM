@@ -59,13 +59,12 @@ zzDOM.MM.constructors.booleanOr = function( functionId ){
         return false;
     };
 };
-zzDOM.MM.constructors.concat = function( functionId, addIndex ){
+zzDOM.MM.constructors.concat = function( functionId ){
     return function(){
         var newNodes = [];
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
-            var args = addIndex? zzDOM._args( arguments, i ): arguments;
-            var x = ss[ functionId ].apply( ss, args );
+            var x = ss[ functionId ].apply( ss, arguments );
             newNodes = newNodes.concat( x.nodes );
         }
         return zzDOM._build( newNodes );
@@ -103,17 +102,12 @@ zzDOM.MM.init = function(){
         'hasClass',
         'is'
     ];
-    // addIndex functions
-    var addIndexF = [
-        'filter'
-    ];
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
-            var addIndex = addIndexF.indexOf( functionId ) !== -1;
             
             if ( concatF.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.concat( functionId, addIndex );
+                return zzDOM.MM.constructors.concat( functionId );
             }
             if ( booleanOrF.indexOf( functionId ) !== -1 ){
                 return zzDOM.MM.constructors.booleanOr( functionId );

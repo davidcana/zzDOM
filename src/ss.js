@@ -82,7 +82,7 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
 //TODO test function value
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
-        value = value.call( this.el );
+        value = value.call( this.el, this );
     }
     this.el.style[ key ] = 
         typeof value === 'string' && ! /^-?\d+\.?\d*$/.test( value )? // if it is a string and is not a float number
@@ -312,9 +312,9 @@ zzDOM.SS.prototype.filter = function ( x ) {
     
     if ( typeof x === 'function' ){ // Is a function
         return zzDOM._build(
-            //TODO register this variable
-            //x( index === undefined? 0: index, this )? [ this.el ]: []
-            x( this )? [ this.el ]: []
+            //TODO test this variable in function
+            x.call( this.el, this )? [ this.el ]: []
+            //x( this )? [ this.el ]: []
         );
     }  
     

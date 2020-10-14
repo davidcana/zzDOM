@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-14 10:1:57 */
+/*! zzdom - v0.2.0 - 2020-10-14 10:9:6 */
 /**
  * A namespace.
  * @const
@@ -510,10 +510,9 @@ zzDOM.SS.prototype.filter = function ( x ) {
     
     if ( typeof x === 'function' ){ // Is a function
         return zzDOM._build(
-            //TODO register this variable
-            //TODO remove index
-            //x( index === undefined? 0: index, this )? [ this.el ]: []
-            x( this )? [ this.el ]: []
+            //TODO test this variable in function
+            x.call( this.el, this )? [ this.el ]: []
+            //x( this )? [ this.el ]: []
         );
     }  
     

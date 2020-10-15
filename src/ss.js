@@ -1,10 +1,15 @@
 /*
  * zzDOM.SS class
  */
+//TODO test array like behaviour
 /** @constructor */
 zzDOM.SS = function ( _el ) {
     this.el = _el;
     this.nodes = [ _el ];
+    
+    // Array like
+    this.length = 1;
+    this[ 0 ] = _el;
 };
 
 /* Methods NOT included in jquery */

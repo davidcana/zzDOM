@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-15 13:14:23 */
+/*! zzdom - v0.2.0 - 2020-10-15 21:10:24 */
 /**
  * A namespace.
  * @const
@@ -199,10 +199,15 @@ var zz;
     zz = zzDOM.zz; 
 })();
 
+//TODO test array like behaviour
 /** @constructor */
 zzDOM.SS = function ( _el ) {
     this.el = _el;
     this.nodes = [ _el ];
+    
+    // Array like
+    this.length = 1;
+    this[ 0 ] = _el;
 };
 
 /* Methods NOT included in jquery */
@@ -277,8 +282,6 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
     return total + margin;
 };
 
-//TODO test function value
-//TODO test index and this variables in function
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
         value = value.call( this.el, this._i === undefined? 0: this._i, this );
@@ -905,14 +908,17 @@ centerY
 
 /** @constructor */
 zzDOM.MM = function ( _nodes ) {    
-    
-    // Init list and nodes 
     this.list = [];
     this.nodes = _nodes;
-    for ( var i = 0; i < this.nodes.length; i++ ) {
-        var ss = new zzDOM.SS( this.nodes[ i ] );
+    this.length = _nodes.length;
+    
+    // Init  nodes 
+    for ( var i = 0; i < this.length; i++ ) {
+        var el = this.nodes[ i ];
+        this[ i ] = el; // for array like
+        var ss = new zzDOM.SS( el );
         this.list.push( ss );
-        ss._i = i;
+        ss._i = i; // for index in functions
     }
 };
 

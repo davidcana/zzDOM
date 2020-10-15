@@ -4,14 +4,17 @@
  */
 /** @constructor */
 zzDOM.MM = function ( _nodes ) {    
-    
-    // Init list and nodes 
     this.list = [];
     this.nodes = _nodes;
-    for ( var i = 0; i < this.nodes.length; i++ ) {
-        var ss = new zzDOM.SS( this.nodes[ i ] );
+    this.length = _nodes.length;
+    
+    // Init  nodes 
+    for ( var i = 0; i < this.length; i++ ) {
+        var el = this.nodes[ i ];
+        this[ i ] = el; // for array like
+        var ss = new zzDOM.SS( el );
         this.list.push( ss );
-        ss._i = i;
+        ss._i = i; // for index in functions
     }
 };
 

@@ -80,6 +80,7 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
 };
 
 //TODO test function value
+//TODO test index and this variables in function
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
         value = value.call( this.el, this );
@@ -312,9 +313,7 @@ zzDOM.SS.prototype.filter = function ( x ) {
     
     if ( typeof x === 'function' ){ // Is a function
         return zzDOM._build(
-            //TODO test this variable in function
-            x.call( this.el, this )? [ this.el ]: []
-            //x( this )? [ this.el ]: []
+            x.call( this.el, this._i === undefined? 0: this._i, this )? [ this.el ]: []
         );
     }  
     

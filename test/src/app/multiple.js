@@ -361,37 +361,47 @@ QUnit.test( 'filter and find test', function( assert ) {
     assert.deepEqual( ids, [] );
     assert.deepEqual( indexes, [] );
     
-    var filterFn = function( index, ss ){
-        var result = ss.attr( 'class' ) === 't9-2 a b';
-        if ( result ){
-            indexes.push( index );
-        }
-        return result;
-    };
-    
     ids = [];
     indexes = [];
+    var fIndexes = [];
+    var fIds = [];
+    
     zz( '.t9-2' )
         .filter( 
-            function( ss ){
-                return ss.attr( 'class' ) === 't9-2 a b';
+            function( index, ss ){
+                var result = ss.attr( 'class' ) === 't9-2 a b';
+                if ( result ){
+                    fIndexes.push( index );
+                    fIds.push( this.getAttribute( 'id' ) );
+                }
+                return result;
             }
         )
         .each( eachFn );
     assert.deepEqual( ids, [ 't9-2-1-2', 't9-2-2-2' ] );
     assert.deepEqual( indexes, [ 0, 1 ] );
+    assert.deepEqual( fIndexes, [ 1, 4 ] );
+    assert.deepEqual( fIds, [ 't9-2-1-2', 't9-2-2-2' ] );
     
     ids = [];
     indexes = [];
+    fIndexes = [];
+    fIds = [];
     zz( '.t9-2' )
         .filter( 
-            function( ss ){ 
-                return ss.attr( 'class' ) === 'not-used-class';
+            function( index, ss ){ 
+                var result = ss.attr( 'class' ) === 'not-used-class';
+                if ( result ){
+                    fIndexes.push( index );
+                }
+                return result;
             }
         )
         .each( eachFn );
     assert.deepEqual( ids, [] );
     assert.deepEqual( indexes, [] );
+    assert.deepEqual( fIndexes, [] );
+    assert.deepEqual( fIds, [] );
 });
 
 QUnit.test( 'clone and is test', function( assert ) {

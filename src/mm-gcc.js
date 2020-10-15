@@ -9,9 +9,9 @@ zzDOM.MM = function ( _nodes ) {
     this.list = [];
     this.nodes = _nodes;
     for ( var i = 0; i < this.nodes.length; i++ ) {
-        this.list.push( 
-            new zzDOM.SS( this.nodes[ i ] )
-        );
+        var ss = new zzDOM.SS( this.nodes[ i ] );
+        this.list.push( ss );
+        ss._i = i;
     }
 };
 

@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-14 10:9:6 */
+/*! zzdom - v0.2.0 - 2020-10-15 11:47:34 */
 /**
  * A namespace.
  * @const
@@ -280,7 +280,7 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
 //TODO test function value
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
-        value = value.call( this.el );
+        value = value.call( this.el, this );
     }
     this.el.style[ key ] = 
         typeof value === 'string' && ! /^-?\d+\.?\d*$/.test( value )? // if it is a string and is not a float number
@@ -510,9 +510,8 @@ zzDOM.SS.prototype.filter = function ( x ) {
     
     if ( typeof x === 'function' ){ // Is a function
         return zzDOM._build(
-            //TODO test this variable in function
-            x.call( this.el, this )? [ this.el ]: []
-            //x( this )? [ this.el ]: []
+            //TODO test index and this variables in function
+            x.call( this.el, this._i === undefined? 0: this._i, this )? [ this.el ]: []
         );
     }  
     
@@ -911,9 +910,9 @@ zzDOM.MM = function ( _nodes ) {
     this.list = [];
     this.nodes = _nodes;
     for ( var i = 0; i < this.nodes.length; i++ ) {
-        this.list.push( 
-            new zzDOM.SS( this.nodes[ i ] )
-        );
+        var ss = new zzDOM.SS( this.nodes[ i ] );
+        this.list.push( ss );
+        ss._i = i;
     }
 };
 

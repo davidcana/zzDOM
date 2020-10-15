@@ -79,11 +79,9 @@ zzDOM.SS._outerCalc = function ( ss, property, linked1, linked2, withMargin ) {
     return total + margin;
 };
 
-//TODO test function value
-//TODO test index and this variables in function
 zzDOM.SS.prototype._setCssUsingKeyValue = function ( key, value ) {
     if ( typeof value === 'function' ) {
-        value = value.call( this.el, this );
+        value = value.call( this.el, this._i === undefined? 0: this._i, this );
     }
     this.el.style[ key ] = 
         typeof value === 'string' && ! /^-?\d+\.?\d*$/.test( value )? // if it is a string and is not a float number

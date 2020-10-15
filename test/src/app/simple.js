@@ -595,6 +595,27 @@ QUnit.test( 'css test', function( assert ) {
     assert.equal( document.getElementById( 't11-8' ).getAttribute( 'style' ), t11_8_modified );
     assert.equal( zz( '#t11-8' ).css( 'font-size' ), '30px' );
     assert.equal( id, 't11-8' );
+    
+    var t11_9_original = null,
+        t11_9_modified = 'font-size: 25px;',
+        t11_9_f_id,
+        t11_9_f_index,
+        t11_9_f_fsize;
+    assert.equal( document.getElementById( 't11-9' ).getAttribute( 'style' ), t11_9_original );
+    id = zz( '#t11-9' )
+        .css(
+            'font-size', 
+            function( index, ss ){ 
+                t11_9_f_index = index;
+                t11_9_f_fsize = this.getAttribute( 'data-fsize' );
+                return ss.attr( 'data-fsize' );
+            }
+        ).attr( 'id' );
+    assert.equal( document.getElementById( 't11-9' ).getAttribute( 'style' ), t11_9_modified );
+    assert.equal( zz( '#t11-9' ).css( 'font-size' ), '25px' );
+    assert.equal( id, 't11-9' );
+    assert.equal( t11_9_f_index, 0 );
+    assert.equal( t11_9_f_fsize, '25px' );
 });
 
 QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert ) {

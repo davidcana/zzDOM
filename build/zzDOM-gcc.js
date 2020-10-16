@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-16 08:20:5 */
+/*! zzdom - v0.2.0 - 2020-10-16 12:39:29 */
 /**
  * A namespace.
  * @const
@@ -785,7 +785,6 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 /* End of events */
 
 /* Forms */
-//TODO test this
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
         throw zzDOM._getError( 'checked' );
@@ -801,7 +800,6 @@ zzDOM.SS.prototype.checked = function ( check ) {
     return this;
 };
 
-//TODO test this
 /**
  * @param {Array<?>|String=} value
  */
@@ -1180,18 +1178,14 @@ zzDOM.MM.prototype.trigger = function () {
 /* End of events */
 
 /* Forms */
-//TODO test this
 zzDOM.MM.prototype.checked = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.checked, arguments );
 };
 
-//TODO test this
 zzDOM.MM.prototype.val = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.val, arguments );
 };
 /* End of forms */
-
-
 
 // Register zzDOM if we are using Node
 if ( typeof module === 'object' && module.exports ) {

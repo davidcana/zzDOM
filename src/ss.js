@@ -261,24 +261,26 @@ zzDOM.SS.prototype.clone = function (  ) {
     return new zzDOM.SS( this.el.cloneNode( true ) );
 };
 
-zzDOM.SS.prototype.css = function () {
+/**
+ * @param {string|Object} x1
+ * @param {string|number=} x2
+ */
+zzDOM.SS.prototype.css = function ( x1, x2 ) {
     var number = arguments.length;
     
     if ( number === 1 ){
-        var arg1 = arguments[ 0 ];
-        
-        if ( ! arg1 ){
+        if ( ! x1 ){
             throw 'Null value not allowed in css method!';
         }
         
         // get
-        if ( typeof arg1 === 'string' ) {
-            return getComputedStyle( this.el )[ arguments[0] ];
+        if ( typeof x1 === 'string' ) {
+            return getComputedStyle( this.el )[ x1 ];
         }
         
         // set using object
-        if ( typeof arg1 === 'object' ){
-            this._setCssUsingObject( arg1 );
+        if ( typeof x1 === 'object' ){
+            this._setCssUsingObject( x1 );
             return this;
         }
         
@@ -287,7 +289,7 @@ zzDOM.SS.prototype.css = function () {
     
     // set using key value pair
     if ( number === 2 ){
-        this._setCssUsingKeyValue( arguments[ 0 ], arguments[ 1 ] );
+        this._setCssUsingKeyValue( x1, x2 );
         return this;
     }
     
@@ -416,10 +418,16 @@ zzDOM.SS.prototype.offsetParent = function () {
     return offsetParent? new zzDOM.SS( offsetParent ): this;
 };
 
+/**
+ * @param {boolean=} withMargin
+ */
 zzDOM.SS.prototype.outerHeight = function ( withMargin ) {
     return this._outer( 'Height', 'Top', 'Bottom', withMargin );
 };
 
+/**
+ * @param {boolean=} withMargin
+ */
 zzDOM.SS.prototype.outerWidth = function ( withMargin ) {
     return this._outer( 'Width', 'Left', 'Right', withMargin );
 };
@@ -656,13 +664,36 @@ zzDOM.SS.prototype.val = function ( value ) {
 /* End of forms */
 
 /* Center */
-//TODO implement this
-/*
-getXCenteredPosition
-getYCenteredPosition
-getCenteredPosition
-center
-centerX
-centerY
-*/
+//TODO test this
+zzDOM.SS.prototype.getXCenteredPosition = function() {
+    var width = this.outerWidth();
+    return document.documentElement.clientWidth / 2 - width / 2;
+};
+
+zzDOM.SS.prototype.getYCenteredPosition = function() {
+    var height = this.outerHeight();
+    return document.documentElement.clientHeight / 2 - height / 2;
+};
+
+zzDOM.SS.prototype.getCenteredPosition = function() {
+    return {
+        top: this.getXCenteredPosition(),
+        left: this.getYCenteredPosition()
+    };
+};
+
+zzDOM.SS.prototype.center = function() {
+    this.offset( this.getCenteredPosition() );
+    return this;
+};
+
+zzDOM.SS.prototype.centerX = function( $div ) {
+    this.css( 'left', this.getXCenteredPosition() );
+    return this;
+};
+
+zzDOM.SS.prototype.centerY = function( $div ) {
+    this.css( 'top', this.getYCenteredPosition() );
+    return this;
+};
 /* End of center */

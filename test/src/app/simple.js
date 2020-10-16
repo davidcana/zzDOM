@@ -1191,3 +1191,22 @@ QUnit.test( 'each test', function( assert ) {
     assert.equal( thisValues.length, 1 );
     assert.equal( thisValues[ 0 ].getAttribute( 'id' ), 't17-1' );
 });
+
+QUnit.test( 'array like syntax test', function( assert ) {    
+    assert.equal( zz( '#t18-1' ).length, 1 );
+    
+    assert.ok( zz( '#t18-1' )[ 0 ] instanceof Element );
+    assert.equal( zz( '#t18-1' )[ 0 ].getAttribute( 'id' ), 't18-1' );
+    
+    assert.ok( zz( '#t18-1' )[ 1 ] === undefined );
+    
+    assert.ok( zz( '#t18-1' )[ 2 ] === undefined );
+    
+    var ids = [];
+    var $divs = zz( '#t18-1' );
+    for ( var c = 0; c < $divs.length; ++c ){
+        ids.push( $divs[ c ].getAttribute( 'id' ) );
+    }
+    assert.deepEqual( ids, [ 't18-1' ] );
+});
+

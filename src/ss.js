@@ -1,7 +1,6 @@
 /*
  * zzDOM.SS class
  */
-//TODO test array like behaviour
 /** @constructor */
 zzDOM.SS = function ( _el ) {
     this.el = _el;

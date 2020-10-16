@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-15 21:10:24 */
+/*! zzdom - v0.2.0 - 2020-10-16 08:20:5 */
 /**
  * A namespace.
  * @const
@@ -199,7 +199,6 @@ var zz;
     zz = zzDOM.zz; 
 })();
 
-//TODO test array like behaviour
 /** @constructor */
 zzDOM.SS = function ( _el ) {
     this.el = _el;
@@ -906,7 +905,6 @@ centerY
 */
 /* End of center */
 
-//TODO test array like behaviour
 /** @constructor */
 zzDOM.MM = function ( _nodes ) {    
     this.list = [];

@@ -1,7 +1,6 @@
 /*
  * zzDOM.MM class
  */
-//TODO test array like behaviour
 /** @constructor */
 zzDOM.MM = function ( _nodes ) {    
     this.list = [];

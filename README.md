@@ -27,6 +27,15 @@ Using standard CSS selectors (it calls to **document.querySelectorAll**):
     zz( 'div:nth-child(even)' ).text( 'Hello world!' );
 ```
 
+Chaining methods:
+
+```javascript
+    zz( '#myId' )
+        .text( 'Hello world!' )
+        .addClass( 'myClass' )
+        .attr( 'name', 'myName');
+```
+
 Appending html code:
 
 ```javascript

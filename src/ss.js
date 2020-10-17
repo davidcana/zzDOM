@@ -549,6 +549,7 @@ zzDOM.SS.prototype.hide = function () {
     return this;
 };
 
+//TODO create visible plugin
 zzDOM.SS.prototype.isVisible = function () {
     return !! this.el.offsetParent;
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
@@ -597,6 +598,7 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 };
 /* End of events */
 
+//TODO create forms plugin
 /* Forms */
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
@@ -666,6 +668,7 @@ zzDOM.SS.prototype.val = function ( value ) {
 };
 /* End of forms */
 
+//TODO create center plugin
 /* Center */
 //TODO test this
 zzDOM.SS.prototype.getXCenteredPosition = function() {

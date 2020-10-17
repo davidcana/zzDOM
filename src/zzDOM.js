@@ -104,6 +104,7 @@ zzDOM._htmlToElement = function ( html ) {
         template.content.childNodes;
 };
 
+//TODO create events plugin
 /* Events */
 zzDOM._events = {};
 
@@ -193,6 +194,7 @@ zzDOM._getDefaultDisplay = function( el ) {
 };
 /* End of default display */
 
+//TODO create utils plugin
 /* Utils */
 // Serialize a ss instance, a mm instance or an object into a query string
 zzDOM._paramItem = function( r, key, value ) {

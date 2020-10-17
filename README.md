@@ -10,6 +10,7 @@
     * events. Attach and remove event listeners. It can also trigger events.
     * forms. Basic managing of form elements.
     * center. Makes it easy to center elements in page.
+    * utils. Includes some utility methods.
 * Small size:
     * Core: -KB minified, -KB gzipped.
     * All: 13.2KB minified, 3.8KB gzipped.
@@ -154,6 +155,9 @@ Using a query selector (it calls to **document.querySelector**):
 * center = function ()
 * centerX = function ()
 * centerY = function ()
+
+### Utils plugin
+* param = function ()
 
 Please, take a look at [the zzDOM web](https://davidcana.github.io/zzDOM) for more information about zzDOM.
 

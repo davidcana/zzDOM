@@ -212,6 +212,7 @@ zzDOM.SS.prototype.appendTo = function ( x ) {
     throw zzDOM._getError( 'is' );
 };
 
+//TODO add support of function type in value
 /**
  * @param {string|Object} x
  * @param {string=} value
@@ -338,6 +339,7 @@ zzDOM.SS.prototype.height = function ( value ) {
     return this._styleProperty( 'height', value );
 };
 
+//TODO add support of function type in value
 zzDOM.SS.prototype.html = function ( value ) {
     // get
     if ( value === undefined ){
@@ -506,6 +508,7 @@ zzDOM.SS.prototype.siblings = function ( selector ) {
     return zzDOM._build( nodes );
 };
 
+//TODO add support of function type in value
 zzDOM.SS.prototype.text = function ( value ) {
     // get
     if ( value === undefined ){
@@ -666,13 +669,11 @@ zzDOM.SS.prototype.val = function ( value ) {
 /* Center */
 //TODO test this
 zzDOM.SS.prototype.getXCenteredPosition = function() {
-    var width = this.outerWidth();
-    return document.documentElement.clientWidth / 2 - width / 2;
+    return ( document.documentElement.clientWidth - this.outerWidth() ) / 2;
 };
 
 zzDOM.SS.prototype.getYCenteredPosition = function() {
-    var height = this.outerHeight();
-    return document.documentElement.clientHeight / 2 - height / 2;
+    return ( document.documentElement.clientHeight - this.outerHeight() ) / 2;
 };
 
 zzDOM.SS.prototype.getCenteredPosition = function() {
@@ -687,12 +688,12 @@ zzDOM.SS.prototype.center = function() {
     return this;
 };
 
-zzDOM.SS.prototype.centerX = function( $div ) {
+zzDOM.SS.prototype.centerX = function() {
     this.css( 'left', this.getXCenteredPosition() );
     return this;
 };
 
-zzDOM.SS.prototype.centerY = function( $div ) {
+zzDOM.SS.prototype.centerY = function() {
     this.css( 'top', this.getYCenteredPosition() );
     return this;
 };

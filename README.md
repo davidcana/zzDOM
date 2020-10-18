@@ -3,7 +3,11 @@
 **zzDOM** is a tiny javascript API that implements only the DOM functions of [Jquery](https://jquery.com/) including chaining. 
 
 * A subset of methods of Jquery implemented. Only main features are supported.
-* 2 available versions: a smaller (**zzDOM-closures**) and a bigger with [Google closure compiler](https://developers.google.com/closure/compiler) support (**zzDOM-gcc**).
+* Low performance penalty over using vanilla javascript: instance one or more simple javascript objects.
+* Easy to customize and to extend. Clear and simple code: [KISS](https://en.wikipedia.org/wiki/KISS_principle).
+* Two available versions: 
+    * A smaller (**zzDOM-closures**).
+    * A bigger with [Google closure compiler](https://developers.google.com/closure/compiler) support (**zzDOM-gcc**).
 * Divided into modules, a core and some optional plugins:
     * core. Includes the main components of **zzDOM** and the DOM functions.
     * visible. A plugin that includes methods related to visibility of elements.
@@ -19,6 +23,8 @@
 No support for old browsers. No polyfills. **zzDOM** should work with any browser that supports **document.querySelectorAll()**.
 
 ## Using zzDOM
+Some of them are equivalent to jquery's, but other are valid only in **zzDOM**.
+
 Using standard CSS selectors (it calls to **document.querySelectorAll**):
 
 ```javascript
@@ -56,6 +62,12 @@ Using array syntax to access an Element:
     }
 ```
 
+Using **el** to access an Element (only works when there is only 1 element, valid only in **zzDOM**):
+
+```javascript
+    zz( '#myId' ).el.textContent( 'Hello world!' ); // Set text of element to Hello world!
+```
+
 Using an Element:
 
 ```javascript
@@ -74,37 +86,38 @@ Using a NodeList:
     zz( document.getElementsByTagName( 'div' ) ).text( 'Hello world!' );
 ```
 
-Using an id (it calls to **document.getElementById**):
+Using an id (it calls to **document.getElementById**, valid only in **zzDOM**):
 
 ```javascript
     zz( '#', 'myId' ).text( 'Hello world!' );
 ```
 
-Using a class (it calls to **document.getElementsByClassName**):
+Using a class (it calls to **document.getElementsByClassName**, valid only in **zzDOM**):
 
 ```javascript
     zz( '.', 'myClass' ).text( 'Hello world!' );
 ```
 
-Using a tag name (it calls to **document.getElementsByTagName**):
+Using a tag name (it calls to **document.getElementsByTagName**, valid only in **zzDOM**):
 
 ```javascript
     zz( 't', 'div' ).text( 'Hello world!' );
 ```
 
-Using a name (it calls to **document.getElementsByName**):
+Using a name (it calls to **document.getElementsByName**, valid only in **zzDOM**):
 
 ```javascript
     zz( 'n', 'myName' ).text( 'Hello world!' );
 ```
 
-Using a query selector (it calls to **document.querySelector**):
+Using a query selector (it calls to **document.querySelector**, valid only in **zzDOM**):
 
 ```javascript
     zz( 's', '#myId span' ).text( 'Hello world!' );
 ```
 
 ## Methods
+Available methods are divided into the core and some plugins:
 
 ### Core
 * addClass = function ( name )

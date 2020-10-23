@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-23 11:22:43 */
+/*! zzdom - v0.2.0 - 2020-10-23 11:35:31 */
 /**
  * A namespace.
  * @const
@@ -905,41 +905,35 @@ zzDOM.SS.prototype.val = function ( value ) {
 
 //TODO create center plugin
 /* Center */
-zzDOM.SS.prototype.getXCenteredPosition = function() {
+zzDOM.SS.prototype.getXCenter = function() {
     return ( document.documentElement.clientWidth - this.outerWidth() ) / 2;
 };
 
-zzDOM.SS.prototype.getYCenteredPosition = function() {
+zzDOM.SS.prototype.getYCenter = function() {
     return ( document.documentElement.clientHeight - this.outerHeight() ) / 2;
 };
 
-zzDOM.SS.prototype.getCenteredPosition = function() {
+zzDOM.SS.prototype.getCenter = function() {
     return {
-        left: this.getXCenteredPosition(),
-        top: this.getYCenteredPosition()
+        left: this.getXCenter(),
+        top: this.getYCenter()
     };
 };
 
 zzDOM.SS.prototype.center = function() {
     this.offset( 
-        this.getCenteredPosition() 
+        this.getCenter() 
     );
-    /*
-    this.css({
-        left: this.getXCenteredPosition(),
-        top: this.getYCenteredPosition() 
-    });
-    */
     return this;
 };
 
 zzDOM.SS.prototype.centerX = function() {
-    this.css( 'left', this.getXCenteredPosition() );
+    this.css( 'left', this.getXCenter() );
     return this;
 };
 
 zzDOM.SS.prototype.centerY = function() {
-    this.css( 'top', this.getYCenteredPosition() );
+    this.css( 'top', this.getYCenter() );
     return this;
 };
 /* End of center */

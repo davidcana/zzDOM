@@ -171,9 +171,9 @@ Available methods are divided into the core and some plugins:
 * val = function ( value )
 
 ### Center plugin
-* getXCenteredPosition = function ()
-* getYCenteredPosition = function ()
-* getCenteredPosition = function ()
+* getXCenter = function ()
+* getYCenter = function ()
+* getCenter = function ()
 * center = function ()
 * centerX = function ()
 * centerY = function ()

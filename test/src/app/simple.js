@@ -1271,9 +1271,9 @@ QUnit.test( 'center test', function( assert ) {
         t20_4_x_modified = ( document.documentElement.clientWidth - 75 ) / 2,
         t20_4_y_modified = ( document.documentElement.clientHeight - 50 ) / 2;
     
-    assert.equal( zz( '#t20-1' ).getXCenteredPosition(), t20_1_x_original );
-    assert.equal( zz( '#t20-1' ).getYCenteredPosition(), t20_1_y_original );
-    assert.deepEqual( zz( '#t20-1' ).getCenteredPosition(), t20_1_pos_original );
+    assert.equal( zz( '#t20-1' ).getXCenter(), t20_1_x_original );
+    assert.equal( zz( '#t20-1' ).getYCenter(), t20_1_y_original );
+    assert.deepEqual( zz( '#t20-1' ).getCenter(), t20_1_pos_original );
     
     assert.equal( zz( '#t20-2' ).position().left, t20_2_x_original );
     zz( '#t20-2' ).centerX();

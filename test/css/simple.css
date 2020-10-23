@@ -38,3 +38,22 @@ div.offsetTests {
 .container {
     background-color: yellow;
 }
+.t20 {
+    width: 75px;
+    height: 50px;
+    background-color: green;
+    color: white;
+}
+#t20-2 {
+    position: absolute;
+    left: 500px;
+}
+#t20-3 {
+    position: absolute;
+    top: 800px;
+}
+#t20-4 {
+    position: absolute;
+    left: 100px;
+    top: 120px;
+}

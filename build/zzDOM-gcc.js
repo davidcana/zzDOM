@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-16 13:25:19 */
+/*! zzdom - v0.2.0 - 2020-10-23 10:30:48 */
 /**
  * A namespace.
  * @const
@@ -104,6 +104,7 @@ zzDOM._htmlToElement = function ( html ) {
         template.content.childNodes;
 };
 
+//TODO create events plugin
 /* Events */
 zzDOM._events = {};
 
@@ -193,6 +194,7 @@ zzDOM._getDefaultDisplay = function( el ) {
 };
 /* End of default display */
 
+//TODO create utils plugin
 /* Utils */
 // Serialize a ss instance, a mm instance or an object into a query string
 zzDOM._paramItem = function( r, key, value ) {
@@ -445,6 +447,7 @@ zzDOM.SS.prototype.appendTo = function ( x ) {
     throw zzDOM._getError( 'is' );
 };
 
+//TODO add support of function type in value
 /**
  * @param {string|Object} x
  * @param {string=} value
@@ -571,6 +574,7 @@ zzDOM.SS.prototype.height = function ( value ) {
     return this._styleProperty( 'height', value );
 };
 
+//TODO add support of function type in value
 zzDOM.SS.prototype.html = function ( value ) {
     // get
     if ( value === undefined ){
@@ -739,6 +743,7 @@ zzDOM.SS.prototype.siblings = function ( selector ) {
     return zzDOM._build( nodes );
 };
 
+//TODO add support of function type in value
 zzDOM.SS.prototype.text = function ( value ) {
     // get
     if ( value === undefined ){
@@ -779,6 +784,7 @@ zzDOM.SS.prototype.hide = function () {
     return this;
 };
 
+//TODO create visible plugin
 zzDOM.SS.prototype.isVisible = function () {
     return !! this.el.offsetParent;
     //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
@@ -827,6 +833,7 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 };
 /* End of events */
 
+//TODO create forms plugin
 /* Forms */
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
@@ -896,16 +903,14 @@ zzDOM.SS.prototype.val = function ( value ) {
 };
 /* End of forms */
 
+//TODO create center plugin
 /* Center */
-//TODO test this
 zzDOM.SS.prototype.getXCenteredPosition = function() {
-    var width = this.outerWidth();
-    return document.documentElement.clientWidth / 2 - width / 2;
+    return ( document.documentElement.clientWidth - this.outerWidth() ) / 2;
 };
 
 zzDOM.SS.prototype.getYCenteredPosition = function() {
-    var height = this.outerHeight();
-    return document.documentElement.clientHeight / 2 - height / 2;
+    return ( document.documentElement.clientHeight - this.outerHeight() ) / 2;
 };
 
 zzDOM.SS.prototype.getCenteredPosition = function() {
@@ -916,16 +921,17 @@ zzDOM.SS.prototype.getCenteredPosition = function() {
 };
 
 zzDOM.SS.prototype.center = function() {
-    this.offset( this.getCenteredPosition() );
+    this.css( 'left', this.getXCenteredPosition() );
+    this.css( 'top', this.getYCenteredPosition() );
     return this;
 };
 
-zzDOM.SS.prototype.centerX = function( $div ) {
+zzDOM.SS.prototype.centerX = function() {
     this.css( 'left', this.getXCenteredPosition() );
     return this;
 };
 
-zzDOM.SS.prototype.centerY = function( $div ) {
+zzDOM.SS.prototype.centerY = function() {
     this.css( 'top', this.getYCenteredPosition() );
     return this;
 };

@@ -670,7 +670,6 @@ zzDOM.SS.prototype.val = function ( value ) {
 
 //TODO create center plugin
 /* Center */
-//TODO test this
 zzDOM.SS.prototype.getXCenteredPosition = function() {
     return ( document.documentElement.clientWidth - this.outerWidth() ) / 2;
 };
@@ -687,7 +686,8 @@ zzDOM.SS.prototype.getCenteredPosition = function() {
 };
 
 zzDOM.SS.prototype.center = function() {
-    this.offset( this.getCenteredPosition() );
+    this.css( 'left', this.getXCenteredPosition() );
+    this.css( 'top', this.getYCenteredPosition() );
     return this;
 };
 

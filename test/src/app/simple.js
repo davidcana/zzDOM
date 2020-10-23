@@ -1259,8 +1259,8 @@ QUnit.test( 'center test', function( assert ) {
     var t20_1_x_original = ( document.documentElement.clientWidth - 75 ) / 2,
         t20_1_y_original = ( document.documentElement.clientHeight - 50 ) / 2,
         t20_1_pos_original = {
-            top: t20_1_x_original,
-            left: t20_1_y_original
+            top: t20_1_y_original,
+            left: t20_1_x_original
         },
         t20_2_x_original = 500,
         t20_2_x_modified = ( document.documentElement.clientWidth - 75 ) / 2,

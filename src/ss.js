@@ -680,14 +680,15 @@ zzDOM.SS.prototype.getYCenteredPosition = function() {
 
 zzDOM.SS.prototype.getCenteredPosition = function() {
     return {
-        top: this.getXCenteredPosition(),
-        left: this.getYCenteredPosition()
+        left: this.getXCenteredPosition(),
+        top: this.getYCenteredPosition()
     };
 };
 
 zzDOM.SS.prototype.center = function() {
-    this.css( 'left', this.getXCenteredPosition() );
-    this.css( 'top', this.getYCenteredPosition() );
+    this.offset( 
+        this.getCenteredPosition() 
+    );
     return this;
 };
 

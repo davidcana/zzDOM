@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-23 10:30:48 */
+/*! zzdom - v0.2.0 - 2020-10-23 11:22:43 */
 /**
  * A namespace.
  * @const
@@ -915,14 +915,21 @@ zzDOM.SS.prototype.getYCenteredPosition = function() {
 
 zzDOM.SS.prototype.getCenteredPosition = function() {
     return {
-        top: this.getXCenteredPosition(),
-        left: this.getYCenteredPosition()
+        left: this.getXCenteredPosition(),
+        top: this.getYCenteredPosition()
     };
 };
 
 zzDOM.SS.prototype.center = function() {
-    this.css( 'left', this.getXCenteredPosition() );
-    this.css( 'top', this.getYCenteredPosition() );
+    this.offset( 
+        this.getCenteredPosition() 
+    );
+    /*
+    this.css({
+        left: this.getXCenteredPosition(),
+        top: this.getYCenteredPosition() 
+    });
+    */
     return this;
 };
 

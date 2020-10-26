@@ -98,9 +98,11 @@ module.exports = function(grunt) {
             closures: {
                 src: [
                     'src/zzDOM.js', 
+                    'src/zzDOM-events.js',
                     'src/zzDOM-visible.js',
                     'src/zzDOM-utils.js',
                     'src/ss.js', 
+                    'src/ss-events.js', 
                     'src/ss-visible.js', 
                     'src/ss-forms.js',
                     'src/ss-center.js',
@@ -113,9 +115,11 @@ module.exports = function(grunt) {
             gcc: {
                 src: [
                     'src/zzDOM.js', 
+                    'src/zzDOM-events.js',
                     'src/zzDOM-visible.js',
                     'src/zzDOM-utils.js',
                     'src/ss.js', 
+                    'src/ss-events.js', 
                     'src/ss-visible.js', 
                     'src/ss-forms.js',
                     'src/ss-center.js',
@@ -370,6 +374,7 @@ module.exports = function(grunt) {
             closures: {
                 files: {
                     'build/zzDOM-closures.min.js': [ 'build/zzDOM-closures.js' ],
+                    'build/zzDOM-events.min.js': [ 'src/zzDOM-events.js', 'src/ss-events.js' ],
                     'build/zzDOM-visible.min.js': [ 'src/zzDOM-visible.js', 'src/ss-visible.js' ],
                     'build/zzDOM-utils.min.js': [ 'src/zzDOM-utils.js' ],
                     'build/zzDOM-forms.min.js': [ 'src/ss-forms.js' ],
@@ -396,10 +401,12 @@ module.exports = function(grunt) {
             simple: {
                 options: {
                     js: [
-                        'src/zzDOM.js', 
+                        'src/zzDOM.js',
+                        'src/zzDOM-events.js',
                         'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-events.js', 
                         'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
@@ -421,9 +428,11 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-events.js',
                         'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-events.js', 
                         'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
@@ -445,9 +454,11 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-events.js',
                         'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-events.js', 
                         'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
@@ -469,9 +480,11 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-events.js',
                         'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-events.js', 
                         'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
@@ -496,9 +509,11 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-events.js',
                         'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-events.js', 
                         'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
@@ -520,9 +535,11 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-events.js',
                         'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-events.js', 
                         'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',

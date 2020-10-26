@@ -88,6 +88,26 @@ module.exports = function(grunt) {
                         src: ['README.md']
                     }
                 ]
+            },
+            'closures-full': {
+                options: {
+                    archive: 'build/zzDOM-closures-full.min.js.tar.gz'
+                },
+                files: [
+                    {
+                        src: [ 'build/zzDOM-closures-full.min.js' ]
+                    }
+                ]
+            },
+            'closures-core': {
+                options: {
+                    archive: 'build/zzDOM-closures-core.min.js.tar.gz'
+                },
+                files: [
+                    {
+                        src: [ 'build/zzDOM-closures-core.min.js' ]
+                    }
+                ]
             }
         },
         concat: {
@@ -600,7 +620,15 @@ module.exports = function(grunt) {
     // The load-grunt-tasks plugin won’t automatically load closure-compiler
 
     grunt.registerTask('test', ['qunit']);
-    grunt.registerTask('default', ['concat:closures-full', 'concat:closures-core', 'concat:gcc', 'uglify', 'closure-compiler']);
+    grunt.registerTask('default', [
+        'concat:closures-full', 
+        'concat:closures-core',
+        'concat:gcc', 
+        'uglify', 
+        'compress:closures-full',
+        'compress:closures-core',
+        'closure-compiler'
+    ]);
     grunt.registerTask('buildTests', [
         'concat:multiple-closures', 
         'concat:multiple-closures-concat', 

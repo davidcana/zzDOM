@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-26 09:36:57 */
+/*! zzdom - v0.2.0 - 2020-10-26 09:50:11 */
 /**
  * A namespace.
  * @const
@@ -174,7 +174,6 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
 };
 /* End of events */
 
-/* Default display */
 zzDOM._dd = {};
 
 zzDOM._getDefaultDisplay = function( el ) {
@@ -198,7 +197,7 @@ zzDOM._getDefaultDisplay = function( el ) {
 
     return display;
 };
-/* End of default display */
+/* End of visible */
 
 // Serialize a ss instance, a mm instance or an object into a query string
 zzDOM._paramItem = function( r, key, value ) {
@@ -770,38 +769,6 @@ zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
 
-/* Show/hide */
-zzDOM.SS.prototype.hide = function () {
-    if ( this.isVisible() ){
-        this.attr( 
-            'data-display', 
-            getComputedStyle( this.el, null )[ 'display' ]
-        );
-        this.el.style.display = 'none';
-    }
-    return this;
-};
-
-//TODO create visible plugin
-zzDOM.SS.prototype.isVisible = function () {
-    return !! this.el.offsetParent;
-    //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
-};
-
-zzDOM.SS.prototype.show = function () {
-    if ( ! this.isVisible() ){
-        var display = this.attr( 'data-display' );
-        this.el.style.display = display? display: zzDOM._getDefaultDisplay( this.el );
-    }
-    return this;
-};
-
-zzDOM.SS.prototype.toggle = function ( state ) {
-    var value = state !== undefined? ! state: this.isVisible();
-    return value? this.hide(): this.show();
-};
-/* End of show/hide */
-
 /* Events */
 zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {
     zzDOM._removeEventListener( this, eventName, listener, useCapture );
@@ -830,6 +797,36 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
     return this;
 };
 /* End of events */
+
+zzDOM.SS.prototype.hide = function () {
+    if ( this.isVisible() ){
+        this.attr( 
+            'data-display', 
+            getComputedStyle( this.el, null )[ 'display' ]
+        );
+        this.el.style.display = 'none';
+    }
+    return this;
+};
+
+zzDOM.SS.prototype.isVisible = function () {
+    return !! this.el.offsetParent;
+    //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
+};
+
+zzDOM.SS.prototype.show = function () {
+    if ( ! this.isVisible() ){
+        var display = this.attr( 'data-display' );
+        this.el.style.display = display? display: zzDOM._getDefaultDisplay( this.el );
+    }
+    return this;
+};
+
+zzDOM.SS.prototype.toggle = function ( state ) {
+    var value = state !== undefined? ! state: this.isVisible();
+    return value? this.hide(): this.show();
+};
+/* End of visible */
 
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {

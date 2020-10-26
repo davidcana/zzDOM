@@ -98,8 +98,10 @@ module.exports = function(grunt) {
             closures: {
                 src: [
                     'src/zzDOM.js', 
+                    'src/zzDOM-visible.js',
                     'src/zzDOM-utils.js',
                     'src/ss.js', 
+                    'src/ss-visible.js', 
                     'src/ss-forms.js',
                     'src/ss-center.js',
                     'src/mm-closures.js',
@@ -111,8 +113,10 @@ module.exports = function(grunt) {
             gcc: {
                 src: [
                     'src/zzDOM.js', 
+                    'src/zzDOM-visible.js',
                     'src/zzDOM-utils.js',
                     'src/ss.js', 
+                    'src/ss-visible.js', 
                     'src/ss-forms.js',
                     'src/ss-center.js',
                     'src/mm-gcc.js',
@@ -366,6 +370,7 @@ module.exports = function(grunt) {
             closures: {
                 files: {
                     'build/zzDOM-closures.min.js': [ 'build/zzDOM-closures.js' ],
+                    'build/zzDOM-visible.min.js': [ 'src/zzDOM-visible.js', 'src/ss-visible.js' ],
                     'build/zzDOM-utils.min.js': [ 'src/zzDOM-utils.js' ],
                     'build/zzDOM-forms.min.js': [ 'src/ss-forms.js' ],
                     'build/zzDOM-center.min.js': [ 'src/ss-center.js' ]
@@ -392,8 +397,10 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
                         'src/mm-gcc.js',
@@ -414,8 +421,10 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
                         'src/mm-gcc.js',
@@ -436,8 +445,10 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
                         'src/mm-gcc.js',
@@ -458,8 +469,10 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
                         'src/mm-gcc.js',
@@ -483,8 +496,10 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
                         'src/mm-gcc.js',
@@ -505,8 +520,10 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-visible.js',
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-visible.js', 
                         'src/ss-forms.js',
                         'src/ss-center.js',
                         'src/mm-closures.js',

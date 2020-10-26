@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-26 08:30:21 */
+/*! zzdom - v0.2.0 - 2020-10-26 09:28:33 */
 /**
  * A namespace.
  * @const
@@ -901,8 +901,6 @@ zzDOM.SS.prototype.val = function ( value ) {
 };
 /* End of forms */
 
-//TODO create center plugin
-/* Center */
 zzDOM.SS.prototype.getXCenter = function() {
     return ( document.documentElement.clientWidth - this.outerWidth() ) / 2;
 };

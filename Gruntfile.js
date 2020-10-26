@@ -100,6 +100,7 @@ module.exports = function(grunt) {
                     'src/zzDOM.js', 
                     'src/zzDOM-utils.js',
                     'src/ss.js', 
+                    'src/ss-center.js',
                     'src/mm-closures.js',
                     'src/export.js'
                 ],
@@ -111,6 +112,7 @@ module.exports = function(grunt) {
                     'src/zzDOM.js', 
                     'src/zzDOM-utils.js',
                     'src/ss.js', 
+                    'src/ss-center.js',
                     'src/mm-gcc.js',
                     'src/export.js'
                 ],
@@ -362,7 +364,8 @@ module.exports = function(grunt) {
             closures: {
                 files: {
                     'build/zzDOM-closures.min.js': [ 'build/zzDOM-closures.js' ],
-                    'build/zzDOM-utils.min.js': [ 'src/zzDOM-utils.js' ]
+                    'build/zzDOM-utils.min.js': [ 'src/zzDOM-utils.js' ],
+                    'build/zzDOM-center.min.js': [ 'src/ss-center.js' ]
                 }
             },
             gcc: {
@@ -388,6 +391,7 @@ module.exports = function(grunt) {
                         'src/zzDOM.js', 
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-center.js',
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
                         'test/src/app/utils.js',
@@ -408,6 +412,7 @@ module.exports = function(grunt) {
                         'src/zzDOM.js', 
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-center.js',
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
                         'test/src/app/utils.js',
@@ -428,6 +433,7 @@ module.exports = function(grunt) {
                         'src/zzDOM.js', 
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-center.js',
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
                         'test/src/app/utils.js',
@@ -448,6 +454,7 @@ module.exports = function(grunt) {
                         'src/zzDOM.js', 
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-center.js',
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
                         'test/src/app/utils.js',
@@ -471,6 +478,7 @@ module.exports = function(grunt) {
                         'src/zzDOM.js', 
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-center.js',
                         'src/mm-gcc.js',
                         'samples/plugins-sample.js'
                     ],
@@ -491,6 +499,7 @@ module.exports = function(grunt) {
                         'src/zzDOM.js', 
                         'src/zzDOM-utils.js',
                         'src/ss.js', 
+                        'src/ss-center.js',
                         'src/mm-closures.js',
                         'samples/sample.js'
                     ],

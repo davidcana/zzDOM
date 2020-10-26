@@ -98,6 +98,7 @@ module.exports = function(grunt) {
             closures: {
                 src: [
                     'src/zzDOM.js', 
+                    'src/zzDOM-utils.js',
                     'src/ss.js', 
                     'src/mm-closures.js',
                     'src/export.js'
@@ -108,6 +109,7 @@ module.exports = function(grunt) {
             gcc: {
                 src: [
                     'src/zzDOM.js', 
+                    'src/zzDOM-utils.js',
                     'src/ss.js', 
                     'src/mm-gcc.js',
                     'src/export.js'
@@ -359,7 +361,8 @@ module.exports = function(grunt) {
         uglify: {
             closures: {
                 files: {
-                    'build/zzDOM-closures.min.js': [ 'build/zzDOM-closures.js' ]
+                    'build/zzDOM-closures.min.js': [ 'build/zzDOM-closures.js' ],
+                    'build/zzDOM-utils.min.js': [ 'src/zzDOM-utils.js' ]
                 }
             },
             gcc: {
@@ -383,6 +386,7 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-utils.js',
                         'src/ss.js', 
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
@@ -402,6 +406,7 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-utils.js',
                         'src/ss.js', 
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
@@ -421,6 +426,7 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-utils.js',
                         'src/ss.js', 
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
@@ -440,6 +446,7 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-utils.js',
                         'src/ss.js', 
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
@@ -462,6 +469,7 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-utils.js',
                         'src/ss.js', 
                         'src/mm-gcc.js',
                         'samples/plugins-sample.js'
@@ -481,6 +489,7 @@ module.exports = function(grunt) {
                 options: {
                     js: [
                         'src/zzDOM.js', 
+                        'src/zzDOM-utils.js',
                         'src/ss.js', 
                         'src/mm-closures.js',
                         'samples/sample.js'

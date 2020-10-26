@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-23 11:35:31 */
+/*! zzdom - v0.2.0 - 2020-10-26 08:30:21 */
 /**
  * A namespace.
  * @const
@@ -104,6 +104,12 @@ zzDOM._htmlToElement = function ( html ) {
         template.content.childNodes;
 };
 
+// Register zz function
+var zz;
+(function() { 
+    zz = zzDOM.zz; 
+})();
+
 //TODO create events plugin
 /* Events */
 zzDOM._events = {};
@@ -194,8 +200,6 @@ zzDOM._getDefaultDisplay = function( el ) {
 };
 /* End of default display */
 
-//TODO create utils plugin
-/* Utils */
 // Serialize a ss instance, a mm instance or an object into a query string
 zzDOM._paramItem = function( r, key, value ) {
     r.push( 
@@ -229,12 +233,6 @@ zzDOM.param = function( x ) {
     return r.join( '&' );
 };
 /* end of utils */
-
-// Register zz function
-var zz;
-(function() { 
-    zz = zzDOM.zz; 
-})();
 
 /** @constructor */
 zzDOM.SS = function ( _el ) {

@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-26 09:28:33 */
+/*! zzdom - v0.2.0 - 2020-10-26 09:36:57 */
 /**
  * A namespace.
  * @const
@@ -831,8 +831,6 @@ zzDOM.SS.prototype.trigger = function ( eventName ) {
 };
 /* End of events */
 
-//TODO create forms plugin
-/* Forms */
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
         throw zzDOM._getError( 'checked' );

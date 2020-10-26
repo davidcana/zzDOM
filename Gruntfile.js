@@ -95,7 +95,7 @@ module.exports = function(grunt) {
                 stripBanners: true,
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd HH:M:s") %> */\n'
             },
-            closures: {
+            'closures-full': {
                 src: [
                     'src/zzDOM.js', 
                     'src/zzDOM-events.js',
@@ -109,7 +109,17 @@ module.exports = function(grunt) {
                     'src/mm-closures.js',
                     'src/export.js'
                 ],
-                dest: 'build/zzDOM-closures.js',
+                dest: 'build/zzDOM-closures-full.js',
+                nonull: true
+            },
+            'closures-core': {
+                src: [
+                    'src/zzDOM.js', 
+                    'src/ss.js', 
+                    'src/mm-closures.js',
+                    'src/export.js'
+                ],
+                dest: 'build/zzDOM-closures-core.js',
                 nonull: true
             },
             gcc: {
@@ -373,7 +383,8 @@ module.exports = function(grunt) {
         uglify: {
             closures: {
                 files: {
-                    'build/zzDOM-closures.min.js': [ 'build/zzDOM-closures.js' ],
+                    'build/zzDOM-closures-full.min.js': [ 'build/zzDOM-closures-full.js' ],
+                    'build/zzDOM-closures-core.min.js': [ 'build/zzDOM-closures-core.js' ],
                     'build/zzDOM-events.min.js': [ 'src/zzDOM-events.js', 'src/ss-events.js' ],
                     'build/zzDOM-visible.min.js': [ 'src/zzDOM-visible.js', 'src/ss-visible.js' ],
                     'build/zzDOM-utils.min.js': [ 'src/zzDOM-utils.js' ],
@@ -589,7 +600,7 @@ module.exports = function(grunt) {
     // The load-grunt-tasks plugin won’t automatically load closure-compiler
 
     grunt.registerTask('test', ['qunit']);
-    grunt.registerTask('default', ['concat:closures', 'concat:gcc', 'uglify', 'closure-compiler']);
+    grunt.registerTask('default', ['concat:closures-full', 'concat:closures-core', 'concat:gcc', 'uglify', 'closure-compiler']);
     grunt.registerTask('buildTests', [
         'concat:multiple-closures', 
         'concat:multiple-closures-concat', 

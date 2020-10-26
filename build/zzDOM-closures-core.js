@@ -174,127 +174,6 @@ zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, even
 };
 /* End of events */
 
-zzDOM._events = {};
-
-zzDOM._addEventListener = function( ss, eventName, listener, useCapture ){
-    var el = ss.el;
-    var elId = ss._getElId();
-    var thisEvents = zzDOM._events[ elId ];
-    if ( ! thisEvents ){
-        thisEvents = {};
-        zzDOM._events[ elId ] = thisEvents;
-    }
-    var thisListeners = thisEvents[ eventName ];
-    if ( ! thisListeners ){
-        thisListeners = [];
-        thisEvents[ eventName ] = thisListeners;
-    }
-    thisListeners.push( listener );
-    
-    // addEventListener
-    el.addEventListener( eventName, listener, useCapture );
-};
-
-//TODO must remove all listeners when an element is removed
-zzDOM._removeEventListener = function( ss, eventName, listener, useCapture ){
-    var el = ss.el;
-    var elId = ss._getElId();
-    var thisEvents = zzDOM._events[ elId ];
-    if ( ! thisEvents ){
-        return;
-    }
-    
-    if ( ! eventName ){ 
-        // Must remove all events
-        for ( var currentEventName in thisEvents ){
-            var currentListeners = thisEvents[ currentEventName ];
-            zzDOM._removeListeners( el, currentListeners, null, useCapture, currentEventName );
-        }
-        return;
-    }
-    
-    // Must remove listeners of only one event
-    var thisListeners = thisEvents[ eventName ];
-    zzDOM._removeListeners( el, thisListeners, listener, useCapture, eventName );
-};
-
-//TODO test all the listeners are removed
-zzDOM._removeListeners = function( el, thisListeners, listener, useCapture, eventName ){
-    if ( ! thisListeners ){
-        return;
-    }
-    for ( var i = 0; i < thisListeners.length; ++i ){
-        var currentListener = thisListeners[ i ];
-        if ( ! listener || currentListener === listener ){
-            thisListeners.splice( i, 1 ); // Delete listener at i position
-            el.removeEventListener( eventName, currentListener, useCapture );
-            if ( listener ){
-                return;
-            }
-        }
-    } 
-};
-/* End of events */
-
-zzDOM._dd = {};
-
-zzDOM._getDefaultDisplay = function( el ) {
-    var nodeName = el.nodeName;
-    var display = zzDOM._dd[ nodeName ];
-
-    if ( display ) {
-        return display;
-    }
-
-    var doc = el.ownerDocument;
-    var temp = doc.body.appendChild( doc.createElement( nodeName ) );
-    display = getComputedStyle( temp )[ 'display' ];
-
-    temp.parentNode.removeChild( temp );
-
-    if ( display === 'none' ) {
-        display = 'block';
-    }
-    zzDOM._dd[ nodeName ] = display;
-
-    return display;
-};
-/* End of visible */
-
-// Serialize a ss instance, a mm instance or an object into a query string
-zzDOM._paramItem = function( r, key, value ) {
-    r.push( 
-        encodeURIComponent( key ) + '=' + encodeURIComponent( value == null? '': value )
-    );
-};
-/** @nocollapse */
-zzDOM.param = function( x ) {
-	
-    if ( x == null ) {
-        return '';
-    }
-
-    var r = [];
-    
-    if ( x instanceof zzDOM.SS ){
-        zzDOM._paramItem( r, x.attr( 'name' ), x.val() );
-    } else if ( x instanceof zzDOM.MM ){
-        for ( var c = 0; c < x.list.length; ++c ){
-            var ss = x.list[ c ];
-            zzDOM._paramItem( r, ss.attr( 'name' ), ss.val() );
-        }
-    } else if ( typeof x === 'object' ){  
-        for ( var i in x ) {
-            zzDOM._paramItem( r, i, x[ i ] );
-        }
-    } else {
-        throw zzDOM._getError( 'param' );
-    }
-
-    return r.join( '&' );
-};
-/* end of utils */
-
 /** @constructor */
 zzDOM.SS = function ( _el ) {
     this.el = _el;
@@ -831,172 +710,13 @@ zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
 
-zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {
-    zzDOM._removeEventListener( this, eventName, listener, useCapture );
-    return this;
-};
-
-zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
-    zzDOM._addEventListener( 
-        this, 
-        eventName, 
-        data? 
-            function( e ){
-                e.data = data;
-                return listener.call( e.currentTarget, e );
-            }:
-            listener, 
-        useCapture 
-    );
-    return this;
-};
-
-zzDOM.SS.prototype.trigger = function ( eventName ) {
-    var event = document.createEvent( 'HTMLEvents' );
-    event.initEvent( eventName, true, false );
-    this.el.dispatchEvent( event );
-    return this;
-};
-/* End of events */
-
-zzDOM.SS.prototype.hide = function () {
-    if ( this.isVisible() ){
-        this.attr( 
-            'data-display', 
-            getComputedStyle( this.el, null )[ 'display' ]
-        );
-        this.el.style.display = 'none';
-    }
-    return this;
-};
-
-zzDOM.SS.prototype.isVisible = function () {
-    return !! this.el.offsetParent;
-    //return getComputedStyle( this.el, null ).getPropertyValue( 'display' ) !== 'none';
-};
-
-zzDOM.SS.prototype.show = function () {
-    if ( ! this.isVisible() ){
-        var display = this.attr( 'data-display' );
-        this.el.style.display = display? display: zzDOM._getDefaultDisplay( this.el );
-    }
-    return this;
-};
-
-zzDOM.SS.prototype.toggle = function ( state ) {
-    var value = state !== undefined? ! state: this.isVisible();
-    return value? this.hide(): this.show();
-};
-/* End of visible */
-
-zzDOM.SS.prototype.checked = function ( check ) {
-    if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
-        throw zzDOM._getError( 'checked' );
-    }
-    
-    // get
-    if ( check === undefined ){
-        return !! this.el.checked;
-    }
-    
-    // set
-    this.el.checked = check;
-    return this;
-};
-
-/**
- * @param {Array<?>|String=} value
- */
-zzDOM.SS.prototype.val = function ( value ) {
-    // get
-    if ( value === undefined ){
-        switch ( this.el.nodeName ) {
-        case 'INPUT':
-        case 'TEXTAREA':
-        case 'BUTTON':
-            return this.el.value;
-        case 'SELECT':
-            var values = [];
-            for ( var i = 0; i < this.el.length; ++i ) {
-                if ( this.el[ i ].selected ) {
-                    values.push( this.el[ i ].value );
-                }
-            }
-            return values.length > 1? values: values[ 0 ];
-        default:
-            throw zzDOM._getError( 'val' );
-        }
-    }
-    
-    // set
-    switch ( this.el.nodeName ) {
-    case 'INPUT':
-    case 'TEXTAREA':
-    case 'BUTTON':
-        this.el.value = value;
-        break;
-    case 'SELECT':
-        if ( typeof value === 'string' || typeof value === 'number' ) {
-            value = [ value ];
-        }
-        for ( i = 0; i < this.el.length; ++i ) {
-            for ( var j = 0; j < value.length; ++j ) {
-                this.el[ i ].selected = '';
-                if ( this.el[ i ].value === value[ j ] ) {
-                    this.el[ i ].selected = 'selected';
-                    break;
-                }
-            }
-        }
-        break;
-    default:
-        throw zzDOM._getError( 'val' );
-    }
-    
-    return this;
-};
-/* End of forms */
-
-zzDOM.SS.prototype.getXCenter = function() {
-    return ( document.documentElement.clientWidth - this.outerWidth() ) / 2;
-};
-
-zzDOM.SS.prototype.getYCenter = function() {
-    return ( document.documentElement.clientHeight - this.outerHeight() ) / 2;
-};
-
-zzDOM.SS.prototype.getCenter = function() {
-    return {
-        left: this.getXCenter(),
-        top: this.getYCenter()
-    };
-};
-
-zzDOM.SS.prototype.center = function() {
-    this.offset( 
-        this.getCenter() 
-    );
-    return this;
-};
-
-zzDOM.SS.prototype.centerX = function() {
-    this.css( 'left', this.getXCenter() );
-    return this;
-};
-
-zzDOM.SS.prototype.centerY = function() {
-    this.css( 'top', this.getYCenter() );
-    return this;
-};
-/* End of center */
-
 /** @constructor */
 zzDOM.MM = function ( _nodes ) {    
     this.list = [];
     this.nodes = _nodes;
     this.length = _nodes.length;
     
-    // Init  nodes 
+    // Init nodes
     for ( var i = 0; i < this.length; i++ ) {
         var el = this.nodes[ i ];
         this[ i ] = el; // for array like
@@ -1026,10 +746,11 @@ zzDOM.add = function( ssPrototype, constructor ){
     for ( var id in zzDOM.SS.prototype ){
         var current = zzDOM.SS.prototype[ id ];
         if ( ssPrototype === current ){
-            var c = constructor || zzDOM.MM.constructors.default;
-            zzDOM.MM.prototype[ id ] = function(){
-                return c( this, ssPrototype, arguments );
+            var closure = function(){
+                var functionId = id;
+                return constructor? constructor( functionId ): zzDOM.MM.constructors.default( functionId );
             };
+            zzDOM.MM.prototype[ id ] = closure();
             return;
         }
     }
@@ -1037,51 +758,77 @@ zzDOM.add = function( ssPrototype, constructor ){
     throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
 };
 
-// Add i to args if needed, removing the last added element
-/*
-zzDOM.MM._args = function( args, addIndex, i ){
-    if ( ! addIndex ){
-        return args;
-    }
-    if ( i > 0 ){
-        args.pop();
-    }
-    args = zzDOM._args( args, i );
-    
-    return args;
-};
-*/
-
 zzDOM.MM.constructors = {};
-zzDOM.MM.constructors.concat = function( mm, fn, args ){
-    var newNodes = [];
-    for ( var i = 0; i < mm.list.length; i++ ) {
-        var ss = mm.list[ i ];
-        var x = fn.apply( ss, args );
-        newNodes = newNodes.concat( x.nodes );
-    }
-    return zzDOM._build( newNodes );
-};
-zzDOM.MM.constructors.booleanOr = function( mm, fn, args ){
-    for ( var i = 0; i < mm.list.length; i++ ) {
-        var ss = mm.list[ i ];
-        var x = fn.apply( ss, args );
-        if ( x ){
-            return true;
+zzDOM.MM.constructors.booleanOr = function( functionId ){
+    return function(){
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
+            if ( x ){
+                return true;
+            }
         }
-    }
-    return false;
+        return false;
+    };
 };
-zzDOM.MM.constructors.default = function( mm, fn, args ){
-    for ( var i = 0; i < mm.list.length; i++ ) {
-        var ss = mm.list[ i ];
-        var r = fn.apply( ss, args );
-        if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
-            return r;
+zzDOM.MM.constructors.concat = function( functionId ){
+    return function(){
+        var newNodes = [];
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
+            newNodes = newNodes.concat( x.nodes );
         }
-    }
-    return mm;
+        return zzDOM._build( newNodes );
+    };
 };
+zzDOM.MM.constructors.default = function( functionId ){
+    return function(){
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var r = ss[ functionId ].apply( ss, arguments );
+            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+                return r;
+            }
+        }
+        return this;
+    };
+};
+
+// Init prototype functions from zzDOM.SS
+zzDOM.MM.init = function(){
+    // Concat functions
+    var concatF = [
+        'children',
+        'clone',
+        'filter',
+        'find',
+        'next',
+        'offsetParent',
+        'parent',
+        'prev',
+        'siblings'
+    ];
+    // Boolean functions
+    var booleanOrF = [
+        'hasClass',
+        'is'
+    ];
+    for ( var id in zzDOM.SS.prototype ){
+        var closure = function(){
+            var functionId = id;
+            
+            if ( concatF.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.concat( functionId );
+            }
+            if ( booleanOrF.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.booleanOr( functionId );
+            }
+            return zzDOM.MM.constructors.default( functionId );
+        };
+        zzDOM.MM.prototype[ id ] = closure();
+    }
+}();
 
 /* Methods included in jquery */
 zzDOM.MM.prototype.each = function ( eachFn ) {
@@ -1094,185 +841,6 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     );
     return this;
 };
-
-/* Reimplemented methods for Google closure compiler */
-zzDOM.MM.prototype.addClass = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );
-};
-
-zzDOM.MM.prototype.after = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.after, arguments );
-};
-
-zzDOM.MM.prototype.append = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.append, arguments );
-};
-
-zzDOM.MM.prototype.appendTo = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.appendTo, arguments );
-};
-
-zzDOM.MM.prototype.attr = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.attr, arguments );
-};
-
-zzDOM.MM.prototype.before = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.before, arguments );
-};
-
-zzDOM.MM.prototype.children = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.children, arguments );
-};
-
-zzDOM.MM.prototype.clone = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.clone, arguments );
-};
-
-zzDOM.MM.prototype.css = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.css, arguments );
-};
-
-zzDOM.MM.prototype.empty = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.empty, arguments );
-};
-
-zzDOM.MM.prototype.filter = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
-};
-
-zzDOM.MM.prototype.find = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.find, arguments );
-};
-
-zzDOM.MM.prototype.hasClass = function () {
-    return zzDOM.MM.constructors.booleanOr( this, zzDOM.SS.prototype.hasClass, arguments );
-};
-
-zzDOM.MM.prototype.height = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.height, arguments );
-};
-
-zzDOM.MM.prototype.html = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.html, arguments );
-};
-
-zzDOM.MM.prototype.index = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.index, arguments );
-};
-
-zzDOM.MM.prototype.is = function () {
-    return zzDOM.MM.constructors.booleanOr( this, zzDOM.SS.prototype.is, arguments );
-};
-
-zzDOM.MM.prototype.next = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.next, arguments );
-};
-
-zzDOM.MM.prototype.offset = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.offset, arguments );
-};
-
-zzDOM.MM.prototype.offsetParent = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.offsetParent, arguments );
-};
-
-zzDOM.MM.prototype.outerHeight = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.outerHeight, arguments );
-};
-
-zzDOM.MM.prototype.outerWidth = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.outerWidth, arguments );
-};
-
-zzDOM.MM.prototype.parent = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.parent, arguments );
-};
-
-zzDOM.MM.prototype.position = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.position, arguments );
-};
-
-zzDOM.MM.prototype.prepend = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.prepend, arguments );
-};
-
-zzDOM.MM.prototype.prev = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.prev, arguments );
-};
-
-zzDOM.MM.prototype.remove = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.remove, arguments );
-};
-
-zzDOM.MM.prototype.removeAttr = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.removeAttr, arguments );
-};
-
-zzDOM.MM.prototype.removeClass = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.removeClass, arguments );
-};
-
-zzDOM.MM.prototype.replaceWith = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.replaceWith, arguments );
-};
-
-zzDOM.MM.prototype.siblings = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.siblings, arguments );
-};
-
-zzDOM.MM.prototype.text = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.text, arguments );
-};
-
-zzDOM.MM.prototype.toggleClass = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.toggleClass, arguments );
-};
-
-zzDOM.MM.prototype.width = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.width, arguments );
-};
-
-/* Show/hide */
-zzDOM.MM.prototype.hide = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.hide, arguments );
-};
-
-zzDOM.MM.prototype.isVisible = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.isVisible, arguments );
-};
-
-zzDOM.MM.prototype.show = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.show, arguments );
-};
-
-zzDOM.MM.prototype.toggle = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.toggle, arguments );
-};
-/* End of show/hide */
-
-/* Events */
-zzDOM.MM.prototype.off = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.off, arguments );
-};
-
-zzDOM.MM.prototype.on = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.on, arguments );
-};
-
-zzDOM.MM.prototype.trigger = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.trigger, arguments );
-};
-/* End of events */
-
-/* Forms */
-zzDOM.MM.prototype.checked = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.checked, arguments );
-};
-
-zzDOM.MM.prototype.val = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.val, arguments );
-};
-/* End of forms */
 
 // Register zzDOM if we are using Node
 if ( typeof module === 'object' && module.exports ) {

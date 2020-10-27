@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-27 12:22:56 */
+/*! zzdom - v0.2.0 - 2020-10-27 13:28:5 */
 /**
  * A namespace.
  * @const
@@ -197,6 +197,7 @@ zzDOM._getDefaultDisplay = function( el ) {
 };
 /* End of visible */
 
+/* It depends on forms plugin! */
 // Serialize a ss instance, a mm instance or an object into a query string
 zzDOM._paramItem = function( r, key, value ) {
     r.push( 

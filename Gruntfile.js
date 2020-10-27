@@ -178,6 +178,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-closures-core.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -192,6 +193,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-closures-events.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.events.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -206,6 +208,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-closures-visible.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.visible.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -220,6 +223,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-closures-forms.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.forms.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -234,6 +238,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-closures.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.html',
                     'test/body/multiple.body.events.html',
                     'test/body/multiple.body.visible.html',
@@ -251,6 +256,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-closures-concat.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.html',
                     'test/body/multiple.body.events.html',
                     'test/body/multiple.body.visible.html',
@@ -268,6 +274,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-gcc.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.html',
                     'test/body/multiple.body.events.html',
                     'test/body/multiple.body.visible.html',
@@ -285,6 +292,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-gcc-concat.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.html',
                     'test/body/multiple.body.events.html',
                     'test/body/multiple.body.visible.html',
@@ -302,6 +310,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/multiple-gcc-debug.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/multiple.body.html',
                     'test/body/multiple.body.events.html',
                     'test/body/multiple.body.visible.html',
@@ -379,6 +388,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-closures-core.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -393,6 +403,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-closures-events.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.events.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -407,6 +418,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-closures-visible.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.visible.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -421,6 +433,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-closures-forms.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.forms.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -435,6 +448,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-closures-center.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.center.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -449,6 +463,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-closures.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.html',
                     'test/body/simple.body.events.html',
                     'test/body/simple.body.visible.html',
@@ -467,6 +482,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-closures-concat.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.html',
                     'test/body/simple.body.events.html',
                     'test/body/simple.body.visible.html',
@@ -485,6 +501,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-gcc.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.html',
                     'test/body/simple.body.events.html',
                     'test/body/simple.body.visible.html',
@@ -503,6 +520,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-gcc-concat.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.html',
                     'test/body/simple.body.events.html',
                     'test/body/simple.body.visible.html',
@@ -521,6 +539,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/simple-gcc-debug.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/simple.body.html',
                     'test/body/simple.body.events.html',
                     'test/body/simple.body.visible.html',
@@ -539,6 +558,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/zz-closures-core.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -553,6 +573,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/zz-closures-utils.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
                 ],
@@ -567,6 +588,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/zz-closures.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
@@ -582,6 +604,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/zz-closures-concat.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
@@ -597,6 +620,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/zz-gcc.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
@@ -612,6 +636,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/zz-gcc-concat.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
@@ -627,6 +652,7 @@ module.exports = function(grunt) {
                 src: [
                     'test/head/zz-gcc-debug.head.html',
                     'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
@@ -640,11 +666,11 @@ module.exports = function(grunt) {
                 files: {
                     'build/zzDOM-closures-full.min.js': [ 'build/zzDOM-closures-full.js' ],
                     'build/zzDOM-closures-core.min.js': [ 'build/zzDOM-closures-core.js' ],
-                    'build/zzDOM-events.min.js': [ 'src/zzDOM-events.js', 'src/ss-events.js' ],
-                    'build/zzDOM-visible.min.js': [ 'src/zzDOM-visible.js', 'src/ss-visible.js' ],
+                    'build/zzDOM-events.min.js': [ 'src/zzDOM-events.js', 'src/ss-events.js', 'src/plugin-events.js' ],
+                    'build/zzDOM-visible.min.js': [ 'src/zzDOM-visible.js', 'src/ss-visible.js', 'src/plugin-visible.js' ],
                     'build/zzDOM-utils.min.js': [ 'src/zzDOM-utils.js' ],
-                    'build/zzDOM-forms.min.js': [ 'src/ss-forms.js' ],
-                    'build/zzDOM-center.min.js': [ 'src/ss-center.js' ]
+                    'build/zzDOM-forms.min.js': [ 'src/ss-forms.js', 'src/plugin-forms.js' ],
+                    'build/zzDOM-center.min.js': [ 'src/ss-center.js', 'src/plugin-center.js' ]
                 }
             },
             gcc: {

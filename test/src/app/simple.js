@@ -679,13 +679,15 @@ QUnit.test( 'height, width, outerHeight and outerWidth test', function( assert )
     assert.equal( zz( '#t12-8' ).outerHeight( true ), 848 );
     assert.equal( id, 't12-8' );
     
-    assert.notOk( zz( '#t12-9' ).isVisible() );
+    //assert.notOk( zz( '#t12-9' ).isVisible() );
+    assert.notOk( !! zz( '#t12-9' ).el.offsetParent );
     assert.equal( zz( '#t12-9' ).width(), 64 );
     assert.equal( zz( '#t12-9' ).height(), 37 );
     assert.equal( zz( '#t12-9' ).outerWidth(), 64 );
     assert.equal( zz( '#t12-9' ).outerHeight(), 37 );
     
-    assert.notOk( zz( '#t12-10' ).isVisible() );
+    //assert.notOk( zz( '#t12-10' ).isVisible() );
+    assert.notOk( !! zz( '#t12-10' ).el.offsetParent );
     assert.equal( zz( '#t12-10' ).width(), 64 );
     assert.equal( zz( '#t12-10' ).height(), 37 );
     assert.equal( zz( '#t12-10' ).outerWidth(), 74 );

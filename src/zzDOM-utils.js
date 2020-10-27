@@ -1,4 +1,5 @@
 /* Utils */
+/* It depends on forms plugin! */
 // Serialize a ss instance, a mm instance or an object into a query string
 zzDOM._paramItem = function( r, key, value ) {
     r.push( 

@@ -7,8 +7,19 @@ module.exports = function(grunt) {
                 options: {
                     timeout: 60000,
                     urls: [
+                        'http://localhost:9000/test/simple-closures-core.html',
+                        'http://localhost:9000/test/simple-closures-events.html',
+                        'http://localhost:9000/test/simple-closures-visible.html',
+                        'http://localhost:9000/test/simple-closures-forms.html',
+                        'http://localhost:9000/test/simple-closures-center.html',
                         'http://localhost:9000/test/simple-closures.html',
+                        'http://localhost:9000/test/multiple-closures-core.html',
+                        'http://localhost:9000/test/multiple-closures-events.html',
+                        'http://localhost:9000/test/multiple-closures-visible.html',
+                        'http://localhost:9000/test/multiple-closures-forms.html',
                         'http://localhost:9000/test/multiple-closures.html',
+                        'http://localhost:9000/test/zz-closures-core.html',
+                        'http://localhost:9000/test/zz-closures-utils.html',
                         'http://localhost:9000/test/zz-closures.html',
                         'http://localhost:9000/test/plugins-closures.html',
                         'http://localhost:9000/test/simple-gcc.html',
@@ -159,6 +170,62 @@ module.exports = function(grunt) {
                 dest: 'build/zzDOM-gcc.js',
                 nonull: true
             },
+            'multiple-closures-core': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/multiple-closures-core.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/multiple-closures-core.html',
+                nonull: true
+            },
+            'multiple-closures-events': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/multiple-closures-events.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.events.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/multiple-closures-events.html',
+                nonull: true
+            },
+            'multiple-closures-visible': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/multiple-closures-visible.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.visible.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/multiple-closures-visible.html',
+                nonull: true
+            },
+            'multiple-closures-forms': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/multiple-closures-forms.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.forms.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/multiple-closures-forms.html',
+                nonull: true
+            },
             'multiple-closures': {
                 options: {
                     banner: '',
@@ -304,6 +371,76 @@ module.exports = function(grunt) {
                 dest: 'test/plugins-gcc-debug.html',
                 nonull: true
             },
+            'simple-closures-core': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-core.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-core.html',
+                nonull: true
+            },
+            'simple-closures-events': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-events.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-events.html',
+                nonull: true
+            },
+            'simple-closures-visible': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-visible.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-visible.html',
+                nonull: true
+            },
+            'simple-closures-forms': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-forms.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-forms.html',
+                nonull: true
+            },
+            'simple-closures-center': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-center.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-center.html',
+                nonull: true
+            },
             'simple-closures': {
                 options: {
                     banner: '',
@@ -392,6 +529,34 @@ module.exports = function(grunt) {
                     'test/body/body.end-tag.html'
                 ],
                 dest: 'test/simple-gcc-debug.html',
+                nonull: true
+            },
+            'zz-closures-core': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/zz-closures-core.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/zz.body.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/zz-closures-core.html',
+                nonull: true
+            },
+            'zz-closures-utils': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/zz-closures-utils.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/zz.body.utils.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/zz-closures-utils.html',
                 nonull: true
             },
             'zz-closures': {
@@ -708,6 +873,10 @@ module.exports = function(grunt) {
         'closure-compiler'
     ]);
     grunt.registerTask('buildTests', [
+        'concat:multiple-closures-core',
+        'concat:multiple-closures-events',
+        'concat:multiple-closures-visible',
+        'concat:multiple-closures-forms',
         'concat:multiple-closures', 
         'concat:multiple-closures-concat', 
         'concat:multiple-gcc',
@@ -718,11 +887,18 @@ module.exports = function(grunt) {
         'concat:plugins-gcc',
         'concat:plugins-gcc-concat',
         'concat:plugins-gcc-debug',
+        'concat:simple-closures-core',
+        'concat:simple-closures-events',
+        'concat:simple-closures-visible',
+        'concat:simple-closures-forms',
+        'concat:simple-closures-center',
         'concat:simple-closures',
         'concat:simple-closures-concat',
         'concat:simple-gcc',
         'concat:simple-gcc-concat',
         'concat:simple-gcc-debug',
+        'concat:zz-closures-core',
+        'concat:zz-closures-utils',
         'concat:zz-closures',
         'concat:zz-closures-concat',
         'concat:zz-gcc',

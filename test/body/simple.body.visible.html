@@ -1,0 +1,65 @@
+        <h2>
+            15. hide, show, toggle and isVisible
+        </h2>
+        <div>
+            zz( '#t15-1' ).hide()
+            <div id="t15-1">Must be hided</div>
+        </div>
+        <div>
+            zz( '#t15-2' ).show()
+            <div id="t15-2">Must be shown</div>
+        </div>
+        <div>
+            '#t15-3' is visible: zz( '#t15-3' ).toggle()
+            <div id="t15-3">Must be toggled</div>
+        </div>
+        <div>
+            '#t15-4' is NOT visible: zz( '#t15-4' ).toggle()
+            <div id="t15-4">Must be toggled</div>
+        </div>
+        <div>
+            zz( '#t15-5' ).isVisible()
+            <div id="t15-5">Is visible</div>
+        </div>
+        <div>
+            zz( '#t15-6' ).isVisible()
+            <div id="t15-6">Is NOT visible</div>
+        </div>
+        <div>
+            display is inline:<br>
+            zz( '#t15-7-2' ).hide();<br>
+            zz( '#t15-7-2' ).show();<br>
+            <span id="t15-7-1">Span 1</span>
+            <span id="t15-7-2">Span 2</span>
+            <span id="t15-7-3">Span 3</span>
+        </div>
+        <div>
+            '#t15-8' is visible, must be hide: zz( '#t15-8' ).toggle( false )<br>
+            <div id="t15-8">Must be toggled</div>
+        </div>
+        <div>
+            '#t15-9' is visible, do not change: zz( '#t15-8' ).toggle( true )<br>
+            <div id="t15-9">Must be toggled</div>
+        </div>
+        <div>
+            '#t15-10' is NOT visible, do not change: zz( '#t15-10' ).toggle( false )<br>
+            <div id="t15-10">Must be toggled</div>
+        </div>
+        <div>
+            '#t15-11' is NOT visible, must be shown: zz( '#t15-11' ).toggle( true )<br>
+            <div id="t15-11">Must be toggled</div>
+        </div>
+        <div>
+            zz( '#t15-12' ).hide()<br>
+            <span id="t15-12">Must not be changed</span>
+        </div>
+        <div>
+            zz( '#t15-13' ).show()<br>
+            <span id="t15-13">Must not be changed</span>
+        </div>
+        <div>
+            zz( '#t15-14' ).hide()<br>
+            zz( '#t15-14' ).show()<br>
+            <span id="t15-14">Must not be changed</span>
+        </div>
+        

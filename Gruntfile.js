@@ -286,7 +286,13 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/simple-closures.head.html',
-                    'test/body/simple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/simple-closures.html',
                 nonull: true
@@ -298,7 +304,13 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/simple-closures-concat.head.html',
-                    'test/body/simple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/simple-closures-concat.html',
                 nonull: true
@@ -310,7 +322,13 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/simple-gcc.head.html',
-                    'test/body/simple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/simple-gcc.html',
                 nonull: true
@@ -322,7 +340,13 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/simple-gcc-concat.head.html',
-                    'test/body/simple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/simple-gcc-concat.html',
                 nonull: true
@@ -334,7 +358,13 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/simple-gcc-debug.head.html',
-                    'test/body/simple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/simple-gcc-debug.html',
                 nonull: true
@@ -444,7 +474,11 @@ module.exports = function(grunt) {
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
                         'test/src/app/utils.js',
-                        'test/src/app/simple.js'
+                        'test/src/app/simple.js',
+                        'test/src/app/simple.events.js',
+                        'test/src/app/simple.visible.js',
+                        'test/src/app/simple.forms.js',
+                        'test/src/app/simple.center.js'
                     ],
                     js_output_file: 'build/simple-tests.min.js',
                     compilation_level: 'ADVANCED',

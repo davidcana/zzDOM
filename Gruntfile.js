@@ -166,7 +166,12 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/multiple-closures.head.html',
-                    'test/body/multiple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.html',
+                    'test/body/multiple.body.events.html',
+                    'test/body/multiple.body.visible.html',
+                    'test/body/multiple.body.forms.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/multiple-closures.html',
                 nonull: true
@@ -178,7 +183,12 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/multiple-closures-concat.head.html',
-                    'test/body/multiple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.html',
+                    'test/body/multiple.body.events.html',
+                    'test/body/multiple.body.visible.html',
+                    'test/body/multiple.body.forms.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/multiple-closures-concat.html',
                 nonull: true
@@ -190,7 +200,12 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/multiple-gcc.head.html',
-                    'test/body/multiple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.html',
+                    'test/body/multiple.body.events.html',
+                    'test/body/multiple.body.visible.html',
+                    'test/body/multiple.body.forms.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/multiple-gcc.html',
                 nonull: true
@@ -202,7 +217,12 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/multiple-gcc-concat.head.html',
-                    'test/body/multiple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.html',
+                    'test/body/multiple.body.events.html',
+                    'test/body/multiple.body.visible.html',
+                    'test/body/multiple.body.forms.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/multiple-gcc-concat.html',
                 nonull: true
@@ -214,7 +234,12 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/multiple-gcc-debug.head.html',
-                    'test/body/multiple.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/multiple.body.html',
+                    'test/body/multiple.body.events.html',
+                    'test/body/multiple.body.visible.html',
+                    'test/body/multiple.body.forms.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/multiple-gcc-debug.html',
                 nonull: true
@@ -519,7 +544,10 @@ module.exports = function(grunt) {
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
                         'test/src/app/utils.js',
-                        'test/src/app/multiple.js'
+                        'test/src/app/multiple.js',
+                        'test/src/app/multiple.events.js',
+                        'test/src/app/multiple.visible.js',
+                        'test/src/app/multiple.forms.js'
                     ],
                     js_output_file: 'build/multiple-tests.min.js',
                     compilation_level: 'ADVANCED',

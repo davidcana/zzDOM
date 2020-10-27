@@ -1,0 +1,82 @@
+        <h2>
+            14. trigger, on and off
+        </h2>
+        <div>
+            zz( '.t14-1' ).trigger( 'click' );<br>
+            <div>
+                Counter: <span id="t14-1-1c">0</span>
+                <button id="t14-1-1b" class="t14-1">Button 1</button><br>
+            </div>
+            <div>
+                Counter: <span id="t14-1-2c">0</span>
+                <button id="t14-1-2b" class="t14-1">Button 2</button><br>
+            </div>
+        </div>
+        <div>
+            zz( '.t14-2' ).off( 'click' );<br>
+            <div>
+                Counter: <span id="t14-2c">0</span>
+                <button id="t14-2-1b" class="t14-2">Button 1</button>
+                <button id="t14-2-2b" class="t14-2">Button 2</button>
+            </div>
+        </div>
+        <div>
+            zz( '.t14-3' ).off();<br>
+            <div>
+                Counter: <span id="t14-3c">0</span>
+                <button id="t14-3-1b" class="t14-3">Button 1</button>
+                <button id="t14-3-2b" class="t14-3">Button 2</button>
+            </div>
+        </div>
+        <div>
+            zz( '.t14-4' ).off( 'click', listener );<br>
+            <div>
+                Counter: <span id="t14-4c">0</span>
+                <button id="t14-4-1b" class="t14-4">Button 1</button>
+                <button id="t14-4-2b" class="t14-4">Button 2</button>
+            </div>
+        </div>
+        <div>
+            zz( '.t14-5-1' ).off( 'click', listener1 );<br>
+            zz( '.t14-5-2' ).off( 'click', listener2 );<br>
+            <div>
+                Counter: <span id="t14-5c">0</span>
+                <button id="t14-5-1b" class="t14-5-1">Button 1</button>
+                <button id="t14-5-2b" class="t14-5-1">Button 2</button>
+                <button id="t14-5-3b" class="t14-5-2">Button 3</button>
+                <button id="t14-5-4b" class="t14-5-2">Button 4</button>
+            </div>
+        </div>
+        <div>
+            zz( '.t14-6-1' ).off( 'click', listener1 );<br>
+            zz( '.t14-6-2' ).off( 'focus', listener2 );<br>
+            <div>
+                Counter: <span id="t14-6c">0</span>
+                <button id="t14-6-1b" class="t14-6-1">Button 1</button>
+                <button id="t14-6-2b" class="t14-6-1">Button 2</button>
+                <button id="t14-6-3b" class="t14-6-2">Button 3</button>
+                <button id="t14-6-4b" class="t14-6-2">Button 4</button>
+            </div>
+        </div>
+        <div>
+            zz( '.t14-7-1' ).off( 'click' );<br>
+            zz( '.t14-7-2' ).off( 'focus' );<br>
+            <div>
+                Counter: <span id="t14-7c">0</span>
+                <button id="t14-7-1b" class="t14-7-1">Button 1</button>
+                <button id="t14-7-2b" class="t14-7-1">Button 2</button>
+                <button id="t14-7-3b" class="t14-7-2">Button 3</button>
+                <button id="t14-7-4b" class="t14-7-2">Button 4</button>
+            </div>
+        </div>
+        <div>
+            zz( '.t14-8-1' ).off();<br>
+            zz( '.t14-8-2' ).off();<br>
+            <div>
+                Counter: <span id="t14-8c">0</span>
+                <button id="t14-8-1b" class="t14-8-1">Button 1</button>
+                <button id="t14-8-2b" class="t14-8-1">Button 2</button>
+                <button id="t14-8-3b" class="t14-8-2">Button 3</button>
+                <button id="t14-8-4b" class="t14-8-2">Button 4</button>
+            </div>
+        </div>

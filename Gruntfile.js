@@ -376,7 +376,10 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/zz-closures.head.html',
-                    'test/body/zz.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/zz.body.html',
+                    'test/body/zz.body.utils.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/zz-closures.html',
                 nonull: true
@@ -388,7 +391,10 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/zz-closures-concat.head.html',
-                    'test/body/zz.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/zz.body.html',
+                    'test/body/zz.body.utils.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/zz-closures-concat.html',
                 nonull: true
@@ -400,7 +406,10 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/zz-gcc.head.html',
-                    'test/body/zz.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/zz.body.html',
+                    'test/body/zz.body.utils.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/zz-gcc.html',
                 nonull: true
@@ -412,7 +421,10 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/zz-gcc-concat.head.html',
-                    'test/body/zz.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/zz.body.html',
+                    'test/body/zz.body.utils.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/zz-gcc-concat.html',
                 nonull: true
@@ -424,7 +436,10 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/zz-gcc-debug.head.html',
-                    'test/body/zz.body.html'
+                    'test/body/body.start-tag.html',
+                    'test/body/zz.body.html',
+                    'test/body/zz.body.utils.html',
+                    'test/body/body.end-tag.html'
                 ],
                 dest: 'test/zz-gcc-debug.html',
                 nonull: true
@@ -530,7 +545,8 @@ module.exports = function(grunt) {
                         'src/mm-gcc.js',
                         'test/src/app/htmlComparator.js',
                         'test/src/app/utils.js',
-                        'test/src/app/zz.js'
+                        'test/src/app/zz.js',
+                        'test/src/app/zz.utils.js'
                     ],
                     js_output_file: 'build/zz-tests.min.js',
                     compilation_level: 'ADVANCED',

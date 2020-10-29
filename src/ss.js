@@ -262,6 +262,7 @@ zzDOM.SS.prototype.clone = function (  ) {
     return new zzDOM.SS( this.el.cloneNode( true ) );
 };
 
+//TODO add support of function type in value
 /**
  * @param {string|Object} x1
  * @param {string|number=} x2

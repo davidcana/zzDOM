@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-10-27 13:28:5 */
+/*! zzdom - v0.2.0 - 2020-10-30 08:59:30 */
 /**
  * A namespace.
  * @const
@@ -371,6 +371,7 @@ zzDOM.SS.prototype.clone = function (  ) {
     return new zzDOM.SS( this.el.cloneNode( true ) );
 };
 
+//TODO add support of function type in value
 /**
  * @param {string|Object} x1
  * @param {string|number=} x2

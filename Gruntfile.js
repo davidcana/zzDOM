@@ -659,6 +659,62 @@ module.exports = function(grunt) {
                 ],
                 dest: 'test/zz-gcc-debug.html',
                 nonull: true
+            },
+            'plugin-events': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/zzDOM-events.js',
+                    'src/ss-events.js',
+                    'src/plugin-events.js'
+                ],
+                dest: 'build/zzDOM-plugin-events.js',
+                nonull: true
+            },
+            'plugin-visible': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/zzDOM-visible.js',
+                    'src/ss-visible.js',
+                    'src/plugin-visible.js'
+                ],
+                dest: 'build/zzDOM-plugin-visible.js',
+                nonull: true
+            },
+            'plugin-utils': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/zzDOM-utils.js'
+                ],
+                dest: 'build/zzDOM-plugin-utils.js',
+                nonull: true
+            },
+            'plugin-forms': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/ss-forms.js',
+                    'src/plugin-forms.js'
+                ],
+                dest: 'build/zzDOM-plugin-forms.js',
+                nonull: true
+            },
+            'plugin-center': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/ss-center.js',
+                    'src/plugin-center.js'
+                ],
+                dest: 'build/zzDOM-plugin-center.js',
+                nonull: true
             }
         },
         uglify: {
@@ -666,11 +722,11 @@ module.exports = function(grunt) {
                 files: {
                     'build/zzDOM-closures-full.min.js': [ 'build/zzDOM-closures-full.js' ],
                     'build/zzDOM-closures-core.min.js': [ 'build/zzDOM-closures-core.js' ],
-                    'build/zzDOM-plugin-events.min.js': [ 'src/zzDOM-events.js', 'src/ss-events.js', 'src/plugin-events.js' ],
-                    'build/zzDOM-plugin-visible.min.js': [ 'src/zzDOM-visible.js', 'src/ss-visible.js', 'src/plugin-visible.js' ],
-                    'build/zzDOM-plugin-utils.min.js': [ 'src/zzDOM-utils.js' ],
-                    'build/zzDOM-plugin-forms.min.js': [ 'src/ss-forms.js', 'src/plugin-forms.js' ],
-                    'build/zzDOM-plugin-center.min.js': [ 'src/ss-center.js', 'src/plugin-center.js' ]
+                    'build/zzDOM-plugin-events.min.js': [ 'build/zzDOM-plugin-events.js' ],
+                    'build/zzDOM-plugin-visible.min.js': [ 'build/zzDOM-plugin-visible.js' ],
+                    'build/zzDOM-plugin-utils.min.js': [ 'build/zzDOM-plugin-utils.js' ],
+                    'build/zzDOM-plugin-forms.min.js': [ 'build/zzDOM-plugin-forms.js' ],
+                    'build/zzDOM-plugin-center.min.js': [ 'build/zzDOM-plugin-center.js' ]
                 }
             },
             gcc: {
@@ -892,6 +948,11 @@ module.exports = function(grunt) {
         'concat:closures-full', 
         'concat:closures-core',
         'concat:gcc', 
+        'concat:plugin-events', 
+        'concat:plugin-visible', 
+        'concat:plugin-utils', 
+        'concat:plugin-forms', 
+        'concat:plugin-center', 
         'uglify', 
         'compress:closures-full',
         'compress:closures-core',

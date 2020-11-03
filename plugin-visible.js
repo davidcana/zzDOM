@@ -1,1 +1,1 @@
-require('./build/zzDOM-plugin-visible.js');
+require('./build/zzDOM-plugin-visible-node.js');

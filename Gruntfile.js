@@ -672,6 +672,19 @@ module.exports = function(grunt) {
                 dest: 'build/zzDOM-plugin-events.js',
                 nonull: true
             },
+            'plugin-events-node': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/core-require.js',
+                    'src/zzDOM-events.js',
+                    'src/ss-events.js',
+                    'src/plugin-events.js'
+                ],
+                dest: 'build/zzDOM-plugin-events-node.js',
+                nonull: true
+            },
             'plugin-visible': {
                 options: {
                     banner: ''
@@ -684,6 +697,19 @@ module.exports = function(grunt) {
                 dest: 'build/zzDOM-plugin-visible.js',
                 nonull: true
             },
+            'plugin-visible-node': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/core-require.js',
+                    'src/zzDOM-visible.js',
+                    'src/ss-visible.js',
+                    'src/plugin-visible.js'
+                ],
+                dest: 'build/zzDOM-plugin-visible-node.js',
+                nonull: true
+            },
             'plugin-utils': {
                 options: {
                     banner: ''
@@ -692,6 +718,17 @@ module.exports = function(grunt) {
                     'src/zzDOM-utils.js'
                 ],
                 dest: 'build/zzDOM-plugin-utils.js',
+                nonull: true
+            },
+            'plugin-utils-node': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/core-require.js',
+                    'src/zzDOM-utils.js'
+                ],
+                dest: 'build/zzDOM-plugin-utils-node.js',
                 nonull: true
             },
             'plugin-forms': {
@@ -705,6 +742,18 @@ module.exports = function(grunt) {
                 dest: 'build/zzDOM-plugin-forms.js',
                 nonull: true
             },
+            'plugin-forms-node': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/core-require.js',
+                    'src/ss-forms.js',
+                    'src/plugin-forms.js'
+                ],
+                dest: 'build/zzDOM-plugin-forms-node.js',
+                nonull: true
+            },
             'plugin-center': {
                 options: {
                     banner: ''
@@ -714,6 +763,18 @@ module.exports = function(grunt) {
                     'src/plugin-center.js'
                 ],
                 dest: 'build/zzDOM-plugin-center.js',
+                nonull: true
+            },
+            'plugin-center-node': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'src/core-require.js',
+                    'src/ss-center.js',
+                    'src/plugin-center.js'
+                ],
+                dest: 'build/zzDOM-plugin-center-node.js',
                 nonull: true
             }
         },
@@ -949,10 +1010,15 @@ module.exports = function(grunt) {
         'concat:closures-core',
         'concat:gcc', 
         'concat:plugin-events', 
+        'concat:plugin-events-node', 
         'concat:plugin-visible', 
+        'concat:plugin-visible-node', 
         'concat:plugin-utils', 
+        'concat:plugin-utils-node',
         'concat:plugin-forms', 
+        'concat:plugin-forms-node', 
         'concat:plugin-center', 
+        'concat:plugin-center-node', 
         'uglify', 
         'compress:closures-full',
         'compress:closures-core',

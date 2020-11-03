@@ -1,1 +1,1 @@
-require('./build/zzDOM-plugin-events.js');
+require('./build/zzDOM-plugin-events-node.js');

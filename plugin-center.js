@@ -1,1 +1,1 @@
-require('./build/zzDOM-plugin-center.js');
+require('./build/zzDOM-plugin-center-node.js');

@@ -249,7 +249,5 @@ Available methods are divided into the core and some plugins:
 * param: Create a serialized representation of a plain object, or a ZZDOM object suitable for use in a URL query string or Ajax request.
     * zzDOM.param()
 
-Please, take a look at [the zzDOM web](https://davidcana.github.io/zzDOM) for more information about zzDOM.
-
 ## License
 [LGPL](http://www.gnu.org/licenses/lgpl.html)

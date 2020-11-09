@@ -7,7 +7,7 @@
 * Easy to customize and to extend. Clear and simple code: [KISS](https://en.wikipedia.org/wiki/KISS_principle).
 * Two available versions: 
     * A smaller (**zzDOM-closures**).
-    * A bigger with [Google closure compiler](https://developers.google.com/closure/compiler) support (**zzDOM-gcc**).
+    * A bigger with [Google closure compiler](https://developers.google.com/closure/compiler) support (**zzDOM-gcc**). This includes compiling with **ADVANCED_OPTIMIZATIONS** without using an externs file.
 * Divided into modules, a core and some optional plugins:
     * core. Includes the main components of **zzDOM** and the DOM functions.
     * visible. A plugin that includes methods related to visibility of elements.
@@ -60,6 +60,19 @@ Using array syntax to access an Element:
         // Do something with element
         ...
     }
+```
+
+Using **each** to iterate:
+
+```javascript
+    var ids = [];
+    zz( '.myClass' ).each( 
+        function( index, $this ){ 
+            ids.push( 
+                $this.attr( 'id' )  // Also works this.getAttribute( 'id' )
+            );
+        } 
+    );
 ```
 
 Using **el** to access an Element (only works when there is only 1 element, valid only in **zzDOM**):

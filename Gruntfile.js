@@ -2,6 +2,17 @@ module.exports = function(grunt) {
     
     grunt.initConfig({
         pkg: grunt.file.readJSON( 'package.json' ),
+        browserify: {
+            'node-core-simple-browserify': {
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    }
+                },
+                src: 'build/node-core-simple.js',
+                dest: 'build/node-core-simple.browserify.js'
+            }
+        },
         qunit: {
             browser: {
                 options: {
@@ -776,6 +787,43 @@ module.exports = function(grunt) {
                 ],
                 dest: 'build/zzDOM-plugin-center-node.js',
                 nonull: true
+            },
+            'node-core-simple': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-zz.header.js',
+                    'test/src/app/simple.js'
+                ],
+                dest: 'build/node-core-simple.js',
+                nonull: true
+            },
+            'node-core-simple-js': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-zz.header.js',
+                    'test/src/app/simple.js'
+                ],
+                dest: 'build/node-core-simple.js',
+                nonull: true
+            },
+            'node-core-simple-html': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures.node.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/node-core-simple.html',
+                nonull: true
             }
         },
         uglify: {
@@ -1055,7 +1103,9 @@ module.exports = function(grunt) {
         'concat:zz-closures-concat',
         'concat:zz-gcc',
         'concat:zz-gcc-concat',
-        'concat:zz-gcc-debug'
+        'concat:zz-gcc-debug',
+        'concat:node-core-simple-js',
+        'concat:node-core-simple-html'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
     grunt.registerTask('all', ['default', 'buildTests', 'test']);

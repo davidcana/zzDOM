@@ -487,3 +487,7 @@ var htmlComparator = (function() {
 
     return api;
 })();
+
+if ( typeof module === 'object' && module.exports ) {
+    module.exports = htmlComparator;
+}

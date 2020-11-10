@@ -788,17 +788,6 @@ module.exports = function(grunt) {
                 dest: 'build/zzDOM-plugin-center-node.js',
                 nonull: true
             },
-            'node-core-simple': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'test/src/app/node-zz.header.js',
-                    'test/src/app/simple.js'
-                ],
-                dest: 'build/node-core-simple.js',
-                nonull: true
-            },
             'node-core-simple-js': {
                 options: {
                     banner: ''

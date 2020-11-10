@@ -11,6 +11,15 @@ module.exports = function(grunt) {
                 },
                 src: 'build/node-core-simple.js',
                 dest: 'build/node-core-simple.browserify.js'
+            },
+            'node-zz-simple-browserify': {
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    }
+                },
+                src: 'build/node-zz-simple.js',
+                dest: 'build/node-zz-simple.browserify.js'
             }
         },
         qunit: {
@@ -805,13 +814,65 @@ module.exports = function(grunt) {
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple-closures.node.head.html',
+                    'test/head/node-core-simple.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.html',
                     'test/body/body.end-tag.html'
                 ],
                 dest: 'test/node-core-simple.html',
+                nonull: true
+            },
+            'node-core-simple-js': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-core.header.js',
+                    'test/src/app/simple.js'
+                ],
+                dest: 'build/node-core-simple.js',
+                nonull: true
+            },
+            'node-core-simple-html': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/node-core-simple.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/node-core-simple.html',
+                nonull: true
+            },
+            'node-zz-simple-js': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-zz.header.js',
+                    'test/src/app/simple.js'
+                ],
+                dest: 'build/node-zz-simple.js',
+                nonull: true
+            },
+            'node-zz-simple-html': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/node-zz-simple.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/node-zz-simple.html',
                 nonull: true
             }
         },
@@ -1094,7 +1155,9 @@ module.exports = function(grunt) {
         'concat:zz-gcc-concat',
         'concat:zz-gcc-debug',
         'concat:node-core-simple-js',
-        'concat:node-core-simple-html'
+        'concat:node-core-simple-html',
+        'concat:node-zz-simple-js',
+        'concat:node-zz-simple-html'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
     grunt.registerTask('all', ['default', 'buildTests', 'test']);

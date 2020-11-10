@@ -20,6 +20,15 @@ module.exports = function(grunt) {
                 },
                 src: 'build/node-zz-simple.js',
                 dest: 'build/node-zz-simple.browserify.js'
+            },
+            'node-plugin-center-simple-browserify': {
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    }
+                },
+                src: 'build/node-plugin-center-simple.js',
+                dest: 'build/node-plugin-center-simple.browserify.js'
             }
         },
         qunit: {
@@ -874,6 +883,32 @@ module.exports = function(grunt) {
                 ],
                 dest: 'test/node-zz-simple.html',
                 nonull: true
+            },
+            'node-plugin-center-simple-js': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-plugin-center.header.js',
+                    'test/src/app/simple.center.js'
+                ],
+                dest: 'build/node-plugin-center-simple.js',
+                nonull: true
+            },
+            'node-plugin-center-simple-html': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/node-plugin-center-simple.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/node-plugin-center-simple.html',
+                nonull: true
             }
         },
         uglify: {
@@ -1157,7 +1192,9 @@ module.exports = function(grunt) {
         'concat:node-core-simple-js',
         'concat:node-core-simple-html',
         'concat:node-zz-simple-js',
-        'concat:node-zz-simple-html'
+        'concat:node-zz-simple-html',
+        'concat:node-plugin-center-simple-js',
+        'concat:node-plugin-center-simple-html'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
     grunt.registerTask('all', ['default', 'buildTests', 'test']);

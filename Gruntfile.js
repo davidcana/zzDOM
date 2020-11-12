@@ -847,32 +847,6 @@ module.exports = function(grunt) {
                     banner: ''
                 },
                 src: [
-                    'test/src/app/node-zz.header.js',
-                    'test/src/app/simple.js'
-                ],
-                dest: 'build/node-core-simple.js',
-                nonull: true
-            },
-            'node-core-simple-html': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/node-core-simple.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/node-core-simple.html',
-                nonull: true
-            },
-            'node-core-simple-js': {
-                options: {
-                    banner: ''
-                },
-                src: [
                     'test/src/app/node-core.header.js',
                     'test/src/app/simple.js'
                 ],

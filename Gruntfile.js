@@ -65,6 +65,15 @@ module.exports = function(grunt) {
                 },
                 src: 'build/node-plugin-visible-simple.js',
                 dest: 'build/node-plugin-visible-simple.browserify.js'
+            },
+            'node-full-simple-browserify': {
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    }
+                },
+                src: 'build/node-full-simple.js',
+                dest: 'build/node-full-simple.browserify.js'
             }
         },
         qunit: {
@@ -1023,6 +1032,40 @@ module.exports = function(grunt) {
                 ],
                 dest: 'test/node-plugin-visible-simple.html',
                 nonull: true
+            },
+            'node-full-simple-js': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-zz.header.js',
+                    'test/src/app/simple.js',
+                    'test/src/app/simple.events.js',
+                    'test/src/app/simple.visible.js',
+                    'test/src/app/simple.forms.js',
+                    'test/src/app/simple.center.js'
+                ],
+                dest: 'build/node-full-simple.js',
+                nonull: true
+            },
+            'node-full-simple-html': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/node-full-simple.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/node-full-simple.html',
+                nonull: true
             }
         },
         uglify: {
@@ -1316,7 +1359,9 @@ module.exports = function(grunt) {
         'concat:node-plugin-utils-js',
         'concat:node-plugin-utils-html',
         'concat:node-plugin-visible-simple-js',
-        'concat:node-plugin-visible-simple-html'
+        'concat:node-plugin-visible-simple-html',
+        'concat:node-full-simple-js',
+        'concat:node-full-simple-html'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
     grunt.registerTask('all', ['default', 'buildTests', 'test']);

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Simple closures tests</title>
+        <link rel="stylesheet" href="/node_modules/qunit/qunit/qunit.css">
+        <link rel="stylesheet" href="css/multiple.css">
+        
+        <script src="http://127.0.0.1:9966/node-plugin-visible-multiple.js" defer></script>
+    </head>
+    <body>
+
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+
+        <h2>
+            15. hide, show, toggle and isVisible
+        </h2>
+        <div>
+            zz( '.t15-1' ).hide()
+            <div id="t15-1-1" class="t15-1">Must be hided</div>
+            <div id="t15-1-2" class="t15-1">Must be hided</div>
+        </div>
+        <div>
+            zz( '.t15-2' ).show()
+            <div id="t15-2-1" class="t15-2">Must be shown</div>
+            <div id="t15-2-2" class="t15-2">Must be shown</div>
+        </div>
+        <div>
+            '.t15-3' is visible: zz( '.t15-3' ).toggle()
+            <div id="t15-3-1" class="t15-3">Must be toggled</div>
+            <div id="t15-3-2" class="t15-3">Must be toggled</div>
+        </div>
+        <div>
+            '.t15-4' is NOT visible: zz( '.t15-4' ).toggle()
+            <div id="t15-4-1" class="t15-4">Must be toggled</div>
+            <div id="t15-4-2" class="t15-4">Must be toggled</div>
+        </div>
+        <div>
+            zz( '.t15-5' ).isVisible()
+            <div id="t15-5-1" class="t15-5">Is visible</div>
+            <div id="t15-5-2" class="t15-5">Is visible</div>
+        </div>
+        <div>
+            zz( '.t15-6' ).isVisible()
+            <div id="t15-6-1" class="t15-6">Is NOT visible</div>
+            <div id="t15-6-2" class="t15-6">Is NOT visible</div>
+        </div>
+        <div>
+            '#t15-7-1' is visible and '#t15-7-2' is NOT visible: zz( '.t15-3' ).toggle()
+            <div id="t15-7-1" class="t15-7">Must be toggled</div>
+            <div id="t15-7-2" class="t15-7">Must be toggled</div>
+        </div>
+
+    </body>
+</html>

@@ -119,6 +119,15 @@ module.exports = function(grunt) {
                 },
                 src: 'build/node-plugin-visible-multiple.js',
                 dest: 'build/node-plugin-visible-multiple.browserify.js'
+            },
+            'node-full-multiple-browserify': {
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    }
+                },
+                src: 'build/node-full-multiple.js',
+                dest: 'build/node-full-multiple.browserify.js'
             }
         },
         qunit: {
@@ -1241,6 +1250,37 @@ module.exports = function(grunt) {
                 ],
                 dest: 'test/node-plugin-visible-multiple.html',
                 nonull: true
+            },
+            'node-full-multiple-js': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-zz.header.js',
+                    'test/src/app/multiple.js',
+                    'test/src/app/multiple.events.js',
+                    'test/src/app/multiple.visible.js',
+                    'test/src/app/multiple.forms.js'
+                ],
+                dest: 'build/node-full-multiple.js',
+                nonull: true
+            },
+            'node-full-multiple-html': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/node-full-multiple.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/multiple.body.html',
+                    'test/body/multiple.body.events.html',
+                    'test/body/multiple.body.visible.html',
+                    'test/body/multiple.body.forms.html'
+                ],
+                dest: 'test/node-full-multiple.html',
+                nonull: true
             }
         },
         uglify: {
@@ -1546,7 +1586,9 @@ module.exports = function(grunt) {
         'concat:node-plugin-forms-multiple-js',
         'concat:node-plugin-forms-multiple-html',
         'concat:node-plugin-visible-multiple-js',
-        'concat:node-plugin-visible-multiple-html'
+        'concat:node-plugin-visible-multiple-html',
+        'concat:node-full-multiple-js',
+        'concat:node-full-multiple-html'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
     grunt.registerTask('all', ['default', 'buildTests', 'test']);

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Simple closures tests</title>
+        <link rel="stylesheet" href="/node_modules/qunit/qunit/qunit.css">
+        <link rel="stylesheet" href="css/simple.css">
+        
+        <script src="http://127.0.0.1:9966/node-plugin-events-simple.js" defer></script>
+    </head>
+    <body>
+
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+
+        <h2>
+            14. trigger, on and off
+        </h2>
+        <div>
+            zz( '#t14-1' ).trigger( 'click' );<br>
+            <button id="t14-1b">Button</button><br>
+            Counter: <span id="t14-1c">0</span>
+        </div>
+        <div>
+            zz( '#t14-2b' ).off( 'click' );<br>
+            <button id="t14-2b">Button</button><br>
+            Counter: <span id="t14-2c">0</span>
+        </div>
+        <div>
+            zz( '#t14-3b' ).off();<br>
+            <button id="t14-3b">Button</button><br>
+            Counter: <span id="t14-3c">0</span>
+        </div>
+        <div>
+            zz( '#t14-4b' ).off( 'click', listener );<br>
+            <button id="t14-4b">Button</button><br>
+            Counter: <span id="t14-4c">0</span>
+        </div>
+        <div>
+            zz( '#t14-5b' ).off( 'click', listener2 );<br>
+            <button id="t14-5b">Button</button><br>
+            Counter: <span id="t14-5c">0</span>
+        </div>
+        <div>
+            zz( '#t14-6b' ).off( 'focus', listener2 );<br>
+            <button id="t14-6b">Button</button><br>
+            Counter: <span id="t14-6c">0</span>
+        </div>
+        <div>
+            zz( '#t14-7b' ).off( 'focus' );<br>
+            <button id="t14-7b">Button</button><br>
+            Counter: <span id="t14-7c">0</span>
+        </div>
+        <div>
+            zz( '#t14-8b' ).off();<br>
+            <button id="t14-8b">Button</button><br>
+            Counter: <span id="t14-8c">0</span>
+        </div>
+        <div>
+            zz( '#t14-9b' ).on( ... ); (using data)<br>
+            <button id="t14-9b">Button</button><br>
+            Counter: <span id="t14-9c">0</span>
+        </div>
+        
+    </body>
+</html>

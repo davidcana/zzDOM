@@ -165,7 +165,23 @@ module.exports = function(grunt) {
                         'http://localhost:9000/test/multiple-gcc-debug.html',
                         'http://localhost:9000/test/plugins-gcc-debug.html',
                         'http://localhost:9000/test/simple-gcc-debug.html',
-                        'http://localhost:9000/test/zz-gcc-debug.html'
+                        'http://localhost:9000/test/zz-gcc-debug.html',
+                        
+                        
+                        'http://localhost:9000/test/node-core-simple.html',
+                        'http://localhost:9000/test/node-zz-simple.html',
+                        'http://localhost:9000/test/node-plugin-center-simple.html',
+                        'http://localhost:9000/test/node-plugin-events-simple.html',
+                        'http://localhost:9000/test/node-plugin-forms-simple.html',
+                        'http://localhost:9000/test/node-plugin-utils.html',
+                        'http://localhost:9000/test/node-plugin-visible-simple.html',
+                        'http://localhost:9000/test/node-full-simple.html',
+                        'http://localhost:9000/test/node-core-multiple.html',
+                        'http://localhost:9000/test/node-zz-multiple.html',
+                        'http://localhost:9000/test/node-plugin-events-multiple.html',
+                        'http://localhost:9000/test/node-plugin-forms-multiple.html',
+                        'http://localhost:9000/test/node-plugin-visible-multiple.html',
+                        'http://localhost:9000/test/node-full-multiple.html'
                     ]
                 }
             }

@@ -29,5 +29,19 @@ QUnit.testSuites([
     { name: "simple gcc debug Test Suite", path: "./simple-gcc-debug.html" },
     { name: "multiple gcc debug Test Suite", path: "./multiple-gcc-debug.html" },
     { name: "zzDom.zz gcc debug Test Suite", path: "./zz-gcc-debug.html" },
-    { name: "plugins gcc debug Test Suite", path: "./plugins-gcc-debug.html" }
+    { name: "plugins gcc debug Test Suite", path: "./plugins-gcc-debug.html" },
+    { name: "simple node core Test Suite", path: "./node-core-simple.html" },
+    { name: "simple node zz Test Suite", path: "./node-zz-simple.html" },
+    { name: "simple node center Test Suite", path: "./node-plugin-center-simple.html" },
+    { name: "simple node events Test Suite", path: "./node-plugin-events-simple.html" },
+    { name: "simple node forms Test Suite", path: "./node-plugin-forms-simple.html" },
+    { name: "simple node utils Test Suite", path: "./node-plugin-utils.html" },
+    { name: "simple node visible Test Suite", path: "./node-plugin-visible-simple.html" },
+    { name: "simple node full Test Suite", path: "./node-full-simple.html" },
+    { name: "multiple node core Test Suite", path: "./node-core-multiple.html" },
+    { name: "multiple node zz Test Suite", path: "./node-zz-multiple.html" },
+    { name: "multiple node events Test Suite", path: "./node-plugin-events-multiple.html" },
+    { name: "multiple node forms Test Suite", path: "./node-plugin-forms-multiple.html" },
+    { name: "multiple node visible Test Suite", path: "./node-plugin-visible-multiple.html" },
+    { name: "multiple node full Test Suite", path: "./node-full-multiple.html" }
 ]);

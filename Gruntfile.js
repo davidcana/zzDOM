@@ -101,6 +101,15 @@ module.exports = function(grunt) {
                 },
                 src: 'build/node-plugin-events-multiple.js',
                 dest: 'build/node-plugin-events-multiple.browserify.js'
+            },
+            'node-plugin-forms-multiple-browserify': {
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    }
+                },
+                src: 'build/node-plugin-forms-multiple.js',
+                dest: 'build/node-plugin-forms-multiple.browserify.js'
             }
         },
         qunit: {
@@ -1171,6 +1180,32 @@ module.exports = function(grunt) {
                 ],
                 dest: 'test/node-plugin-events-multiple.html',
                 nonull: true
+            },
+            'node-plugin-forms-multiple-js': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-plugin-forms.header.js',
+                    'test/src/app/multiple.forms.js'
+                ],
+                dest: 'build/node-plugin-forms-multiple.js',
+                nonull: true
+            },
+            'node-plugin-forms-multiple-html': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/node-plugin-forms-multiple.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/multiple.body.forms.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/node-plugin-forms-multiple.html',
+                nonull: true
             }
         },
         uglify: {
@@ -1472,7 +1507,9 @@ module.exports = function(grunt) {
         'concat:node-zz-multiple-js',
         'concat:node-zz-multiple-html',
         'concat:node-plugin-events-multiple-js',
-        'concat:node-plugin-events-multiple-html'
+        'concat:node-plugin-events-multiple-html',
+        'concat:node-plugin-forms-multiple-js',
+        'concat:node-plugin-forms-multiple-html'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
     grunt.registerTask('all', ['default', 'buildTests', 'test']);

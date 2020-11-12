@@ -38,6 +38,15 @@ module.exports = function(grunt) {
                 },
                 src: 'build/node-plugin-events-simple.js',
                 dest: 'build/node-plugin-events-simple.browserify.js'
+            },
+            'node-plugin-forms-simple-browserify': {
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    }
+                },
+                src: 'build/node-plugin-forms-simple.js',
+                dest: 'build/node-plugin-forms-simple.browserify.js'
             }
         },
         qunit: {
@@ -944,6 +953,32 @@ module.exports = function(grunt) {
                 ],
                 dest: 'test/node-plugin-events-simple.html',
                 nonull: true
+            },
+            'node-plugin-forms-simple-js': {
+                options: {
+                    banner: ''
+                },
+                src: [
+                    'test/src/app/node-plugin-forms.header.js',
+                    'test/src/app/simple.forms.js'
+                ],
+                dest: 'build/node-plugin-forms-simple.js',
+                nonull: true
+            },
+            'node-plugin-forms-simple-html': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/node-plugin-forms-simple.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/node-plugin-forms-simple.html',
+                nonull: true
             }
         },
         uglify: {
@@ -1231,7 +1266,9 @@ module.exports = function(grunt) {
         'concat:node-plugin-center-simple-js',
         'concat:node-plugin-center-simple-html',
         'concat:node-plugin-events-simple-js',
-        'concat:node-plugin-events-simple-html'
+        'concat:node-plugin-events-simple-html',
+        'concat:node-plugin-forms-simple-js',
+        'concat:node-plugin-forms-simple-html'
     ]);
     grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
     grunt.registerTask('all', ['default', 'buildTests', 'test']);

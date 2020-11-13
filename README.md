@@ -16,8 +16,8 @@
     * center. Makes it easy to center elements in page.
     * utils. Includes some utility methods.
 * Small size:
-    * Core: 9.9KB minified, 2.9KB gzipped.
-    * Full (includes all the plugins): 13.4KB minified, 3.9KB gzipped.
+    * core: 9.9KB minified, 2.9KB gzipped.
+    * full (includes all the plugins): 13.4KB minified, 3.9KB gzipped.
 
 ## Browser Support
 No support for old browsers. No polyfills. **zzDOM** should work with any browser that supports **document.querySelectorAll()**.
@@ -261,6 +261,67 @@ Available methods are divided into the core and some plugins:
 ### Utils plugin
 * param: Create a serialized representation of a plain object, or a ZZDOM object suitable for use in a URL query string or Ajax request.
     * zzDOM.param()
+
+## Extending zzDOM
+Extending zzDOM is easy. Take a look to a the **Hello world!** plugin:
+```javascript
+    zzDOM.add( 
+        zzDOM.SS.prototype.hello = function(){
+            this.el.textContent = 'Hello, world!';
+            return this;
+        }
+    );
+```
+
+The **isNumeric** plugin return **true** if at least one of the matching elements is a number:
+```javascript
+    zzDOM.add( 
+        zzDOM.SS.prototype.isNumeric = function(){
+            return ! isNaN( this.el.textContent );
+        },
+        zzDOM.MM.constructors.booleanOr
+    );
+```
+
+Where:
+
+* *zzDOM.SS* is an object representing a single HTML Element instance.
+* *zzDOM.MM* is an object representing a group of HTML Element instances.
+
+The first argument is a function that manges single HTML elements. The second argument is a function that defines the behaviour when matching elements are more than one. Available options are:
+
+* *zzDOM.MM.constructors.booleanOr*. Returns **true** if at least one of the results is **true**. Examples are **hasClass** and **is** methods.
+* *zzDOM.MM.constructors.concat*. Concat the results of all the executions. Examples are **children** and **find** methods.
+* *zzDOM.MM.constructors.default*. Returns the results of the execution of the first element in the set of matched elements if its value is not an instance of **zzDOM.SS**. Otherwise returns a **zzDOM.MM** instance. Examples are **text** and **width** methods.
+
+If no second argument is set *zzDOM.MM.constructors.default* is used.
+
+A more useful example can be a plugin to use [Velocity](http://velocityjs.org/), the animation engine. A first version:
+```javascript
+    zzDOM.add( 
+        zzDOM.SS.prototype.velocity = function( options1, options2 ){
+            Velocity( this.el, options1, options2 );
+            return this;
+        }
+    );
+```
+
+An improved version:
+```javascript
+    zzDOM.add( 
+        zzDOM.SS.prototype.velocity = function(){
+    
+            // Build args array with this.el as first position and then the arguments of this function
+            var args = Array.prototype.slice.call( arguments );
+            args.unshift( this.el );
+            
+            // Call Velocity using the new array
+            Velocity.apply( Velocity, args );
+            
+            return this;
+        }
+    );
+```
 
 ## License
 [LGPL](http://www.gnu.org/licenses/lgpl.html)

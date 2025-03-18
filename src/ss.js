@@ -439,6 +439,17 @@ zzDOM.SS.prototype.parent = function () {
     return new zzDOM.SS( this.el.parentNode );
 };
 
+zzDOM.SS.prototype.parents = function ( selector ) {
+    var nodes = [];
+    var node = this.el;
+    while ( ( node = node.parentNode ) && node !== document ) {
+        if ( ! selector || node.matches( selector ) ){
+            nodes.push( node );
+        }
+    }
+    return zzDOM._build( nodes );
+};
+
 zzDOM.SS.prototype.position = function ( relativeToViewport ) {
     return relativeToViewport?
         this.el.getBoundingClientRect():

@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2020-11-12 13:32:51 */
+/*! zzdom - v0.2.0 - 2025-03-18 13:58:29 */
 /**
  * A namespace.
  * @const
@@ -645,6 +645,17 @@ zzDOM.SS.prototype.toggleClass = function ( name, state ) {
 
 zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
+};
+
+zzDOM.SS.prototype.parents = function ( selector ) {
+    var nodes = [];
+    var node = this.el;
+    while ( ( node = node.parentNode ) && node !== document ) {
+        if ( ! selector || node.matches( selector ) ){
+            nodes.push( node );
+        }
+    }
+    return zzDOM._build( nodes );
 };
 
 /** @constructor */

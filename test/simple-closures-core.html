@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
     <head>
         <meta charset="utf-8">
         <title>Simple closures core tests</title>
@@ -12,7 +12,7 @@
         <script src="src/app/utils.js" defer></script>
         <script src="src/app/simple.js" defer></script>
     </head>
-    <body>
+    <body id="body">
 
         <div id="qunit"></div>
         <div id="qunit-fixture"></div>
@@ -402,5 +402,32 @@
             </div>
         </div>
 
+        <h2>
+            19. parents
+        </h2>
+        <div id="t19" class="a">
+            zz( '#t19-1' ).parents();<br>
+            <div id="t19-1" class="b">
+                This is t19-1
+                <div id="t19-1-1" class="a">
+                    This is t19-1-1
+                    <div id="t19-1-1-1">
+                        This is t19-1-1-1
+                    </div>
+                    <div id="t19-1-1-2">
+                        This is t19-1-1-2
+                    </div>
+                </div>
+                <div id="t19-1-2" class="b">
+                    This is t19-1-2
+                    <div id="t19-1-2-1">
+                        This is t19-1-2-1
+                    </div>
+                    <div id="t19-1-2-2">
+                        This is t19-1-2-2
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

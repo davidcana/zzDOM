@@ -200,6 +200,10 @@ zzDOM.MM.prototype.parent = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.parent, arguments );
 };
 
+zzDOM.MM.prototype.parents = function () {
+    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.parents, arguments );
+};
+
 zzDOM.MM.prototype.position = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.position, arguments );
 };

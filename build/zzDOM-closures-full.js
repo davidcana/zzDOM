@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-18 13:58:29 */
+/*! zzdom - v0.2.0 - 2025-03-19 10:12:2 */
 /**
  * A namespace.
  * @const
@@ -670,6 +670,17 @@ zzDOM.SS.prototype.parent = function () {
     return new zzDOM.SS( this.el.parentNode );
 };
 
+zzDOM.SS.prototype.parents = function ( selector ) {
+    var nodes = [];
+    var node = this.el;
+    while ( ( node = node.parentNode ) && node !== document ) {
+        if ( ! selector || node.matches( selector ) ){
+            nodes.push( node );
+        }
+    }
+    return zzDOM._build( nodes );
+};
+
 zzDOM.SS.prototype.position = function ( relativeToViewport ) {
     return relativeToViewport?
         this.el.getBoundingClientRect():
@@ -767,17 +778,6 @@ zzDOM.SS.prototype.toggleClass = function ( name, state ) {
 
 zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
-};
-
-zzDOM.SS.prototype.parents = function ( selector ) {
-    var nodes = [];
-    var node = this.el;
-    while ( ( node = node.parentNode ) && node !== document ) {
-        if ( ! selector || node.matches( selector ) ){
-            nodes.push( node );
-        }
-    }
-    return zzDOM._build( nodes );
 };
 
 zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {

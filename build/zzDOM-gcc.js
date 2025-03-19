@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-19 13:16:11 */
+/*! zzdom - v0.2.0 - 2025-03-19 14:4:33 */
 /**
  * A namespace.
  * @const
@@ -563,6 +563,10 @@ zzDOM.SS.prototype.find = function ( selector ) {
     );
 };
 
+zzDOM.SS.prototype.first = function () {
+    return this;
+};
+
 zzDOM.SS.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };
@@ -1088,6 +1092,10 @@ zzDOM.MM.prototype.empty = function () {
 
 zzDOM.MM.prototype.filter = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
+};
+
+zzDOM.MM.prototype.first = function () {
+    return this.length == 0? this: this.list[ 0 ];
 };
 
 zzDOM.MM.prototype.find = function () {

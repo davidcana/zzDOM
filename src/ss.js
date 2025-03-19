@@ -332,6 +332,10 @@ zzDOM.SS.prototype.find = function ( selector ) {
     );
 };
 
+zzDOM.SS.prototype.first = function () {
+    return this;
+};
+
 zzDOM.SS.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };

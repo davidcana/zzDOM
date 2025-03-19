@@ -153,6 +153,10 @@ zzDOM.MM.prototype.filter = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
 };
 
+zzDOM.MM.prototype.first = function () {
+    return this.length == 0? this: this.list[ 0 ];
+};
+
 zzDOM.MM.prototype.find = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.find, arguments );
 };

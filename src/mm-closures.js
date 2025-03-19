@@ -134,3 +134,7 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     );
     return this;
 };
+
+zzDOM.MM.prototype.first = function () {
+    return this.length == 0? this: this.list[ 0 ];
+};

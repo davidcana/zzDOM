@@ -926,6 +926,22 @@ QUnit.test( 'parents test', function( assert ) {
     assert.deepEqual( indexes, [ 0, 1, 2, 3, 4 , 5 ] );
 });
 
+QUnit.test( 'first test', function( assert ) {
+    var eachFn = function( index, ss ){
+        ids.push( ss.attr( 'id' ) ); 
+        indexes.push( index );
+    };
+    
+    var ids = [];
+    var indexes = [];
+    zz( '#t23 .t23' )
+        .first()
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't23-1' ] );
+    assert.deepEqual( indexes, [ 0 ] );
+});
+
+
 
 QUnit.test( 'trigger, on and off test', function( assert ) {
     // Use t14-1-1c as a counter of clicks

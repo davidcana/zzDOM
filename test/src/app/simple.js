@@ -950,3 +950,18 @@ QUnit.test( 'parents test', function( assert ) {
     assert.deepEqual( indexes, [ 0, 1 ] );
 });
 
+QUnit.test( 'first test', function( assert ) {
+    var eachFn = function( index, ss ){
+        ids.push( ss.attr( 'id' ) ); 
+        indexes.push( index );
+    };
+    
+    var ids = [];
+    var indexes = [];
+    zz( '#t23-1' )
+        .first()
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't23-1' ] );
+    assert.deepEqual( indexes, [ 0 ] );
+});
+

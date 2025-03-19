@@ -31,5 +31,6 @@ QUnit.test( 'center test', function( assert ) {
     zz( '#t20-4' ).center();
     assert.ok( zz( '#t20-4' ).position().left - t20_4_x_modified < 1 );
     //assert.equal( zz( '#t20-4' ).position().top, t20_4_y_modified );
+    //alert(zz( '#t20-4' ).position().top - t20_4_y_modified);
     assert.ok( zz( '#t20-4' ).position().top - t20_4_y_modified < 1 );
 });

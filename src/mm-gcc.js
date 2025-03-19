@@ -70,7 +70,8 @@ zzDOM.MM.constructors.concat = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var x = fn.apply( ss, args );
-        newNodes = newNodes.concat( x.nodes );
+        newNodes = [...new Set([...newNodes, ...x.nodes])]; // Concat not adding duplicates
+        //newNodes = newNodes.concat( x.nodes );
     }
     return zzDOM._build( newNodes );
 };

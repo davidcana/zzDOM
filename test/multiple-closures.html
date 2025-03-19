@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
     <head>
         <meta charset="utf-8">
         <title>Multiple closures tests</title>
@@ -22,7 +22,7 @@
         <script src="src/app/multiple.visible.js" defer></script>
         <script src="src/app/multiple.forms.js" defer></script>
     </head>
-    <body>
+    <body id="body">
 
         <div id="qunit"></div>
         <div id="qunit-fixture"></div>
@@ -562,6 +562,34 @@
             </div>
             <div id="t18-1-2" class="t18-1">
                 This is t18-1-2
+            </div>
+        </div>
+
+        <h2>
+            22. parents
+        </h2>
+        <div id="t22">
+            zz( '#t22-1' ).parents();<br>
+            <div id="t22-1">
+                This is t22-1
+                <div id="t22-1-1" class="a">
+                    This is t22-1-1
+                    <div id="t22-1-1-1">
+                        This is t22-1-1-1
+                    </div>
+                    <div id="t22-1-1-2" class="b">
+                        This is t22-1-1-2
+                    </div>
+                </div>
+                <div id="t22-1-2">
+                    This is t22-1-2
+                    <div id="t22-1-2-1">
+                        This is t22-1-2-1
+                    </div>
+                    <div id="t22-1-2-2" class="b">
+                        This is t22-1-2-2
+                    </div>
+                </div>
             </div>
         </div>
 

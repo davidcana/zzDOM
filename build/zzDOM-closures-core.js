@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-19 10:12:2 */
+/*! zzdom - v0.2.0 - 2025-03-19 13:16:11 */
 /**
  * A namespace.
  * @const
@@ -725,7 +725,8 @@ zzDOM.MM.constructors.concat = function( functionId ){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
             var x = ss[ functionId ].apply( ss, arguments );
-            newNodes = newNodes.concat( x.nodes );
+            newNodes = [...new Set([...newNodes, ...x.nodes])]; // Concat not adding duplicates
+            //newNodes = newNodes.concat( x.nodes );
         }
         return zzDOM._build( newNodes );
     };
@@ -754,6 +755,7 @@ zzDOM.MM.init = function(){
         'next',
         'offsetParent',
         'parent',
+        'parents',
         'prev',
         'siblings'
     ];

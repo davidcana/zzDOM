@@ -886,3 +886,75 @@ QUnit.test( 'array like syntax test', function( assert ) {
     }
     assert.deepEqual( ids, [ 't18-1' ] );
 });
+
+QUnit.test( 'parents test', function( assert ) {
+    var eachFn = function( index, ss ){
+        ids.push( ss.attr( 'id' ) ); 
+        indexes.push( index );
+    };
+    
+    var ids = [];
+    var indexes = [];
+    zz( '#t22-1-1-1' )
+        .parents()
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1-1', 't22-1', 't22', 'body', 'html' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3, 4 ] );
+
+    ids = [];
+    indexes = [];
+    zz( '#t22-1-1-2' )
+        .parents()
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1-1', 't22-1', 't22', 'body', 'html' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3, 4 ] );
+
+    ids = [];
+    indexes = [];
+    zz( '#t22-1-2-1' )
+        .parents()
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1-2', 't22-1', 't22', 'body', 'html' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3, 4 ] );
+
+    ids = [];
+    indexes = [];
+    zz( '#t22-1-2-2' )
+        .parents()
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1-2', 't22-1', 't22', 'body', 'html' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3, 4 ] );
+
+    ids = [];
+    indexes = [];
+    zz( '#t22-1-1-1' )
+        .parents( '.a' )
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1-1', 't22' ] );
+    assert.deepEqual( indexes, [ 0, 1 ] );
+
+    ids = [];
+    indexes = [];
+    zz( '#t22-1-1-1' )
+        .parents( '.b' )
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1' ] );
+    assert.deepEqual( indexes, [ 0 ] );
+
+    ids = [];
+    indexes = [];
+    zz( '#t22-1-2-1' )
+        .parents( '.a' )
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22' ] );
+    assert.deepEqual( indexes, [ 0 ] );
+
+    ids = [];
+    indexes = [];
+    zz( '#t22-1-2-1' )
+        .parents( '.b' )
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1-2', 't22-1' ] );
+    assert.deepEqual( indexes, [ 0, 1 ] );
+});
+

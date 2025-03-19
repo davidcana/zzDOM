@@ -902,3 +902,27 @@ QUnit.test( 'array like syntax test', function( assert ) {
     }
     assert.deepEqual( ids, [ 't18-1-1', 't18-1-2' ] );
 });
+
+QUnit.test( 'parents test', function( assert ) {
+    var eachFn = function( index, ss ){
+        ids.push( ss.attr( 'id' ) ); 
+        indexes.push( index );
+    };
+    
+    var ids = [];
+    var indexes = [];
+    zz( '#t22 .a' )
+        .parents()
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1', 't22', 'body', 'html' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3 ] );
+
+    ids = [];
+    indexes = [];
+    zz( '#t22 .b' )
+        .parents()
+        .each( eachFn );
+    assert.deepEqual( ids, [ 't22-1-1', 't22-1', 't22', 'body', 'html', 't22-1-2' ] );
+    assert.deepEqual( indexes, [ 0, 1, 2, 3, 4 , 5 ] );
+});
+

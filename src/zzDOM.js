@@ -104,6 +104,16 @@ zzDOM._htmlToElement = function ( html ) {
         template.content.childNodes;
 };
 
+zzDOM._get = function ( nodes, i ) {
+    if ( i == null ){
+        return nodes;
+    }
+    if ( Number.isInteger( i ) ){
+        return nodes[ i ];
+    }
+    throw zzDOM._getError( 'get' );
+};
+
 // Register zz function
 var zz;
 (function() { 

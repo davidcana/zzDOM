@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-19 14:4:33 */
+/*! zzdom - v0.2.0 - 2025-03-21 21:42:52 */
 /**
  * A namespace.
  * @const
@@ -102,6 +102,16 @@ zzDOM._htmlToElement = function ( html ) {
     return template.content.childElementCount === 1?
         template.content.firstChild:
         template.content.childNodes;
+};
+
+zzDOM._get = function ( nodes, i ) {
+    if ( i == null ){
+        return nodes;
+    }
+    if ( Number.isInteger( i ) ){
+        return nodes[ i ];
+    }
+    throw zzDOM._getError( 'get' );
 };
 
 // Register zz function
@@ -784,6 +794,16 @@ zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
 
+
+
+zzDOM.SS.prototype.map = function ( mapFn ) {
+    return zzDOM._build( mapFn( 0, this.el ) );
+};
+
+zzDOM.SS.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
+};
+
 zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {
     zzDOM._removeEventListener( this, eventName, listener, useCapture );
     return this;
@@ -1079,6 +1099,27 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
 
 zzDOM.MM.prototype.first = function () {
     return this.length == 0? this: this.list[ 0 ];
+};
+
+zzDOM.MM.prototype.map = function ( mapFn ) {
+    var newNodes = this.nodes.map( ( node, i ) => {
+        return mapFn( i, node );
+    });
+    /*
+    var newNodes = [];
+    
+    for ( var i = 0; i < this.nodes.length; i++ ){
+        var newNode = mapFn( i, this.nodes[ i ] );
+        if ( newNode !== null ){
+            newNodes.push( newNode );
+        }
+    }
+    */
+    return zzDOM._build( newNodes );
+};
+
+zzDOM.MM.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
 };
 
 // Register zzDOM if we are using Node

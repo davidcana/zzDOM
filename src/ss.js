@@ -552,3 +552,13 @@ zzDOM.SS.prototype.toggleClass = function ( name, state ) {
 zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
+
+
+
+zzDOM.SS.prototype.map = function ( mapFn ) {
+    return zzDOM._build( mapFn( 0, this.el ) );
+};
+
+zzDOM.SS.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
+};

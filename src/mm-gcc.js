@@ -108,6 +108,10 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     return this;
 };
 
+zzDOM.MM.prototype.first = function () {
+    return this.length == 0? this: this.list[ 0 ];
+};
+
 /* Reimplemented methods for Google closure compiler */
 zzDOM.MM.prototype.addClass = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );
@@ -151,10 +155,6 @@ zzDOM.MM.prototype.empty = function () {
 
 zzDOM.MM.prototype.filter = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
-};
-
-zzDOM.MM.prototype.first = function () {
-    return this.length == 0? this: this.list[ 0 ];
 };
 
 zzDOM.MM.prototype.find = function () {

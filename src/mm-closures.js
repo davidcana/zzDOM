@@ -138,3 +138,24 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
 zzDOM.MM.prototype.first = function () {
     return this.length == 0? this: this.list[ 0 ];
 };
+
+zzDOM.MM.prototype.map = function ( mapFn ) {
+    var newNodes = this.nodes.map( ( node, i ) => {
+        return mapFn( i, node );
+    });
+    /*
+    var newNodes = [];
+    
+    for ( var i = 0; i < this.nodes.length; i++ ){
+        var newNode = mapFn( i, this.nodes[ i ] );
+        if ( newNode !== null ){
+            newNodes.push( newNode );
+        }
+    }
+    */
+    return zzDOM._build( newNodes );
+};
+
+zzDOM.MM.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
+};

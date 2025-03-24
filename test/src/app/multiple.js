@@ -934,4 +934,34 @@ QUnit.test( 'first test', function( assert ) {
     assert.deepEqual( indexes, [ 0 ] );
 });
 
+QUnit.test( 'get test', function( assert ) {
+    
+    var eachFn = function( nodes ){
+        const result = [];
+        for ( const el of nodes ){
+            result.push( el.getAttribute( 'id' ) ); 
+        }
+        return result;
+    };
+    
+    // Test .get()
+    var nodes = zz( '.t24' ).get();
+    var ids = eachFn( nodes );
+    assert.deepEqual( ids, [ 't24-1', 't24-2' ] );
+    
+    // Test .get( 0 )
+    var el = zz( '.t24' ).get( 0 );
+    var id = el.getAttribute( 'id' );
+    assert.deepEqual( id, 't24-1' );
+
+    // Test .get( 1 )
+    el = zz( '.t24' ).get( 1 );
+    id = el.getAttribute( 'id' );
+    assert.deepEqual( id, 't24-2' );
+    
+    // Test .get( 2 ) -> Array has just 2 elements
+    el = zz( '.t24' ).get( 2 );
+    assert.deepEqual( el, undefined );
+});
+
 

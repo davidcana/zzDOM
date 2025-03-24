@@ -993,7 +993,7 @@ QUnit.test( 'get test', function( assert ) {
     assert.deepEqual( id, 't24-1' );
 
     // Test .get( 1 ) -> Array has just 1 element
-    var el = zz( '#t24-1' ).get( 1 );
+    el = zz( '#t24-1' ).get( 1 );
     assert.deepEqual( el, undefined );
 });
 

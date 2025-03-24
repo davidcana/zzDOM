@@ -112,6 +112,10 @@ zzDOM.MM.prototype.first = function () {
     return this.length == 0? this: this.list[ 0 ];
 };
 
+zzDOM.MM.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
+};
+
 /* Reimplemented methods for Google closure compiler */
 zzDOM.MM.prototype.addClass = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );

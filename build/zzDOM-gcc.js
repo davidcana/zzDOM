@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-24 09:55:52 */
+/*! zzdom - v0.2.0 - 2025-03-24 15:3:29 */
 /**
  * A namespace.
  * @const
@@ -1071,6 +1071,10 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
 
 zzDOM.MM.prototype.first = function () {
     return this.length == 0? this: this.list[ 0 ];
+};
+
+zzDOM.MM.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
 };
 
 /* Reimplemented methods for Google closure compiler */

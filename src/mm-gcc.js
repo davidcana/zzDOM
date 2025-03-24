@@ -116,6 +116,13 @@ zzDOM.MM.prototype.get = function ( i ) {
     return zzDOM._get( this.nodes, i );
 };
 
+zzDOM.MM.prototype.map = function ( mapFn ) {
+    var newNodes = this.nodes.map( ( node, i ) => {
+        return mapFn.call( node, i, node );
+    });
+    return zzDOM._build( newNodes );
+};
+
 /* Reimplemented methods for Google closure compiler */
 zzDOM.MM.prototype.addClass = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );

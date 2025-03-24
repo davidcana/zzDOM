@@ -997,6 +997,27 @@ QUnit.test( 'get test', function( assert ) {
     assert.deepEqual( el, undefined );
 });
 
+QUnit.test( 'map test', function( assert ) {
+  
+    var ids = zz( '.t25' ).map(
+        function() {
+            return this.id;
+        })
+    .get()
+    .join('|');
+
+    assert.deepEqual( ids, 't25-1' );
+
+    ids = zz( '.t25' ).map(
+        function( i, node) {
+            return i + ':' + node.id;
+        })
+    .get()
+    .join('|');
+
+    assert.deepEqual( ids, '0:t25-1' );
+});
+
 
 QUnit.test( 'trigger, on and off test', function( assert ) {
     // Test trigger, event using vanilla addEventListener

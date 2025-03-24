@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-24 15:3:29 */
+/*! zzdom - v0.2.0 - 2025-03-24 17:56:43 */
 /**
  * A namespace.
  * @const
@@ -83,7 +83,7 @@ zzDOM._args = function( previousArgs, toInsert ){
 };
 
 zzDOM._build = function ( x ) {
-    if ( x instanceof Element ){
+    if ( x instanceof Element || typeof x === 'string'){
         return new zzDOM.SS( x );
     }
     if ( x instanceof HTMLCollection || x instanceof NodeList ){
@@ -797,7 +797,9 @@ zzDOM.SS.prototype.width = function ( value ) {
 
 
 zzDOM.SS.prototype.map = function ( mapFn ) {
-    return zzDOM._build( mapFn( 0, this.el ) );
+    return zzDOM._build(
+        mapFn.call( this.el, 0, this.el )
+    );
 };
 
 zzDOM.SS.prototype.get = function ( i ) {
@@ -1075,6 +1077,13 @@ zzDOM.MM.prototype.first = function () {
 
 zzDOM.MM.prototype.get = function ( i ) {
     return zzDOM._get( this.nodes, i );
+};
+
+zzDOM.MM.prototype.map = function ( mapFn ) {
+    var newNodes = this.nodes.map( ( node, i ) => {
+        return mapFn.call( node, i, node );
+    });
+    return zzDOM._build( newNodes );
 };
 
 /* Reimplemented methods for Google closure compiler */

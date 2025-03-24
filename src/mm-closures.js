@@ -141,18 +141,8 @@ zzDOM.MM.prototype.first = function () {
 
 zzDOM.MM.prototype.map = function ( mapFn ) {
     var newNodes = this.nodes.map( ( node, i ) => {
-        return mapFn( i, node );
+        return mapFn.call( node, i, node );
     });
-    /*
-    var newNodes = [];
-    
-    for ( var i = 0; i < this.nodes.length; i++ ){
-        var newNode = mapFn( i, this.nodes[ i ] );
-        if ( newNode !== null ){
-            newNodes.push( newNode );
-        }
-    }
-    */
     return zzDOM._build( newNodes );
 };
 

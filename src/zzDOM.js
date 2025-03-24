@@ -83,7 +83,7 @@ zzDOM._args = function( previousArgs, toInsert ){
 };
 
 zzDOM._build = function ( x ) {
-    if ( x instanceof Element ){
+    if ( x instanceof Element || typeof x === 'string' ){ // Allow string to support map method
         return new zzDOM.SS( x );
     }
     if ( x instanceof HTMLCollection || x instanceof NodeList ){

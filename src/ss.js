@@ -556,7 +556,9 @@ zzDOM.SS.prototype.width = function ( value ) {
 
 
 zzDOM.SS.prototype.map = function ( mapFn ) {
-    return zzDOM._build( mapFn( 0, this.el ) );
+    return zzDOM._build(
+        mapFn.call( this.el, 0, this.el )
+    );
 };
 
 zzDOM.SS.prototype.get = function ( i ) {

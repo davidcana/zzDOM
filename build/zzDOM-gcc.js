@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-25 10:3:33 */
+/*! zzdom - v0.2.0 - 2025-03-25 10:8:26 */
 /**
  * A namespace.
  * @const
@@ -864,6 +864,11 @@ zzDOM.SS.prototype.toggle = function ( state ) {
 };
 /* End of visible */
 
+// checked only works on radio, checkbox and option
+zzDOM.SS.prototype.checked = function ( value ) {
+    return this._getAndSet( 'checked', value );
+};
+/*
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
         throw zzDOM._getError( 'checked' );
@@ -878,6 +883,7 @@ zzDOM.SS.prototype.checked = function ( check ) {
     this.el.checked = check;
     return this;
 };
+*/
 
 // disabled only works on button, fieldset, optgroup, option, select, textarea and input
 zzDOM.SS.prototype.disabled = function ( value ) {

@@ -1420,7 +1420,7 @@ Elements targeted by this selector are:
 <input type="radio"> elements, when all radio buttons with the same name value in the form are unchecked
 <progress> elements in an indeterminate state
 */
-QUnit.test( 'indeterminate test', function( assert ) {
+QUnit.test( 'indeterminate checkbox test', function( assert ) {
 
     assert.notOk( zz( '#t27-1' ).indeterminate() );
 

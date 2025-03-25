@@ -1,5 +1,10 @@
 var zzDOM = require('./zzDOM-closures-core.js');
 
+// checked only works on radio, checkbox and option
+zzDOM.SS.prototype.checked = function ( value ) {
+    return this._getAndSet( 'checked', value );
+};
+/*
 zzDOM.SS.prototype.checked = function ( check ) {
     if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
         throw zzDOM._getError( 'checked' );
@@ -14,6 +19,7 @@ zzDOM.SS.prototype.checked = function ( check ) {
     this.el.checked = check;
     return this;
 };
+*/
 
 // disabled only works on button, fieldset, optgroup, option, select, textarea and input
 zzDOM.SS.prototype.disabled = function ( value ) {

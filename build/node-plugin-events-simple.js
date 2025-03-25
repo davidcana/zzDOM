@@ -197,4 +197,57 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     assert.equal( zz( '#t14-9c' ).text(), '42' );
     zz( '#t14-9b' ).trigger( 'click' );
     assert.equal( zz( '#t14-9c' ).text(), '84' );
+
+    // Test on using trigger params
+    // Use t14-10c as a counter of clicks
+    var t10Listener = function( e ){ 
+        var current = parseInt( zz( '#t14-10c' ).text(), 10 );
+        zz( '#t14-10c' ).text( current + e.params.delta );
+    };
+    zz( '#t14-10b' ).on( 'click', t10Listener );
+
+    zz( '#t14-10b' ).trigger(
+        'click',
+        {
+            delta: 15
+        }
+    );
+    assert.equal( zz( '#t14-10c' ).text(), '15' );
+
+    zz( '#t14-10b' ).trigger(
+        'click',
+        {
+            delta: 10
+        }
+    );
+    assert.equal( zz( '#t14-10c' ).text(), '25' );
+
+    // Test on using data and trigger params
+    // Use t14-11c as a counter of clicks
+    var t11Listener = function( e ){ 
+        var current = parseInt( zz( '#t14-11c' ).text(), 10 );
+        zz( '#t14-11c' ).text( current + e.data.delta + e.params.delta );
+    };
+    zz( '#t14-11b' ).on( 
+        'click', 
+        t11Listener, 
+        {
+            delta: 2
+        }
+    );
+    zz( '#t14-11b' ).trigger(
+        'click',
+        {
+            delta: 5
+        }
+    );
+    assert.equal( zz( '#t14-11c' ).text(), '7' );
+
+    zz( '#t14-11b' ).trigger(
+        'click',
+        {
+            delta: 3
+        }
+    );
+    assert.equal( zz( '#t14-11c' ).text(), '12' );
 });

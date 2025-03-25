@@ -19,9 +19,11 @@ zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
     return this;
 };
 
-zzDOM.SS.prototype.trigger = function ( eventName ) {
-    var event = document.createEvent( 'HTMLEvents' );
-    event.initEvent( eventName, true, false );
+zzDOM.SS.prototype.trigger = function ( eventName, params ) {
+    var event = new Event( eventName, { bubbles: true, cancelable: false } );
+    if ( params ){
+        event.params = params;
+    }
     this.el.dispatchEvent( event );
     return this;
 };

@@ -301,6 +301,14 @@ zzDOM.MM.prototype.checked = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.checked, arguments );
 };
 
+zzDOM.MM.prototype.disabled = function () {
+    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.disabled, arguments );
+};
+
+zzDOM.MM.prototype.indeterminate = function () {
+    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.indeterminate, arguments );
+};
+
 zzDOM.MM.prototype.val = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.val, arguments );
 };

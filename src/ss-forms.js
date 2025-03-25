@@ -14,6 +14,28 @@ zzDOM.SS.prototype.checked = function ( check ) {
     return this;
 };
 
+// disabled only works on button, fieldset, optgroup, option, select, textarea and input
+zzDOM.SS.prototype.disabled = function ( value ) {
+    return this._getAndSet( 'disabled', value );
+};
+
+// indeterminate only works on checkbox, radio and progress
+zzDOM.SS.prototype.indeterminate = function ( value ) {
+    return this._getAndSet( 'indeterminate', value );
+};
+
+zzDOM.SS.prototype._getAndSet = function ( key, value ) {
+    
+    // get
+    if ( value === undefined ){
+        return !! this.el[ key ];
+    }
+    
+    // set
+    this.el[ key ] = value;
+    return this;
+};
+
 /**
  * @param {Array<?>|String=} value
  */

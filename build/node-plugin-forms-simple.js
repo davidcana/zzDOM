@@ -50,3 +50,41 @@ QUnit.test( 'val and checked test', function( assert ) {
     zz( '#t19-7' ).checked( true );
     assert.ok( zz( '#t19-7' ).checked() );
 });
+
+QUnit.test( 'disabled test', function( assert ) {
+    var t26_1_original = 'test value t26-1';
+    assert.equal( zz( '#t26-1' ).val(), t26_1_original );
+    assert.notOk( zz( '#t26-1' ).disabled() );
+
+    zz( '#t26-1' ).disabled( true );
+    assert.ok( zz( '#t26-1' ).disabled() );
+
+    zz( '#t26-1' ).disabled( false );
+    assert.notOk( zz( '#t26-1' ).disabled() );
+
+    zz( '#t26-1' ).disabled( true );
+    assert.ok( zz( '#t26-1' ).disabled() );
+});
+
+/*
+(From https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate)
+Elements targeted by this selector are:
+
+<input type="checkbox"> elements whose indeterminate property is set to true
+<input type="radio"> elements, when all radio buttons with the same name value in the form are unchecked
+<progress> elements in an indeterminate state
+*/
+QUnit.test( 'indeterminate test', function( assert ) {
+
+    assert.notOk( zz( '#t27-1' ).indeterminate() );
+
+    zz( '#t27-1' ).indeterminate( true );
+    assert.ok( zz( '#t27-1' ).indeterminate() );
+
+    zz( '#t27-1' ).indeterminate( false );
+    assert.notOk( zz( '#t27-1' ).indeterminate() );
+
+    zz( '#t27-1' ).indeterminate( true );
+    assert.ok( zz( '#t27-1' ).indeterminate() );
+});
+

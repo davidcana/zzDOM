@@ -57,3 +57,27 @@ QUnit.test( 'val and checked test', function( assert ) {
     assert.notOk( zz( '#t19-7-1' ).checked() );
     assert.notOk( zz( '#t19-7-2' ).checked() );
 });
+
+QUnit.test( 'disabled test', function( assert ) {
+    var t26_1_1 = 'test value t26-1-1',
+        t26_1_2 = 'test value t26-1-2';
+    assert.equal( zz( '#t26-1-1' ).val(), t26_1_1 );
+    assert.equal( zz( '#t26-1-2' ).val(), t26_1_2 );
+
+    assert.notOk( zz( '#t26-1-1' ).disabled() );
+    assert.notOk( zz( '#t26-1-2' ).disabled() );
+
+    zz( '.t26-1' ).disabled( true );
+    assert.ok( zz( '#t26-1-1' ).disabled() );
+    assert.ok( zz( '#t26-1-2' ).disabled() );
+
+    zz( '.t26-1' ).disabled( false );
+    assert.notOk( zz( '#t26-1-1' ).disabled() );
+    assert.notOk( zz( '#t26-1-2' ).disabled() );
+
+    zz( '.t26-1' ).disabled( true );
+    assert.ok( zz( '#t26-1-1' ).disabled() );
+    assert.ok( zz( '#t26-1-2' ).disabled() );
+});
+
+

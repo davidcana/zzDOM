@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-24 17:56:43 */
+/*! zzdom - v0.2.0 - 2025-03-25 10:3:33 */
 /**
  * A namespace.
  * @const
@@ -83,7 +83,7 @@ zzDOM._args = function( previousArgs, toInsert ){
 };
 
 zzDOM._build = function ( x ) {
-    if ( x instanceof Element || typeof x === 'string'){
+    if ( x instanceof Element || typeof x === 'string' ){ // Allow string to support map method
         return new zzDOM.SS( x );
     }
     if ( x instanceof HTMLCollection || x instanceof NodeList ){
@@ -879,6 +879,28 @@ zzDOM.SS.prototype.checked = function ( check ) {
     return this;
 };
 
+// disabled only works on button, fieldset, optgroup, option, select, textarea and input
+zzDOM.SS.prototype.disabled = function ( value ) {
+    return this._getAndSet( 'disabled', value );
+};
+
+// indeterminate only works on checkbox, radio and progress
+zzDOM.SS.prototype.indeterminate = function ( value ) {
+    return this._getAndSet( 'indeterminate', value );
+};
+
+zzDOM.SS.prototype._getAndSet = function ( key, value ) {
+    
+    // get
+    if ( value === undefined ){
+        return !! this.el[ key ];
+    }
+    
+    // set
+    this.el[ key ] = value;
+    return this;
+};
+
 /**
  * @param {Array<?>|String=} value
  */
@@ -1262,6 +1284,14 @@ zzDOM.MM.prototype.trigger = function () {
 /* Forms */
 zzDOM.MM.prototype.checked = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.checked, arguments );
+};
+
+zzDOM.MM.prototype.disabled = function () {
+    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.disabled, arguments );
+};
+
+zzDOM.MM.prototype.indeterminate = function () {
+    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.indeterminate, arguments );
 };
 
 zzDOM.MM.prototype.val = function () {

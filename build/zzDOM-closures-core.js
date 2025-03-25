@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-24 17:56:43 */
+/*! zzdom - v0.2.0 - 2025-03-25 10:3:33 */
 /**
  * A namespace.
  * @const
@@ -83,7 +83,7 @@ zzDOM._args = function( previousArgs, toInsert ){
 };
 
 zzDOM._build = function ( x ) {
-    if ( x instanceof Element || typeof x === 'string'){
+    if ( x instanceof Element || typeof x === 'string' ){ // Allow string to support map method
         return new zzDOM.SS( x );
     }
     if ( x instanceof HTMLCollection || x instanceof NodeList ){

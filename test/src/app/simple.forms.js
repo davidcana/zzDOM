@@ -80,3 +80,41 @@ QUnit.test( 'indeterminate checkbox test', function( assert ) {
     assert.ok( zz( '#t27-1' ).indeterminate() );
 });
 
+QUnit.test( 'prop test', function( assert ) {
+
+    // checked
+    assert.notOk( zz( '#t28-1' ).prop( 'checked' ) );
+
+    zz( '#t28-1' ).prop( 'checked', true );
+    assert.ok( zz( '#t28-1' ).prop( 'checked' ) );
+
+    zz( '#t28-1' ).prop( 'checked', false );
+    assert.notOk( zz( '#t28-1' ).prop( 'checked' ) );
+    
+    zz( '#t28-1' ).prop( 'checked', true );
+    assert.ok( zz( '#t28-1' ).prop( 'checked' ) );
+
+    // disabled
+    assert.notOk( zz( '#t28-2' ).prop( 'disabled' ) );
+
+    zz( '#t28-2' ).prop( 'disabled', true );
+    assert.ok( zz( '#t28-2' ).prop( 'disabled' ) );
+
+    zz( '#t28-2' ).prop( 'disabled', false );
+    assert.notOk( zz( '#t28-2' ).prop( 'disabled' ) );
+
+    zz( '#t28-2' ).prop( 'disabled', true );
+    assert.ok( zz( '#t28-2' ).prop( 'disabled' ) );
+
+    // indeterminate
+    assert.notOk( zz( '#t28-3' ).prop( 'indeterminate' ) );
+
+    zz( '#t28-3' ).prop( 'indeterminate', true );
+    assert.ok( zz( '#t28-3' ).prop( 'indeterminate' ) );
+
+    zz( '#t28-3' ).prop( 'indeterminate', false );
+    assert.notOk( zz( '#t28-3' ).prop( 'indeterminate' ) );
+
+    zz( '#t28-3' ).prop( 'indeterminate', true );
+    assert.ok( zz( '#t28-3' ).prop( 'indeterminate' ) );
+});

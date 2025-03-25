@@ -309,6 +309,10 @@ zzDOM.MM.prototype.indeterminate = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.indeterminate, arguments );
 };
 
+zzDOM.MM.prototype.prop = function () {
+    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.prop, arguments );
+};
+
 zzDOM.MM.prototype.val = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.val, arguments );
 };

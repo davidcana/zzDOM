@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-25 10:15:17 */
+/*! zzdom - v0.2.0 - 2025-03-25 11:50:55 */
 /**
  * A namespace.
  * @const
@@ -866,36 +866,20 @@ zzDOM.SS.prototype.toggle = function ( state ) {
 
 // checked only works on radio, checkbox and option
 zzDOM.SS.prototype.checked = function ( value ) {
-    return this._getAndSet( 'checked', value );
+    return this.prop( 'checked', value );
 };
-/*
-zzDOM.SS.prototype.checked = function ( check ) {
-    if ( this.el.nodeName !== 'INPUT' || ( this.el.type !== 'checkbox' && this.el.type !== 'radio') ) {
-        throw zzDOM._getError( 'checked' );
-    }
-    
-    // get
-    if ( check === undefined ){
-        return !! this.el.checked;
-    }
-    
-    // set
-    this.el.checked = check;
-    return this;
-};
-*/
 
 // disabled only works on button, fieldset, optgroup, option, select, textarea and input
 zzDOM.SS.prototype.disabled = function ( value ) {
-    return this._getAndSet( 'disabled', value );
+    return this.prop( 'disabled', value );
 };
 
 // indeterminate only works on checkbox, radio and progress
 zzDOM.SS.prototype.indeterminate = function ( value ) {
-    return this._getAndSet( 'indeterminate', value );
+    return this.prop( 'indeterminate', value );
 };
 
-zzDOM.SS.prototype._getAndSet = function ( key, value ) {
+zzDOM.SS.prototype.prop = function ( key, value ) {
     
     // get
     if ( value === undefined ){

@@ -137,3 +137,81 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     assert.ok( zz( '#t15-14' ).isVisible() );
     assert.equal( getComputedStyle( zz( '#t15-14' ).el ).display, 'inline' );
 });
+
+
+QUnit.test( 'fadeIn and fadeOut test', function( assert ) {
+
+    // fadeOut
+    assert.ok( zz( '#t29-1' ).isVisible() );
+    const done1 = assert.async();
+    zz( '#t29-1' ).fadeOut(
+        {
+            callback: function(){
+                assert.notOk( zz( '#t29-1' ).isVisible() );
+                done1();
+            }
+        }
+    );
+
+    // fadeIn
+    assert.notOk( zz( '#t29-2' ).isVisible() );
+    const done2 = assert.async();
+    zz( '#t29-2' ).fadeIn(
+        {
+            callback: function(){
+                assert.ok( zz( '#t29-2' ).isVisible() );
+                done2();
+            }
+        }
+    );
+
+    // fadeOut then fadeIn
+    assert.ok( zz( '#t29-3' ).isVisible() );
+    const done3 = assert.async();
+    zz( '#t29-3' ).fadeOut(
+        {
+            callback: function(){
+                assert.notOk( zz( '#t29-3' ).isVisible() );
+                zz( '#t29-3' ).fadeIn(
+                    {
+                        callback: function(){
+                            assert.ok( zz( '#t29-3' ).isVisible() );
+                            done3();
+                        }
+                    }
+                );
+            }
+        }
+    );
+
+    // fadeOut test time
+    var ms = 300;
+    assert.ok( zz( '#t29-4' ).isVisible() );
+    const done4 = assert.async();
+    zz( '#t29-4' ).fadeOut(
+        {
+            ms: ms
+        }
+    );
+    assert.ok( zz( '#t29-4' ).isVisible() ); // Still visible
+    setTimeout(
+        function () {
+            assert.notOk( zz( '#t29-4' ).isVisible() ); // Must not be visible yet
+            done4();
+        },
+        ms + 100
+    );
+
+    // fadeOut no arguments
+    assert.ok( zz( '#t29-5' ).isVisible() );
+    zz( '#t29-5' ).fadeOut();
+    assert.ok( zz( '#t29-5' ).isVisible() ); // Still visible
+    const done5 = assert.async();
+    setTimeout(
+        function () {
+            assert.notOk( zz( '#t29-5' ).isVisible() ); // Must not be visible yet
+            done5();
+        },
+        500
+    );
+});

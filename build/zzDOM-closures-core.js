@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-25 13:32:4 */
+/*! zzdom - v0.2.0 - 2025-03-26 13:26:9 */
 /**
  * A namespace.
  * @const
@@ -769,6 +769,20 @@ zzDOM.MM.constructors.default = function( functionId ){
         return this;
     };
 };
+zzDOM.MM.constructors.callback = function( functionId ){
+    return function(){
+        if ( ! arguments[ 0 ] ){
+            arguments[ 0 ] = {};
+        }
+        var callback = arguments[ 0 ].callback;
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            arguments[ 0 ].callback = i !== this.list.length - 1? undefined: callback; // Run callback just once (the last one)
+            ss[ functionId ].apply( ss, arguments );
+        }
+        return this;
+    };
+};
 
 // Init prototype functions from zzDOM.SS
 zzDOM.MM.init = function(){
@@ -790,6 +804,11 @@ zzDOM.MM.init = function(){
         'hasClass',
         'is'
     ];
+    // Callback functions
+    var callbackF = [
+        'fadeIn',
+        'fadeOut'
+    ];
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
@@ -799,6 +818,9 @@ zzDOM.MM.init = function(){
             }
             if ( booleanOrF.indexOf( functionId ) !== -1 ){
                 return zzDOM.MM.constructors.booleanOr( functionId );
+            }
+            if ( callbackF.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.callback( functionId );
             }
             return zzDOM.MM.constructors.default( functionId );
         };

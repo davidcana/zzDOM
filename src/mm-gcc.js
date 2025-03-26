@@ -95,6 +95,18 @@ zzDOM.MM.constructors.default = function( mm, fn, args ){
     }
     return mm;
 };
+zzDOM.MM.constructors.callback = function( mm, fn, args = {} ){
+    if ( ! args[ 0 ] ){
+        args[ 0 ] = {};
+    }
+    var callback = args[ 0 ].callback;
+    for ( var i = 0; i < mm.list.length; i++ ) {
+        var ss = mm.list[ i ];
+        args[ 0 ].callback = i !== mm.list.length - 1? undefined: callback;
+        fn.apply( ss, args );
+    }
+    return mm;
+};
 
 /* Methods included in jquery */
 zzDOM.MM.prototype.each = function ( eachFn ) {
@@ -265,6 +277,14 @@ zzDOM.MM.prototype.width = function () {
 };
 
 /* Show/hide */
+zzDOM.MM.prototype.fadeIn = function () {
+    return zzDOM.MM.constructors.callback( this, zzDOM.SS.prototype.fadeIn, arguments );
+};
+
+zzDOM.MM.prototype.fadeOut = function () {
+    return zzDOM.MM.constructors.callback( this, zzDOM.SS.prototype.fadeOut, arguments );
+};
+
 zzDOM.MM.prototype.hide = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.hide, arguments );
 };

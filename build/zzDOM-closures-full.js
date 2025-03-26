@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-25 13:32:4 */
+/*! zzdom - v0.2.0 - 2025-03-26 13:26:9 */
 /**
  * A namespace.
  * @const
@@ -827,8 +827,6 @@ zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
 };
 
 zzDOM.SS.prototype.trigger = function ( eventName, params ) {
-    //var event = document.createEvent( 'HTMLEvents' );
-    //event.initEvent( eventName, true, false );
     var event = new Event( eventName, { bubbles: true, cancelable: false } );
     if ( params ){
         event.params = params;
@@ -865,6 +863,48 @@ zzDOM.SS.prototype.show = function () {
 zzDOM.SS.prototype.toggle = function ( state ) {
     var value = state !== undefined? ! state: this.isVisible();
     return value? this.hide(): this.show();
+};
+
+/** @suppress {missingProperties} */
+zzDOM.SS.prototype.fadeIn = function ( params = {} ) {
+    var { ms, callback } = params;
+    ms = ms || 400;
+    var finishFadeIn = () => {
+        this.el.removeEventListener( 'transitionend', finishFadeIn );
+        callback && callback();
+    };
+    this.el.style.transition = 'opacity 0s';
+    this.el.style.display = '';
+    this.el.style.opacity = 0;
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            this.el.addEventListener( 'transitionend', finishFadeIn );
+            this.el.style.transition = `opacity ${ms/1000}s`;
+            this.el.style.opacity = 1;
+        });
+    });
+    return this;
+};
+
+/** @suppress {missingProperties} */
+zzDOM.SS.prototype.fadeOut = function ( params = {} ) {
+    var { ms, callback } = params;
+    ms = ms || 400;
+    var finishFadeOut = () => {
+        this.el.style.display = 'none';
+        this.el.removeEventListener( 'transitionend', finishFadeOut );
+        callback && callback();
+    };
+    this.el.style.transition = 'opacity 0s';
+    this.el.style.opacity = 1;
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            this.el.style.transition = `opacity ${ms/1000}s`;
+            this.el.addEventListener( 'transitionend', finishFadeOut );
+            this.el.style.opacity = 0;
+        });
+    });
+    return this;
 };
 /* End of visible */
 
@@ -1066,6 +1106,20 @@ zzDOM.MM.constructors.default = function( functionId ){
         return this;
     };
 };
+zzDOM.MM.constructors.callback = function( functionId ){
+    return function(){
+        if ( ! arguments[ 0 ] ){
+            arguments[ 0 ] = {};
+        }
+        var callback = arguments[ 0 ].callback;
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            arguments[ 0 ].callback = i !== this.list.length - 1? undefined: callback; // Run callback just once (the last one)
+            ss[ functionId ].apply( ss, arguments );
+        }
+        return this;
+    };
+};
 
 // Init prototype functions from zzDOM.SS
 zzDOM.MM.init = function(){
@@ -1087,6 +1141,11 @@ zzDOM.MM.init = function(){
         'hasClass',
         'is'
     ];
+    // Callback functions
+    var callbackF = [
+        'fadeIn',
+        'fadeOut'
+    ];
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
@@ -1096,6 +1155,9 @@ zzDOM.MM.init = function(){
             }
             if ( booleanOrF.indexOf( functionId ) !== -1 ){
                 return zzDOM.MM.constructors.booleanOr( functionId );
+            }
+            if ( callbackF.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.callback( functionId );
             }
             return zzDOM.MM.constructors.default( functionId );
         };

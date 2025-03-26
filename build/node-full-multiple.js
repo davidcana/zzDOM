@@ -1379,6 +1379,56 @@ QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
     assert.notOk( zz( '#t15-7-2' ).isVisible() );
 });
 
+QUnit.test( 'fadeIn and fadeOut test', function( assert ) {
+    
+    // fadeOut
+    assert.ok( zz( '#t29-1-1' ).isVisible() );
+    assert.ok( zz( '#t29-1-2' ).isVisible() );
+    const done1 = assert.async();
+    zz( '.t29-1' ).fadeOut(
+        {
+            callback: function(){
+                assert.notOk( zz( '#t29-1-1' ).isVisible() );
+                assert.notOk( zz( '#t29-1-2' ).isVisible() );
+                done1();
+            }
+        }
+    );
+    assert.ok( zz( '#t29-1-1' ).isVisible() ); // Still visible
+    assert.ok( zz( '#t29-1-2' ).isVisible() ); // Still visible
+    
+    // fadeIn
+    assert.notOk( zz( '#t29-2-1' ).isVisible() );
+    assert.notOk( zz( '#t29-2-2' ).isVisible() );
+    const done2 = assert.async();
+    zz( '.t29-2' ).fadeIn(
+        {
+            callback: function(){
+                assert.ok( zz( '#t29-2-1' ).isVisible() );
+                assert.ok( zz( '#t29-2-2' ).isVisible() );
+                done2();
+            }
+        }
+    );
+
+    // fadeOut nor arguments
+    assert.ok( zz( '#t29-3-1' ).isVisible() );
+    assert.ok( zz( '#t29-3-2' ).isVisible() );
+    zz( '.t29-3' ).fadeOut();
+    assert.ok( zz( '#t29-3-1' ).isVisible() ); // Still visible
+    assert.ok( zz( '#t29-3-2' ).isVisible() ); // Still visible
+    const done3 = assert.async();
+    setTimeout(
+        function () {
+            assert.notOk( zz( '#t29-3-1' ).isVisible() ); // Must not be visible yet
+            assert.notOk( zz( '#t29-3-1' ).isVisible() ); // Must not be visible yet
+            done3();
+        },
+        500
+    );
+});
+
+
 QUnit.test( 'val and checked test', function( assert ) {
     var t19_1_1_original = 'test value t19-1-1',
         t19_1_2_original = 'test value t19-1-2',

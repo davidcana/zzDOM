@@ -83,8 +83,6 @@ zzDOM.SS.prototype.on = function ( eventName, listener, data, useCapture ) {
 };
 
 zzDOM.SS.prototype.trigger = function ( eventName, params ) {
-    //var event = document.createEvent( 'HTMLEvents' );
-    //event.initEvent( eventName, true, false );
     var event = new Event( eventName, { bubbles: true, cancelable: false } );
     if ( params ){
         event.params = params;

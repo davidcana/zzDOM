@@ -165,6 +165,11 @@ Available methods are divided into the core and some plugins:
     * .filter( function ): Reduce the set of matched elements to those that pass the function's test.
 * find: Get the descendants of each element in the current set of matched elements, filtered by a selector.
     * .find( selector )
+* first: Reduce the set of matched elements to the first in the set.
+    * .first()
+* get: Retrieve DOM elements matched by the zzDOM object.
+    * .get(): Retrieve all the elements matched by the zzDOM object.
+    * .get( index ): Retrieve one of the elements matched by the zzDOM object.
 * hasClass: Determine whether any of the matched elements are assigned the given class.
     * .hasClass( className )
 * height: Get the current computed height for the first element in the set of matched elements or set the height of every matched element.
@@ -177,6 +182,8 @@ Available methods are divided into the core and some plugins:
     * index()
 * is: Check the current matched set of elements against a selector, element, or zzDOM object and return true if at least one of these elements matches the given arguments.
     * .is( content ): Where content is a HTML string, DOM element or zzDOM object to check.
+* map: Pass each element in the current matched set through a function, producing a new zzDOM object containing the return values.
+    * map( callback )
 * next: Get the immediately following sibling of each element in the set of matched elements.
     * .next()
 * offset: Get the current coordinates of the first element, or set the coordinates of every element, in the set of matched elements, relative to the document.
@@ -190,6 +197,8 @@ Available methods are divided into the core and some plugins:
     * .outerWidth( [withMargin] )
 * parent: Get the parent of each element in the current set of matched elements.
     * .parent()
+* parents: Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.
+    * .parents( [selector ] )
 * position: Get the current coordinates of the first element in the set of matched elements, optionally relative to the offset parent.
     * .position ( [relativeToViewport] )
 * prepend: Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
@@ -209,7 +218,7 @@ Available methods are divided into the core and some plugins:
 * siblings: Get the siblings of each element in the set of matched elements, optionally filtered by a selector.
     * .siblings( [selector] )
 * text: Get the text contents of the first element in the set of matched elements or set the text contents of every matched element.
-    * .text( text ):
+    * .text( text )
 * toggleClass: Add or remove one class from each element in the set of matched elements, depending on either the class's presence or the value of the state argument.
     * .toggleClass( className ): Add or remove one class from each element in the set of matched elements, depending on either the class's presence
     * .toggleClass( className, state ): Add or remove one class from each element in the set of matched elements, depending on the value of the state argument.
@@ -217,50 +226,63 @@ Available methods are divided into the core and some plugins:
     * .width(): Get the current computed width for the first element in the set of matched elements.
     * .width( value ): Set the CSS width of every matched element.
 
+### Center plugin
+* getXCenter: Returns the X coordinate centering the first element in the set of matched elements in the screen. It uses **document.documentElement.clientWidth** and **outerWidth** of the element.
+    * .getXCenter()
+* getYCenter: Returns the Y coordinate centering the first element in the set of matched elements in the screen. It uses **document.documentElement.clientHeight** and **outerHeight** of the element.
+    * .getYCenter()
+* getCenter: Returns a plain object with the coordinates centering the first element in the set of matched elements in the screen.
+    * .getCenter()
+* center: Center the first element in the set of matched elements in the screen.
+    * .center()
+* centerX: Center the X coordinate of the first element in the set of matched elements in the screen.
+    * .centerX()
+* centerY: Center the Y coordinate of the first element in the set of matched elements in the screen.
+    * .centerY()
+    
+### Events plugin
+* off: Remove one or more event handlers. If a listener is specified, remove only this; if an event name is specified, remove all listeners for this event; if no event name is specified remove all listeneres.
+    * .off( [eventName], [listener], [useCapture] )
+* on: Attach an event handler function for one event to the selected elements.
+    * .on( eventName, listener, [data], [useCapture] )
+* trigger: Execute all handlers and behaviors attached to the matched elements for the given event type.
+    * .trigger( eventName, [params] ).
+
+### Forms plugin
+* checked: Get or set checked status of checkbox or radio elements. A shortcut for using **prop** with the **checked** key.
+    * checked(): Return the checked boolean of the first matching element found.
+    * checked( checked ): Set checked status of checkbox or radio elements in the set of matched elements.
+* disabled: Get or set the value of the disabled HTML attribute. A shortcut for using **prop** with the **disabled** key.
+    * disabled(): Get the value of the disabled HTML attribute.
+    * disabled( value ): Set the value of the disabled HTML attribute.
+* indeterminate: Get or set the value of the indeterminate HTML attribute. A shortcut for using **prop** with the **indeterminate** key.
+    * indeterminate(): Get the value of the indeterminate HTML attribute.
+    * indeterminate( value ): Set the value of the indeterminate HTML attribute.
+* prop: Get the value of a property for the first element in the set of matched elements or set one or more properties for every matched element. Examples of properties are checked, disabled, indeterminate...
+    * prop( propertyName ): Get the value of a property for the first element in the set of matched elements.
+    * prop( propertyName, value ): Set one or more properties for the set of matched elements.
+* val: Get or set the value of matching form elements.
+    * val(): Return the value of the first matching element found.
+    * val( value ): Set the value of elements in the set of matched elements.
+
+### Utils plugin
+* param: Create a serialized representation of a plain object, or a ZZDOM object suitable for use in a URL query string or Ajax request.
+    * zzDOM.param()
+
 ### Visible plugin
+* fadeIn( {[ms] , [callback] } ): Display the matched elements by fading them to opaque.
+    * fadeIn( {[ms] , [callback] } ): Optional parameters are ms (a number determining how long the animation will run) and callback (a function to call once the animation is complete).
+* fadeOut( {[ms] , [callback] } ): Hide the matched elements by fading them to transparent.
+    * fadeOut( {[ms] , [callback] } ): Optional parameters are ms (a number determining how long the animation will run) and callback (a function to call once the animation is complete).
 * isVisible: Returns true if the first element in the set of matched elements is visible, or false otherwise.
-    * isVisible(): 
+    * isVisible()
 * hide: Hide the matched elements.
     * .hide()
 * show: Display the matched elements.
     * .show();
 * toggle: Display or hide the matched elements.
-    * .toggle():  Display or hide the matched elements, depending on either the element's current display 
+    * .toggle():  Display or hide the matched elements, depending on either the element's current display.
     * .toggle( display ): Use true to show the element or false to hide it.
-    
-### Events plugin
-* off: Remove one or more event handlers. If a listener is specified, remove only this; if an event name is specified, remove all listeners for this event; if no event name is specified remove all listeneres.
-    * o.ff( [eventName], [listener], [useCapture] )
-* on: Attach an event handler function for one event to the selected elements.
-    * .on( eventName, listener, [data], [useCapture] )
-* trigger: Execute all handlers and behaviors attached to the matched elements for the given event type.
-    * .trigger( eventName ):
-
-### Forms plugin
-* checked: Get or set checked status of checkbox or radio elements.
-    * checked(): Return the checked boolean of the first matching element found.
-    * checked( checked ): Set checked status of checkbox or radio elements in the set of matched elements.
-* val: Get or set the value of matching form elements.
-    * val(): Return the value of the first matching element found.
-    * val( value ): Set the value of elements in the set of matched elements.
-
-### Center plugin
-* getXCenter: Returns the X coordinate centering the first element in the set of matched elements in the screen. It uses document.documentElement.clientWidth and outerWidth of the element.
-    * .getXCenter():
-* getYCenter: Returns the Y coordinate centering the first element in the set of matched elements in the screen. It uses document.documentElement.clientHeight and outerHeight of the element.
-    * .getYCenter(): 
-* getCenter: Returns a plain object with the coordinates centering the first element in the set of matched elements in the screen.
-    * .getCenter(): 
-* center: Center the first element in the set of matched elements in the screen.
-    * .center(): 
-* centerX: Center the X coordinate of the first element in the set of matched elements in the screen.
-    * .centerX(): 
-* centerY: Center the Y coordinate of the first element in the set of matched elements in the screen.
-    * .centerY()
-
-### Utils plugin
-* param: Create a serialized representation of a plain object, or a ZZDOM object suitable for use in a URL query string or Ajax request.
-    * zzDOM.param()
 
 ## Extending zzDOM
 Extending zzDOM is easy. Take a look to a the **Hello world!** plugin:
@@ -291,6 +313,7 @@ Where:
 The first argument is a function that manges single HTML elements. The second argument is a function that defines the behaviour when matching elements are more than one. Available options are:
 
 * *zzDOM.MM.constructors.booleanOr*. Returns **true** if at least one of the results is **true**. Examples are **hasClass** and **is** methods.
+* *zzDOM.MM.constructors.callback*. Returns the same object and run the callback just once. Examples are **fadeIn** and **fadeOut** methods.
 * *zzDOM.MM.constructors.concat*. Concat the results of all the executions. Examples are **children** and **find** methods.
 * *zzDOM.MM.constructors.default*. Returns the results of the execution of the first element in the set of matched elements if its value is not an instance of **zzDOM.SS**. Otherwise returns a **zzDOM.MM** instance. Examples are **text** and **width** methods.
 

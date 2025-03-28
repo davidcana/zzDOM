@@ -1,4 +1,4 @@
-/*! zzdom - v0.2.0 - 2025-03-26 13:26:9 */
+/*! zzdom - v0.2.0 - 2025-03-28 12:0:48 */
 /**
  * A namespace.
  * @const
@@ -923,6 +923,7 @@ zzDOM.SS.prototype.indeterminate = function ( value ) {
     return this.prop( 'indeterminate', value );
 };
 
+//TODO add support of object and function types in value
 zzDOM.SS.prototype.prop = function ( key, value ) {
     
     // get

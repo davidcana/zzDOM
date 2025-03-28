@@ -15,6 +15,7 @@ zzDOM.SS.prototype.indeterminate = function ( value ) {
     return this.prop( 'indeterminate', value );
 };
 
+//TODO add support of object and function types in value
 zzDOM.SS.prototype.prop = function ( key, value ) {
     
     // get

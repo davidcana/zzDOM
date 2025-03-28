@@ -160,7 +160,7 @@ QUnit.test( 'fadeIn and fadeOut test', function( assert ) {
     setTimeout(
         function () {
             assert.notOk( zz( '#t29-3-1' ).isVisible() ); // Must not be visible yet
-            assert.notOk( zz( '#t29-3-1' ).isVisible() ); // Must not be visible yet
+            assert.notOk( zz( '#t29-3-2' ).isVisible() ); // Must not be visible yet
             done3();
         },
         500

@@ -1,2 +1,17 @@
 New in 0.1.0
 - Initial version.
+
+New in 0.2.0
+- Methods improved:
+    - trigger (new optional argument added: params)
+- New methods added.
+    - parents
+    - first
+    - get
+    - map
+    - prop
+    - disabled
+    - indeterminate
+    - fadeOut
+    - fadeIn
+

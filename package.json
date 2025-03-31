@@ -1,6 +1,6 @@
 {
   "name": "zzdom",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "description": "A tiny javascript API that implements only the DOM functions of jquery including chaining.",
   "keywords": [

@@ -3,7 +3,8 @@
 // Unit tests
 QUnit.test( 'text and html test', function( assert ) {
     var t1_1_original = [ 'white', 'black', 'red' ],
-        t1_1_modified = 'yellow';
+        t1_1_modified = 'yellow',
+        t1_1_modified_class = 'yellow yellow yellow';
     assert.equal( document.getElementById( 't1-1' ).textContent, t1_1_original[ 0 ] );
     assert.equal( document.getElementById( 't1-2' ).textContent, t1_1_original[ 1 ] );
     assert.equal( document.getElementById( 't1-3' ).textContent, t1_1_original[ 2 ] );
@@ -15,7 +16,7 @@ QUnit.test( 'text and html test', function( assert ) {
     assert.equal( zz( '#t1-2' ).text(), t1_1_modified );
     assert.equal( zz( '#t1-3' ).text(), t1_1_modified );
     assert.deepEqual( ids, [ 't1-1', 't1-2', 't1-3' ] );
-    assert.equal( zz( '.t1-1' ).text(), t1_1_modified );
+    assert.equal( zz( '.t1-1' ).text(), t1_1_modified_class );
     
     var t1_2_original = [ 
         '<a href="https://www.fsf.org/">FSF</a>', 

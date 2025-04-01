@@ -221,7 +221,8 @@ QUnit.test( 'Null test', function( assert ) {
     assert.ok( instance instanceof zzDOM.MM );
     assert.deepEqual( instance.list, [] );
     assert.deepEqual( instance.nodes, [] );
-    
+    //assert.ok( instance  === null );
+
     instance = zz( document.querySelectorAll( '#non-existing-id' ) );
     assert.ok( instance instanceof zzDOM.MM );
     assert.deepEqual( instance.list, [] );

@@ -107,6 +107,36 @@ zzDOM.MM.constructors.callback = function( mm, fn, args = {} ){
     }
     return mm;
 };
+zzDOM.MM.constructors.appendText = function( mm, fn, args ){
+    var text = '';
+    var textMode = false;
+    for ( var i = 0; i < mm.length; i++ ) {
+        var ss = mm.list[ i ];
+        var x = fn.apply( ss, args );
+        if ( typeof x === 'string' ){
+            text += ( text == ''? '': ' ' ) + x;
+            textMode = true;
+        }
+    }
+    return textMode? text: mm;
+};
+zzDOM.MM.constructors.val = function( mm, fn, args, len ){
+    for ( var i = 0; i < mm.list.length; i++ ) {
+        var ss = mm.list[ i ];
+        var r = fn.apply( ss, args );
+        if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+            return r;
+        }
+    }
+    return ! mm.list.length && arguments.length === len? null: mm;
+    //return ! mm.list.length && ! arguments.length? null: mm;
+};
+zzDOM.MM.constructors.val0 = function( mm, fn, args ){
+    return zzDOM.MM.constructors.val( mm, fn, args, 0 );
+};
+zzDOM.MM.constructors.val1 = function( mm, fn, args ){
+    return zzDOM.MM.constructors.val( mm, fn, args, 1 );
+};
 
 /* Methods included in jquery */
 zzDOM.MM.prototype.each = function ( eachFn ) {
@@ -265,7 +295,7 @@ zzDOM.MM.prototype.siblings = function () {
 };
 
 zzDOM.MM.prototype.text = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.text, arguments );
+    return zzDOM.MM.constructors.appendText( this, zzDOM.SS.prototype.text, arguments );
 };
 
 zzDOM.MM.prototype.toggleClass = function () {
@@ -318,22 +348,22 @@ zzDOM.MM.prototype.trigger = function () {
 
 /* Forms */
 zzDOM.MM.prototype.checked = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.checked, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.checked, arguments );
 };
 
 zzDOM.MM.prototype.disabled = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.disabled, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.disabled, arguments );
 };
 
 zzDOM.MM.prototype.indeterminate = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.indeterminate, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.indeterminate, arguments );
 };
 
 zzDOM.MM.prototype.prop = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.prop, arguments );
+    return zzDOM.MM.constructors.val1( this, zzDOM.SS.prototype.prop, arguments );
 };
 
 zzDOM.MM.prototype.val = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.val, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.val, arguments );
 };
 /* End of forms */

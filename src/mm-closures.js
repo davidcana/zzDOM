@@ -100,6 +100,53 @@ zzDOM.MM.constructors.callback = function( functionId ){
         return this;
     };
 };
+zzDOM.MM.constructors.appendText = function( functionId ){
+    return function(){
+        var text = '';
+        var textMode = false;
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var x = ss[ functionId ].apply( ss, arguments );
+            if ( typeof x === 'string' ){
+                text += ( text == ''? '': ' ' ) + x;
+                textMode = true;
+            }
+        }
+        return textMode? text: this;
+    };
+};
+/*
+zzDOM.MM.constructors.val = function( functionId ){
+    return function(){
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var r = ss[ functionId ].apply( ss, arguments );
+            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+                return r;
+            }
+        }
+        return ! this.list.length && ! arguments.length? null: this;
+    };
+};
+*/
+zzDOM.MM.constructors.val = function( functionId, len ){
+    return function(){
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var r = ss[ functionId ].apply( ss, arguments );
+            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+                return r;
+            }
+        }
+        return ! this.list.length && arguments.length === len? null: this;
+    };
+};
+zzDOM.MM.constructors.val0 = function( functionId ){
+    return zzDOM.MM.constructors.val( functionId, 0 );
+};
+zzDOM.MM.constructors.val1 = function( functionId ){
+    return zzDOM.MM.constructors.val( functionId, 1 );
+};
 
 // Init prototype functions from zzDOM.SS
 zzDOM.MM.init = function(){
@@ -126,6 +173,20 @@ zzDOM.MM.init = function(){
         'fadeIn',
         'fadeOut'
     ];
+    // Append text functions
+    var appendF = [
+        'text'
+    ];
+    // Val functions
+    var val0F = [
+        'checked',
+        'disabled',
+        'indeterminate',
+        'val'
+    ];
+    var val1F = [
+        'prop'
+    ];
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
@@ -138,6 +199,15 @@ zzDOM.MM.init = function(){
             }
             if ( callbackF.indexOf( functionId ) !== -1 ){
                 return zzDOM.MM.constructors.callback( functionId );
+            }
+            if ( appendF.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.appendText( functionId );
+            }
+            if ( val0F.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.val0( functionId );
+            }
+            if ( val1F.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.val1( functionId );
             }
             return zzDOM.MM.constructors.default( functionId );
         };

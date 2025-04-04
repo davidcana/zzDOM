@@ -1,4 +1,4 @@
-/*! zzdom - v0.3.0 - 2025-04-01 12:52:55 */
+/*! zzdom - v0.4.0b - 2025-04-02 13:19:46 */
 /**
  * A namespace.
  * @const
@@ -946,6 +946,8 @@ zzDOM.SS.prototype.val = function ( value ) {
         case 'INPUT':
         case 'TEXTAREA':
         case 'BUTTON':
+        case 'OPTION':
+        case 'CHECKBOX':
             return this.el.value;
         case 'SELECT':
             var values = [];
@@ -965,6 +967,8 @@ zzDOM.SS.prototype.val = function ( value ) {
     case 'INPUT':
     case 'TEXTAREA':
     case 'BUTTON':
+    case 'OPTION':
+    case 'CHECKBOX':
         this.el.value = value;
         break;
     case 'SELECT':
@@ -974,7 +978,7 @@ zzDOM.SS.prototype.val = function ( value ) {
         for ( i = 0; i < this.el.length; ++i ) {
             for ( var j = 0; j < value.length; ++j ) {
                 this.el[ i ].selected = '';
-                if ( this.el[ i ].value === value[ j ] ) {
+                if ( this.el[ i ].value == value[ j ] ) {
                     this.el[ i ].selected = 'selected';
                     break;
                 }
@@ -1138,7 +1142,10 @@ zzDOM.MM.constructors.appendText = function( mm, fn, args ){
             textMode = true;
         }
     }
-    return textMode? text: mm;
+    //return textMode? text: mm;
+    return ! mm.list.length && ! arguments.length?
+        null:
+        textMode? text: mm;
 };
 zzDOM.MM.constructors.val = function( mm, fn, args, len ){
     for ( var i = 0; i < mm.list.length; i++ ) {
@@ -1243,7 +1250,7 @@ zzDOM.MM.prototype.height = function () {
 };
 
 zzDOM.MM.prototype.html = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.html, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.html, arguments );
 };
 
 zzDOM.MM.prototype.index = function () {

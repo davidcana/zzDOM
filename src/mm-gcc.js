@@ -118,7 +118,10 @@ zzDOM.MM.constructors.appendText = function( mm, fn, args ){
             textMode = true;
         }
     }
-    return textMode? text: mm;
+    //return textMode? text: mm;
+    return ! mm.list.length && ! arguments.length?
+        null:
+        textMode? text: mm;
 };
 zzDOM.MM.constructors.val = function( mm, fn, args, len ){
     for ( var i = 0; i < mm.list.length; i++ ) {
@@ -223,7 +226,7 @@ zzDOM.MM.prototype.height = function () {
 };
 
 zzDOM.MM.prototype.html = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.html, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.html, arguments );
 };
 
 zzDOM.MM.prototype.index = function () {

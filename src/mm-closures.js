@@ -112,7 +112,10 @@ zzDOM.MM.constructors.appendText = function( functionId ){
                 textMode = true;
             }
         }
-        return textMode? text: this;
+        //return textMode? text: this;
+        return ! this.list.length && ! arguments.length?
+            null:
+            textMode? text: this;
     };
 };
 /*
@@ -181,6 +184,7 @@ zzDOM.MM.init = function(){
     var val0F = [
         'checked',
         'disabled',
+        'html',
         'indeterminate',
         'val'
     ];

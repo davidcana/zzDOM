@@ -1,4 +1,4 @@
-/*! zzdom - v0.3.0 - 2025-04-01 12:52:55 */
+/*! zzdom - v0.4.0b - 2025-04-02 13:19:46 */
 /**
  * A namespace.
  * @const
@@ -795,7 +795,10 @@ zzDOM.MM.constructors.appendText = function( functionId ){
                 textMode = true;
             }
         }
-        return textMode? text: this;
+        //return textMode? text: this;
+        return ! this.list.length && ! arguments.length?
+            null:
+            textMode? text: this;
     };
 };
 /*
@@ -864,6 +867,7 @@ zzDOM.MM.init = function(){
     var val0F = [
         'checked',
         'disabled',
+        'html',
         'indeterminate',
         'val'
     ];

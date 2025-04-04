@@ -1445,7 +1445,12 @@ QUnit.test( 'val and checked test', function( assert ) {
         t19_4_modified = 'fsf',
         t19_5_1_original = [ 'mozilla', 'linux' ],
         t19_5_2_original = [ 'fsf', 'mozilla' ],
-        t19_5_modified = [ 'fsf', 'linux' ];
+        t19_5_modified = [ 'fsf', 'linux' ],
+        t19_8_1_original = 'fsf',
+        t19_8_1_modified = 'linux',
+        t19_9_original = 'test value t19-9',
+        t19_9_modified = t19_9_original + ' modified';
+        
     assert.equal( zz( '#t19-1-1' ).val(), t19_1_1_original );
     assert.equal( zz( '#t19-1-2' ).val(), t19_1_2_original );
     assert.equal( zz( '#t19-2-1' ).val(), t19_2_1_original );
@@ -1488,6 +1493,18 @@ QUnit.test( 'val and checked test', function( assert ) {
     zz( '.t19-7' ).checked( false );
     assert.notOk( zz( '#t19-7-1' ).checked() );
     assert.notOk( zz( '#t19-7-2' ).checked() );
+
+    assert.equal( zz( '#t19-8-1-1' ).val(), t19_8_1_original );
+    assert.equal( zz( '#t19-8-1-2' ).val(), t19_8_1_original );
+    zz( '.t19-8-1' ).val( t19_8_1_modified );
+    assert.equal( zz( '#t19-8-1-1' ).val(), t19_8_1_modified );
+    assert.equal( zz( '#t19-8-1-2' ).val(), t19_8_1_modified );
+
+    assert.equal( zz( '#t19-9-1' ).val(), t19_9_original );
+    assert.equal( zz( '#t19-9-2' ).val(), t19_9_original );
+    zz( '.t19-9' ).val( t19_9_modified );
+    assert.equal( zz( '#t19-9-1' ).val(), t19_9_modified );
+    assert.equal( zz( '#t19-9-2' ).val(), t19_9_modified );
 });
 
 QUnit.test( 'disabled test', function( assert ) {

@@ -36,6 +36,8 @@ zzDOM.SS.prototype.val = function ( value ) {
         case 'INPUT':
         case 'TEXTAREA':
         case 'BUTTON':
+        case 'OPTION':
+        case 'CHECKBOX':
             return this.el.value;
         case 'SELECT':
             var values = [];
@@ -55,6 +57,8 @@ zzDOM.SS.prototype.val = function ( value ) {
     case 'INPUT':
     case 'TEXTAREA':
     case 'BUTTON':
+    case 'OPTION':
+    case 'CHECKBOX':
         this.el.value = value;
         break;
     case 'SELECT':
@@ -64,7 +68,7 @@ zzDOM.SS.prototype.val = function ( value ) {
         for ( i = 0; i < this.el.length; ++i ) {
             for ( var j = 0; j < value.length; ++j ) {
                 this.el[ i ].selected = '';
-                if ( this.el[ i ].value === value[ j ] ) {
+                if ( this.el[ i ].value == value[ j ] ) {
                     this.el[ i ].selected = 'selected';
                     break;
                 }

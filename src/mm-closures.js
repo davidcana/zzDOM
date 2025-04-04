@@ -4,8 +4,8 @@
 /** @constructor */
 zzDOM.MM = function ( _nodes ) {    
     this.list = [];
-    this.nodes = _nodes;
-    this.length = _nodes.length;
+    this.nodes = _nodes.filter( n => n ); // Remove null elements
+    this.length = this.nodes.length;
     
     // Init nodes
     for ( var i = 0; i < this.length; i++ ) {

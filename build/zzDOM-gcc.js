@@ -1,4 +1,4 @@
-/*! zzdom - v0.4.0b - 2025-04-02 13:19:46 */
+/*! zzdom - v0.4.0b - 2025-04-04 10:25:12 */
 /**
  * A namespace.
  * @const
@@ -1029,8 +1029,8 @@ zzDOM.SS.prototype.centerY = function() {
 /** @constructor */
 zzDOM.MM = function ( _nodes ) {    
     this.list = [];
-    this.nodes = _nodes;
-    this.length = _nodes.length;
+    this.nodes = _nodes.filter( n => n ); // Remove null elements
+    this.length = this.nodes.length;
     
     // Init  nodes 
     for ( var i = 0; i < this.length; i++ ) {

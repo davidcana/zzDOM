@@ -1,4 +1,4 @@
-/*! zzdom - v0.4.0b - 2025-04-04 10:25:12 */
+/*! zzdom - v0.4.0b - 2025-04-07 10:24:22 */
 /**
  * A namespace.
  * @const
@@ -244,6 +244,7 @@ zzDOM.param = function( x ) {
 
 /** @constructor */
 zzDOM.SS = function ( _el ) {
+    this.list = [ this ];
     this.el = _el;
     this.nodes = [ _el ];
     
@@ -972,7 +973,7 @@ zzDOM.SS.prototype.val = function ( value ) {
         this.el.value = value;
         break;
     case 'SELECT':
-        if ( typeof value === 'string' || typeof value === 'number' ) {
+        if ( typeof value === 'string' || typeof value === 'number' || value == null ) {
             value = [ value ];
         }
         for ( i = 0; i < this.el.length; ++i ) {

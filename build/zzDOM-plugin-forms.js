@@ -62,7 +62,7 @@ zzDOM.SS.prototype.val = function ( value ) {
         this.el.value = value;
         break;
     case 'SELECT':
-        if ( typeof value === 'string' || typeof value === 'number' ) {
+        if ( typeof value === 'string' || typeof value === 'number' || value == null ) {
             value = [ value ];
         }
         for ( i = 0; i < this.el.length; ++i ) {

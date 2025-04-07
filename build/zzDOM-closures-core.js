@@ -1,4 +1,4 @@
-/*! zzdom - v0.4.0b - 2025-04-04 10:25:12 */
+/*! zzdom - v0.4.0b - 2025-04-07 10:24:22 */
 /**
  * A namespace.
  * @const
@@ -122,6 +122,7 @@ var zz;
 
 /** @constructor */
 zzDOM.SS = function ( _el ) {
+    this.list = [ this ];
     this.el = _el;
     this.nodes = [ _el ];
     

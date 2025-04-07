@@ -3,6 +3,7 @@
  */
 /** @constructor */
 zzDOM.SS = function ( _el ) {
+    this.list = [ this ];
     this.el = _el;
     this.nodes = [ _el ];
     

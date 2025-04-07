@@ -1,4 +1,4 @@
-/*! zzdom - v0.4.0b - 2025-04-07 10:24:22 */
+/*! zzdom - v0.4.0b - 2025-04-07 12:45:35 */
 /**
  * A namespace.
  * @const
@@ -58,8 +58,8 @@ zzDOM.zz = function( x, s1, s2 ){
         return new zzDOM.SS( x );
     }
     
-    // Is it an HTMLCollection or a NodeList?
-    if ( x instanceof HTMLCollection || x instanceof NodeList ){
+    // Is it an HTMLCollection, a NodeList or an array?
+    if ( x instanceof HTMLCollection || x instanceof NodeList || Array.isArray( x ) ){
         return zzDOM._build( x );
     }
     
@@ -86,7 +86,7 @@ zzDOM._build = function ( x ) {
     if ( x instanceof Element || typeof x === 'string' ){ // Allow string to support map method
         return new zzDOM.SS( x );
     }
-    if ( x instanceof HTMLCollection || x instanceof NodeList ){
+    if ( x instanceof HTMLCollection || x instanceof NodeList || Array.isArray( x ) ){
         x = Array.prototype.slice.call( x );
     }
     return x.length === 1? new zzDOM.SS( x[ 0 ] ): new zzDOM.MM( x );

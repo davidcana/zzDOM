@@ -95,6 +95,16 @@ zzDOM.MM.constructors.default = function( mm, fn, args ){
     }
     return mm;
 };
+zzDOM.MM.constructors.first = function( mm, fn, args ){
+    for ( var i = 0; i < mm.list.length; i++ ) {
+        var ss = mm.list[ i ];
+        var r = fn.apply( ss, args );
+        if ( r instanceof zzDOM.SS ){
+            return r;
+        }
+    }
+    return mm;
+};
 zzDOM.MM.constructors.callback = function( mm, fn, args = {} ){
     if ( ! args[ 0 ] ){
         args[ 0 ] = {};
@@ -199,6 +209,10 @@ zzDOM.MM.prototype.children = function () {
 
 zzDOM.MM.prototype.clone = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.clone, arguments );
+};
+
+zzDOM.MM.prototype.closest = function () {
+    return zzDOM.MM.constructors.first( this, zzDOM.SS.prototype.closest, arguments );
 };
 
 zzDOM.MM.prototype.css = function () {

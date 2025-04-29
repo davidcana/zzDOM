@@ -565,3 +565,9 @@ zzDOM.SS.prototype.map = function ( mapFn ) {
 zzDOM.SS.prototype.get = function ( i ) {
     return zzDOM._get( this.nodes, i );
 };
+
+zzDOM.SS.prototype.closest = function ( selector ) {
+    return zzDOM._build(
+        this.el.closest( selector )
+    );
+};

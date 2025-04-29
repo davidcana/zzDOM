@@ -1,4 +1,4 @@
-/*! zzdom - v0.4.0b - 2025-04-07 12:45:35 */
+/*! zzdom - v0.4.0b - 2025-04-29 12:4:46 */
 /**
  * A namespace.
  * @const
@@ -83,6 +83,9 @@ zzDOM._args = function( previousArgs, toInsert ){
 };
 
 zzDOM._build = function ( x ) {
+    if ( x == null ){
+        return null;
+    }
     if ( x instanceof Element || typeof x === 'string' ){ // Allow string to support map method
         return new zzDOM.SS( x );
     }
@@ -807,6 +810,12 @@ zzDOM.SS.prototype.get = function ( i ) {
     return zzDOM._get( this.nodes, i );
 };
 
+zzDOM.SS.prototype.closest = function ( selector ) {
+    return zzDOM._build(
+        this.el.closest( selector )
+    );
+};
+
 zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {
     zzDOM._removeEventListener( this, eventName, listener, useCapture );
     return this;
@@ -1112,6 +1121,18 @@ zzDOM.MM.constructors.default = function( functionId ){
         return this;
     };
 };
+zzDOM.MM.constructors.first = function( functionId ){
+    return function(){
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var r = ss[ functionId ].apply( ss, arguments );
+            if ( r instanceof zzDOM.SS ){
+                return r;
+            }
+        }
+        return this;
+    };
+};
 zzDOM.MM.constructors.callback = function( functionId ){
     return function(){
         if ( ! arguments[ 0 ] ){
@@ -1217,6 +1238,10 @@ zzDOM.MM.init = function(){
     var val1F = [
         'prop'
     ];
+    // First functions
+    var firstF = [
+        'closest'
+    ];
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
             var functionId = id;
@@ -1238,6 +1263,9 @@ zzDOM.MM.init = function(){
             }
             if ( val1F.indexOf( functionId ) !== -1 ){
                 return zzDOM.MM.constructors.val1( functionId );
+            }
+            if ( firstF.indexOf( functionId ) !== -1 ){
+                return zzDOM.MM.constructors.first( functionId );
             }
             return zzDOM.MM.constructors.default( functionId );
         };

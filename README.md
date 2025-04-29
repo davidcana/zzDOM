@@ -152,6 +152,8 @@ Available methods are divided into the core and some plugins:
     * .children( [selector] )
 * clone: Create a deep copy of the set of matched elements.
     * .clone()
+* closest: Traverses the element and its parents (heading toward the document root) until it finds a node that matches the specified CSS selector.
+    * .closest( [selector ] )
 * css: Get or set CSS properties.
     * .css( propertyName ): Get the computed style property for the first element in the set of matched elements.
     * .css( propertyName, value ): Set one CSS property for the set of matched elements.

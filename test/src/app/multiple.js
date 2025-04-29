@@ -986,3 +986,37 @@ QUnit.test( 'map test', function( assert ) {
     assert.deepEqual( ids, '0:t25-1|1:t25-2' );
 });
 
+QUnit.test( 'closest test', function( assert ) {
+
+    // Check an element that matches the selector
+    var id = zz( '.t30-t1' )
+        .closest( '.a' )
+        .attr( 'id' );
+    assert.deepEqual( id, 't30-1-1' );
+    id = zz( '.t30-t1' )
+        .closest( '.b' )
+        .attr( 'id' );
+    assert.deepEqual( id, 't30-1-2' );
+
+    // Check an element whose parent matches the selector
+    id = zz( '.t30-t2' )
+        .closest( '.a' )
+        .attr( 'id' );
+    assert.deepEqual( id, 't30-1-1' );
+    id = zz( '.t30-t2' )
+        .closest( '.b' )
+        .attr( 'id' );
+    assert.deepEqual( id, 't30-1-2' );
+
+    // Check an element whose parent-parent matches the selector
+    id = zz( '.t30-t2' )
+        .closest( '.c' )
+        .attr( 'id' );
+    assert.deepEqual( id, 't30-1' );
+
+    // Check an element whose parent-parent-parent matches the selector
+    id = zz( '.t30-t2' )
+        .closest( '.d' )
+        .attr( 'id' );
+    assert.deepEqual( id, 't30' );
+});

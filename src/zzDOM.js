@@ -83,6 +83,9 @@ zzDOM._args = function( previousArgs, toInsert ){
 };
 
 zzDOM._build = function ( x ) {
+    if ( x == null ){
+        return null;
+    }
     if ( x instanceof Element || typeof x === 'string' ){ // Allow string to support map method
         return new zzDOM.SS( x );
     }

@@ -1,4 +1,4 @@
-/*! zzdom - v0.4.0b - 2025-04-07 12:45:35 */
+/*! zzdom - v0.4.0b - 2025-04-29 12:4:46 */
 /**
  * A namespace.
  * @const
@@ -83,6 +83,9 @@ zzDOM._args = function( previousArgs, toInsert ){
 };
 
 zzDOM._build = function ( x ) {
+    if ( x == null ){
+        return null;
+    }
     if ( x instanceof Element || typeof x === 'string' ){ // Allow string to support map method
         return new zzDOM.SS( x );
     }
@@ -807,6 +810,12 @@ zzDOM.SS.prototype.get = function ( i ) {
     return zzDOM._get( this.nodes, i );
 };
 
+zzDOM.SS.prototype.closest = function ( selector ) {
+    return zzDOM._build(
+        this.el.closest( selector )
+    );
+};
+
 zzDOM.SS.prototype.off = function ( eventName, listener, useCapture ) {
     zzDOM._removeEventListener( this, eventName, listener, useCapture );
     return this;
@@ -1120,6 +1129,16 @@ zzDOM.MM.constructors.default = function( mm, fn, args ){
     }
     return mm;
 };
+zzDOM.MM.constructors.first = function( mm, fn, args ){
+    for ( var i = 0; i < mm.list.length; i++ ) {
+        var ss = mm.list[ i ];
+        var r = fn.apply( ss, args );
+        if ( r instanceof zzDOM.SS ){
+            return r;
+        }
+    }
+    return mm;
+};
 zzDOM.MM.constructors.callback = function( mm, fn, args = {} ){
     if ( ! args[ 0 ] ){
         args[ 0 ] = {};
@@ -1224,6 +1243,10 @@ zzDOM.MM.prototype.children = function () {
 
 zzDOM.MM.prototype.clone = function () {
     return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.clone, arguments );
+};
+
+zzDOM.MM.prototype.closest = function () {
+    return zzDOM.MM.constructors.first( this, zzDOM.SS.prototype.closest, arguments );
 };
 
 zzDOM.MM.prototype.css = function () {

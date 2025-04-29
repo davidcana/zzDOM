@@ -1526,7 +1526,7 @@ module.exports = function(grunt) {
     // The load-grunt-tasks plugin won’t automatically load closure-compiler
 
     grunt.registerTask('test', ['qunit']);
-    grunt.registerTask('default', [
+    grunt.registerTask('buildMain', [
         'concat:closures-full', 
         'concat:closures-core',
         'concat:gcc', 
@@ -1606,6 +1606,14 @@ module.exports = function(grunt) {
         'concat:node-full-multiple-js',
         'concat:node-full-multiple-html'
     ]);
-    grunt.registerTask('updateWeb', ['concat', 'uglify', 'copy:standaloneMin', 'copy:standalone']);
-    grunt.registerTask('all', ['default', 'buildTests', 'test']);
+    grunt.registerTask('updateWeb', [
+        'concat',
+        'uglify',
+        'copy:standaloneMin',
+        'copy:standalone'
+    ]);
+    grunt.registerTask('default', [
+        'buildMain',
+        'buildTests'
+    ]);
 };

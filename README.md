@@ -347,6 +347,21 @@ An improved version:
         }
     );
 ```
+## Build and test
+To download the sources and build **zzDOM** run the next commands in your console:
+```bash
+git clone https://github.com/davidcana/zzDOM.git
+cd zzDOM
+npm install
+grunt
+```
+To start a web server to test **zzDOM** run:
+```bash
+npm run start
+```
+Then start your favourite browser and open **http://127.0.0.1:9000/**.
+
+To run the tests open **http://127.0.0.1:9000/test/**.
 
 ## License
 [LGPL](http://www.gnu.org/licenses/lgpl.html)

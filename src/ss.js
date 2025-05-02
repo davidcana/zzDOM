@@ -263,6 +263,12 @@ zzDOM.SS.prototype.clone = function (  ) {
     return new zzDOM.SS( this.el.cloneNode( true ) );
 };
 
+zzDOM.SS.prototype.closest = function ( selector ) {
+    return zzDOM._build(
+        this.el.closest( selector )
+    );
+};
+
 //TODO add support of function type in value
 /**
  * @param {string|Object} x1
@@ -337,6 +343,10 @@ zzDOM.SS.prototype.first = function () {
     return this;
 };
 
+zzDOM.SS.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
+};
+
 zzDOM.SS.prototype.hasClass = function ( name ) {
     return this.el.classList.contains( name );
 };
@@ -398,6 +408,12 @@ zzDOM.SS.prototype.is = function ( x ) {
     }
     
     return false;
+};
+
+zzDOM.SS.prototype.map = function ( mapFn ) {
+    return zzDOM._build(
+        mapFn.call( this.el, 0, this.el )
+    );
 };
 
 zzDOM.SS.prototype.next = function () {
@@ -554,20 +570,3 @@ zzDOM.SS.prototype.width = function ( value ) {
     return this._styleProperty( 'width', value );
 };
 
-
-
-zzDOM.SS.prototype.map = function ( mapFn ) {
-    return zzDOM._build(
-        mapFn.call( this.el, 0, this.el )
-    );
-};
-
-zzDOM.SS.prototype.get = function ( i ) {
-    return zzDOM._get( this.nodes, i );
-};
-
-zzDOM.SS.prototype.closest = function ( selector ) {
-    return zzDOM._build(
-        this.el.closest( selector )
-    );
-};

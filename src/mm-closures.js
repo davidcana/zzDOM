@@ -124,26 +124,12 @@ zzDOM.MM.constructors.appendText = function( functionId ){
                 textMode = true;
             }
         }
-        //return textMode? text: this;
         return ! this.list.length && ! arguments.length?
             null:
             textMode? text: this;
     };
 };
-/*
-zzDOM.MM.constructors.val = function( functionId ){
-    return function(){
-        for ( var i = 0; i < this.list.length; i++ ) {
-            var ss = this.list[ i ];
-            var r = ss[ functionId ].apply( ss, arguments );
-            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
-                return r;
-            }
-        }
-        return ! this.list.length && ! arguments.length? null: this;
-    };
-};
-*/
+
 zzDOM.MM.constructors.val = function( functionId, len ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
@@ -162,83 +148,43 @@ zzDOM.MM.constructors.val0 = function( functionId ){
 zzDOM.MM.constructors.val1 = function( functionId ){
     return zzDOM.MM.constructors.val( functionId, 1 );
 };
+zzDOM.MM.fConstructors = {
+    'children': 'concat',
+    'clone': 'concat',
+    'filter': 'concat',
+    'find': 'concat',
+    'next': 'concat',
+    'offsetParent': 'concat',
+    'parent': 'concat',
+    'parents': 'concat',
+    'prev': 'concat',
+    'siblings': 'concat',
+    'hasClass': 'booleanOr',
+    'is': 'booleanOr',
+    'fadeIn': 'callback',
+    'fadeOut': 'callback',
+    'text': 'appendText',
+    'checked': 'val0',
+    'disabled': 'val0',
+    'html': 'val0',
+    'indeterminate': 'val0',
+    'val': 'val0',
+    'prop': 'val1',
+    'closest': 'first'
+};
 
 // Init prototype functions from zzDOM.SS
 zzDOM.MM.init = function(){
-    // Concat functions
-    var concatF = [
-        'children',
-        'clone',
-        'filter',
-        'find',
-        'next',
-        'offsetParent',
-        'parent',
-        'parents',
-        'prev',
-        'siblings'
-    ];
-    // Boolean functions
-    var booleanOrF = [
-        'hasClass',
-        'is'
-    ];
-    // Callback functions
-    var callbackF = [
-        'fadeIn',
-        'fadeOut'
-    ];
-    // Append text functions
-    var appendF = [
-        'text'
-    ];
-    // Val functions
-    var val0F = [
-        'checked',
-        'disabled',
-        'html',
-        'indeterminate',
-        'val'
-    ];
-    var val1F = [
-        'prop'
-    ];
-    // First functions
-    var firstF = [
-        'closest'
-    ];
     for ( var id in zzDOM.SS.prototype ){
         var closure = function(){
-            var functionId = id;
-            
-            if ( concatF.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.concat( functionId );
-            }
-            if ( booleanOrF.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.booleanOr( functionId );
-            }
-            if ( callbackF.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.callback( functionId );
-            }
-            if ( appendF.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.appendText( functionId );
-            }
-            if ( val0F.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.val0( functionId );
-            }
-            if ( val1F.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.val1( functionId );
-            }
-            if ( firstF.indexOf( functionId ) !== -1 ){
-                return zzDOM.MM.constructors.first( functionId );
-            }
-            return zzDOM.MM.constructors.default( functionId );
+            const fConstructor = zzDOM.MM.fConstructors[ id ] || 'default';
+            return zzDOM.MM.constructors[ fConstructor ]( id );
         };
         zzDOM.MM.prototype[ id ] = closure();
     }
 }();
 
-/* Methods included in jquery */
+/* Methods implemented not using constructors in zzDOM.MM.constructors */
 zzDOM.MM.prototype.each = function ( eachFn ) {
     var self = this;
     Array.prototype.forEach.call( 
@@ -254,6 +200,10 @@ zzDOM.MM.prototype.first = function () {
     return this.length == 0? this: this.list[ 0 ];
 };
 
+zzDOM.MM.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
+};
+
 zzDOM.MM.prototype.map = function ( mapFn ) {
     var newNodes = this.nodes.map( ( node, i ) => {
         return mapFn.call( node, i, node );
@@ -261,6 +211,3 @@ zzDOM.MM.prototype.map = function ( mapFn ) {
     return zzDOM._build( newNodes );
 };
 
-zzDOM.MM.prototype.get = function ( i ) {
-    return zzDOM._get( this.nodes, i );
-};

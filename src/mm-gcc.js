@@ -49,21 +49,6 @@ zzDOM.add = function( ssPrototype, constructor ){
     throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
 };
 
-// Add i to args if needed, removing the last added element
-/*
-zzDOM.MM._args = function( args, addIndex, i ){
-    if ( ! addIndex ){
-        return args;
-    }
-    if ( i > 0 ){
-        args.pop();
-    }
-    args = zzDOM._args( args, i );
-    
-    return args;
-};
-*/
-
 zzDOM.MM.constructors = {};
 zzDOM.MM.constructors.concat = function( mm, fn, args ){
     var newNodes = [];
@@ -128,7 +113,6 @@ zzDOM.MM.constructors.appendText = function( mm, fn, args ){
             textMode = true;
         }
     }
-    //return textMode? text: mm;
     return ! mm.list.length && ! arguments.length?
         null:
         textMode? text: mm;
@@ -142,40 +126,12 @@ zzDOM.MM.constructors.val = function( mm, fn, args, len ){
         }
     }
     return ! mm.list.length && arguments.length === len? null: mm;
-    //return ! mm.list.length && ! arguments.length? null: mm;
 };
 zzDOM.MM.constructors.val0 = function( mm, fn, args ){
     return zzDOM.MM.constructors.val( mm, fn, args, 0 );
 };
 zzDOM.MM.constructors.val1 = function( mm, fn, args ){
     return zzDOM.MM.constructors.val( mm, fn, args, 1 );
-};
-
-/* Methods included in jquery */
-zzDOM.MM.prototype.each = function ( eachFn ) {
-    var self = this;
-    Array.prototype.forEach.call( 
-        this.list, 
-        function( currentValue, index ){
-            eachFn.call( currentValue.el, index, currentValue, self.nodes );
-        }
-    );
-    return this;
-};
-
-zzDOM.MM.prototype.first = function () {
-    return this.length == 0? this: this.list[ 0 ];
-};
-
-zzDOM.MM.prototype.get = function ( i ) {
-    return zzDOM._get( this.nodes, i );
-};
-
-zzDOM.MM.prototype.map = function ( mapFn ) {
-    var newNodes = this.nodes.map( ( node, i ) => {
-        return mapFn.call( node, i, node );
-    });
-    return zzDOM._build( newNodes );
 };
 
 /* Reimplemented methods for Google closure compiler */
@@ -384,3 +340,30 @@ zzDOM.MM.prototype.val = function () {
     return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.val, arguments );
 };
 /* End of forms */
+
+/* Methods implemented not using constructors in zzDOM.MM.constructors */
+zzDOM.MM.prototype.each = function ( eachFn ) {
+    var self = this;
+    Array.prototype.forEach.call(
+        this.list,
+        function( currentValue, index ){
+            eachFn.call( currentValue.el, index, currentValue, self.nodes );
+        }
+    );
+    return this;
+};
+
+zzDOM.MM.prototype.first = function () {
+    return this.length == 0? this: this.list[ 0 ];
+};
+
+zzDOM.MM.prototype.get = function ( i ) {
+    return zzDOM._get( this.nodes, i );
+};
+
+zzDOM.MM.prototype.map = function ( mapFn ) {
+    var newNodes = this.nodes.map( ( node, i ) => {
+        return mapFn.call( node, i, node );
+    });
+    return zzDOM._build( newNodes );
+};

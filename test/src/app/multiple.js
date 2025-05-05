@@ -1020,3 +1020,105 @@ QUnit.test( 'closest test', function( assert ) {
         .attr( 'id' );
     assert.deepEqual( id, 't30' );
 });
+
+var check0Length = function( assert, $items ){
+
+    for ( const $el of $items ) {
+        assert.ok(
+            $el instanceof zzDOM.MM
+        );
+        assert.equal(
+            $el.length,
+            0
+        );
+    }
+};
+
+var checkNull = function( assert, items ){
+
+    for ( const el of items ) {
+        assert.ok(
+            el === null
+        );
+    }
+};
+
+var checkFalse = function( assert, items ){
+
+    for ( const el of items ) {
+        assert.ok(
+            el === false
+        );
+    }
+};
+
+QUnit.test( 'no nodes test', function( assert ) {
+
+    var $notFound = zz( '#notFound' );
+
+    // Some elements must return an empty zzDOM object
+    check0Length(
+        assert,
+        [
+            $notFound.addClass( 'a' ),
+            $notFound.after( '<li>New text</li>' ),
+            $notFound.append( '<li>New text</li>' ),
+            $notFound.appendTo( '#t10-1-2' ),
+            $notFound.attr( 'id', 'newId' ),
+            $notFound.before( '<li>New text</li>' ),
+            $notFound.children(),
+            $notFound.clone(),
+            $notFound.closest(),
+            $notFound.css( 'color', 'red' ),
+            $notFound.empty(),
+            $notFound.filter( '.a' ),
+            $notFound.find( '.a' ),
+            $notFound.height( '2em' ),
+            $notFound.html( '<li>New text</li>' ),
+            $notFound.offset( { top: 25, left: 30 } ),
+            $notFound.offsetParent(),
+            $notFound.parent(),
+            $notFound.parents(),
+            $notFound.prepend( '<li>New text</li>' ),
+            $notFound.remove(),
+            $notFound.removeAttr( 'href' ),
+            $notFound.removeClass( 'a' ),
+            $notFound.replaceWith( '<li>New text</li>' ),
+            $notFound.siblings(),
+            $notFound.text( 'New text' ),
+            $notFound.toggleClass( 'a' ),
+            $notFound.width( '10em' )
+        ]
+    );
+
+    // Some elements must return null
+    checkNull(
+        assert,
+        [
+            //$notFound.attr( 'id' ),
+            //$notFound.height(),
+            $notFound.html(),
+            //$notFound.index(),
+            //$notFound.next(),
+            //$notFound.offset(),
+            //$notFound.outerHeight(),
+            //$notFound.outerWidth(),
+            //$notFound.position(),
+            //$notFound.prev()
+            $notFound.text(),
+            //$notFound.width()
+        ]
+    );
+
+    // Some elements must return false
+    checkFalse(
+        assert,
+        [
+            $notFound.hasClass( 'a' ),
+            $notFound.is( 'div' )
+            
+            
+        ]
+    );
+
+});

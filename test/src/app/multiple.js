@@ -1021,43 +1021,12 @@ QUnit.test( 'closest test', function( assert ) {
     assert.deepEqual( id, 't30' );
 });
 
-var check0Length = function( assert, $items ){
-
-    for ( const $el of $items ) {
-        assert.ok(
-            $el instanceof zzDOM.MM
-        );
-        assert.equal(
-            $el.length,
-            0
-        );
-    }
-};
-
-var checkNull = function( assert, items ){
-
-    for ( const el of items ) {
-        assert.ok(
-            el === null
-        );
-    }
-};
-
-var checkFalse = function( assert, items ){
-
-    for ( const el of items ) {
-        assert.ok(
-            el === false
-        );
-    }
-};
-
 QUnit.test( 'no nodes test', function( assert ) {
 
     var $notFound = zz( '#notFound' );
 
     // Some elements must return an empty zzDOM object
-    check0Length(
+    utils.check0Length(
         assert,
         [
             $notFound.addClass( 'a' ),
@@ -1092,7 +1061,7 @@ QUnit.test( 'no nodes test', function( assert ) {
     );
 
     // Some elements must return null
-    checkNull(
+    utils.checkNull(
         assert,
         [
             //$notFound.attr( 'id' ),
@@ -1111,7 +1080,7 @@ QUnit.test( 'no nodes test', function( assert ) {
     );
 
     // Some elements must return false
-    checkFalse(
+    utils.checkFalse(
         assert,
         [
             $notFound.hasClass( 'a' ),
@@ -1120,5 +1089,4 @@ QUnit.test( 'no nodes test', function( assert ) {
             
         ]
     );
-
 });

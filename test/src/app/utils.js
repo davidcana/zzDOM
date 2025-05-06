@@ -28,3 +28,34 @@ utils.assertHtml = function ( assert, id, expectedHtml ){
         });
     }
 };
+
+utils.check0Length = function( assert, $items ){
+
+    for ( const $el of $items ) {
+        assert.ok(
+            $el instanceof zzDOM.MM
+        );
+        assert.equal(
+            $el.length,
+            0
+        );
+    }
+};
+
+utils.checkNull = function( assert, items ){
+
+    for ( const el of items ) {
+        assert.ok(
+            el === null
+        );
+    }
+};
+
+utils.checkFalse = function( assert, items ){
+
+    for ( const el of items ) {
+        assert.ok(
+            el === false
+        );
+    }
+};

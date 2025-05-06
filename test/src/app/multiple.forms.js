@@ -174,3 +174,39 @@ QUnit.test( 'prop test', function( assert ) {
     assert.ok( zz( '#t28-3-2' ).prop( 'indeterminate' ) );
 });
 
+QUnit.test( 'no nodes test', function( assert ) {
+
+    var $notFound = zz( '#notFound' );
+
+    // Some elements must return an empty zzDOM object
+    utils.check0Length(
+        assert,
+        [
+            $notFound.checked( true ),
+            $notFound.disabled( true ),
+            $notFound.indeterminate( true ),
+            $notFound.prop( 'checked', true ),
+            $notFound.val( 'a' )
+        ]
+    );
+  
+    // Some elements must return null
+    utils.checkNull(
+        assert,
+        [
+            $notFound.checked(),
+            $notFound.disabled(),
+            $notFound.indeterminate(),
+            $notFound.prop( 'checked' ),
+            $notFound.val()
+        ]
+    );
+
+    // Some elements must return false
+    utils.checkFalse(
+        assert,
+        [
+
+        ]
+    );
+});

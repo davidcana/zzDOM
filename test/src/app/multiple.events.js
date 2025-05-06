@@ -271,3 +271,34 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     zz( '#t14-8-4b' ).trigger( 'focus' );
     assert.equal( zz( '#t14-8c' ).text(), '24' );
 });
+
+QUnit.test( 'no nodes test', function( assert ) {
+
+    var $notFound = zz( '#notFound' );
+
+    // Some elements must return an empty zzDOM object
+    utils.check0Length(
+        assert,
+        [
+            $notFound.off( 'click' ),
+            $notFound.on( 'click', function(){} ),
+            $notFound.trigger( 'click' )
+        ]
+    );
+    
+    // Some elements must return null
+    utils.checkNull(
+        assert,
+        [
+
+        ]
+    );
+
+    // Some elements must return false
+    utils.checkFalse(
+        assert,
+        [
+
+        ]
+    );
+});

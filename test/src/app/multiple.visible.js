@@ -159,3 +159,36 @@ QUnit.test( 'fadeIn and fadeOut test', function( assert ) {
     );
 });
 
+QUnit.test( 'no nodes test', function( assert ) {
+
+    var $notFound = zz( '#notFound' );
+
+    // Some elements must return an empty zzDOM object
+    utils.check0Length(
+        assert,
+        [
+            $notFound.fadeIn(),
+            $notFound.fadeOut(),
+            $notFound.hide(),
+            $notFound.isVisible(),
+            $notFound.show(),
+            $notFound.toggle()
+        ]
+    );
+    
+    // Some elements must return null
+    utils.checkNull(
+        assert,
+        [
+
+        ]
+    );
+
+    // Some elements must return false
+    utils.checkFalse(
+        assert,
+        [
+
+        ]
+    );
+});

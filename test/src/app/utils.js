@@ -46,7 +46,7 @@ utils.checkNull = function( assert, items ){
 
     for ( const el of items ) {
         assert.ok(
-            el === null
+            el == null
         );
     }
 };

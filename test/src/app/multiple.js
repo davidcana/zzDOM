@@ -1039,8 +1039,10 @@ QUnit.test( 'no nodes test', function( assert ) {
             $notFound.clone(),
             $notFound.closest(),
             $notFound.css( 'color', 'red' ),
+            $notFound.each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } ),
             $notFound.empty(),
             $notFound.filter( '.a' ),
+            $notFound.first(),
             $notFound.find( '.a' ),
             $notFound.height( '2em' ),
             $notFound.html( '<li>New text</li>' ),
@@ -1065,6 +1067,7 @@ QUnit.test( 'no nodes test', function( assert ) {
         assert,
         [
             //$notFound.attr( 'id' ),
+            $notFound.get( 1 ),
             //$notFound.height(),
             $notFound.html(),
             //$notFound.index(),
@@ -1088,5 +1091,18 @@ QUnit.test( 'no nodes test', function( assert ) {
             
             
         ]
+    );
+
+    // Some special tests
+    assert.equal(
+        $notFound.map(
+            function() {
+                return this.id;
+            }).get().join( '|' ),
+        ''
+    );
+    assert.deepEqual(
+        $notFound.get(),
+        []
     );
 });

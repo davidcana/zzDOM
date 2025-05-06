@@ -1037,17 +1037,19 @@ QUnit.test( 'no nodes test', function( assert ) {
             $notFound.before( '<li>New text</li>' ),
             $notFound.children(),
             $notFound.clone(),
-            $notFound.closest(),
+            $notFound.closest( 'a' ),
             $notFound.css( 'color', 'red' ),
-            $notFound.each( function( index, ss ){ ids.push( ss.attr( 'id' ) ); } ),
+            $notFound.each( function( index, ss ){} ),
             $notFound.empty(),
             $notFound.filter( '.a' ),
             $notFound.first(),
             $notFound.find( '.a' ),
             $notFound.height( '2em' ),
             $notFound.html( '<li>New text</li>' ),
+            $notFound.next(),
             $notFound.offset( { top: 25, left: 30 } ),
             $notFound.offsetParent(),
+            $notFound.prev(),
             $notFound.parent(),
             $notFound.parents(),
             $notFound.prepend( '<li>New text</li>' ),
@@ -1066,22 +1068,20 @@ QUnit.test( 'no nodes test', function( assert ) {
     utils.checkNull(
         assert,
         [
-            //$notFound.attr( 'id' ),
+            $notFound.attr( 'id' ),
             $notFound.get( 1 ),
-            //$notFound.height(),
+            $notFound.height(),
             $notFound.html(),
-            //$notFound.index(),
-            //$notFound.next(),
-            //$notFound.offset(),
-            //$notFound.outerHeight(),
-            //$notFound.outerWidth(),
-            //$notFound.position(),
-            //$notFound.prev()
+            $notFound.index(),
+            $notFound.offset(),
+            $notFound.outerHeight(),
+            $notFound.outerWidth(),
+            $notFound.position(),
             $notFound.text(),
-            //$notFound.width()
+            $notFound.width()
         ]
     );
-
+    
     // Some elements must return false
     utils.checkFalse(
         assert,
@@ -1106,3 +1106,4 @@ QUnit.test( 'no nodes test', function( assert ) {
         []
     );
 });
+

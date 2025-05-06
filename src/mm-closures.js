@@ -148,19 +148,40 @@ zzDOM.MM.constructors.val0 = function( functionId ){
 zzDOM.MM.constructors.val1 = function( functionId ){
     return zzDOM.MM.constructors.val( functionId, 1 );
 };
+zzDOM.MM.constructors.getVal = function( functionId ){
+    return function(){
+        for ( var i = 0; i < this.list.length; i++ ) {
+            var ss = this.list[ i ];
+            var r = ss[ functionId ].apply( ss, arguments );
+            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+                return r;
+            }
+        }
+        return ! this.list.length? null: this;
+    };
+};
 zzDOM.MM.fConstructors = {
+    'attr': 'val1',
     'children': 'concat',
     'clone': 'concat',
     'filter': 'concat',
     'find': 'concat',
+    'height': 'val0',
+    'index': 'getVal',
     'next': 'concat',
+    'offset': 'val0',
     'offsetParent': 'concat',
+    'outerHeight': 'getVal',
+    'outerWidth': 'getVal',
     'parent': 'concat',
     'parents': 'concat',
+    'position': 'getVal',
     'prev': 'concat',
     'siblings': 'concat',
+    'width': 'val0',
     'hasClass': 'booleanOr',
     'is': 'booleanOr',
+    'isVisible': 'getVal',
     'fadeIn': 'callback',
     'fadeOut': 'callback',
     'text': 'appendText',

@@ -1,7 +1,8 @@
 // utils singleton class
 "use strict";
-
+/*
 var htmlComparator = require( './htmlComparator.js' );
+//var zzDOM = require( '../../../closures-core.js' );
 var utils = {};
 
 utils.assertHtml = function ( assert, id, expectedHtml ){
@@ -30,6 +31,38 @@ utils.assertHtml = function ( assert, id, expectedHtml ){
     }
 };
 
+utils.check0Length = function( assert, $items ){
+
+    for ( const $el of $items ) {
+        assert.ok(
+            $el instanceof zzDOM.MM
+        );
+        assert.equal(
+            $el.length,
+            0
+        );
+    }
+};
+
+utils.checkNull = function( assert, items ){
+
+    for ( const el of items ) {
+        assert.ok(
+            el == null
+        );
+    }
+};
+
+utils.checkFalse = function( assert, items ){
+
+    for ( const el of items ) {
+        assert.ok(
+            el === false
+        );
+    }
+};
+*/
 if ( typeof module === 'object' && module.exports ) {
     module.exports = utils;
 }
+

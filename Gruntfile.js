@@ -927,6 +927,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-core.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/simple.js'
                 ],
                 dest: 'build/node-core-simple.js',
@@ -953,6 +955,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-zz.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/simple.js'
                 ],
                 dest: 'build/node-zz-simple.js',
@@ -979,6 +983,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-plugin-center.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/simple.center.js'
                 ],
                 dest: 'build/node-plugin-center-simple.js',
@@ -1005,6 +1011,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-plugin-events.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/simple.events.js'
                 ],
                 dest: 'build/node-plugin-events-simple.js',
@@ -1031,6 +1039,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-plugin-forms.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/simple.forms.js'
                 ],
                 dest: 'build/node-plugin-forms-simple.js',
@@ -1083,6 +1093,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-plugin-visible.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/simple.visible.js'
                 ],
                 dest: 'build/node-plugin-visible-simple.js',
@@ -1109,6 +1121,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-zz.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/simple.js',
                     'test/src/app/simple.events.js',
                     'test/src/app/simple.visible.js',
@@ -1143,6 +1157,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-core.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/multiple.js'
                 ],
                 dest: 'build/node-core-multiple.js',
@@ -1169,6 +1185,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-zz.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/multiple.js'
                 ],
                 dest: 'build/node-zz-multiple.js',
@@ -1195,6 +1213,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-plugin-events.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/multiple.events.js'
                 ],
                 dest: 'build/node-plugin-events-multiple.js',
@@ -1221,6 +1241,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-plugin-forms.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/multiple.forms.js'
                 ],
                 dest: 'build/node-plugin-forms-multiple.js',
@@ -1247,6 +1269,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-plugin-visible.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/multiple.visible.js'
                 ],
                 dest: 'build/node-plugin-visible-multiple.js',
@@ -1273,6 +1297,8 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/src/app/node-zz.header.js',
+                    'test/src/app/htmlComparator.js',
+                    'test/src/app/utils.js',
                     'test/src/app/multiple.js',
                     'test/src/app/multiple.events.js',
                     'test/src/app/multiple.visible.js',

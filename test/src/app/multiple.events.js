@@ -272,7 +272,7 @@ QUnit.test( 'trigger, on and off test', function( assert ) {
     assert.equal( zz( '#t14-8c' ).text(), '24' );
 });
 
-QUnit.test( 'no nodes test', function( assert ) {
+QUnit.test( 'no nodes events test', function( assert ) {
 
     var $notFound = zz( '#notFound' );
 

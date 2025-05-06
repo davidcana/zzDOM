@@ -113,7 +113,7 @@ zzDOM.MM.constructors.appendText = function( mm, fn, args ){
             textMode = true;
         }
     }
-    return ! mm.list.length && ! arguments.length?
+    return ! mm.list.length && ! args.length?
         null:
         textMode? text: mm;
 };
@@ -125,7 +125,7 @@ zzDOM.MM.constructors.val = function( mm, fn, args, len ){
             return r;
         }
     }
-    return ! mm.list.length && arguments.length === len? null: mm;
+    return ! mm.list.length && args.length === len? null: mm;
 };
 zzDOM.MM.constructors.val0 = function( mm, fn, args ){
     return zzDOM.MM.constructors.val( mm, fn, args, 0 );
@@ -133,7 +133,16 @@ zzDOM.MM.constructors.val0 = function( mm, fn, args ){
 zzDOM.MM.constructors.val1 = function( mm, fn, args ){
     return zzDOM.MM.constructors.val( mm, fn, args, 1 );
 };
-
+zzDOM.MM.constructors.getVal = function( mm, fn, args ){
+    for ( var i = 0; i < mm.list.length; i++ ) {
+        var ss = mm.list[ i ];
+        var r = fn.apply( ss, args );
+        if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+            return r;
+        }
+    }
+    return ! mm.list.length? null: mm;
+};
 /* Reimplemented methods for Google closure compiler */
 zzDOM.MM.prototype.addClass = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );
@@ -152,7 +161,7 @@ zzDOM.MM.prototype.appendTo = function () {
 };
 
 zzDOM.MM.prototype.attr = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.attr, arguments );
+    return zzDOM.MM.constructors.val1( this, zzDOM.SS.prototype.attr, arguments );
 };
 
 zzDOM.MM.prototype.before = function () {
@@ -192,7 +201,7 @@ zzDOM.MM.prototype.hasClass = function () {
 };
 
 zzDOM.MM.prototype.height = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.height, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.height, arguments );
 };
 
 zzDOM.MM.prototype.html = function () {
@@ -200,7 +209,7 @@ zzDOM.MM.prototype.html = function () {
 };
 
 zzDOM.MM.prototype.index = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.index, arguments );
+    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.index, arguments );
 };
 
 zzDOM.MM.prototype.is = function () {
@@ -212,7 +221,7 @@ zzDOM.MM.prototype.next = function () {
 };
 
 zzDOM.MM.prototype.offset = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.offset, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.offset, arguments );
 };
 
 zzDOM.MM.prototype.offsetParent = function () {
@@ -220,11 +229,11 @@ zzDOM.MM.prototype.offsetParent = function () {
 };
 
 zzDOM.MM.prototype.outerHeight = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.outerHeight, arguments );
+    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.outerHeight, arguments );
 };
 
 zzDOM.MM.prototype.outerWidth = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.outerWidth, arguments );
+    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.outerWidth, arguments );
 };
 
 zzDOM.MM.prototype.parent = function () {
@@ -236,7 +245,7 @@ zzDOM.MM.prototype.parents = function () {
 };
 
 zzDOM.MM.prototype.position = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.position, arguments );
+    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.position, arguments );
 };
 
 zzDOM.MM.prototype.prepend = function () {
@@ -276,7 +285,7 @@ zzDOM.MM.prototype.toggleClass = function () {
 };
 
 zzDOM.MM.prototype.width = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.width, arguments );
+    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.width, arguments );
 };
 
 /* Show/hide */
@@ -293,7 +302,7 @@ zzDOM.MM.prototype.hide = function () {
 };
 
 zzDOM.MM.prototype.isVisible = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.isVisible, arguments );
+    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.isVisible, arguments );
 };
 
 zzDOM.MM.prototype.show = function () {

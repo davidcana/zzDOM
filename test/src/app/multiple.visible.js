@@ -159,7 +159,7 @@ QUnit.test( 'fadeIn and fadeOut test', function( assert ) {
     );
 });
 
-QUnit.test( 'no nodes test', function( assert ) {
+QUnit.test( 'no nodes visible test', function( assert ) {
 
     var $notFound = zz( '#notFound' );
 
@@ -170,7 +170,6 @@ QUnit.test( 'no nodes test', function( assert ) {
             $notFound.fadeIn(),
             $notFound.fadeOut(),
             $notFound.hide(),
-            $notFound.isVisible(),
             $notFound.show(),
             $notFound.toggle()
         ]
@@ -180,7 +179,7 @@ QUnit.test( 'no nodes test', function( assert ) {
     utils.checkNull(
         assert,
         [
-
+            $notFound.isVisible()
         ]
     );
 

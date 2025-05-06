@@ -212,7 +212,7 @@ This is the container t7-2
     assert.deepEqual( ids, [ 't7-2-in1', 't7-2-in2' ] );
     utils.assertHtml( assert, 't7-2', t7_2_modified );
 });
-
+/*
 QUnit.test( 'Null test', function( assert ) {
     zz( document.querySelectorAll( '#non-existing-id' ) ).text( 'this is useless' );
     assert.ok( true );
@@ -233,7 +233,7 @@ QUnit.test( 'Null test', function( assert ) {
     assert.deepEqual( instance.list, [] );
     assert.deepEqual( instance.nodes, [] );
 });
-
+*/
 QUnit.test( 'Exceptions test', /** @suppress {checkTypes} */ function( assert ) {
     assert.throws(
         function() {

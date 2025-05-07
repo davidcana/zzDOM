@@ -162,12 +162,22 @@ zzDOM.MM.constructors.getVal = function( functionId ){
 };
 zzDOM.MM.fConstructors = {
     'attr': 'val1',
+    'checked': 'val0',
     'children': 'concat',
+    'closest': 'first',
     'clone': 'concat',
+    'disabled': 'val0',
+    'fadeIn': 'callback',
+    'fadeOut': 'callback',
     'filter': 'concat',
     'find': 'concat',
+    'hasClass': 'booleanOr',
     'height': 'val0',
+    'html': 'val0',
+    'indeterminate': 'val0',
     'index': 'getVal',
+    'is': 'booleanOr',
+    'isVisible': 'getVal',
     'next': 'concat',
     'offset': 'val0',
     'offsetParent': 'concat',
@@ -177,21 +187,11 @@ zzDOM.MM.fConstructors = {
     'parents': 'concat',
     'position': 'getVal',
     'prev': 'concat',
-    'siblings': 'concat',
-    'width': 'val0',
-    'hasClass': 'booleanOr',
-    'is': 'booleanOr',
-    'isVisible': 'getVal',
-    'fadeIn': 'callback',
-    'fadeOut': 'callback',
-    'text': 'appendText',
-    'checked': 'val0',
-    'disabled': 'val0',
-    'html': 'val0',
-    'indeterminate': 'val0',
-    'val': 'val0',
     'prop': 'val1',
-    'closest': 'first'
+    'siblings': 'concat',
+    'text': 'appendText',
+    'val': 'val0',
+    'width': 'val0'
 };
 
 // Init prototype functions from zzDOM.SS

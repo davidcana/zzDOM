@@ -16,8 +16,8 @@
     * center. Makes it easy to center elements in page.
     * utils. Includes some utility methods.
 * Small size:
-    * core: 9.9KB minified, 2.9KB gzipped.
-    * full (includes all the plugins): 13.4KB minified, 3.9KB gzipped.
+    * core: 12.2KB minified, 3.3KB gzipped.
+    * full (includes all the plugins): 17.8KB minified, 4.6KB gzipped.
 
 ## Browser Support
 No support for old browsers. No polyfills. **zzDOM** should work with any browser that supports **document.querySelectorAll()**.

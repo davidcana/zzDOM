@@ -23,7 +23,7 @@
 No support for old browsers. No polyfills. **zzDOM** should work with any browser that supports **document.querySelectorAll()**.
 
 ## Using zzDOM
-Let's import **zzDOM** and define the **zz** function. You can use the name tour prefer instead of **zz**:
+Let's import **zzDOM** and define the **zz** function. You can use the name you prefer instead of **zz**:
 
 ```javascript
 var zzDOM = require( 'zzdom' );

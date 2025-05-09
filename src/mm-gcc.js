@@ -289,6 +289,7 @@ zzDOM.MM.prototype.width = function () {
 };
 
 /* Show/hide */
+/*
 zzDOM.MM.prototype.fadeIn = function () {
     return zzDOM.MM.constructors.callback( this, zzDOM.SS.prototype.fadeIn, arguments );
 };
@@ -312,9 +313,11 @@ zzDOM.MM.prototype.show = function () {
 zzDOM.MM.prototype.toggle = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.toggle, arguments );
 };
+*/
 /* End of show/hide */
 
 /* Events */
+/*
 zzDOM.MM.prototype.off = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.off, arguments );
 };
@@ -326,9 +329,11 @@ zzDOM.MM.prototype.on = function () {
 zzDOM.MM.prototype.trigger = function () {
     return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.trigger, arguments );
 };
+*/
 /* End of events */
 
 /* Forms */
+/*
 zzDOM.MM.prototype.checked = function () {
     return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.checked, arguments );
 };
@@ -348,6 +353,7 @@ zzDOM.MM.prototype.prop = function () {
 zzDOM.MM.prototype.val = function () {
     return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.val, arguments );
 };
+*/
 /* End of forms */
 
 /* Methods implemented not using constructors in zzDOM.MM.constructors */

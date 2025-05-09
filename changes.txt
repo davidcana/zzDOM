@@ -16,3 +16,5 @@ New in 0.2.0
     - parents
     - prop
 
+New in 0.5.0
+- Exports changed from zzDOM.zz to zzDOM.

@@ -2,5 +2,7 @@
 
 var Qunit = require( 'qunit' );
 
-var zz = require( '../index.js' );
+var zzDOM = require( '../index.js' );
+var zz = zzDOM.zz;
+
 require( '../plugin-center.js' );

@@ -18,3 +18,6 @@ New in 0.2.0
 
 New in 0.5.0
 - Exports changed from zzDOM.zz to zzDOM.
+
+New in 0.5.1
+- Bug fixed: files in build directory not found in npm package.

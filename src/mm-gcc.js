@@ -1,9 +1,15 @@
 /*
- * zzDOM.MM class
+ * MM class
  * Google closure compiler version
  */
+export const MM = {};
+
+// Import modules
+import { SS } from './ss.js';
+zzDOM.SS = SS;
+
 /** @constructor */
-zzDOM.MM = function ( _nodes ) {    
+MM = function ( _nodes ) {    
     this.list = [];
     this.nodes = _nodes.filter( n => n ); // Remove null elements
     this.length = this.nodes.length;
@@ -18,39 +24,43 @@ zzDOM.MM = function ( _nodes ) {
     }
 };
 
-/*
-Unify the definition of a function of zzDOM.SS.prototype and a definition of zzDOM.MM.prototype. Example:
+MM._registerAdd = function( zzDOM ){
 
-    zzDOM.add( 
-        zzDOM.SS.prototype.myCustomFunction = function(){
-            ...
-            return this;
-        },
-        zzDOM.MM.constructors.concat
+    /*
+    Unify the definition of a function of zzDOM.SS.prototype and a definition of MM.prototype. Example:
+
+        zzDOM.add( 
+            zzDOM.SS.prototype.myCustomFunction = function(){
+                ...
+                return this;
+            },
+            MM.constructors.concat
+        );
     );
-);
-*/
-/**
- * @param {Function} ssPrototype
- * @param {Function=} constructor
- */
-zzDOM.add = function( ssPrototype, constructor ){
-    for ( var id in zzDOM.SS.prototype ){
-        var current = zzDOM.SS.prototype[ id ];
-        if ( ssPrototype === current ){
-            var c = constructor || zzDOM.MM.constructors.default;
-            zzDOM.MM.prototype[ id ] = function(){
-                return c( this, ssPrototype, arguments );
-            };
-            return;
+    */
+    /**
+     * @param {Function} ssPrototype
+     * @param {Function=} constructor
+     */
+    zzDOM.add = function( ssPrototype, constructor ){
+        for ( var id in zzDOM.SS.prototype ){
+            var current = zzDOM.SS.prototype[ id ];
+            if ( ssPrototype === current ){
+                var c = constructor || MM.constructors.default;
+                MM.prototype[ id ] = function(){
+                    return c( this, ssPrototype, arguments );
+                };
+                return;
+            }
         }
-    }
-    
-    throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
+        
+        throw 'Error registering MM: zzDOM.SS not found.';
+    };
+
 };
 
-zzDOM.MM.constructors = {};
-zzDOM.MM.constructors.concat = function( mm, fn, args ){
+MM.constructors = {};
+MM.constructors.concat = function( mm, fn, args ){
     var newNodes = [];
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
@@ -60,7 +70,7 @@ zzDOM.MM.constructors.concat = function( mm, fn, args ){
     }
     return zzDOM._build( newNodes );
 };
-zzDOM.MM.constructors.booleanOr = function( mm, fn, args ){
+MM.constructors.booleanOr = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var x = fn.apply( ss, args );
@@ -70,7 +80,7 @@ zzDOM.MM.constructors.booleanOr = function( mm, fn, args ){
     }
     return false;
 };
-zzDOM.MM.constructors.default = function( mm, fn, args ){
+MM.constructors.default = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var r = fn.apply( ss, args );
@@ -80,7 +90,7 @@ zzDOM.MM.constructors.default = function( mm, fn, args ){
     }
     return mm;
 };
-zzDOM.MM.constructors.first = function( mm, fn, args ){
+MM.constructors.first = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var r = fn.apply( ss, args );
@@ -90,7 +100,7 @@ zzDOM.MM.constructors.first = function( mm, fn, args ){
     }
     return mm;
 };
-zzDOM.MM.constructors.callback = function( mm, fn, args = {} ){
+MM.constructors.callback = function( mm, fn, args = {} ){
     if ( ! args[ 0 ] ){
         args[ 0 ] = {};
     }
@@ -102,7 +112,7 @@ zzDOM.MM.constructors.callback = function( mm, fn, args = {} ){
     }
     return mm;
 };
-zzDOM.MM.constructors.appendText = function( mm, fn, args ){
+MM.constructors.appendText = function( mm, fn, args ){
     var text = '';
     var textMode = false;
     for ( var i = 0; i < mm.length; i++ ) {
@@ -117,7 +127,7 @@ zzDOM.MM.constructors.appendText = function( mm, fn, args ){
         null:
         textMode? text: mm;
 };
-zzDOM.MM.constructors.val = function( mm, fn, args, len ){
+MM.constructors.val = function( mm, fn, args, len ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var r = fn.apply( ss, args );
@@ -127,13 +137,13 @@ zzDOM.MM.constructors.val = function( mm, fn, args, len ){
     }
     return ! mm.list.length && args.length === len? null: mm;
 };
-zzDOM.MM.constructors.val0 = function( mm, fn, args ){
-    return zzDOM.MM.constructors.val( mm, fn, args, 0 );
+MM.constructors.val0 = function( mm, fn, args ){
+    return MM.constructors.val( mm, fn, args, 0 );
 };
-zzDOM.MM.constructors.val1 = function( mm, fn, args ){
-    return zzDOM.MM.constructors.val( mm, fn, args, 1 );
+MM.constructors.val1 = function( mm, fn, args ){
+    return MM.constructors.val( mm, fn, args, 1 );
 };
-zzDOM.MM.constructors.getVal = function( mm, fn, args ){
+MM.constructors.getVal = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var r = fn.apply( ss, args );
@@ -144,220 +154,152 @@ zzDOM.MM.constructors.getVal = function( mm, fn, args ){
     return ! mm.list.length? null: mm;
 };
 /* Reimplemented methods for Google closure compiler */
-zzDOM.MM.prototype.addClass = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );
+MM.prototype.addClass = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );
 };
 
-zzDOM.MM.prototype.after = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.after, arguments );
+MM.prototype.after = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.after, arguments );
 };
 
-zzDOM.MM.prototype.append = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.append, arguments );
+MM.prototype.append = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.append, arguments );
 };
 
-zzDOM.MM.prototype.appendTo = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.appendTo, arguments );
+MM.prototype.appendTo = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.appendTo, arguments );
 };
 
-zzDOM.MM.prototype.attr = function () {
-    return zzDOM.MM.constructors.val1( this, zzDOM.SS.prototype.attr, arguments );
+MM.prototype.attr = function () {
+    return MM.constructors.val1( this, zzDOM.SS.prototype.attr, arguments );
 };
 
-zzDOM.MM.prototype.before = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.before, arguments );
+MM.prototype.before = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.before, arguments );
 };
 
-zzDOM.MM.prototype.children = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.children, arguments );
+MM.prototype.children = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.children, arguments );
 };
 
-zzDOM.MM.prototype.clone = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.clone, arguments );
+MM.prototype.clone = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.clone, arguments );
 };
 
-zzDOM.MM.prototype.closest = function () {
-    return zzDOM.MM.constructors.first( this, zzDOM.SS.prototype.closest, arguments );
+MM.prototype.closest = function () {
+    return MM.constructors.first( this, zzDOM.SS.prototype.closest, arguments );
 };
 
-zzDOM.MM.prototype.css = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.css, arguments );
+MM.prototype.css = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.css, arguments );
 };
 
-zzDOM.MM.prototype.empty = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.empty, arguments );
+MM.prototype.empty = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.empty, arguments );
 };
 
-zzDOM.MM.prototype.filter = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
+MM.prototype.filter = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
 };
 
-zzDOM.MM.prototype.find = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.find, arguments );
+MM.prototype.find = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.find, arguments );
 };
 
-zzDOM.MM.prototype.hasClass = function () {
-    return zzDOM.MM.constructors.booleanOr( this, zzDOM.SS.prototype.hasClass, arguments );
+MM.prototype.hasClass = function () {
+    return MM.constructors.booleanOr( this, zzDOM.SS.prototype.hasClass, arguments );
 };
 
-zzDOM.MM.prototype.height = function () {
-    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.height, arguments );
+MM.prototype.height = function () {
+    return MM.constructors.val0( this, zzDOM.SS.prototype.height, arguments );
 };
 
-zzDOM.MM.prototype.html = function () {
-    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.html, arguments );
+MM.prototype.html = function () {
+    return MM.constructors.val0( this, zzDOM.SS.prototype.html, arguments );
 };
 
-zzDOM.MM.prototype.index = function () {
-    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.index, arguments );
+MM.prototype.index = function () {
+    return MM.constructors.getVal( this, zzDOM.SS.prototype.index, arguments );
 };
 
-zzDOM.MM.prototype.is = function () {
-    return zzDOM.MM.constructors.booleanOr( this, zzDOM.SS.prototype.is, arguments );
+MM.prototype.is = function () {
+    return MM.constructors.booleanOr( this, zzDOM.SS.prototype.is, arguments );
 };
 
-zzDOM.MM.prototype.next = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.next, arguments );
+MM.prototype.next = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.next, arguments );
 };
 
-zzDOM.MM.prototype.offset = function () {
-    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.offset, arguments );
+MM.prototype.offset = function () {
+    return MM.constructors.val0( this, zzDOM.SS.prototype.offset, arguments );
 };
 
-zzDOM.MM.prototype.offsetParent = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.offsetParent, arguments );
+MM.prototype.offsetParent = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.offsetParent, arguments );
 };
 
-zzDOM.MM.prototype.outerHeight = function () {
-    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.outerHeight, arguments );
+MM.prototype.outerHeight = function () {
+    return MM.constructors.getVal( this, zzDOM.SS.prototype.outerHeight, arguments );
 };
 
-zzDOM.MM.prototype.outerWidth = function () {
-    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.outerWidth, arguments );
+MM.prototype.outerWidth = function () {
+    return MM.constructors.getVal( this, zzDOM.SS.prototype.outerWidth, arguments );
 };
 
-zzDOM.MM.prototype.parent = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.parent, arguments );
+MM.prototype.parent = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.parent, arguments );
 };
 
-zzDOM.MM.prototype.parents = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.parents, arguments );
+MM.prototype.parents = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.parents, arguments );
 };
 
-zzDOM.MM.prototype.position = function () {
-    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.position, arguments );
+MM.prototype.position = function () {
+    return MM.constructors.getVal( this, zzDOM.SS.prototype.position, arguments );
 };
 
-zzDOM.MM.prototype.prepend = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.prepend, arguments );
+MM.prototype.prepend = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.prepend, arguments );
 };
 
-zzDOM.MM.prototype.prev = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.prev, arguments );
+MM.prototype.prev = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.prev, arguments );
 };
 
-zzDOM.MM.prototype.remove = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.remove, arguments );
+MM.prototype.remove = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.remove, arguments );
 };
 
-zzDOM.MM.prototype.removeAttr = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.removeAttr, arguments );
+MM.prototype.removeAttr = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.removeAttr, arguments );
 };
 
-zzDOM.MM.prototype.removeClass = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.removeClass, arguments );
+MM.prototype.removeClass = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.removeClass, arguments );
 };
 
-zzDOM.MM.prototype.replaceWith = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.replaceWith, arguments );
+MM.prototype.replaceWith = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.replaceWith, arguments );
 };
 
-zzDOM.MM.prototype.siblings = function () {
-    return zzDOM.MM.constructors.concat( this, zzDOM.SS.prototype.siblings, arguments );
+MM.prototype.siblings = function () {
+    return MM.constructors.concat( this, zzDOM.SS.prototype.siblings, arguments );
 };
 
-zzDOM.MM.prototype.text = function () {
-    return zzDOM.MM.constructors.appendText( this, zzDOM.SS.prototype.text, arguments );
+MM.prototype.text = function () {
+    return MM.constructors.appendText( this, zzDOM.SS.prototype.text, arguments );
 };
 
-zzDOM.MM.prototype.toggleClass = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.toggleClass, arguments );
+MM.prototype.toggleClass = function () {
+    return MM.constructors.default( this, zzDOM.SS.prototype.toggleClass, arguments );
 };
 
-zzDOM.MM.prototype.width = function () {
-    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.width, arguments );
+MM.prototype.width = function () {
+    return MM.constructors.val0( this, zzDOM.SS.prototype.width, arguments );
 };
 
-/* Show/hide */
-/*
-zzDOM.MM.prototype.fadeIn = function () {
-    return zzDOM.MM.constructors.callback( this, zzDOM.SS.prototype.fadeIn, arguments );
-};
-
-zzDOM.MM.prototype.fadeOut = function () {
-    return zzDOM.MM.constructors.callback( this, zzDOM.SS.prototype.fadeOut, arguments );
-};
-
-zzDOM.MM.prototype.hide = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.hide, arguments );
-};
-
-zzDOM.MM.prototype.isVisible = function () {
-    return zzDOM.MM.constructors.getVal( this, zzDOM.SS.prototype.isVisible, arguments );
-};
-
-zzDOM.MM.prototype.show = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.show, arguments );
-};
-
-zzDOM.MM.prototype.toggle = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.toggle, arguments );
-};
-*/
-/* End of show/hide */
-
-/* Events */
-/*
-zzDOM.MM.prototype.off = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.off, arguments );
-};
-
-zzDOM.MM.prototype.on = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.on, arguments );
-};
-
-zzDOM.MM.prototype.trigger = function () {
-    return zzDOM.MM.constructors.default( this, zzDOM.SS.prototype.trigger, arguments );
-};
-*/
-/* End of events */
-
-/* Forms */
-/*
-zzDOM.MM.prototype.checked = function () {
-    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.checked, arguments );
-};
-
-zzDOM.MM.prototype.disabled = function () {
-    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.disabled, arguments );
-};
-
-zzDOM.MM.prototype.indeterminate = function () {
-    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.indeterminate, arguments );
-};
-
-zzDOM.MM.prototype.prop = function () {
-    return zzDOM.MM.constructors.val1( this, zzDOM.SS.prototype.prop, arguments );
-};
-
-zzDOM.MM.prototype.val = function () {
-    return zzDOM.MM.constructors.val0( this, zzDOM.SS.prototype.val, arguments );
-};
-*/
-/* End of forms */
-
-/* Methods implemented not using constructors in zzDOM.MM.constructors */
-zzDOM.MM.prototype.each = function ( eachFn ) {
+/* Methods implemented not using constructors in MM.constructors */
+MM.prototype.each = function ( eachFn ) {
     var self = this;
     Array.prototype.forEach.call(
         this.list,
@@ -368,15 +310,15 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     return this;
 };
 
-zzDOM.MM.prototype.first = function () {
+MM.prototype.first = function () {
     return this.length == 0? this: this.list[ 0 ];
 };
 
-zzDOM.MM.prototype.get = function ( i ) {
+MM.prototype.get = function ( i ) {
     return zzDOM._get( this.nodes, i );
 };
 
-zzDOM.MM.prototype.map = function ( mapFn ) {
+MM.prototype.map = function ( mapFn ) {
     var newNodes = this.nodes.map( ( node, i ) => {
         return mapFn.call( node, i, node );
     });

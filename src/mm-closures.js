@@ -2,14 +2,11 @@
  * zzDOM.MM class
  */
 
-export const MM = {};
-
 // Import modules
 import { SS } from './ss.js';
-zzDOM.SS = SS;
 
 /** @constructor */
-zzDOM.MM = function ( _nodes ) {    
+export const MM = function ( _nodes ) {
     this.list = [];
     this.nodes = _nodes.filter( n => n ); // Remove null elements
     this.length = this.nodes.length;
@@ -18,7 +15,7 @@ zzDOM.MM = function ( _nodes ) {
     for ( var i = 0; i < this.length; i++ ) {
         var el = this.nodes[ i ];
         this[ i ] = el; // for array like
-        var ss = new zzDOM.SS( el );
+        var ss = new SS( el );
         this.list.push( ss );
         ss._i = i; // for index in functions
     }
@@ -26,10 +23,10 @@ zzDOM.MM = function ( _nodes ) {
 
 MM._registerAdd = function( zzDOM ){
     /*
-    Unify the definition of a function of zzDOM.SS.prototype and a definition of zzDOM.MM.prototype. Example:
+    Unify the definition of a function of SS.prototype and a definition of zzDOM.MM.prototype. Example:
 
         zzDOM.add( 
-            zzDOM.SS.prototype.myCustomFunction = function(){
+            SS.prototype.myCustomFunction = function(){
                 ...
                 return this;
             },
@@ -42,8 +39,8 @@ MM._registerAdd = function( zzDOM ){
      * @param {Function=} constructor
      */
     zzDOM.add = function( ssPrototype, constructor ){
-        for ( var id in zzDOM.SS.prototype ){
-            var current = zzDOM.SS.prototype[ id ];
+        for ( var id in SS.prototype ){
+            var current = SS.prototype[ id ];
             if ( ssPrototype === current ){
                 var closure = function(){
                     var functionId = id;
@@ -54,7 +51,7 @@ MM._registerAdd = function( zzDOM ){
             }
         }
         
-        throw 'Error registering zzDOM.MM: zzDOM.SS not found.';
+        throw 'Error registering zzDOM.MM: SS not found.';
     };
 
 };
@@ -89,7 +86,7 @@ zzDOM.MM.constructors.default = function( functionId ){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
             var r = ss[ functionId ].apply( ss, arguments );
-            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+            if ( i === 0 && ! ( r instanceof SS ) ){
                 return r;
             }
         }
@@ -101,7 +98,7 @@ zzDOM.MM.constructors.first = function( functionId ){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
             var r = ss[ functionId ].apply( ss, arguments );
-            if ( r instanceof zzDOM.SS ){
+            if ( r instanceof SS ){
                 return r;
             }
         }
@@ -145,7 +142,7 @@ zzDOM.MM.constructors.val = function( functionId, len ){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
             var r = ss[ functionId ].apply( ss, arguments );
-            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+            if ( i === 0 && ! ( r instanceof SS ) ){
                 return r;
             }
         }
@@ -163,7 +160,7 @@ zzDOM.MM.constructors.getVal = function( functionId ){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
             var r = ss[ functionId ].apply( ss, arguments );
-            if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+            if ( i === 0 && ! ( r instanceof SS ) ){
                 return r;
             }
         }
@@ -204,9 +201,9 @@ zzDOM.MM.fConstructors = {
     'width': 'val0'
 };
 
-// Init prototype functions from zzDOM.SS
+// Init prototype functions from SS
 zzDOM.MM.init = function(){
-    for ( var id in zzDOM.SS.prototype ){
+    for ( var id in SS.prototype ){
         var closure = function(){
             const fConstructor = zzDOM.MM.fConstructors[ id ] || 'default';
             return zzDOM.MM.constructors[ fConstructor ]( id );

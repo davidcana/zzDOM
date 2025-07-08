@@ -1,4 +1,6 @@
-"use strict";
+// Import zzDOM
+import { zzDOM } from '/src/zzDOM-gcc-full.js';
+const zz = zzDOM.zz;
 
 zzDOM.add( 
     zzDOM.SS.prototype.velocity = function(){

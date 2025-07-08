@@ -2,14 +2,12 @@
  * MM class
  * Google closure compiler version
  */
-export const MM = {};
 
 // Import modules
 import { SS } from './ss.js';
-zzDOM.SS = SS;
 
 /** @constructor */
-MM = function ( _nodes ) {    
+export const MM = function ( _nodes ) {
     this.list = [];
     this.nodes = _nodes.filter( n => n ); // Remove null elements
     this.length = this.nodes.length;
@@ -18,7 +16,7 @@ MM = function ( _nodes ) {
     for ( var i = 0; i < this.length; i++ ) {
         var el = this.nodes[ i ];
         this[ i ] = el; // for array like
-        var ss = new zzDOM.SS( el );
+        var ss = new SS( el );
         this.list.push( ss );
         ss._i = i; // for index in functions
     }
@@ -27,10 +25,10 @@ MM = function ( _nodes ) {
 MM._registerAdd = function( zzDOM ){
 
     /*
-    Unify the definition of a function of zzDOM.SS.prototype and a definition of MM.prototype. Example:
+    Unify the definition of a function of SS.prototype and a definition of MM.prototype. Example:
 
         zzDOM.add( 
-            zzDOM.SS.prototype.myCustomFunction = function(){
+            SS.prototype.myCustomFunction = function(){
                 ...
                 return this;
             },
@@ -43,8 +41,8 @@ MM._registerAdd = function( zzDOM ){
      * @param {Function=} constructor
      */
     zzDOM.add = function( ssPrototype, constructor ){
-        for ( var id in zzDOM.SS.prototype ){
-            var current = zzDOM.SS.prototype[ id ];
+        for ( var id in SS.prototype ){
+            var current = SS.prototype[ id ];
             if ( ssPrototype === current ){
                 var c = constructor || MM.constructors.default;
                 MM.prototype[ id ] = function(){
@@ -54,7 +52,7 @@ MM._registerAdd = function( zzDOM ){
             }
         }
         
-        throw 'Error registering MM: zzDOM.SS not found.';
+        throw 'Error registering MM: SS not found.';
     };
 
 };
@@ -84,7 +82,7 @@ MM.constructors.default = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var r = fn.apply( ss, args );
-        if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+        if ( i === 0 && ! ( r instanceof SS ) ){
             return r;
         }
     }
@@ -94,7 +92,7 @@ MM.constructors.first = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var r = fn.apply( ss, args );
-        if ( r instanceof zzDOM.SS ){
+        if ( r instanceof SS ){
             return r;
         }
     }
@@ -131,7 +129,7 @@ MM.constructors.val = function( mm, fn, args, len ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var r = fn.apply( ss, args );
-        if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+        if ( i === 0 && ! ( r instanceof SS ) ){
             return r;
         }
     }
@@ -147,7 +145,7 @@ MM.constructors.getVal = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
         var ss = mm.list[ i ];
         var r = fn.apply( ss, args );
-        if ( i === 0 && ! ( r instanceof zzDOM.SS ) ){
+        if ( i === 0 && ! ( r instanceof SS ) ){
             return r;
         }
     }
@@ -155,147 +153,147 @@ MM.constructors.getVal = function( mm, fn, args ){
 };
 /* Reimplemented methods for Google closure compiler */
 MM.prototype.addClass = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.addClass, arguments );
+    return MM.constructors.default( this, SS.prototype.addClass, arguments );
 };
 
 MM.prototype.after = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.after, arguments );
+    return MM.constructors.default( this, SS.prototype.after, arguments );
 };
 
 MM.prototype.append = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.append, arguments );
+    return MM.constructors.default( this, SS.prototype.append, arguments );
 };
 
 MM.prototype.appendTo = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.appendTo, arguments );
+    return MM.constructors.default( this, SS.prototype.appendTo, arguments );
 };
 
 MM.prototype.attr = function () {
-    return MM.constructors.val1( this, zzDOM.SS.prototype.attr, arguments );
+    return MM.constructors.val1( this, SS.prototype.attr, arguments );
 };
 
 MM.prototype.before = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.before, arguments );
+    return MM.constructors.default( this, SS.prototype.before, arguments );
 };
 
 MM.prototype.children = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.children, arguments );
+    return MM.constructors.concat( this, SS.prototype.children, arguments );
 };
 
 MM.prototype.clone = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.clone, arguments );
+    return MM.constructors.concat( this, SS.prototype.clone, arguments );
 };
 
 MM.prototype.closest = function () {
-    return MM.constructors.first( this, zzDOM.SS.prototype.closest, arguments );
+    return MM.constructors.first( this, SS.prototype.closest, arguments );
 };
 
 MM.prototype.css = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.css, arguments );
+    return MM.constructors.default( this, SS.prototype.css, arguments );
 };
 
 MM.prototype.empty = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.empty, arguments );
+    return MM.constructors.default( this, SS.prototype.empty, arguments );
 };
 
 MM.prototype.filter = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.filter, arguments );
+    return MM.constructors.concat( this, SS.prototype.filter, arguments );
 };
 
 MM.prototype.find = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.find, arguments );
+    return MM.constructors.concat( this, SS.prototype.find, arguments );
 };
 
 MM.prototype.hasClass = function () {
-    return MM.constructors.booleanOr( this, zzDOM.SS.prototype.hasClass, arguments );
+    return MM.constructors.booleanOr( this, SS.prototype.hasClass, arguments );
 };
 
 MM.prototype.height = function () {
-    return MM.constructors.val0( this, zzDOM.SS.prototype.height, arguments );
+    return MM.constructors.val0( this, SS.prototype.height, arguments );
 };
 
 MM.prototype.html = function () {
-    return MM.constructors.val0( this, zzDOM.SS.prototype.html, arguments );
+    return MM.constructors.val0( this, SS.prototype.html, arguments );
 };
 
 MM.prototype.index = function () {
-    return MM.constructors.getVal( this, zzDOM.SS.prototype.index, arguments );
+    return MM.constructors.getVal( this, SS.prototype.index, arguments );
 };
 
 MM.prototype.is = function () {
-    return MM.constructors.booleanOr( this, zzDOM.SS.prototype.is, arguments );
+    return MM.constructors.booleanOr( this, SS.prototype.is, arguments );
 };
 
 MM.prototype.next = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.next, arguments );
+    return MM.constructors.concat( this, SS.prototype.next, arguments );
 };
 
 MM.prototype.offset = function () {
-    return MM.constructors.val0( this, zzDOM.SS.prototype.offset, arguments );
+    return MM.constructors.val0( this, SS.prototype.offset, arguments );
 };
 
 MM.prototype.offsetParent = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.offsetParent, arguments );
+    return MM.constructors.concat( this, SS.prototype.offsetParent, arguments );
 };
 
 MM.prototype.outerHeight = function () {
-    return MM.constructors.getVal( this, zzDOM.SS.prototype.outerHeight, arguments );
+    return MM.constructors.getVal( this, SS.prototype.outerHeight, arguments );
 };
 
 MM.prototype.outerWidth = function () {
-    return MM.constructors.getVal( this, zzDOM.SS.prototype.outerWidth, arguments );
+    return MM.constructors.getVal( this, SS.prototype.outerWidth, arguments );
 };
 
 MM.prototype.parent = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.parent, arguments );
+    return MM.constructors.concat( this, SS.prototype.parent, arguments );
 };
 
 MM.prototype.parents = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.parents, arguments );
+    return MM.constructors.concat( this, SS.prototype.parents, arguments );
 };
 
 MM.prototype.position = function () {
-    return MM.constructors.getVal( this, zzDOM.SS.prototype.position, arguments );
+    return MM.constructors.getVal( this, SS.prototype.position, arguments );
 };
 
 MM.prototype.prepend = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.prepend, arguments );
+    return MM.constructors.default( this, SS.prototype.prepend, arguments );
 };
 
 MM.prototype.prev = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.prev, arguments );
+    return MM.constructors.concat( this, SS.prototype.prev, arguments );
 };
 
 MM.prototype.remove = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.remove, arguments );
+    return MM.constructors.default( this, SS.prototype.remove, arguments );
 };
 
 MM.prototype.removeAttr = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.removeAttr, arguments );
+    return MM.constructors.default( this, SS.prototype.removeAttr, arguments );
 };
 
 MM.prototype.removeClass = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.removeClass, arguments );
+    return MM.constructors.default( this, SS.prototype.removeClass, arguments );
 };
 
 MM.prototype.replaceWith = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.replaceWith, arguments );
+    return MM.constructors.default( this, SS.prototype.replaceWith, arguments );
 };
 
 MM.prototype.siblings = function () {
-    return MM.constructors.concat( this, zzDOM.SS.prototype.siblings, arguments );
+    return MM.constructors.concat( this, SS.prototype.siblings, arguments );
 };
 
 MM.prototype.text = function () {
-    return MM.constructors.appendText( this, zzDOM.SS.prototype.text, arguments );
+    return MM.constructors.appendText( this, SS.prototype.text, arguments );
 };
 
 MM.prototype.toggleClass = function () {
-    return MM.constructors.default( this, zzDOM.SS.prototype.toggleClass, arguments );
+    return MM.constructors.default( this, SS.prototype.toggleClass, arguments );
 };
 
 MM.prototype.width = function () {
-    return MM.constructors.val0( this, zzDOM.SS.prototype.width, arguments );
+    return MM.constructors.val0( this, SS.prototype.width, arguments );
 };
 
 /* Methods implemented not using constructors in MM.constructors */

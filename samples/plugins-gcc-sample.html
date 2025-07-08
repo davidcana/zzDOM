@@ -5,7 +5,7 @@
         <title>Plugins Google closure compiler tests</title>
 
         <script src="/node_modules/velocity-animate/velocity.js" defer></script>
-        <script src="/build/plugins-sample.min.js" defer></script>
+        <script type="module" src="plugins-gcc-sample.js"></script>
         
         <style>
             .square {
@@ -49,5 +49,17 @@
         <div id="t4-1-1" class="square t4-1"></div>
         <div id="t4-1-2" class="square t4-1"></div>
         
+        <h2>
+            3. Width of not visible elements
+        </h2>
+        <button id="t5">Start 3</button>
+        
+        <div id="t5-1" class="t5">t5-1</div>
+        <div id="t5-2" class="t5">t5-2</div>
+        
+        <h2>
+            4. Events and this
+        </h2>
+        <button id="t6">Click this!</button>
     </body>
 </html>

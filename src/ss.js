@@ -1,10 +1,9 @@
 /*
  * SS class
  */
-export const SS = {};
 
 /** @constructor */
-SS = function ( _el ) {
+export const SS = function ( _el ) {
     this.list = [ this ];
     this.el = _el;
     this.nodes = [ _el ];

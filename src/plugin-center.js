@@ -1,4 +1,4 @@
-const plugin = {};
+export const plugin = {};
 
 plugin.register = function( zzDOM ){
     this._registerSS( zzDOM );

@@ -13,8 +13,7 @@ core.register( zzDOM );
 
 // Import MM, closures version
 import { MM } from './mm-closures.js';
-zzDOM.MM = MM;
-MM._registerAdd( zzDOM );
+MM.register( zzDOM );
 
 // Register zz function
 /*

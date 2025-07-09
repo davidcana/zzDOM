@@ -1,9 +1,8 @@
 /*
     htmlComparator singleton class
 */
-"use strict";
 
-var htmlComparator = (function() {
+export const htmlComparator = (function() {
     /**
      * Find an appropriate `Assert` context to `push` results to.
      */
@@ -488,6 +487,3 @@ var htmlComparator = (function() {
     return api;
 })();
 
-if ( typeof module === 'object' && module.exports ) {
-    module.exports = htmlComparator;
-}

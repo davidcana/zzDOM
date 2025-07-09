@@ -12,7 +12,8 @@ core.register = function( zzDOM ){
 
     // Register SS; MM register pending
     zzDOM.SS = SS;
-
+    SS.zzDOM = zzDOM;
+    
     /*
         zz function
         
@@ -83,11 +84,12 @@ core.register = function( zzDOM ){
         throw 'Unsupported selector type found running zz function.';
     };
 
-    // Build args array with toInsert as first position and then the arguments of this function
-    zzDOM._args = function( previousArgs, toInsert ){
-        var result = Array.prototype.slice.call( previousArgs );
-        result.push( toInsert );
-        return result;
+    zzDOM._htmlToElement = function ( html ) {
+        var template = document.createElement( 'template' );
+        template.innerHTML = html.trim();
+        return template.content.childElementCount === 1?
+            template.content.firstChild:
+            template.content.childNodes;
     };
 
     zzDOM._build = function ( x ) {
@@ -103,16 +105,19 @@ core.register = function( zzDOM ){
         return x.length === 1? new zzDOM.SS( x[ 0 ] ): new zzDOM.MM( x );
     };
 
+    /* Utils */
+
+    // Build args array with toInsert as first position and then the arguments of this function
+    /*
+    zzDOM._args = function( previousArgs, toInsert ){
+        var result = Array.prototype.slice.call( previousArgs );
+        result.push( toInsert );
+        return result;
+    };
+    */
+
     zzDOM._getError = function ( method ) {
         return 'Method "' + method + '" not ready for that type!';
-    };
-
-    zzDOM._htmlToElement = function ( html ) {
-        var template = document.createElement( 'template' );
-        template.innerHTML = html.trim();
-        return template.content.childElementCount === 1?
-            template.content.firstChild:
-            template.content.childNodes;
     };
 
     zzDOM._get = function ( nodes, i ) {
@@ -125,7 +130,6 @@ core.register = function( zzDOM ){
         throw zzDOM._getError( 'get' );
     };
 
-    /* Utils */
     /* It depends on forms plugin (using val method)! */
     // Serialize a ss instance, a mm instance or an object into a query string
     zzDOM._paramItem = function( r, key, value ) {

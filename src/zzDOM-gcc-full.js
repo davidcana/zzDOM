@@ -13,8 +13,7 @@ core.register( zzDOM );
 
 // Import MM, gcc version
 import { MM } from './mm-gcc.js';
-zzDOM.MM = MM;
-MM._registerAdd( zzDOM );
+MM.register( zzDOM );
 
 // Import plugins
 import { plugin as centerPlugin } from './plugin-center.js';

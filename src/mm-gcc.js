@@ -22,8 +22,12 @@ export const MM = function ( _nodes ) {
     }
 };
 
-MM._registerAdd = function( zzDOM ){
+MM.register = function( zzDOM ){
 
+    // Register MM
+    zzDOM.MM = MM;
+    MM.zzDOM = zzDOM;
+    
     /*
     Unify the definition of a function of SS.prototype and a definition of MM.prototype. Example:
 
@@ -66,7 +70,7 @@ MM.constructors.concat = function( mm, fn, args ){
         newNodes = [...new Set([...newNodes, ...x.nodes])]; // Concat not adding duplicates
         //newNodes = newNodes.concat( x.nodes );
     }
-    return zzDOM._build( newNodes );
+    return MM.zzDOM._build( newNodes );
 };
 MM.constructors.booleanOr = function( mm, fn, args ){
     for ( var i = 0; i < mm.list.length; i++ ) {
@@ -313,12 +317,12 @@ MM.prototype.first = function () {
 };
 
 MM.prototype.get = function ( i ) {
-    return zzDOM._get( this.nodes, i );
+    return MM.zzDOM._get( this.nodes, i );
 };
 
 MM.prototype.map = function ( mapFn ) {
     var newNodes = this.nodes.map( ( node, i ) => {
         return mapFn.call( node, i, node );
     });
-    return zzDOM._build( newNodes );
+    return MM.zzDOM._build( newNodes );
 };

@@ -173,7 +173,7 @@ SS.prototype.append = function ( x ) {
     } else if ( typeof x === 'string' ) {
         this.el.insertAdjacentHTML( 'beforeend', x );
     } else {
-        throw zzDOM._getError( 'append' );
+        throw SS.zzDOM._getError( 'append' );
     }
     return this;
 };
@@ -192,7 +192,7 @@ SS.prototype.appendTo = function ( x ) {
     
     // Is it a string?
     if ( typeof x === 'string' ){
-        x = zzDOM._build(
+        x = SS.zzDOM._build(
             document.querySelectorAll( x )
         );
     }
@@ -204,14 +204,14 @@ SS.prototype.appendTo = function ( x ) {
     }
     
     // Is it a zzDOM.MM?
-    if ( x instanceof zzDOM.MM ) {
+    if ( x instanceof SS.zzDOM.MM ) {
         for ( var i = 0; i < x.nodes.length; ++i ){
             x.nodes[ i ].appendChild( this.el.cloneNode( true ) );
         }
         return this;
     } 
     
-    throw zzDOM._getError( 'is' );
+    throw SS.zzDOM._getError( 'is' );
 };
 
 //TODO add support of function type in value
@@ -248,7 +248,7 @@ SS.prototype.before = function ( x ) {
 };
 
 SS.prototype.children = function ( selector ) {
-    return zzDOM._build( 
+    return SS.zzDOM._build( 
         selector?
             Array.prototype.filter.call(
                 this.el.children, 
@@ -265,7 +265,7 @@ SS.prototype.clone = function (  ) {
 };
 
 SS.prototype.closest = function ( selector ) {
-    return zzDOM._build(
+    return SS.zzDOM._build(
         this.el.closest( selector )
     );
 };
@@ -320,22 +320,22 @@ SS.prototype.empty = function (  ) {
 
 SS.prototype.filter = function ( x ) {
     if ( typeof x === 'string' ){ // Is a string selector
-        return zzDOM._build( 
+        return SS.zzDOM._build( 
             this.el.matches( x )? [ this.el ]: []
         );
     }
     
     if ( typeof x === 'function' ){ // Is a function
-        return zzDOM._build(
+        return SS.zzDOM._build(
             x.call( this.el, this._i === undefined? 0: this._i, this )? [ this.el ]: []
         );
     }  
     
-    throw zzDOM._getError( 'filter' );
+    throw SS.zzDOM._getError( 'filter' );
 };
 
 SS.prototype.find = function ( selector ) {
-    return zzDOM._build( 
+    return SS.zzDOM._build( 
         this.el.querySelectorAll( selector )
     );
 };
@@ -345,7 +345,7 @@ SS.prototype.first = function () {
 };
 
 SS.prototype.get = function ( i ) {
-    return zzDOM._get( this.nodes, i );
+    return SS.zzDOM._get( this.nodes, i );
 };
 
 SS.prototype.hasClass = function ( name ) {
@@ -395,7 +395,7 @@ SS.prototype.is = function ( x ) {
         return this.el === x.el;
     } 
 
-    if ( x instanceof zzDOM.MM ) {
+    if ( x instanceof SS.zzDOM.MM ) {
         for ( var i = 0; i < x.nodes.length; ++i ){
             if ( this.el === x.nodes[ i ] ){
                 return true;
@@ -412,7 +412,7 @@ SS.prototype.is = function ( x ) {
 };
 
 SS.prototype.map = function ( mapFn ) {
-    return zzDOM._build(
+    return SS.zzDOM._build(
         mapFn.call( this.el, 0, this.el )
     );
 };
@@ -469,7 +469,7 @@ SS.prototype.parents = function ( selector ) {
             nodes.push( node );
         }
     }
-    return zzDOM._build( nodes );
+    return SS.zzDOM._build( nodes );
 };
 
 SS.prototype.position = function ( relativeToViewport ) {
@@ -489,7 +489,7 @@ SS.prototype.prepend = function ( x ) {
     } else if ( typeof x === 'string' ){
         this.el.insertAdjacentHTML( 'afterbegin', x );
     } else {
-        throw zzDOM._getError( 'prepend' );
+        throw SS.zzDOM._getError( 'prepend' );
     }
     return this;
 };
@@ -539,7 +539,7 @@ SS.prototype.siblings = function ( selector ) {
                 return child !== self.el;
             }
     );
-    return zzDOM._build( nodes );
+    return SS.zzDOM._build( nodes );
 };
 
 //TODO add support of function type in value

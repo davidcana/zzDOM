@@ -1,7 +1,8 @@
 // utils singleton class
-"use strict";
 
-var utils = {};
+import { htmlComparator } from './htmlComparator.js';
+
+export const utils = {};
 
 utils.assertHtml = function ( assert, id, expectedHtml ){
 

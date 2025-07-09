@@ -1,5 +1,5 @@
 /*
- * zzDOM.MM class
+ * MM class
  */
 
 // Import modules
@@ -21,7 +21,12 @@ export const MM = function ( _nodes ) {
     }
 };
 
-MM._registerAdd = function( zzDOM ){
+MM.register = function( zzDOM ){
+
+    // Register MM
+    zzDOM.MM = MM;
+    MM.zzDOM = zzDOM;
+
     /*
     Unify the definition of a function of SS.prototype and a definition of zzDOM.MM.prototype. Example:
 
@@ -56,8 +61,8 @@ MM._registerAdd = function( zzDOM ){
 
 };
 
-zzDOM.MM.constructors = {};
-zzDOM.MM.constructors.booleanOr = function( functionId ){
+MM.constructors = {};
+MM.constructors.booleanOr = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
@@ -69,7 +74,7 @@ zzDOM.MM.constructors.booleanOr = function( functionId ){
         return false;
     };
 };
-zzDOM.MM.constructors.concat = function( functionId ){
+MM.constructors.concat = function( functionId ){
     return function(){
         var newNodes = [];
         for ( var i = 0; i < this.list.length; i++ ) {
@@ -78,10 +83,10 @@ zzDOM.MM.constructors.concat = function( functionId ){
             newNodes = [...new Set([...newNodes, ...x.nodes])]; // Concat not adding duplicates
             //newNodes = newNodes.concat( x.nodes );
         }
-        return zzDOM._build( newNodes );
+        return MM.zzDOM._build( newNodes );
     };
 };
-zzDOM.MM.constructors.default = function( functionId ){
+MM.constructors.default = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
@@ -93,7 +98,7 @@ zzDOM.MM.constructors.default = function( functionId ){
         return this;
     };
 };
-zzDOM.MM.constructors.first = function( functionId ){
+MM.constructors.first = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
@@ -105,7 +110,7 @@ zzDOM.MM.constructors.first = function( functionId ){
         return this;
     };
 };
-zzDOM.MM.constructors.callback = function( functionId ){
+MM.constructors.callback = function( functionId ){
     return function(){
         if ( ! arguments[ 0 ] ){
             arguments[ 0 ] = {};
@@ -119,7 +124,7 @@ zzDOM.MM.constructors.callback = function( functionId ){
         return this;
     };
 };
-zzDOM.MM.constructors.appendText = function( functionId ){
+MM.constructors.appendText = function( functionId ){
     return function(){
         var text = '';
         var textMode = false;
@@ -137,7 +142,7 @@ zzDOM.MM.constructors.appendText = function( functionId ){
     };
 };
 
-zzDOM.MM.constructors.val = function( functionId, len ){
+MM.constructors.val = function( functionId, len ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
@@ -149,13 +154,13 @@ zzDOM.MM.constructors.val = function( functionId, len ){
         return ! this.list.length && arguments.length === len? null: this;
     };
 };
-zzDOM.MM.constructors.val0 = function( functionId ){
-    return zzDOM.MM.constructors.val( functionId, 0 );
+MM.constructors.val0 = function( functionId ){
+    return MM.constructors.val( functionId, 0 );
 };
-zzDOM.MM.constructors.val1 = function( functionId ){
-    return zzDOM.MM.constructors.val( functionId, 1 );
+MM.constructors.val1 = function( functionId ){
+    return MM.constructors.val( functionId, 1 );
 };
-zzDOM.MM.constructors.getVal = function( functionId ){
+MM.constructors.getVal = function( functionId ){
     return function(){
         for ( var i = 0; i < this.list.length; i++ ) {
             var ss = this.list[ i ];
@@ -167,7 +172,7 @@ zzDOM.MM.constructors.getVal = function( functionId ){
         return ! this.list.length? null: this;
     };
 };
-zzDOM.MM.fConstructors = {
+MM.fConstructors = {
     'attr': 'val1',
     //'checked': 'val0',
     'children': 'concat',
@@ -202,18 +207,18 @@ zzDOM.MM.fConstructors = {
 };
 
 // Init prototype functions from SS
-zzDOM.MM.init = function(){
+MM.init = function(){
     for ( var id in SS.prototype ){
         var closure = function(){
-            const fConstructor = zzDOM.MM.fConstructors[ id ] || 'default';
-            return zzDOM.MM.constructors[ fConstructor ]( id );
+            const fConstructor = MM.fConstructors[ id ] || 'default';
+            return MM.constructors[ fConstructor ]( id );
         };
-        zzDOM.MM.prototype[ id ] = closure();
+        MM.prototype[ id ] = closure();
     }
 }();
 
-/* Methods implemented not using constructors in zzDOM.MM.constructors */
-zzDOM.MM.prototype.each = function ( eachFn ) {
+/* Methods implemented not using constructors in MM.constructors */
+MM.prototype.each = function ( eachFn ) {
     var self = this;
     Array.prototype.forEach.call( 
         this.list, 
@@ -224,18 +229,18 @@ zzDOM.MM.prototype.each = function ( eachFn ) {
     return this;
 };
 
-zzDOM.MM.prototype.first = function () {
+MM.prototype.first = function () {
     return this.length == 0? this: this.list[ 0 ];
 };
 
-zzDOM.MM.prototype.get = function ( i ) {
-    return zzDOM._get( this.nodes, i );
+MM.prototype.get = function ( i ) {
+    return MM.zzDOM._get( this.nodes, i );
 };
 
-zzDOM.MM.prototype.map = function ( mapFn ) {
+MM.prototype.map = function ( mapFn ) {
     var newNodes = this.nodes.map( ( node, i ) => {
         return mapFn.call( node, i, node );
     });
-    return zzDOM._build( newNodes );
+    return MM.zzDOM._build( newNodes );
 };
 

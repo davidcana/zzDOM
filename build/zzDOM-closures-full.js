@@ -1,4 +1,4 @@
-/*! zzdom - v0.5.1 - 2025-07-10 12:22:37 */
+/*! zzdom - v0.5.1 - 2025-07-10 12:38:6 */
 /** @constructor */
 export const SS = function ( _el ) {
     this.list = [ this ];

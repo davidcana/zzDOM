@@ -1,11 +1,9 @@
 // Import
-import { zzDOM } from '/src/zzDOM-closures-core.js';
-//import { htmlComparator } from '../components/htmlComparator.js';
 import { utils } from '../components/utils.js';
 
-const zz = zzDOM.zz;
-
-export const runTests = function(){
+export const runTests = function( zzDOM ){
+    
+    const zz = zzDOM.zz;
 
     // Unit tests
     QUnit.test( 'text and html test', function( assert ) {

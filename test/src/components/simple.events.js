@@ -1,4 +1,6 @@
-export const runTests = function(){
+export const runTests = function( zzDOM ){
+
+    const zz = zzDOM.zz;
 
     QUnit.test( 'trigger, on and off test', function( assert ) {
         // Test trigger, event using vanilla addEventListener

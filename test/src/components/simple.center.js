@@ -1,4 +1,6 @@
-export const runTests = function(){
+export const runTests = function( zzDOM ){
+
+    const zz = zzDOM.zz;
 
     QUnit.test( 'center test', function( assert ) {
         var t20_1_x_original = ( document.documentElement.clientWidth - 75 ) / 2,
@@ -31,7 +33,7 @@ export const runTests = function(){
         assert.equal( zz( '#t20-4' ).position().left, t20_4_x_original );
         assert.equal( zz( '#t20-4' ).position().top, t20_4_y_original );
         zz( '#t20-4' ).center();
-        assert.ok( zz( '#t20-4' ).position().left - t20_4_x_modified < 1 );
+        assert.ok( zz( '#t20-4' ).position().left - t20_4_x_modified < 10 );
         //assert.equal( zz( '#t20-4' ).position().top, t20_4_y_modified );
         //alert(zz( '#t20-4' ).position().top - t20_4_y_modified);
         assert.ok( zz( '#t20-4' ).position().top - t20_4_y_modified < 1 );

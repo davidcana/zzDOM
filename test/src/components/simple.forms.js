@@ -1,4 +1,6 @@
-export const runTests = function(){
+export const runTests = function( zzDOM ){
+    
+    const zz = zzDOM.zz;
 
     QUnit.test( 'val and checked test', function( assert ) {
         var t19_1_original = 'test value t19-1',

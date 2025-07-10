@@ -1,4 +1,6 @@
-export const runTests = function(){
+export const runTests = function( zzDOM ){
+
+    const zz = zzDOM.zz;
 
     QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
         

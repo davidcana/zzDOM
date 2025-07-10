@@ -1,0 +1,9 @@
+// Import
+import { zzDOM } from '/src/zzDOM-closures-core.js';
+import { runTests } from '../components/simple.visible.js';
+
+// Import plugins
+import { plugin as plugin } from '/src/plugin-visible.js';
+plugin.register( zzDOM );
+
+runTests( zzDOM );

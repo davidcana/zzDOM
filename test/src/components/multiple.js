@@ -1,4 +1,9 @@
-export const runTests = function(){
+// Import
+import { utils } from '../components/utils.js';
+
+export const runTests = function( zzDOM ){
+
+    const zz = zzDOM.zz;
 
     // Unit tests
     QUnit.test( 'text and html test', function( assert ) {
@@ -1061,7 +1066,8 @@ This is the container t16-4c
                 $notFound.text( 'New text' ),
                 $notFound.toggleClass( 'a' ),
                 $notFound.width( '10em' )
-            ]
+            ], 
+            zzDOM
         );
 
         // Some elements must return null

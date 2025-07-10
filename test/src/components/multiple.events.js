@@ -1,4 +1,9 @@
-export const runTests = function(){
+// Import
+import { utils } from '../components/utils.js';
+
+export const runTests = function( zzDOM ){
+
+    const zz = zzDOM.zz;
 
     QUnit.test( 'trigger, on and off test', function( assert ) {
         // Use t14-1-1c as a counter of clicks
@@ -285,7 +290,8 @@ export const runTests = function(){
                 $notFound.off( 'click' ),
                 $notFound.on( 'click', function(){} ),
                 $notFound.trigger( 'click' )
-            ]
+            ], 
+            zzDOM
         );
         
         // Some elements must return null

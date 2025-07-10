@@ -1,4 +1,9 @@
-export const runTests = function(){
+// Import
+import { utils } from '../components/utils.js';
+
+export const runTests = function( zzDOM ){
+    
+    const zz = zzDOM.zz;
 
     QUnit.test( 'val and checked test', function( assert ) {
         var t19_1_1_original = 'test value t19-1-1',
@@ -189,7 +194,8 @@ export const runTests = function(){
                 $notFound.indeterminate( true ),
                 $notFound.prop( 'checked', true ),
                 $notFound.val( 'a' )
-            ]
+            ], 
+            zzDOM
         );
     
         // Some elements must return null

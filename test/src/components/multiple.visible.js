@@ -1,4 +1,9 @@
-export const runTests = function(){
+// Import
+import { utils } from '../components/utils.js';
+
+export const runTests = function( zzDOM ){
+
+    const zz = zzDOM.zz;
 
     QUnit.test( 'hide, show, toggle and isVisible test', function( assert ) {
         // .t15-1 is visible
@@ -174,7 +179,8 @@ export const runTests = function(){
                 $notFound.hide(),
                 $notFound.show(),
                 $notFound.toggle()
-            ]
+            ], 
+            zzDOM
         );
         
         // Some elements must return null

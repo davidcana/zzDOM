@@ -30,7 +30,7 @@ utils.assertHtml = function ( assert, id, expectedHtml ){
     }
 };
 
-utils.check0Length = function( assert, $items ){
+utils.check0Length = function( assert, $items, zzDOM ){
 
     for ( const $el of $items ) {
         assert.ok(

@@ -86,25 +86,98 @@ module.exports = function(grunt) {
                 stripBanners: true,
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd HH:M:s") %> */\n'
             },
-            gcc: {
+            'simple-closures-core': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
                 src: [
-                    'src/zzDOM.js', 
-                    'src/zzDOM-events.js',
-                    'src/zzDOM-visible.js',
-                    'src/zzDOM-utils.js',
-                    'src/ss.js', 
-                    'src/ss-events.js', 
-                    'src/ss-visible.js', 
-                    'src/ss-forms.js',
-                    'src/ss-center.js',
-                    'src/mm-gcc.js',
-                    'src/plugin-center.js',
-                    'src/plugin-events.js',
-                    'src/plugin-forms.js',
-                    'src/plugin-visible.js',
-                    'src/export.js'
+                    'test/head/simple-closures-core.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/body.end-tag.html'
                 ],
-                dest: 'build/zzDOM-gcc.js',
+                dest: 'test/simple-closures-core.html',
+                nonull: true
+            },
+            'simple-closures-events': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-events.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-events.html',
+                nonull: true
+            },
+            'simple-closures-visible': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-visible.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-visible.html',
+                nonull: true
+            },
+            'simple-closures-forms': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-forms.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-forms.html',
+                nonull: true
+            },
+            'simple-closures-center': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures-center.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures-center.html',
+                nonull: true
+            },
+            'simple-closures': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-closures.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-closures.html',
                 nonull: true
             },
             'multiple-closures-core': {
@@ -183,6 +256,84 @@ module.exports = function(grunt) {
                     'test/body/body.end-tag.html'
                 ],
                 dest: 'test/multiple-closures.html',
+                nonull: true
+            },
+            gcc: {
+                src: [
+                    'src/zzDOM.js', 
+                    'src/zzDOM-events.js',
+                    'src/zzDOM-visible.js',
+                    'src/zzDOM-utils.js',
+                    'src/ss.js', 
+                    'src/ss-events.js', 
+                    'src/ss-visible.js', 
+                    'src/ss-forms.js',
+                    'src/ss-center.js',
+                    'src/mm-gcc.js',
+                    'src/plugin-center.js',
+                    'src/plugin-events.js',
+                    'src/plugin-forms.js',
+                    'src/plugin-visible.js',
+                    'src/export.js'
+                ],
+                dest: 'build/zzDOM-gcc.js',
+                nonull: true
+            },
+            'simple-gcc': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-gcc.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-gcc.html',
+                nonull: true
+            },
+            'simple-gcc-concat': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-gcc-concat.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-gcc-concat.html',
+                nonull: true
+            },
+            'simple-gcc-debug': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-gcc-debug.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/simple.body.events.html',
+                    'test/body/simple.body.visible.html',
+                    'test/body/simple.body.forms.html',
+                    'test/body/simple.body.center.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-gcc-debug.html',
                 nonull: true
             },
             'multiple-gcc': {
@@ -287,157 +438,6 @@ module.exports = function(grunt) {
                 dest: 'test/plugins-gcc-debug.html',
                 nonull: true
             },
-            'simple-closures-core': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-closures-core.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-closures-core.html',
-                nonull: true
-            },
-            'simple-closures-events': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-closures-events.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.events.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-closures-events.html',
-                nonull: true
-            },
-            'simple-closures-visible': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-closures-visible.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.visible.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-closures-visible.html',
-                nonull: true
-            },
-            'simple-closures-forms': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-closures-forms.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.forms.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-closures-forms.html',
-                nonull: true
-            },
-            'simple-closures-center': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-closures-center.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.center.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-closures-center.html',
-                nonull: true
-            },
-            'simple-closures': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-closures.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/simple.body.events.html',
-                    'test/body/simple.body.visible.html',
-                    'test/body/simple.body.forms.html',
-                    'test/body/simple.body.center.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-closures.html',
-                nonull: true
-            },
-            'simple-gcc': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-gcc.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/simple.body.events.html',
-                    'test/body/simple.body.visible.html',
-                    'test/body/simple.body.forms.html',
-                    'test/body/simple.body.center.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-gcc.html',
-                nonull: true
-            },
-            'simple-gcc-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-gcc-concat.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/simple.body.events.html',
-                    'test/body/simple.body.visible.html',
-                    'test/body/simple.body.forms.html',
-                    'test/body/simple.body.center.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-gcc-concat.html',
-                nonull: true
-            },
-            'simple-gcc-debug': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-gcc-debug.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/simple.body.events.html',
-                    'test/body/simple.body.visible.html',
-                    'test/body/simple.body.forms.html',
-                    'test/body/simple.body.center.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-gcc-debug.html',
-                nonull: true
-            },
             'zz-closures-core': {
                 options: {
                     banner: '',
@@ -530,123 +530,6 @@ module.exports = function(grunt) {
                     'test/body/body.end-tag.html'
                 ],
                 dest: 'test/zz-gcc-debug.html',
-                nonull: true
-            },
-            'plugin-events': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/zzDOM-events.js',
-                    'src/ss-events.js',
-                    'src/plugin-events.js'
-                ],
-                dest: 'build/zzDOM-plugin-events.js',
-                nonull: true
-            },
-            'plugin-events-node': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/core-require.js',
-                    'src/zzDOM-events.js',
-                    'src/ss-events.js',
-                    'src/plugin-events.js'
-                ],
-                dest: 'build/zzDOM-plugin-events-node.js',
-                nonull: true
-            },
-            'plugin-visible': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/zzDOM-visible.js',
-                    'src/ss-visible.js',
-                    'src/plugin-visible.js'
-                ],
-                dest: 'build/zzDOM-plugin-visible.js',
-                nonull: true
-            },
-            'plugin-visible-node': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/core-require.js',
-                    'src/zzDOM-visible.js',
-                    'src/ss-visible.js',
-                    'src/plugin-visible.js'
-                ],
-                dest: 'build/zzDOM-plugin-visible-node.js',
-                nonull: true
-            },
-            'plugin-utils': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/zzDOM-utils.js'
-                ],
-                dest: 'build/zzDOM-plugin-utils.js',
-                nonull: true
-            },
-            'plugin-utils-node': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/core-require.js',
-                    'src/zzDOM-utils.js'
-                ],
-                dest: 'build/zzDOM-plugin-utils-node.js',
-                nonull: true
-            },
-            'plugin-forms': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/ss-forms.js',
-                    'src/plugin-forms.js'
-                ],
-                dest: 'build/zzDOM-plugin-forms.js',
-                nonull: true
-            },
-            'plugin-forms-node': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/core-require.js',
-                    'src/ss-forms.js',
-                    'src/plugin-forms.js'
-                ],
-                dest: 'build/zzDOM-plugin-forms-node.js',
-                nonull: true
-            },
-            'plugin-center': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/ss-center.js',
-                    'src/plugin-center.js'
-                ],
-                dest: 'build/zzDOM-plugin-center.js',
-                nonull: true
-            },
-            'plugin-center-node': {
-                options: {
-                    banner: ''
-                },
-                src: [
-                    'src/core-require.js',
-                    'src/ss-center.js',
-                    'src/plugin-center.js'
-                ],
-                dest: 'build/zzDOM-plugin-center-node.js',
                 nonull: true
             }
         },
@@ -901,49 +784,40 @@ module.exports = function(grunt) {
         'concat:closures-core',
         'concat:gcc', 
         'concat:plugin-events', 
-        'concat:plugin-events-node', 
         'concat:plugin-visible', 
-        'concat:plugin-visible-node', 
         'concat:plugin-utils', 
-        'concat:plugin-utils-node',
         'concat:plugin-forms', 
-        'concat:plugin-forms-node', 
         'concat:plugin-center', 
-        'concat:plugin-center-node', 
         'uglify', 
         'compress:closures-full',
         'compress:closures-core',
         'closure-compiler'
     ]);
     grunt.registerTask('buildTests', [
-        'concat:multiple-closures-core',
-        'concat:multiple-closures-events',
-        'concat:multiple-closures-visible',
-        'concat:multiple-closures-forms',
-        'concat:multiple-closures', 
-        'concat:multiple-closures-concat', 
-        'concat:multiple-gcc',
-        'concat:multiple-gcc-concat',
-        'concat:multiple-gcc-debug',
-        'concat:plugins-closures',
-        'concat:plugins-closures-concat',
-        'concat:plugins-gcc',
-        'concat:plugins-gcc-concat',
-        'concat:plugins-gcc-debug',
         'concat:simple-closures-core',
         'concat:simple-closures-events',
         'concat:simple-closures-visible',
         'concat:simple-closures-forms',
         'concat:simple-closures-center',
         'concat:simple-closures',
-        'concat:simple-closures-concat',
-        'concat:simple-gcc',
-        'concat:simple-gcc-concat',
-        'concat:simple-gcc-debug',
+        'concat:multiple-closures-core',
+        'concat:multiple-closures-events',
+        'concat:multiple-closures-visible',
+        'concat:multiple-closures-forms',
+        'concat:multiple-closures', 
+        'concat:multiple-gcc',
+        'concat:multiple-gcc-concat',
+        'concat:multiple-gcc-debug',
+        'concat:plugins-closures',
         'concat:zz-closures-core',
         'concat:zz-closures-utils',
         'concat:zz-closures',
-        'concat:zz-closures-concat',
+        'concat:plugins-gcc',
+        'concat:plugins-gcc-concat',
+        'concat:plugins-gcc-debug',
+        'concat:simple-gcc',
+        'concat:simple-gcc-concat',
+        'concat:simple-gcc-debug',
         'concat:zz-gcc',
         'concat:zz-gcc-concat',
         'concat:zz-gcc-debug'

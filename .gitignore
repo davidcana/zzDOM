@@ -35,18 +35,4 @@ test/zz-closures.html
 test/zz-gcc.html
 test/zz-gcc-concat.html
 test/zz-gcc-debug.html
-test/node-core-simple.html
-test/node-zz-simple.html
-test/node-plugin-center-simple.html
-test/node-plugin-events-simple.html
-test/node-plugin-forms-simple.html
-test/node-plugin-utils.html
-test/node-plugin-visible-simple.html
-test/node-full-simple.html
-test/node-core-multiple.html
-test/node-zz-multiple.html
-test/node-plugin-events-multiple.html
-test/node-plugin-forms-multiple.html
-test/node-plugin-visible-multiple.html
-test/node-full-multiple.html
 

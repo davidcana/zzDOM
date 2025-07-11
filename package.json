@@ -1,6 +1,6 @@
 {
   "name": "zzdom",
-  "version": "0.5.1",
+  "version": "0.6.0-SNAPSHOT",
   "main": "index.js",
   "description": "A tiny javascript API that implements only the DOM functions of jquery including chaining.",
   "keywords": [
@@ -18,9 +18,6 @@
     "url": "https://github.com/davidcana/zzDOM"
   },
   "devDependencies": {
-    "beefy": "^1.1.0",
-    "browserify": "17.0.1",
-    "browserify-derequire": "1.1.1",
     "eslint": "9.23.0",
     "google-closure-compiler": "20240317.0.0",
     "grunt": "1.6.1",
@@ -28,23 +25,13 @@
     "grunt-contrib-concat": "2.1.0",
     "grunt-contrib-copy": "1.0.0",
     "grunt-contrib-jshint": "3.2.0",
-    "grunt-contrib-nodeunit": "5.0.0",
-    "grunt-contrib-qunit": "3.1.0",
     "grunt-contrib-uglify": "5.2.2",
-    "grunt-contrib-watch": "1.1.0",
-    "grunt-exec": "3.0.0",
     "http-server": "14.1.1",
-    "npm-run-all": "4.1.5",
     "qunit": "2.11.2",
     "qunit-composite": "2.0.0",
     "velocity-animate": "1.5.2"
   },
   "scripts": {
-    "testNode": "qunit test/js/app/node.js",
-    "testBrowser": "grunt qunit",
-    "test": "npm-run-all testBrowser testNode",
-    "http-server": "http-server -p 9000 -c-1",
-    "beefy": "cd ./build; beefy *.js",
-    "start": "npm-run-all -p -r beefy http-server"
+    "start": "http-server -p 9000 -c-1"
   }
 }

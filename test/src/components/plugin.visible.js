@@ -1,44 +1,46 @@
-"use strict";
+const pluginName = 'Visible';
 
-var Qunit = require( 'qunit' );
+export const runCoreTests = function( zzDOM, plugin ){
 
-//var zzDOM = require('../build/zzDOM-closures-full.js');
-//var zz = require( '../index.js' );
+    QUnit.test( pluginName + ' plugin core disabled/enabled test', function( assert ) {
+        assertPluginNotOk( assert, zzDOM );
+        plugin.register( zzDOM );
+        assertPluginOk( assert, zzDOM );
+    });
+};
 
-//var zzDOM = require( '../index.js' );
-var zzDOM = require('../build/zzDOM-closures-core.js');
-var zz = zzDOM.zz;
+export const runFullTests = function( zzDOM ){
 
-QUnit.test( 'plugin disabled/enabled test', function( assert ) {
+    QUnit.test( pluginName + ' plugin full enabled test', function( assert ) {
+        assertPluginOk( assert , zzDOM );
+    });
+};
 
-    assert.notOk( zzDOM.SS.prototype.fadeIn instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.fadeOut instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.hide instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.isVisible instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.show instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.toggle instanceof Function );
+const assertPluginNotOk = function( assert, zzDOM ){
+    assertPlugin( assert, zzDOM, false );
+};
 
-    assert.notOk( zzDOM.MM.prototype.checked instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.fadeOut instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.hide instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.isVisible instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.show instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.toggle instanceof Function );
+const assertPluginOk = function( assert, zzDOM ){
+    assertPlugin( assert, zzDOM, true );
+};
 
-    require( '../plugin-visible.js' );
+const assertPlugin = function( assert, zzDOM, isOk ){
 
-    assert.ok( zzDOM.SS.prototype.fadeIn instanceof Function );
-    assert.ok( zzDOM.SS.prototype.fadeOut instanceof Function );
-    assert.ok( zzDOM.SS.prototype.hide instanceof Function );
-    assert.ok( zzDOM.SS.prototype.isVisible instanceof Function );
-    assert.ok( zzDOM.SS.prototype.show instanceof Function );
-    assert.ok( zzDOM.SS.prototype.toggle instanceof Function );
+    const method = isOk? 'ok': 'notOk';
 
-    assert.ok( zzDOM.MM.prototype.fadeIn instanceof Function );
-    assert.ok( zzDOM.MM.prototype.fadeOut instanceof Function );
-    assert.ok( zzDOM.MM.prototype.hide instanceof Function );
-    assert.ok( zzDOM.MM.prototype.isVisible instanceof Function );
-    assert.ok( zzDOM.MM.prototype.show instanceof Function );
-    assert.ok( zzDOM.MM.prototype.toggle instanceof Function );
-});
+    assert[ method ]( zzDOM.SS.prototype.fadeIn instanceof Function );
+    assert[ method ]( zzDOM.SS.prototype.fadeOut instanceof Function );
+    assert[ method ]( zzDOM.SS.prototype.hide instanceof Function );
+    assert[ method ]( zzDOM.SS.prototype.isVisible instanceof Function );
+    assert[ method ]( zzDOM.SS.prototype.show instanceof Function );
+    assert[ method ]( zzDOM.SS.prototype.toggle instanceof Function );
+
+    assert[ method ]( zzDOM.MM.prototype.fadeIn instanceof Function );
+    assert[ method ]( zzDOM.MM.prototype.fadeOut instanceof Function );
+    assert[ method ]( zzDOM.MM.prototype.hide instanceof Function );
+    assert[ method ]( zzDOM.MM.prototype.isVisible instanceof Function );
+    assert[ method ]( zzDOM.MM.prototype.show instanceof Function );
+    assert[ method ]( zzDOM.MM.prototype.toggle instanceof Function );
+};
+
 

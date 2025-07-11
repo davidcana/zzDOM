@@ -1,5 +1,5 @@
 
-const pluginName = 'Forms';
+const pluginName = 'Events';
 
 export const runCoreTests = function( zzDOM, plugin ){
 
@@ -29,16 +29,12 @@ const assertPlugin = function( assert, zzDOM, isOk ){
 
     const method = isOk? 'ok': 'notOk';
 
-    assert[ method ]( zzDOM.SS.prototype.checked instanceof Function );
-    assert[ method ]( zzDOM.SS.prototype.disabled instanceof Function );
-    assert[ method ]( zzDOM.SS.prototype.indeterminate instanceof Function );
-    assert[ method ]( zzDOM.SS.prototype.prop instanceof Function );
-    assert[ method ]( zzDOM.SS.prototype.val instanceof Function );
+    assert[ method ]( zzDOM.SS.prototype.off instanceof Function );
+    assert[ method ]( zzDOM.SS.prototype.on instanceof Function );
+    assert[ method ]( zzDOM.SS.prototype.trigger instanceof Function );
 
-    assert[ method ]( zzDOM.MM.prototype.checked instanceof Function );
-    assert[ method ]( zzDOM.MM.prototype.disabled instanceof Function );
-    assert[ method ]( zzDOM.MM.prototype.indeterminate instanceof Function );
-    assert[ method ]( zzDOM.MM.prototype.prop instanceof Function );
-    assert[ method ]( zzDOM.MM.prototype.val instanceof Function );
+    assert[ method ]( zzDOM.MM.prototype.off instanceof Function );
+    assert[ method ]( zzDOM.MM.prototype.on instanceof Function );
+    assert[ method ]( zzDOM.MM.prototype.trigger instanceof Function );
 };
 

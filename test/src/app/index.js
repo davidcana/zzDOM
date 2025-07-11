@@ -16,7 +16,13 @@ QUnit.testSuites([
     { name: "plugins closure Test Suite", path: "./plugins-closures.html" },
     { name: "plugin center closure core Test Suite", path: "./plugin-center-closures-core.html" },
     { name: "plugin center closure full Test Suite", path: "./plugin-center-closures-full.html" },
-
+    
+    { name: "plugin events closure core Test Suite", path: "./plugin-events-closures-core.html" },
+    { name: "plugin events closure full Test Suite", path: "./plugin-events-closures-full.html" },
+    { name: "plugin forms closure core Test Suite", path: "./plugin-forms-closures-core.html" },
+    { name: "plugin forms closure full Test Suite", path: "./plugin-forms-closures-full.html" },
+    { name: "plugin visible closure core Test Suite", path: "./plugin-visible-closures-core.html" },
+    { name: "plugin visible closure full Test Suite", path: "./plugin-visible-closures-full.html" },
 
     { name: "simple gcc Test Suite", path: "./simple-gcc.html" },
     { name: "multiple gcc Test Suite", path: "./multiple-gcc.html" },

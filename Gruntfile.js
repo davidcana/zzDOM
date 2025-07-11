@@ -286,6 +286,90 @@ module.exports = function(grunt) {
                 dest: 'test/plugin-center-closures-full.html',
                 nonull: true
             },
+            'plugin-events-closures-core': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugin-events-closures-core.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/plugin-events-closures-core.html',
+                nonull: true
+            },
+            'plugin-events-closures-full': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugin-events-closures-full.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/plugin-events-closures-full.html',
+                nonull: true
+            },
+            'plugin-forms-closures-core': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugin-forms-closures-core.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/plugin-forms-closures-core.html',
+                nonull: true
+            },
+            'plugin-forms-closures-full': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugin-forms-closures-full.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/plugin-forms-closures-full.html',
+                nonull: true
+            },
+            'plugin-visible-closures-core': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugin-visible-closures-core.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/plugin-visible-closures-core.html',
+                nonull: true
+            },
+            'plugin-visible-closures-full': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugin-visible-closures-full.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/plugin-visible-closures-full.html',
+                nonull: true
+            },
             gcc: {
                 src: [
                     'src/zzDOM.js', 
@@ -835,6 +919,12 @@ module.exports = function(grunt) {
         'concat:multiple-closures', 
         'concat:plugin-center-closures-core',
         'concat:plugin-center-closures-full',
+        'concat:plugin-events-closures-core',
+        'concat:plugin-events-closures-full',
+        'concat:plugin-forms-closures-core',
+        'concat:plugin-forms-closures-full',
+        'concat:plugin-visible-closures-core',
+        'concat:plugin-visible-closures-full',
         'concat:multiple-gcc',
         'concat:multiple-gcc-concat',
         'concat:multiple-gcc-debug',

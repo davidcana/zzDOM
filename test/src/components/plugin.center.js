@@ -1,9 +1,9 @@
-// Import plugin
-//import { plugin } from '/src/plugin-center.js';
+
+const pluginName = 'Center';
 
 export const runCoreTests = function( zzDOM, plugin ){
 
-    QUnit.test( 'Center plugin core disabled/enabled test', function( assert ) {
+    QUnit.test( pluginName + ' plugin core disabled/enabled test', function( assert ) {
         assertPluginNotOk( assert, zzDOM );
         plugin.register( zzDOM );
         assertPluginOk( assert, zzDOM );
@@ -12,47 +12,17 @@ export const runCoreTests = function( zzDOM, plugin ){
 
 export const runFullTests = function( zzDOM ){
 
-    QUnit.test( 'Center plugin full enabled test', function( assert ) {
+    QUnit.test( pluginName + ' plugin full enabled test', function( assert ) {
         assertPluginOk( assert , zzDOM );
     });
 };
 
 const assertPluginNotOk = function( assert, zzDOM ){
     assertPlugin( assert, zzDOM, false );
-    /*
-    assert.notOk( zzDOM.SS.prototype.getXCenter instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.getYCenter instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.getCenter instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.center instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.centerX instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.centerY instanceof Function );
-
-    assert.notOk( zzDOM.MM.prototype.getXCenter instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.getYCenter instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.getCenter instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.center instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.centerX instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.centerY instanceof Function );
-    */
 };
 
 const assertPluginOk = function( assert, zzDOM ){
     assertPlugin( assert, zzDOM, true );
-    /*
-    assert.ok( zzDOM.SS.prototype.getXCenter instanceof Function );
-    assert.ok( zzDOM.SS.prototype.getYCenter instanceof Function );
-    assert.ok( zzDOM.SS.prototype.getCenter instanceof Function );
-    assert.ok( zzDOM.SS.prototype.center instanceof Function );
-    assert.ok( zzDOM.SS.prototype.centerX instanceof Function );
-    assert.ok( zzDOM.SS.prototype.centerY instanceof Function );
-
-    assert.ok( zzDOM.MM.prototype.getXCenter instanceof Function );
-    assert.ok( zzDOM.MM.prototype.getYCenter instanceof Function );
-    assert.ok( zzDOM.MM.prototype.getCenter instanceof Function );
-    assert.ok( zzDOM.MM.prototype.center instanceof Function );
-    assert.ok( zzDOM.MM.prototype.centerX instanceof Function );
-    assert.ok( zzDOM.MM.prototype.centerY instanceof Function );
-    */
 };
 
 const assertPlugin = function( assert, zzDOM, isOk ){
@@ -73,38 +43,4 @@ const assertPlugin = function( assert, zzDOM, isOk ){
     assert[ method ]( zzDOM.MM.prototype.centerX instanceof Function );
     assert[ method ]( zzDOM.MM.prototype.centerY instanceof Function );
 };
-/*
-QUnit.test( 'plugin disabled/enabled test', function( assert ) {
-
-    assert.notOk( zzDOM.SS.prototype.getXCenter instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.getYCenter instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.getCenter instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.center instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.centerX instanceof Function );
-    assert.notOk( zzDOM.SS.prototype.centerY instanceof Function );
-
-    assert.notOk( zzDOM.MM.prototype.getXCenter instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.getYCenter instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.getCenter instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.center instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.centerX instanceof Function );
-    assert.notOk( zzDOM.MM.prototype.centerY instanceof Function );
-
-    require( '../plugin-center.js' );
-
-    assert.ok( zzDOM.SS.prototype.getXCenter instanceof Function );
-    assert.ok( zzDOM.SS.prototype.getYCenter instanceof Function );
-    assert.ok( zzDOM.SS.prototype.getCenter instanceof Function );
-    assert.ok( zzDOM.SS.prototype.center instanceof Function );
-    assert.ok( zzDOM.SS.prototype.centerX instanceof Function );
-    assert.ok( zzDOM.SS.prototype.centerY instanceof Function );
-
-    assert.ok( zzDOM.MM.prototype.getXCenter instanceof Function );
-    assert.ok( zzDOM.MM.prototype.getYCenter instanceof Function );
-    assert.ok( zzDOM.MM.prototype.getCenter instanceof Function );
-    assert.ok( zzDOM.MM.prototype.center instanceof Function );
-    assert.ok( zzDOM.MM.prototype.centerX instanceof Function );
-    assert.ok( zzDOM.MM.prototype.centerY instanceof Function );
-});
-*/
 

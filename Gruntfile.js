@@ -154,10 +154,6 @@ module.exports = function(grunt) {
                         'http://localhost:9000/test/multiple-gcc.html',
                         'http://localhost:9000/test/zz-gcc.html',
                         'http://localhost:9000/test/plugins-gcc.html',
-                        'http://localhost:9000/test/simple-closures-concat.html',
-                        'http://localhost:9000/test/multiple-closures-concat.html',
-                        'http://localhost:9000/test/zz-closures-concat.html',
-                        'http://localhost:9000/test/plugins-closures-concat.html',
                         'http://localhost:9000/test/simple-gcc-concat.html',
                         'http://localhost:9000/test/multiple-gcc-concat.html',
                         'http://localhost:9000/test/zz-gcc-concat.html',
@@ -400,24 +396,6 @@ module.exports = function(grunt) {
                 dest: 'test/multiple-closures.html',
                 nonull: true
             },
-            'multiple-closures-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/multiple-closures-concat.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/multiple.body.html',
-                    'test/body/multiple.body.events.html',
-                    'test/body/multiple.body.visible.html',
-                    'test/body/multiple.body.forms.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/multiple-closures-concat.html',
-                nonull: true
-            },
             'multiple-gcc': {
                 options: {
                     banner: '',
@@ -482,18 +460,6 @@ module.exports = function(grunt) {
                     'test/body/plugins.body.html'
                 ],
                 dest: 'test/plugins-closures.html',
-                nonull: true
-            },
-            'plugins-closures-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/plugins-closures-concat.head.html',
-                    'test/body/plugins.body.html'
-                ],
-                dest: 'test/plugins-closures-concat.html',
                 nonull: true
             },
             'plugins-gcc': {
@@ -626,25 +592,6 @@ module.exports = function(grunt) {
                 dest: 'test/simple-closures.html',
                 nonull: true
             },
-            'simple-closures-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-closures-concat.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/simple.body.events.html',
-                    'test/body/simple.body.visible.html',
-                    'test/body/simple.body.forms.html',
-                    'test/body/simple.body.center.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-closures-concat.html',
-                nonull: true
-            },
             'simple-gcc': {
                 options: {
                     banner: '',
@@ -746,22 +693,6 @@ module.exports = function(grunt) {
                     'test/body/body.end-tag.html'
                 ],
                 dest: 'test/zz-closures.html',
-                nonull: true
-            },
-            'zz-closures-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/zz-closures-concat.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/zz.body.html',
-                    'test/body/zz.body.utils.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/zz-closures-concat.html',
                 nonull: true
             },
             'zz-gcc': {

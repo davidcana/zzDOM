@@ -1,4 +1,9 @@
-export const runTests = function(){
+// Import
+import { utils } from '../components/utils.js';
+
+export const runTests = function( zzDOM ){
+
+    const zz = zzDOM.zz;
 
     QUnit.test( 'param test', function( assert ) {
         var object = {

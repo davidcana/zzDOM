@@ -1,4 +1,7 @@
-export const runTests = function(){
+
+export const runTests = function( zzDOM ){
+
+    const zz = zzDOM.zz;
 
     // Unit tests
     QUnit.test( 'Hello world test', function( assert ) {

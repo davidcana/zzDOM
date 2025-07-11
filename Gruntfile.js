@@ -258,6 +258,34 @@ module.exports = function(grunt) {
                 dest: 'test/multiple-closures.html',
                 nonull: true
             },
+            'plugin-center-closures-core': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugin-center-closures-core.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/plugin-center-closures-core.html',
+                nonull: true
+            },
+            'plugin-center-closures-full': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugin-center-closures-full.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/plugin-center-closures-full.html',
+                nonull: true
+            },
             gcc: {
                 src: [
                     'src/zzDOM.js', 
@@ -805,6 +833,8 @@ module.exports = function(grunt) {
         'concat:multiple-closures-visible',
         'concat:multiple-closures-forms',
         'concat:multiple-closures', 
+        'concat:plugin-center-closures-core',
+        'concat:plugin-center-closures-full',
         'concat:multiple-gcc',
         'concat:multiple-gcc-concat',
         'concat:multiple-gcc-debug',

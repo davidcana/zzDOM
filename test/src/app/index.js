@@ -14,6 +14,9 @@ QUnit.testSuites([
     { name: "zzDom.zz closure function utils Test Suite", path: "./zz-closures-utils.html" },
     { name: "zzDom.zz closure function Test Suite", path: "./zz-closures.html" },
     { name: "plugins closure Test Suite", path: "./plugins-closures.html" },
+    { name: "plugin center closure core Test Suite", path: "./plugin-center-closures-core.html" },
+    { name: "plugin center closure full Test Suite", path: "./plugin-center-closures-full.html" },
+
 
     { name: "simple gcc Test Suite", path: "./simple-gcc.html" },
     { name: "multiple gcc Test Suite", path: "./multiple-gcc.html" },

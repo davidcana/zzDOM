@@ -5,6 +5,7 @@
 *~
 
 # Misc
+dist/
 node_modules/
 .directory
 npm-debug.log

@@ -18,6 +18,7 @@
     "url": "https://github.com/davidcana/zzDOM"
   },
   "devDependencies": {
+    "esbuild": "^0.25.6",
     "eslint": "9.23.0",
     "google-closure-compiler": "20240317.0.0",
     "grunt": "1.6.1",
@@ -32,6 +33,39 @@
     "velocity-animate": "1.5.2"
   },
   "scripts": {
-    "start": "http-server -p 9000 -c-1"
+    "start": "http-server -p 9000 -c-1",
+    
+    "build-esm-closures-core": "esbuild ./src/zzDOM-closures-core.js --bundle --outfile=./dist/zzDOM-closures-core-esm.js --format=esm",
+    "build-esm-closures-full": "esbuild ./src/zzDOM-closures-full.js --bundle --outfile=./dist/zzDOM-closures-full-esm.js --format=esm",
+    "build-cjs-closures-core": "esbuild ./src/zzDOM-closures-core.js --bundle --outfile=./dist/zzDOM-closures-core-cjs.cjs --format=cjs",
+    "build-cjs-closures-full": "esbuild ./src/zzDOM-closures-full.js --bundle --outfile=./dist/zzDOM-closures-full-cjs.cjs --format=cjs",
+    "build-iife-gcc-core": "esbuild ./src/zzDOM-gcc-core.js --bundle --outfile=./dist/zzDOM-gcc-core-iife.js --format=iife",
+    "build-iife-gcc-full": "esbuild ./src/zzDOM-gcc-full.js --bundle --outfile=./dist/zzDOM-gcc-full-iife.js --format=iife",
+
+    "build-esm-closures-core-minify": "esbuild ./src/zzDOM-closures-core.js --bundle --outfile=./dist/zzDOM-closures-core-esm.min.js --format=esm --minify",
+    "build-esm-closures-full-minify": "esbuild ./src/zzDOM-closures-full.js --bundle --outfile=./dist/zzDOM-closures-full-esm.min.js --format=esm --minify",
+    "build-cjs-closures-core-minify": "esbuild ./src/zzDOM-closures-core.js --bundle --outfile=./dist/zzDOM-closures-core-cjs.min.cjs --format=cjs --minify",
+    "build-cjs-closures-full-minify": "esbuild ./src/zzDOM-closures-full.js --bundle --outfile=./dist/zzDOM-closures-full-cjs.min.cjs --format=cjs --minify",
+    "build-iife-gcc-core-minify": "esbuild ./src/zzDOM-gcc-core.js --bundle --outfile=./dist/zzDOM-gcc-core-iife.min.js --format=iife --minify",
+    "build-iife-gcc-full-minify": "esbuild ./src/zzDOM-gcc-full.js --bundle --outfile=./dist/zzDOM-gcc-full-iife.min.js --format=iife --minify",
+
+    "build-esm-closures-core-gz": "gzip -fk ./dist/zzDOM-closures-core-esm.min.js",
+    "build-esm-closures-full-gz": "gzip -fk ./dist/zzDOM-closures-full-esm.min.js",
+    "build-cjs-closures-core-gz": "gzip -fk ./dist/zzDOM-closures-core-cjs.min.cjs",
+    "build-cjs-closures-full-gz": "gzip -fk ./dist/zzDOM-closures-full-cjs.min.cjs",
+    "build-iife-gcc-core-gz": "gzip -fk ./dist/zzDOM-gcc-core-iife.min.js",
+    "build-iife-gcc-full-gz": "gzip -fk ./dist/zzDOM-gcc-full-iife.min.js",
+
+    "build-esm-closures-core-all": "npm run build-esm-closures-core && npm run build-esm-closures-core-minify && npm run build-esm-closures-core-gz",
+    "build-esm-closures-full-all": "npm run build-esm-closures-full && npm run build-esm-closures-full-minify && npm run build-esm-closures-full-gz",
+    "build-cjs-closures-core-all": "npm run build-cjs-closures-core && npm run build-cjs-closures-core-minify && npm run build-cjs-closures-core-gz",
+    "build-cjs-closures-full-all": "npm run build-cjs-closures-full && npm run build-cjs-closures-full-minify && npm run build-cjs-closures-full-gz",
+    "build-iife-gcc-core-all": "npm run build-iife-gcc-core && npm run build-iife-gcc-core-minify && npm run build-iife-gcc-core-gz",
+    "build-iife-gcc-full-all": "npm run build-iife-gcc-full && npm run build-iife-gcc-full-minify && npm run build-iife-gcc-full-gz",
+
+    "build-core-all": "npm run build-esm-closures-core-all && npm run build-cjs-closures-core-all && npm run build-iife-gcc-core-all",
+    "build-full-all": "npm run build-esm-closures-full-all && npm run build-cjs-closures-full-all && npm run build-iife-gcc-full-all",
+
+    "build": "npm run build-core-all && npm run build-full-all"
   }
 }

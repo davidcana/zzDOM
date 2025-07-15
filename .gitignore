@@ -5,35 +5,12 @@
 *~
 
 # Misc
+build/
 dist/
 node_modules/
 .directory
 npm-debug.log
-test/multiple-closures-core.html
-test/multiple-closures-events.html
-test/multiple-closures-visible.html
-test/multiple-closures-forms.html
-test/multiple-closures.html
-test/multiple-gcc.html
-test/multiple-gcc-concat.html
-test/multiple-gcc-debug.html
-test/plugins-closures.html
-test/plugins-gcc.html
-test/plugins-gcc-concat.html
-test/plugins-gcc-debug.html
-test/simple-closures-core.html
-test/simple-closures-events.html
-test/simple-closures-visible.html
-test/simple-closures-forms.html
-test/simple-closures-center.html
-test/simple-closures.html
-test/simple-gcc.html
-test/simple-gcc-concat.html
-test/simple-gcc-debug.html
-test/zz-closures-core.html
-test/zz-closures-utils.html
-test/zz-closures.html
-test/zz-gcc.html
-test/zz-gcc-concat.html
-test/zz-gcc-debug.html
+test/*.html
+!test/index.html
+
 

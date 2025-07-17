@@ -1,5 +1,5 @@
 // Import zzDOM closure core and events plugin
-import { zzDOM } from '/src/zzDOM-closures-core.js';
+import { zzDOM } from '/src/zzDOM-core.js';
 import { runCoreTests as runTests } from '../components/plugin.events.js';
 
 // Import plugin

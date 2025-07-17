@@ -1,2 +1,2 @@
-var zzDOM = require('./build/zzDOM-closures-full.js');
+var zzDOM = require('./build/zzDOM-full.js');
 module.exports = zzDOM;

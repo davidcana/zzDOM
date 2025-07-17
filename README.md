@@ -6,7 +6,7 @@
 * Low performance penalty over using vanilla javascript: instance one or more simple javascript objects.
 * Easy to customize and to extend. Clear and simple code: [KISS](https://en.wikipedia.org/wiki/KISS_principle).
 * Two available versions: 
-    * A smaller (**zzDOM-closures**).
+    * A smaller (**zzDOM**).
     * A bigger with [Google closure compiler](https://developers.google.com/closure/compiler) support (**zzDOM-gcc**). This includes compiling with **ADVANCED_OPTIMIZATIONS** without using an externs file.
 * Divided into modules, a core and some optional plugins:
     * core. Includes the main components of **zzDOM** and the DOM functions.

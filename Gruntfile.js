@@ -60,23 +60,23 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            'closures-full': {
+            'full': {
                 options: {
-                    archive: 'build/zzDOM-closures-full.min.js.tar.gz'
+                    archive: 'build/zzDOM-full.min.js.tar.gz'
                 },
                 files: [
                     {
-                        src: [ 'build/zzDOM-closures-full.min.js' ]
+                        src: [ 'build/zzDOM-full.min.js' ]
                     }
                 ]
             },
-            'closures-core': {
+            'core': {
                 options: {
-                    archive: 'build/zzDOM-closures-core.min.js.tar.gz'
+                    archive: 'build/zzDOM-core.min.js.tar.gz'
                 },
                 files: [
                     {
-                        src: [ 'build/zzDOM-closures-core.min.js' ]
+                        src: [ 'build/zzDOM-core.min.js' ]
                     }
                 ]
             }
@@ -86,88 +86,88 @@ module.exports = function(grunt) {
                 stripBanners: true,
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd HH:M:s") %> */\n'
             },
-            'simple-closures-core': {
+            'simple-core': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple-closures-core.head.html',
+                    'test/head/simple-core.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/simple-closures-core.html',
+                dest: 'test/simple-core.html',
                 nonull: true
             },
-            'simple-closures-events': {
+            'simple-events': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple-closures-events.head.html',
+                    'test/head/simple-events.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.events.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/simple-closures-events.html',
+                dest: 'test/simple-events.html',
                 nonull: true
             },
-            'simple-closures-visible': {
+            'simple-visible': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple-closures-visible.head.html',
+                    'test/head/simple-visible.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.visible.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/simple-closures-visible.html',
+                dest: 'test/simple-visible.html',
                 nonull: true
             },
-            'simple-closures-forms': {
+            'simple-forms': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple-closures-forms.head.html',
+                    'test/head/simple-forms.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.forms.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/simple-closures-forms.html',
+                dest: 'test/simple-forms.html',
                 nonull: true
             },
-            'simple-closures-center': {
+            'simple-center': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple-closures-center.head.html',
+                    'test/head/simple-center.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.center.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/simple-closures-center.html',
+                dest: 'test/simple-center.html',
                 nonull: true
             },
-            'simple-closures': {
+            'simple': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple-closures.head.html',
+                    'test/head/simple.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.html',
@@ -177,76 +177,76 @@ module.exports = function(grunt) {
                     'test/body/simple.body.center.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/simple-closures.html',
+                dest: 'test/simple.html',
                 nonull: true
             },
-            'multiple-closures-core': {
+            'multiple-core': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/multiple-closures-core.head.html',
+                    'test/head/multiple-core.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/multiple.body.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/multiple-closures-core.html',
+                dest: 'test/multiple-core.html',
                 nonull: true
             },
-            'multiple-closures-events': {
+            'multiple-events': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/multiple-closures-events.head.html',
+                    'test/head/multiple-events.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/multiple.body.events.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/multiple-closures-events.html',
+                dest: 'test/multiple-events.html',
                 nonull: true
             },
-            'multiple-closures-visible': {
+            'multiple-visible': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/multiple-closures-visible.head.html',
+                    'test/head/multiple-visible.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/multiple.body.visible.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/multiple-closures-visible.html',
+                dest: 'test/multiple-visible.html',
                 nonull: true
             },
-            'multiple-closures-forms': {
+            'multiple-forms': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/multiple-closures-forms.head.html',
+                    'test/head/multiple-forms.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/multiple.body.forms.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/multiple-closures-forms.html',
+                dest: 'test/multiple-forms.html',
                 nonull: true
             },
-            'multiple-closures': {
+            'multiple': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/multiple-closures.head.html',
+                    'test/head/multiple.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/multiple.body.html',
@@ -255,119 +255,119 @@ module.exports = function(grunt) {
                     'test/body/multiple.body.forms.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/multiple-closures.html',
+                dest: 'test/multiple.html',
                 nonull: true
             },
-            'plugin-center-closures-core': {
+            'plugin-center-core': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugin-center-closures-core.head.html',
+                    'test/head/plugin-center-core.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/plugin-center-closures-core.html',
+                dest: 'test/plugin-center-core.html',
                 nonull: true
             },
-            'plugin-center-closures-full': {
+            'plugin-center-full': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugin-center-closures-full.head.html',
+                    'test/head/plugin-center-full.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/plugin-center-closures-full.html',
+                dest: 'test/plugin-center-full.html',
                 nonull: true
             },
-            'plugin-events-closures-core': {
+            'plugin-events-core': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugin-events-closures-core.head.html',
+                    'test/head/plugin-events-core.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/plugin-events-closures-core.html',
+                dest: 'test/plugin-events-core.html',
                 nonull: true
             },
-            'plugin-events-closures-full': {
+            'plugin-events-full': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugin-events-closures-full.head.html',
+                    'test/head/plugin-events-full.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/plugin-events-closures-full.html',
+                dest: 'test/plugin-events-full.html',
                 nonull: true
             },
-            'plugin-forms-closures-core': {
+            'plugin-forms-core': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugin-forms-closures-core.head.html',
+                    'test/head/plugin-forms-core.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/plugin-forms-closures-core.html',
+                dest: 'test/plugin-forms-core.html',
                 nonull: true
             },
-            'plugin-forms-closures-full': {
+            'plugin-forms-full': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugin-forms-closures-full.head.html',
+                    'test/head/plugin-forms-full.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/plugin-forms-closures-full.html',
+                dest: 'test/plugin-forms-full.html',
                 nonull: true
             },
-            'plugin-visible-closures-core': {
+            'plugin-visible-core': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugin-visible-closures-core.head.html',
+                    'test/head/plugin-visible-core.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/plugin-visible-closures-core.html',
+                dest: 'test/plugin-visible-core.html',
                 nonull: true
             },
-            'plugin-visible-closures-full': {
+            'plugin-visible-full': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugin-visible-closures-full.head.html',
+                    'test/head/plugin-visible-full.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/plugin-visible-closures-full.html',
+                dest: 'test/plugin-visible-full.html',
                 nonull: true
             },
             gcc: {
@@ -502,16 +502,16 @@ module.exports = function(grunt) {
                 dest: 'test/multiple-gcc-debug.html',
                 nonull: true
             },
-            'plugins-closures': {
+            'plugins': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugins-closures.head.html',
+                    'test/head/plugins.head.html',
                     'test/body/plugins.body.html'
                 ],
-                dest: 'test/plugins-closures.html',
+                dest: 'test/plugins.html',
                 nonull: true
             },
             'plugins-gcc': {
@@ -550,50 +550,50 @@ module.exports = function(grunt) {
                 dest: 'test/plugins-gcc-debug.html',
                 nonull: true
             },
-            'zz-closures-core': {
+            'zz-core': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/zz-closures-core.head.html',
+                    'test/head/zz-core.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/zz-closures-core.html',
+                dest: 'test/zz-core.html',
                 nonull: true
             },
-            'zz-closures-utils': {
+            'zz-utils': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/zz-closures-utils.head.html',
+                    'test/head/zz-utils.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/zz-closures-utils.html',
+                dest: 'test/zz-utils.html',
                 nonull: true
             },
-            'zz-closures': {
+            'zz': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/zz-closures.head.html',
+                    'test/head/zz.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/zz-closures.html',
+                dest: 'test/zz.html',
                 nonull: true
             },
             'zz-gcc': {
@@ -646,17 +646,6 @@ module.exports = function(grunt) {
             }
         },
         uglify: {
-            closures: {
-                files: {
-                    'build/zzDOM-closures-full.min.js': [ 'build/zzDOM-closures-full.js' ],
-                    'build/zzDOM-closures-core.min.js': [ 'build/zzDOM-closures-core.js' ],
-                    'build/zzDOM-plugin-events.min.js': [ 'build/zzDOM-plugin-events.js' ],
-                    'build/zzDOM-plugin-visible.min.js': [ 'build/zzDOM-plugin-visible.js' ],
-                    'build/zzDOM-plugin-utils.min.js': [ 'build/zzDOM-plugin-utils.js' ],
-                    'build/zzDOM-plugin-forms.min.js': [ 'build/zzDOM-plugin-forms.js' ],
-                    'build/zzDOM-plugin-center.min.js': [ 'build/zzDOM-plugin-center.js' ]
-                }
-            },
             gcc: {
                 files: {
                     'build/zzDOM-gcc.min.js': [ 'build/zzDOM-gcc.js' ]
@@ -892,8 +881,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', ['qunit']);
     grunt.registerTask('buildMain', [
-        'concat:closures-full', 
-        'concat:closures-core',
+        'concat:full', 
+        'concat:core',
         'concat:gcc', 
         'concat:plugin-events', 
         'concat:plugin-visible', 
@@ -901,37 +890,37 @@ module.exports = function(grunt) {
         'concat:plugin-forms', 
         'concat:plugin-center', 
         'uglify', 
-        'compress:closures-full',
-        'compress:closures-core',
+        'compress:full',
+        'compress:core',
         'closure-compiler'
     ]);
     grunt.registerTask('buildTests', [
-        'concat:simple-closures-core',
-        'concat:simple-closures-events',
-        'concat:simple-closures-visible',
-        'concat:simple-closures-forms',
-        'concat:simple-closures-center',
-        'concat:simple-closures',
-        'concat:multiple-closures-core',
-        'concat:multiple-closures-events',
-        'concat:multiple-closures-visible',
-        'concat:multiple-closures-forms',
-        'concat:multiple-closures', 
-        'concat:plugin-center-closures-core',
-        'concat:plugin-center-closures-full',
-        'concat:plugin-events-closures-core',
-        'concat:plugin-events-closures-full',
-        'concat:plugin-forms-closures-core',
-        'concat:plugin-forms-closures-full',
-        'concat:plugin-visible-closures-core',
-        'concat:plugin-visible-closures-full',
+        'concat:simple-core',
+        'concat:simple-events',
+        'concat:simple-visible',
+        'concat:simple-forms',
+        'concat:simple-center',
+        'concat:simple',
+        'concat:multiple-core',
+        'concat:multiple-events',
+        'concat:multiple-visible',
+        'concat:multiple-forms',
+        'concat:multiple', 
+        'concat:plugin-center-core',
+        'concat:plugin-center-full',
+        'concat:plugin-events-core',
+        'concat:plugin-events-full',
+        'concat:plugin-forms-core',
+        'concat:plugin-forms-full',
+        'concat:plugin-visible-core',
+        'concat:plugin-visible-full',
         'concat:multiple-gcc',
         'concat:multiple-gcc-concat',
         'concat:multiple-gcc-debug',
-        'concat:plugins-closures',
-        'concat:zz-closures-core',
-        'concat:zz-closures-utils',
-        'concat:zz-closures',
+        'concat:plugins',
+        'concat:zz-core',
+        'concat:zz-utils',
+        'concat:zz',
         'concat:plugins-gcc',
         'concat:plugins-gcc-concat',
         'concat:plugins-gcc-debug',

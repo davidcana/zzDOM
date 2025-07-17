@@ -1,5 +1,5 @@
 // Import
-import { zzDOM } from '/src/zzDOM-closures-full.js';
+import { zzDOM } from '/src/zzDOM-full.js';
 import { runTests as runSimpleTests } from '../components/simple.js';
 import { runTests as runCenterTests } from '../components/simple.center.js';
 import { runTests as runEventsTests } from '../components/simple.events.js';

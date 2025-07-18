@@ -59,8 +59,10 @@ MM.register = function( zzDOM ){
         throw 'Error registering MM: SS not found.';
     };
 
+    MM.prototype._registerMM( zzDOM );
 };
 
+/* MM contructors */
 MM.constructors = {};
 MM.constructors.concat = function( mm, fn, args ){
     var newNodes = [];
@@ -155,152 +157,51 @@ MM.constructors.getVal = function( mm, fn, args ){
     }
     return ! mm.list.length? null: mm;
 };
-/* Reimplemented methods for Google closure compiler */
-MM.prototype.addClass = function () {
-    return MM.constructors.default( this, SS.prototype.addClass, arguments );
+
+/* MM methods implemented using constructors in MM.constructors */
+MM.prototype._registerMM = function( zzDOM ){
+    const sp = zzDOM.SS.prototype;
+    const mc = zzDOM.MM.constructors;
+
+    zzDOM.add( sp.addClass );
+    zzDOM.add( sp.after );
+    zzDOM.add( sp.append );
+    zzDOM.add( sp.appendTo );
+    zzDOM.add( sp.attr, mc.val1 );
+    zzDOM.add( sp.before );
+    zzDOM.add( sp.children, mc.concat );
+    zzDOM.add( sp.clone, mc.concat );
+    zzDOM.add( sp.closest, mc.first );
+    zzDOM.add( sp.css );
+    zzDOM.add( sp.empty );
+    zzDOM.add( sp.filter, mc.concat );
+    zzDOM.add( sp.find, mc.concat );
+    zzDOM.add( sp.hasClass, mc.booleanOr );
+    zzDOM.add( sp.height, mc.val0 );
+    zzDOM.add( sp.html, mc.val0 );
+    zzDOM.add( sp.index, mc.getVal );
+    zzDOM.add( sp.is, mc.booleanOr );
+    zzDOM.add( sp.next, mc.concat );
+    zzDOM.add( sp.offset, mc.val0 );
+    zzDOM.add( sp.offsetParent, mc.concat );
+    zzDOM.add( sp.outerHeight, mc.getVal );
+    zzDOM.add( sp.outerWidth, mc.getVal );
+    zzDOM.add( sp.parent, mc.concat );
+    zzDOM.add( sp.parents, mc.concat );
+    zzDOM.add( sp.position, mc.getVal );
+    zzDOM.add( sp.prepend );
+    zzDOM.add( sp.prev, mc.concat );
+    zzDOM.add( sp.remove );
+    zzDOM.add( sp.removeAttr );
+    zzDOM.add( sp.removeClass );
+    zzDOM.add( sp.replaceWith );
+    zzDOM.add( sp.siblings, mc.concat );
+    zzDOM.add( sp.text, mc.appendText );
+    zzDOM.add( sp.toggleClass );
+    zzDOM.add( sp.width, mc.val0 );
 };
 
-MM.prototype.after = function () {
-    return MM.constructors.default( this, SS.prototype.after, arguments );
-};
-
-MM.prototype.append = function () {
-    return MM.constructors.default( this, SS.prototype.append, arguments );
-};
-
-MM.prototype.appendTo = function () {
-    return MM.constructors.default( this, SS.prototype.appendTo, arguments );
-};
-
-MM.prototype.attr = function () {
-    return MM.constructors.val1( this, SS.prototype.attr, arguments );
-};
-
-MM.prototype.before = function () {
-    return MM.constructors.default( this, SS.prototype.before, arguments );
-};
-
-MM.prototype.children = function () {
-    return MM.constructors.concat( this, SS.prototype.children, arguments );
-};
-
-MM.prototype.clone = function () {
-    return MM.constructors.concat( this, SS.prototype.clone, arguments );
-};
-
-MM.prototype.closest = function () {
-    return MM.constructors.first( this, SS.prototype.closest, arguments );
-};
-
-MM.prototype.css = function () {
-    return MM.constructors.default( this, SS.prototype.css, arguments );
-};
-
-MM.prototype.empty = function () {
-    return MM.constructors.default( this, SS.prototype.empty, arguments );
-};
-
-MM.prototype.filter = function () {
-    return MM.constructors.concat( this, SS.prototype.filter, arguments );
-};
-
-MM.prototype.find = function () {
-    return MM.constructors.concat( this, SS.prototype.find, arguments );
-};
-
-MM.prototype.hasClass = function () {
-    return MM.constructors.booleanOr( this, SS.prototype.hasClass, arguments );
-};
-
-MM.prototype.height = function () {
-    return MM.constructors.val0( this, SS.prototype.height, arguments );
-};
-
-MM.prototype.html = function () {
-    return MM.constructors.val0( this, SS.prototype.html, arguments );
-};
-
-MM.prototype.index = function () {
-    return MM.constructors.getVal( this, SS.prototype.index, arguments );
-};
-
-MM.prototype.is = function () {
-    return MM.constructors.booleanOr( this, SS.prototype.is, arguments );
-};
-
-MM.prototype.next = function () {
-    return MM.constructors.concat( this, SS.prototype.next, arguments );
-};
-
-MM.prototype.offset = function () {
-    return MM.constructors.val0( this, SS.prototype.offset, arguments );
-};
-
-MM.prototype.offsetParent = function () {
-    return MM.constructors.concat( this, SS.prototype.offsetParent, arguments );
-};
-
-MM.prototype.outerHeight = function () {
-    return MM.constructors.getVal( this, SS.prototype.outerHeight, arguments );
-};
-
-MM.prototype.outerWidth = function () {
-    return MM.constructors.getVal( this, SS.prototype.outerWidth, arguments );
-};
-
-MM.prototype.parent = function () {
-    return MM.constructors.concat( this, SS.prototype.parent, arguments );
-};
-
-MM.prototype.parents = function () {
-    return MM.constructors.concat( this, SS.prototype.parents, arguments );
-};
-
-MM.prototype.position = function () {
-    return MM.constructors.getVal( this, SS.prototype.position, arguments );
-};
-
-MM.prototype.prepend = function () {
-    return MM.constructors.default( this, SS.prototype.prepend, arguments );
-};
-
-MM.prototype.prev = function () {
-    return MM.constructors.concat( this, SS.prototype.prev, arguments );
-};
-
-MM.prototype.remove = function () {
-    return MM.constructors.default( this, SS.prototype.remove, arguments );
-};
-
-MM.prototype.removeAttr = function () {
-    return MM.constructors.default( this, SS.prototype.removeAttr, arguments );
-};
-
-MM.prototype.removeClass = function () {
-    return MM.constructors.default( this, SS.prototype.removeClass, arguments );
-};
-
-MM.prototype.replaceWith = function () {
-    return MM.constructors.default( this, SS.prototype.replaceWith, arguments );
-};
-
-MM.prototype.siblings = function () {
-    return MM.constructors.concat( this, SS.prototype.siblings, arguments );
-};
-
-MM.prototype.text = function () {
-    return MM.constructors.appendText( this, SS.prototype.text, arguments );
-};
-
-MM.prototype.toggleClass = function () {
-    return MM.constructors.default( this, SS.prototype.toggleClass, arguments );
-};
-
-MM.prototype.width = function () {
-    return MM.constructors.val0( this, SS.prototype.width, arguments );
-};
-
-/* Methods implemented not using constructors in MM.constructors */
+/* MM methods implemented not using constructors in MM.constructors */
 MM.prototype.each = function ( eachFn ) {
     var self = this;
     Array.prototype.forEach.call(

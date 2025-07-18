@@ -578,23 +578,7 @@ module.exports = function(grunt) {
             plugins: {
                 options: {
                     js: [
-                        'src/zzDOM.js', 
-                        'src/zzDOM-events.js',
-                        'src/zzDOM-visible.js',
-                        'src/zzDOM-utils.js',
-                        'src/ss.js', 
-                        'src/ss-events.js', 
-                        'src/ss-visible.js', 
-                        'src/ss-forms.js',
-                        'src/ss-center.js',
-                        'src/mm-gcc.js',
-                        'src/plugin-center.js',
-                        'src/plugin-events.js',
-                        'src/plugin-forms.js',
-                        'src/plugin-visible.js',
-                        'test/src/app/htmlComparator.js',
-                        'test/src/app/utils.js',
-                        'test/src/app/plugins.js'
+                        'build/plugins-tests.js'
                     ],
                     js_output_file: 'build/plugins-tests.min.js',
                     compilation_level: 'ADVANCED',

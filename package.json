@@ -24,9 +24,7 @@
     "grunt": "1.6.1",
     "grunt-contrib-compress": "2.0.0",
     "grunt-contrib-concat": "2.1.0",
-    "grunt-contrib-copy": "1.0.0",
     "grunt-contrib-jshint": "3.2.0",
-    "grunt-contrib-uglify": "5.2.2",
     "http-server": "14.1.1",
     "qunit": "2.11.2",
     "qunit-composite": "2.0.0",
@@ -35,6 +33,8 @@
   "scripts": {
     "start": "http-server -p 9000 -c-1",
     
+    "buildHTMLTestFiles": "grunt",
+
     "build-esm-core": "esbuild ./src/zzDOM-core.js --bundle --outfile=./dist/zzDOM-core-esm.js --format=esm",
     "build-esm-full": "esbuild ./src/zzDOM-full.js --bundle --outfile=./dist/zzDOM-full-esm.js --format=esm",
     "build-cjs-core": "esbuild ./src/zzDOM-core.js --bundle --outfile=./dist/zzDOM-core-cjs.cjs --format=cjs",
@@ -66,11 +66,16 @@
     "build-core-all": "npm run build-esm-core-all && npm run build-cjs-core-all && npm run build-iife-core-all",
     "build-full-all": "npm run build-esm-full-all && npm run build-cjs-full-all && npm run build-iife-full-all",
 
-    "build": "npm run build-core-all && npm run build-full-all",
+    "buildProd": "npm run build-core-all && npm run build-full-all",
 
     "build-simple-core-test": "esbuild ./test/src/app/simple-core.js --bundle --outfile=./build/simple-core-tests.js --format=iife",
     "build-multiple-full-test": "esbuild ./test/src/app/multiple-full.js --bundle --outfile=./build/multiple-full-tests.js --format=iife",
     "build-zz-core-test": "esbuild ./test/src/app/zz-core.js --bundle --outfile=./build/zz-core-tests.js --format=iife",
-    "build-plugins-test": "esbuild ./test/src/app/plugins.js --bundle --outfile=./build/plugins-tests.js --format=iife"
+    "build-plugins-test": "esbuild ./test/src/app/plugins.js --bundle --outfile=./build/plugins-tests.js --format=iife",
+    "build-gcc-js" : "grunt closure-compiler",
+
+    "buildTests": "npm run build-simple-core-test && npm run build-multiple-full-test && npm run build-zz-core-test && npm run build-plugins-test && npm run build-gcc-js",
+
+    "build": "npm run buildProd && npm run buildTests && npm run buildHTMLTestFiles"
   }
 }

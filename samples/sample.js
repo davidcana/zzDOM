@@ -1,5 +1,5 @@
 // Import zzDOM
-import { zzDOM } from '/src/zzDOM-gcc-full.js';
+import { zzDOM } from '/src/zzDOM-full.js';
 const zz = zzDOM.zz;
 
 document.getElementById( 't1' ).addEventListener( 

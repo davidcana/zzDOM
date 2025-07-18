@@ -16,7 +16,6 @@ QUnit.testSuites([
     { name: "plugins closure Test Suite", path: "./plugins.html" },
     { name: "plugin center closure core Test Suite", path: "./plugin-center-core.html" },
     { name: "plugin center closure full Test Suite", path: "./plugin-center-full.html" },
-    
     { name: "plugin events closure core Test Suite", path: "./plugin-events-core.html" },
     { name: "plugin events closure full Test Suite", path: "./plugin-events-full.html" },
     { name: "plugin forms closure core Test Suite", path: "./plugin-forms-core.html" },
@@ -28,6 +27,9 @@ QUnit.testSuites([
     { name: "multiple gcc Test Suite", path: "./multiple-gcc.html" },
     { name: "zzDom.zz gcc compiler Test Suite", path: "./zz-gcc.html" },
     { name: "plugins gcc Test Suite", path: "./plugins-gcc.html" },
+
+
+    
     { name: "simple gcc concat Test Suite", path: "./simple-gcc-concat.html" },
     { name: "multiple gcc concat Test Suite", path: "./multiple-gcc-concat.html" },
     { name: "zzDom.zz gcc concat Test Suite", path: "./zz-gcc-concat.html" },

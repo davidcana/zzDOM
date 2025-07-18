@@ -66,6 +66,11 @@
     "build-core-all": "npm run build-esm-core-all && npm run build-cjs-core-all && npm run build-iife-core-all",
     "build-full-all": "npm run build-esm-full-all && npm run build-cjs-full-all && npm run build-iife-full-all",
 
-    "build": "npm run build-core-all && npm run build-full-all"
+    "build": "npm run build-core-all && npm run build-full-all",
+
+    "build-simple-core-test": "esbuild ./test/src/app/simple-core.js --bundle --outfile=./build/simple-core-tests.js --format=iife",
+    "build-multiple-full-test": "esbuild ./test/src/app/multiple-full.js --bundle --outfile=./build/multiple-full-tests.js --format=iife",
+    "build-zz-core-test": "esbuild ./test/src/app/zz-core.js --bundle --outfile=./build/zz-core-tests.js --format=iife",
+    "build-plugins-test": "esbuild ./test/src/app/plugins.js --bundle --outfile=./build/plugins-tests.js --format=iife"
   }
 }

@@ -410,44 +410,6 @@ module.exports = function(grunt) {
                 dest: 'test/simple-gcc.html',
                 nonull: true
             },
-            'simple-gcc-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-gcc-concat.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/simple.body.events.html',
-                    'test/body/simple.body.visible.html',
-                    'test/body/simple.body.forms.html',
-                    'test/body/simple.body.center.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-gcc-concat.html',
-                nonull: true
-            },
-            'simple-gcc-debug': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/simple-gcc-debug.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/simple.body.html',
-                    'test/body/simple.body.events.html',
-                    'test/body/simple.body.visible.html',
-                    'test/body/simple.body.forms.html',
-                    'test/body/simple.body.center.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/simple-gcc-debug.html',
-                nonull: true
-            },
             'multiple-gcc': {
                 options: {
                     banner: '',
@@ -464,42 +426,6 @@ module.exports = function(grunt) {
                     'test/body/body.end-tag.html'
                 ],
                 dest: 'test/multiple-gcc.html',
-                nonull: true
-            },
-            'multiple-gcc-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/multiple-gcc-concat.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/multiple.body.html',
-                    'test/body/multiple.body.events.html',
-                    'test/body/multiple.body.visible.html',
-                    'test/body/multiple.body.forms.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/multiple-gcc-concat.html',
-                nonull: true
-            },
-            'multiple-gcc-debug': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/multiple-gcc-debug.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/multiple.body.html',
-                    'test/body/multiple.body.events.html',
-                    'test/body/multiple.body.visible.html',
-                    'test/body/multiple.body.forms.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/multiple-gcc-debug.html',
                 nonull: true
             },
             'plugins': {
@@ -524,30 +450,6 @@ module.exports = function(grunt) {
                     'test/body/plugins.body.html'
                 ],
                 dest: 'test/plugins-gcc.html',
-                nonull: true
-            },
-            'plugins-gcc-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/plugins-gcc-concat.head.html',
-                    'test/body/plugins.body.html'
-                ],
-                dest: 'test/plugins-gcc-concat.html',
-                nonull: true
-            },
-            'plugins-gcc-debug': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/plugins-gcc-debug.head.html',
-                    'test/body/plugins.body.html'
-                ],
-                dest: 'test/plugins-gcc-debug.html',
                 nonull: true
             },
             'zz-core': {
@@ -611,38 +513,6 @@ module.exports = function(grunt) {
                 ],
                 dest: 'test/zz-gcc.html',
                 nonull: true
-            },
-            'zz-gcc-concat': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/zz-gcc-concat.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/zz.body.html',
-                    'test/body/zz.body.utils.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/zz-gcc-concat.html',
-                nonull: true
-            },
-            'zz-gcc-debug': {
-                options: {
-                    banner: '',
-                    footer: '</html>\n'
-                },
-                src: [
-                    'test/head/zz-gcc-debug.head.html',
-                    'test/body/body.start-tag.html',
-                    'test/body/qunit.html',
-                    'test/body/zz.body.html',
-                    'test/body/zz.body.utils.html',
-                    'test/body/body.end-tag.html'
-                ],
-                dest: 'test/zz-gcc-debug.html',
-                nonull: true
             }
         },
         uglify: {
@@ -663,69 +533,30 @@ module.exports = function(grunt) {
             }
         },
         'closure-compiler': {
-            simple: {
+            'simple-core': {
                 options: {
                     js: [
-                        'src/zzDOM.js',
-                        'src/zzDOM-events.js',
-                        'src/zzDOM-visible.js',
-                        'src/zzDOM-utils.js',
-                        'src/ss.js', 
-                        'src/ss-events.js', 
-                        'src/ss-visible.js', 
-                        'src/ss-forms.js',
-                        'src/ss-center.js',
-                        'src/mm-gcc.js',
-                        'src/plugin-center.js',
-                        'src/plugin-events.js',
-                        'src/plugin-forms.js',
-                        'src/plugin-visible.js',
-                        'test/src/app/htmlComparator.js',
-                        'test/src/app/utils.js',
-                        'test/src/app/simple.js',
-                        'test/src/app/simple.events.js',
-                        'test/src/app/simple.visible.js',
-                        'test/src/app/simple.forms.js',
-                        'test/src/app/simple.center.js'
+                        'build/simple-core-tests.js'
                     ],
-                    js_output_file: 'build/simple-tests.min.js',
+                    js_output_file: 'build/simple-core-tests.min.js',
                     compilation_level: 'ADVANCED',
-                    create_source_map: 'build/simple-tests.min.js.map',
+                    create_source_map: 'build/simple-core-tests.min.js.map',
                     warning_level: 'VERBOSE',
                     output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=simple-tests.min.js.map',
                     debug: true,
                     externs: 'externs/qunit-2.11.2.js'
                 }
             },
-            multiple: {
+            'multiple-full': {
                 options: {
                     js: [
-                        'src/zzDOM.js', 
-                        'src/zzDOM-events.js',
-                        'src/zzDOM-visible.js',
-                        'src/zzDOM-utils.js',
-                        'src/ss.js', 
-                        'src/ss-events.js', 
-                        'src/ss-visible.js', 
-                        'src/ss-forms.js',
-                        'src/ss-center.js',
-                        'src/mm-gcc.js',
-                        'src/plugin-center.js',
-                        'src/plugin-events.js',
-                        'src/plugin-forms.js',
-                        'src/plugin-visible.js',
-                        'test/src/app/htmlComparator.js',
-                        'test/src/app/utils.js',
-                        'test/src/app/multiple.js',
-                        'test/src/app/multiple.events.js',
-                        'test/src/app/multiple.visible.js',
-                        'test/src/app/multiple.forms.js'
+                        'build/multiple-full-tests.js'
                     ],
-                    js_output_file: 'build/multiple-tests.min.js',
+                    js_output_file: 'build/multiple-full-tests.min.js',
                     compilation_level: 'ADVANCED',
-                    create_source_map: 'build/multiple-tests.min.js.map',
+                    create_source_map: 'build/multiple-full-tests.min.js.map',
                     warning_level: 'VERBOSE',
-                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=multiple-tests.min.js.map',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=multiple-full-tests.min.js.map',
                     debug: true,
                     externs: 'externs/qunit-2.11.2.js'
                 }
@@ -733,30 +564,13 @@ module.exports = function(grunt) {
             zz: {
                 options: {
                     js: [
-                        'src/zzDOM.js', 
-                        'src/zzDOM-events.js',
-                        'src/zzDOM-visible.js',
-                        'src/zzDOM-utils.js',
-                        'src/ss.js', 
-                        'src/ss-events.js', 
-                        'src/ss-visible.js', 
-                        'src/ss-forms.js',
-                        'src/ss-center.js',
-                        'src/mm-gcc.js',
-                        'src/plugin-center.js',
-                        'src/plugin-events.js',
-                        'src/plugin-forms.js',
-                        'src/plugin-visible.js',
-                        'test/src/app/htmlComparator.js',
-                        'test/src/app/utils.js',
-                        'test/src/app/zz.js',
-                        'test/src/app/zz.utils.js'
+                        'build/zz-core-tests.js'
                     ],
-                    js_output_file: 'build/zz-tests.min.js',
+                    js_output_file: 'build/zz-core-tests.min.js',
                     compilation_level: 'ADVANCED',
-                    create_source_map: 'build/zz-tests.min.js.map',
+                    create_source_map: 'build/zz-core-tests.min.js.map',
                     warning_level: 'VERBOSE',
-                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=zz-tests.min.js.map',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=zz-core-tests.min.js.map',
                     debug: true,
                     externs: 'externs/qunit-2.11.2.js'
                 }
@@ -848,20 +662,6 @@ module.exports = function(grunt) {
                     create_source_map: 'build/sample.min.js.map',
                     warning_level: 'VERBOSE',
                     output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=sample.min.js.map',
-                    debug: true
-                }
-            },
-            minimal: {
-                options: {
-                    js: [
-                        'samples/minimal1.js',
-                        'samples/minimal2.js'
-                    ],
-                    js_output_file: 'build/minimal.min.js',
-                    compilation_level: 'ADVANCED',
-                    create_source_map: 'build/minimal.min.js.map',
-                    warning_level: 'VERBOSE',
-                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=minimal.min.js.map',
                     debug: true
                 }
             }

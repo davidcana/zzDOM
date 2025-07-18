@@ -1,2 +1,4 @@
-var zzDOM = require('./build/zzDOM-full.js');
-module.exports = zzDOM;
+/* Declare exports */
+import { zzDOM } from './src/zzDOM-full.js';
+export { zzDOM };
+

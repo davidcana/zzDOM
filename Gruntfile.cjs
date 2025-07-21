@@ -156,13 +156,13 @@ module.exports = function(grunt) {
                 dest: 'test/simple-center.html',
                 nonull: true
             },
-            'simple': {
+            'simple-full': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple.head.html',
+                    'test/head/simple-full.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.html',
@@ -172,7 +172,7 @@ module.exports = function(grunt) {
                     'test/body/simple.body.center.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/simple.html',
+                dest: 'test/simple-full.html',
                 nonull: true
             },
             'multiple-core': {
@@ -235,13 +235,13 @@ module.exports = function(grunt) {
                 dest: 'test/multiple-forms.html',
                 nonull: true
             },
-            'multiple': {
+            'multiple-full': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/multiple.head.html',
+                    'test/head/multiple-full.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/multiple.body.html',
@@ -250,7 +250,7 @@ module.exports = function(grunt) {
                     'test/body/multiple.body.forms.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/multiple.html',
+                dest: 'test/multiple-full.html',
                 nonull: true
             },
             'multiple-full-dist': {
@@ -271,16 +271,16 @@ module.exports = function(grunt) {
                 dest: 'test/multiple-full-dist.html',
                 nonull: true
             },
-            'plugins': {
+            'plugins-core': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugins.head.html',
+                    'test/head/plugins-core.head.html',
                     'test/body/plugins.body.html'
                 ],
-                dest: 'test/plugins-core-dist.html',
+                dest: 'test/plugins-core.html',
                 nonull: true
             },
             'plugins-core-dist': {
@@ -292,7 +292,7 @@ module.exports = function(grunt) {
                     'test/head/plugins-core-dist.head.html',
                     'test/body/plugins.body.html'
                 ],
-                dest: 'test/plugins.html',
+                dest: 'test/plugins-core-dist.html',
                 nonull: true
             },
             'plugin-center-core': {
@@ -437,44 +437,44 @@ module.exports = function(grunt) {
                 dest: 'test/zz-core-dist.html',
                 nonull: true
             },
-            'zz-utils': {
+            'zz-core-utils': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/zz-utils.head.html',
+                    'test/head/zz-core-utils.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/zz-utils.html',
+                dest: 'test/zz-core-utils.html',
                 nonull: true
             },
-            'zz': {
+            'zz-full': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/zz.head.html',
+                    'test/head/zz-full.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/zz.html',
+                dest: 'test/zz-full.html',
                 nonull: true
             },
-            'simple-gcc': {
+            'simple-core-gcc': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/simple-gcc.head.html',
+                    'test/head/simple-core-gcc.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/simple.body.html',
@@ -484,16 +484,16 @@ module.exports = function(grunt) {
                     'test/body/simple.body.center.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/simple-gcc.html',
+                dest: 'test/simple-core-gcc.html',
                 nonull: true
             },
-            'multiple-gcc': {
+            'multiple-full-gcc': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/multiple-gcc.head.html',
+                    'test/head/multiple-full-gcc.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/multiple.body.html',
@@ -502,35 +502,35 @@ module.exports = function(grunt) {
                     'test/body/multiple.body.forms.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/multiple-gcc.html',
+                dest: 'test/multiple-full-gcc.html',
                 nonull: true
             },
-            'zz-gcc': {
+            'zz-core-gcc': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/zz-gcc.head.html',
+                    'test/head/zz-core-gcc.head.html',
                     'test/body/body.start-tag.html',
                     'test/body/qunit.html',
                     'test/body/zz.body.html',
                     'test/body/zz.body.utils.html',
                     'test/body/body.end-tag.html'
                 ],
-                dest: 'test/zz-gcc.html',
+                dest: 'test/zz-core-gcc.html',
                 nonull: true
             },
-            'plugins-gcc': {
+            'plugins-core-gcc': {
                 options: {
                     banner: '',
                     footer: '</html>\n'
                 },
                 src: [
-                    'test/head/plugins-gcc.head.html',
+                    'test/head/plugins-core-gcc.head.html',
                     'test/body/plugins.body.html'
                 ],
-                dest: 'test/plugins-gcc.html',
+                dest: 'test/plugins-core-gcc.html',
                 nonull: true
             }
         },
@@ -563,7 +563,7 @@ module.exports = function(grunt) {
                     externs: 'externs/qunit-2.11.2.js'
                 }
             },
-            zz: {
+            'zz-core': {
                 options: {
                     js: [
                         'build/zz-core-tests.js'
@@ -577,16 +577,16 @@ module.exports = function(grunt) {
                     externs: 'externs/qunit-2.11.2.js'
                 }
             },
-            plugins: {
+            'plugins-core': {
                 options: {
                     js: [
-                        'build/plugins-tests.js'
+                        'build/plugins-core-tests.js'
                     ],
-                    js_output_file: 'build/plugins-tests.min.js',
+                    js_output_file: 'build/plugins-core-tests.min.js',
                     compilation_level: 'ADVANCED',
-                    create_source_map: 'build/plugins-tests.min.js.map',
+                    create_source_map: 'build/plugins-core-tests.min.js.map',
                     warning_level: 'VERBOSE',
-                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=plugins-tests.min.js.map',
+                    output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=plugins-core-tests.min.js.map',
                     debug: true,
                     externs: [
                         'externs/qunit-2.11.2.js',
@@ -607,32 +607,6 @@ module.exports = function(grunt) {
     // The load-grunt-tasks plugin won’t automatically load closure-compiler
 
     grunt.registerTask('default', [
-        'concat:simple-core',
-        'concat:simple-events',
-        'concat:simple-visible',
-        'concat:simple-forms',
-        'concat:simple-center',
-        'concat:simple',
-        'concat:multiple-core',
-        'concat:multiple-events',
-        'concat:multiple-visible',
-        'concat:multiple-forms',
-        'concat:multiple',
-        'concat:plugins',
-        'concat:plugin-center-core',
-        'concat:plugin-center-full',
-        'concat:plugin-events-core',
-        'concat:plugin-events-full',
-        'concat:plugin-forms-core',
-        'concat:plugin-forms-full',
-        'concat:plugin-visible-core',
-        'concat:plugin-visible-full',
-        'concat:zz-core',
-        'concat:zz-utils',
-        'concat:zz',
-        'concat:simple-gcc',
-        'concat:multiple-gcc',
-        'concat:zz-gcc',
-        'concat:plugins-gcc'
+        'concat'
     ]);
 };

@@ -79,11 +79,13 @@
     "build-simple-core-test": "esbuild ./test/src/app/simple-core.js --bundle --outfile=./build/simple-core-tests.js --format=iife",
     "build-multiple-full-test": "esbuild ./test/src/app/multiple-full.js --bundle --outfile=./build/multiple-full-tests.js --format=iife",
     "build-zz-core-test": "esbuild ./test/src/app/zz-core.js --bundle --outfile=./build/zz-core-tests.js --format=iife",
-    "build-plugins-test": "esbuild ./test/src/app/plugins.js --bundle --outfile=./build/plugins-tests.js --format=iife",
+    "build-plugins-core-test": "esbuild ./test/src/app/plugins-core.js --bundle --outfile=./build/plugins-core-tests.js --format=iife",
     "build-gcc-js" : "grunt closure-compiler",
 
-    "buildTests": "npm run build-simple-core-test && npm run build-multiple-full-test && npm run build-zz-core-test && npm run build-plugins-test && npm run build-gcc-js",
+    "buildTests": "npm run build-simple-core-test && npm run build-multiple-full-test && npm run build-zz-core-test && npm run build-plugins-core-test && npm run build-gcc-js",
 
-    "build": "npm run buildProd && npm run buildTests && npm run buildHTMLTestFiles"
+    "build": "npm run buildProd && npm run buildTests && npm run buildHTMLTestFiles",
+
+    "clean": "rm -f ./build/* && rm -f ./dist/*"
   }
 }

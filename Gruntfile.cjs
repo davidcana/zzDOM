@@ -81,6 +81,21 @@ module.exports = function(grunt) {
                 dest: 'test/simple-core.html',
                 nonull: true
             },
+            'simple-core-dist': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/simple-core-dist.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/simple.body.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/simple-core-dist.html',
+                nonull: true
+            },
             'simple-events': {
                 options: {
                     banner: '',
@@ -238,6 +253,24 @@ module.exports = function(grunt) {
                 dest: 'test/multiple.html',
                 nonull: true
             },
+            'multiple-full-dist': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/multiple-full-dist.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/multiple.body.html',
+                    'test/body/multiple.body.events.html',
+                    'test/body/multiple.body.visible.html',
+                    'test/body/multiple.body.forms.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/multiple-full-dist.html',
+                nonull: true
+            },
             'plugins': {
                 options: {
                     banner: '',
@@ -245,6 +278,18 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'test/head/plugins.head.html',
+                    'test/body/plugins.body.html'
+                ],
+                dest: 'test/plugins-core-dist.html',
+                nonull: true
+            },
+            'plugins-core-dist': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/plugins-core-dist.head.html',
                     'test/body/plugins.body.html'
                 ],
                 dest: 'test/plugins.html',
@@ -375,6 +420,21 @@ module.exports = function(grunt) {
                     'test/body/body.end-tag.html'
                 ],
                 dest: 'test/zz-core.html',
+                nonull: true
+            },
+            'zz-core-dist': {
+                options: {
+                    banner: '',
+                    footer: '</html>\n'
+                },
+                src: [
+                    'test/head/zz-core-dist.head.html',
+                    'test/body/body.start-tag.html',
+                    'test/body/qunit.html',
+                    'test/body/zz.body.html',
+                    'test/body/body.end-tag.html'
+                ],
+                dest: 'test/zz-core-dist.html',
                 nonull: true
             },
             'zz-utils': {

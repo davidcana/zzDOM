@@ -5,16 +5,16 @@ QUnit.testSuites([
     { name: "simple visible Test Suite", path: "./simple-visible.html" },
     { name: "simple forms Test Suite", path: "./simple-forms.html" },
     { name: "simple center Test Suite", path: "./simple-center.html" },
-    { name: "simple Test Suite", path: "./simple.html" },
+    { name: "simple full Test Suite", path: "./simple.html" },
     { name: "multiple core Test Suite", path: "./multiple-core.html" },
     { name: "multiple events Test Suite", path: "./multiple-events.html" },
     { name: "multiple visible Test Suite", path: "./multiple-visible.html" },
     { name: "multiple forms Test Suite", path: "./multiple-forms.html" },
-    { name: "multiple Test Suite", path: "./multiple.html" },
+    { name: "multiple full Test Suite", path: "./multiple.html" },
     { name: "zzDom.zz function core Test Suite", path: "./zz-core.html" },
-    { name: "zzDom.zz function utils Test Suite", path: "./zz-utils.html" },
-    { name: "zzDom.zz function Test Suite", path: "./zz.html" },
-    { name: "plugins Test Suite", path: "./plugins.html" },
+    { name: "zzDom.zz function core utils Test Suite", path: "./zz-utils.html" },
+    { name: "zzDom.zz function full Test Suite", path: "./zz.html" },
+    { name: "plugins core Test Suite", path: "./plugins.html" },
     { name: "plugin center core Test Suite", path: "./plugin-center-core.html" },
     { name: "plugin center full Test Suite", path: "./plugin-center-full.html" },
     { name: "plugin events core Test Suite", path: "./plugin-events-core.html" },
@@ -25,8 +25,14 @@ QUnit.testSuites([
     { name: "plugin visible full Test Suite", path: "./plugin-visible-full.html" },
 
     /* Some tests for gcc compiled */
-    { name: "simple gcc Test Suite", path: "./simple-gcc.html" },
-    { name: "multiple gcc Test Suite", path: "./multiple-gcc.html" },
-    { name: "zzDom.zz gcc Test Suite", path: "./zz-gcc.html" },
-    { name: "plugins gcc Test Suite", path: "./plugins-gcc.html" }
+    { name: "simple core gcc Test Suite", path: "./simple-gcc.html" },
+    { name: "multiple full gcc Test Suite", path: "./multiple-gcc.html" },
+    { name: "zzDom.zz core gcc Test Suite", path: "./zz-gcc.html" },
+    { name: "plugins core gcc Test Suite", path: "./plugins-gcc.html" },
+
+    /* Some tests for dist version */
+    { name: "simple core dist Test Suite", path: "./simple-core-dist.html" },
+    { name: "multiple full dist Test Suite", path: "./multiple-full-dist.html" },
+    { name: "zzDom.zz core dist Test Suite", path: "./zz-core-dist.html" },
+    { name: "plugins core dist Test Suite", path: "./plugins-core-dist.html" },
 ]);

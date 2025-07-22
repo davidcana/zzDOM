@@ -21,3 +21,8 @@ New in 0.5.0
 
 New in 0.5.1
 - Bug fixed: files in build directory not found in npm package.
+
+New in 0.6.0
+- Project migrated to ES modules: must work as well as CommonJS module.
+- Tests refactored.
+- Esbuild used to bundle production versions.

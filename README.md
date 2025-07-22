@@ -5,9 +5,7 @@
 * A subset of methods of Jquery implemented. Only main features are supported.
 * Low performance penalty over using vanilla javascript: instance one or more simple javascript objects.
 * Easy to customize and to extend. Clear and simple code: [KISS](https://en.wikipedia.org/wiki/KISS_principle).
-* Two available versions: 
-    * A smaller (**zzDOM**).
-    * A bigger with [Google closure compiler](https://developers.google.com/closure/compiler) support (**zzDOM-gcc**). This includes compiling with **ADVANCED_OPTIMIZATIONS** without using an externs file.
+* Supports compiling with [Google closure compiler](https://developers.google.com/closure/compiler) with **ADVANCED_OPTIMIZATIONS** without using an externs file.
 * Divided into modules, a core and some optional plugins:
     * core. Includes the main components of **zzDOM** and the DOM functions.
     * visible. A plugin that includes methods related to visibility of elements.
@@ -16,8 +14,8 @@
     * center. Makes it easy to center elements in page.
     * utils. Includes some utility methods.
 * Small size:
-    * core: 12.2KB minified, 3.3KB gzipped.
-    * full (includes all the plugins): 17.8KB minified, 4.6KB gzipped.
+    * core: 12.2KB minified, 3.5KB gzipped.
+    * full (includes all the plugins): 17.6KB minified, 4.7KB gzipped.
 
 ## Browser Support
 No support for old browsers. No polyfills. **zzDOM** should work with any browser that supports **document.querySelectorAll()**.
@@ -25,8 +23,17 @@ No support for old browsers. No polyfills. **zzDOM** should work with any browse
 ## Using zzDOM
 Let's import **zzDOM** and define the **zz** function. You can use the name you prefer instead of **zz**:
 
+Using CommonJS:
+
 ```javascript
 var zzDOM = require( 'zzdom' );
+var zz = zzDOM.zz;
+```
+
+Using ES modules:
+
+```javascript
+import { zzDOM } from 'zzdom';
 var zz = zzDOM.zz;
 ```
 
@@ -360,7 +367,7 @@ To download the sources and build **zzDOM** run the next commands in your consol
 git clone https://github.com/davidcana/zzDOM.git
 cd zzDOM
 npm install
-grunt
+npm run build
 ```
 To start a web server to test **zzDOM** run:
 ```bash

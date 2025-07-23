@@ -33,7 +33,7 @@ var zz = zzDOM.zz;
 Using ES modules:
 
 ```javascript
-import { zzDOM } from 'zzdom';
+import { zzDOM } from 'zzDOM-full-esm.js';
 var zz = zzDOM.zz;
 ```
 
